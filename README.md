@@ -5,3 +5,4 @@ sub2home-mobile
 
 * Backbone.JS
 * https://github.com/HubSpot/offline
+* https://github.com/jimhigson/oboe.js

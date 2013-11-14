@@ -7,6 +7,7 @@ sub2home-mobile
 * https://github.com/HubSpot/offline
 * https://github.com/jimhigson/oboe.js
 * https://github.com/airbnb/rendr
+* https://github.com/BBC-News/Imager.js
 
 
 ## Optional

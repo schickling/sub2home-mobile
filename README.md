@@ -2,15 +2,15 @@ sub2home-mobile
 ===============
 
 ## Frameworks
-
-* https://github.com/jashkenas/backbone
+* https://github.com/angular/angular.js
+* https://github.com/collectiveip/prerender
 * https://github.com/HubSpot/offline
 * https://github.com/jimhigson/oboe.js
-* https://github.com/airbnb/rendr
 * https://github.com/BBC-News/Imager.js
 
 ## Tools
-* https://www.dartlang.org/
+* CoffeeScript
+* Batarang
 * Yeoman
 * Grunt
 

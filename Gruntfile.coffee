@@ -31,6 +31,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask "server", [
     "any-newer:less"
-    "connect:server:keepalive"
+    "connect:server"
     "watch"
   ]

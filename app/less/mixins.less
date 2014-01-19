@@ -571,6 +571,28 @@
   cursor: default !important;
 }
 
+.positioned {
+  position: relative;
+}
+
+// SUP
+
+.superscript {
+  vertical-align: super;
+  font-size: 12px !important;
+  margin: 0 !important;
+  color: inherit !important;
+  cursor: inherit !important;
+  text-shadow: inherit;
+  &:before, &:after {
+    content: "" !important;
+  }
+  &:hover {
+    color: inherit !important;
+    text-decoration: inherit !important;
+  }
+}
+
 // COLOR CLASSES
 
 // .error {

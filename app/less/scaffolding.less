@@ -1,0 +1,50 @@
+// Scaffolding Variables
+
+@bodyPadding:		30px;
+@headerHeight:		50px;
+
+// Header Styles
+
+aside#header {
+  background: @headerBackground;
+  background-size: auto 50px;
+  height: @headerHeight;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  // width: 50%;
+  //min-width: 590px;
+  z-index: 8999;
+}
+
+// Backgrounds
+
+.note {
+	background: @noteBackground;
+	background-size: 400px 300px;
+
+	.positioned;
+	padding: @bodyPadding;
+    &:after {
+      content: " ";
+      height: 7px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -7px;
+      background: @noteBottom;
+      background-size: auto 7px;
+    }
+
+    // UnderHeader - Adding Header-Padding
+
+    &.unHe {
+    	padding-top: @bodyPadding + @headerHeight;
+    }
+}
+
+.content.info {
+	background: @darkBackground;
+	background-size: 400px 300px;
+}

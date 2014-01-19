@@ -30,7 +30,7 @@ module.exports = (grunt) ->
           base: 'app'
 
   grunt.registerTask "server", [
-    "any-newer:less"
+    "newer:less"
     "connect:server"
     "watch"
   ]

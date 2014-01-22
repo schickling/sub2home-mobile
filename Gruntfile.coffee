@@ -9,6 +9,8 @@ module.exports = (grunt) ->
       dist: "./dist"
       src: "./app"
       test: "./test"
+      port: 8889
+      livereloadPort: 35731
 
     less:
       src:
@@ -17,20 +19,50 @@ module.exports = (grunt) ->
         options:
           sourceMap: true
 
+    coffee:
+      src:
+        options:
+          sourceMap: true
+          sourceRoot: ''
+        files: [
+          expand: true
+          cwd: "<%= config.src %>/coffee"
+          src: "**/*.coffee"
+          dest: "<%= config.src %>/js"
+          ext: ".js"
+        ]
+
     watch:
       less:
         files: ["<%= config.src %>/less/*.less"]
-        tasks: ["less:src"]
+        tasks: ["newer:less:src"]
+      coffeeSrc:
+        files: ["<%= config.src %>/coffee/**/*.coffee"]
+        tasks: ["newer:coffee:src"]
+      livereload:
+        files: [
+          "<%= config.src %>/js/**/*.js"
+          "<%= config.src %>/css/*.css"
+        ]
+        options:
+          livereload:
+            port: "<%= config.livereloadPort %>"
 
     connect:
       server:
         options:
-          port: 8888
+          port: "<%= config.port %>"
           hostname: '0.0.0.0'
           base: 'app'
+          livereload: "<%= config.livereloadPort %>"
 
   grunt.registerTask "server", [
     "newer:less"
+    "newer:coffee:src"
     "connect:server"
     "watch"
+  ]
+
+  grunt.registerTask "default", [
+    "server"
   ]

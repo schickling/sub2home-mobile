@@ -42,7 +42,7 @@ aside.infoNavigation {
       li {
         list-style-type: none;
         color: @onInfoColor;
-        text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+        text-shadow: 0 1px 1px rgba(255,255,255,0.15);
         font-size: 20px;
 
         line-height: 1.5;
@@ -78,7 +78,7 @@ aside.infoNavigation {
         h1 {
           font-size: 24px;
           color: @onInfoColor;
-          text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+          text-shadow: 0 1px 1px rgba(255,255,255,0.15);
           display: inline-block;
         }
         span {
@@ -99,7 +99,7 @@ aside.infoNavigation {
       p {
         // font-size: 24px;
         color: @onInfoColor;
-        text-shadow: 0 1px 0 rgba(255,255,255,0.1);
+        text-shadow: 0 1px 1px rgba(255,255,255,0.1);
 
         // line-height: 32px;
         // margin-bottom: 15px;
@@ -112,7 +112,7 @@ aside.infoNavigation {
           .transition(e('color .1s linear, text-shadow .1s linear'));
           &:hover {
             color: @black;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+            text-shadow: 0 1px 1px rgba(255,255,255,0.15);
           }
         }
       }
@@ -160,9 +160,78 @@ aside.infoNavigation {
 
       &#howItWorks {
         margin-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+        h1 {
+          margin-left: @bodyPadding;
+          margin-right: 0;
+          display: inline-block;
+        }
         div {
-          margin: 0 30px 0 0;
+          margin: 0;
           text-align: center;
+        }
+        ul.pagination {
+          display: inline-block;
+          list-style-type: none;
+          margin: 18px 0 0;
+          vertical-align: top;
+          li {
+            display: inline-block;
+            list-style-type: none;
+            width: 8px;
+            height: 8px;
+            margin-left: 10px;
+            background: @onInfoColor;
+            .box-shadow(0 1px 1px 0 rgba(255,255,255,0.15));
+            .img-circle;
+            &.active {
+              background: @white;
+              .box-shadow(0 2px 2px 0 rgba(0,0,0,0.7));
+            }
+          }
+        }
+      }
+
+
+      #usageInfoSlides {
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        overflow-x: scroll;
+        padding-top: 15px;
+        .usageInfoSlide {
+          display: inline-block;
+          text-align: center;
+          white-space: normal;
+          margin-left: 15px;
+          .positioned;
+          img {
+            width: 223px;
+            height: 223px;
+            margin-bottom: 20px;
+            display: block;
+          }
+          h3 {
+            display: block;
+          }
+          &:after {
+            content: "\e03f";
+            font-family: "Homicons";
+            font-size: 50px;
+            color: @onInfoColor;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.15);
+            position: absolute;
+            right: -32px;
+            bottom: 50px;
+          }
+          &:last-child {
+            margin-right: @bodyPadding;
+            &:after {
+            content: "";
+            display: none;
+            }
+          }
         }
       }
 
@@ -171,7 +240,7 @@ aside.infoNavigation {
           // font-size: 60px;
 
           color: @onInfoColor60;
-          text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+          text-shadow: 0 1px 1px rgba(255,255,255,0.15);
           margin: 0;
           line-height: 1.2;
           overflow: hidden;
@@ -255,7 +324,7 @@ aside.infoNavigation {
       .openingHours {
         font-size: 24px;
         color: @onInfoColor;
-        text-shadow: 0 1px 0 rgba(255,255,255,0.1);
+        text-shadow: 0 1px 1px rgba(255,255,255,0.1);
 
         line-height: 32px;
         padding-left: 70px;
@@ -309,7 +378,7 @@ aside.infoNavigation {
       white-space: nowrap;
       line-height: 1;
       color: @onInfoColor;
-      text-shadow: 0 1px 0 rgba(255,255,255,0.1);
+      text-shadow: 0 1px 1px rgba(255,255,255,0.1);
       margin-top: 5px;
     }
     span {
@@ -349,7 +418,7 @@ aside.infoNavigation {
     width: 100%;
     display: block;
     margin: 20px 0 0;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.08);
+    text-shadow: 0 1px 1px rgba(255,255,255,0.08);
     color: rgba(0,0,0,0.4);
   }
 }

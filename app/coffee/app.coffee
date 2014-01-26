@@ -1,1 +1,2 @@
-console.log "loaded"
+$('#usageInfoSlides').overscroll
+  showThumbs: false

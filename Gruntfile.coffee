@@ -36,9 +36,11 @@ module.exports = (grunt) ->
       less:
         files: ["<%= config.src %>/less/*.less"]
         tasks: ["newer:less:src"]
+
       coffeeSrc:
         files: ["<%= config.src %>/coffee/**/*.coffee"]
         tasks: ["newer:coffee:src"]
+
       livereload:
         files: [
           "<%= config.src %>/js/**/*.js"

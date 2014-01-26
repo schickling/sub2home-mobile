@@ -1,5 +1,7 @@
 (function() {
-  console.log("loaded");
+  $('#usageInfoSlides').overscroll({
+    showThumbs: false
+  });
 
 }).call(this);
 

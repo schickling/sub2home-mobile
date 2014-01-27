@@ -35,7 +35,7 @@ module.exports = (grunt) ->
     watch:
       less:
         files: ["<%= config.src %>/less/*.less"]
-        tasks: ["newer:less:src"]
+        tasks: ["less:src"]
 
       coffeeSrc:
         files: ["<%= config.src %>/coffee/**/*.coffee"]
@@ -59,7 +59,7 @@ module.exports = (grunt) ->
           livereload: "<%= config.livereloadPort %>"
 
   grunt.registerTask "server", [
-    "newer:less"
+    "less"
     "newer:coffee:src"
     "connect:server"
     "watch"

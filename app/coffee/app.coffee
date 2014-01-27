@@ -1,2 +1,2 @@
-$('#usageInfoSlides').overscroll
-  showThumbs: false
+# $('#usageInfoSlides').overscroll
+#   showThumbs: false

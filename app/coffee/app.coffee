@@ -1,2 +1,2 @@
-# $('#usageInfoSlides').overscroll
-#   showThumbs: false
+$('#toggleNavigation').on 'click', ->
+  $('body').toggleClass 'isNavigated'

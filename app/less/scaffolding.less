@@ -3,6 +3,13 @@
 @bodyPadding:		30px;
 @headerHeight:		50px;
 
+// Important Body Styles
+
+body {
+  -webkit-text-size-adjust:none;
+}
+
+
 // Header Styles
 
 aside#header {
@@ -12,10 +19,19 @@ aside#header {
   position: fixed;
   top: 0;
   right: 0;
-  left: 0;
-  // width: 50%;
-  //min-width: 590px;
+  min-width: 100%;
+  left: 5px;
   z-index: 8999;
+  &:before {
+    content: "";
+    background: @headerLeft;
+    background-size: auto 50px;
+    width: 30px;
+    height: @headerHeight;
+    position: absolute;
+    left: -15px;
+    top: 0;
+  }
 }
 
 // Backgrounds
@@ -23,9 +39,10 @@ aside#header {
 .note {
 	background: @noteBackground;
 	background-size: 400px 300px;
-
 	.positioned;
+  overflow: visible;
 	padding: @bodyPadding;
+  z-index: 100;
     &:after {
       content: " ";
       height: 7px;

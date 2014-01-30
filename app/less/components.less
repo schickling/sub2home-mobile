@@ -11,59 +11,92 @@ html, body {
 // Coming Soon Message
 
 
+aside#header {
 
-
-
-// @infoNavigationWidth:       260px;
-// @infoNavigationPaddingLeft: 50px;
-
-aside.infoNavigation {
-    position: absolute;
-    display: none;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    // width: @infoNavigationWidth;
-    background: @darkBackground;
-    // padding: 10% 0 0 @infoNavigationPaddingLeft;
-    &:after {
-      content: " ";
-      background: @black;
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: 1px;
-      border-left: 1px solid @black;
+  div {
+    display: inline-block;
+    color: @onHeaderColor;
+    &#toggleNavigation {
+      width: 44px;
+      height: 44px;
+      margin-left: -5px;
+      text-align: center;
+      // padding-right: 3px;
+      .positioned;
+      &:before {
+        .positioned;
+        top: 9px;
+        content: "\e601";
+        font-family: "Homicons";
+        font-size: 25px;
+      }
+      &:active, &.active {
+        color: darken(@onHeaderColor, 20%);
+      }
     }
-
-    ul {
-      list-style-type: none;
-      li {
-        list-style-type: none;
-        color: @onInfoColor;
-        text-shadow: 0 1px 1px rgba(255,255,255,0.15);
-        font-size: 20px;
-
-        line-height: 1.5;
-        cursor: pointer;
-        &.active {
-          color: @white;
-          text-shadow: 0 2px 2px rgba(0,0,0,0.7);
-          cursor: default;
-        }
+    &#initialTitle {
+      vertical-align: middle;
+      padding-top: 5px;
+      .superscript {
+        font-size: 6px !important;
       }
     }
   }
+}
 
+@infoNavigationWidth:       180px;
+
+aside.infoNavigation {
+  position: fixed;
+  top: 0;
+  left: -@infoNavigationWidth - 30px;
+  bottom: 0;
+  height: 200%;
+  width: @infoNavigationWidth;
+  background: @darkBackground;
+  background-size: 400px 300px;
+  padding: 30% 0 0 30px;
+  &:after {
+    content: " ";
+    background: rgba(255,255,255,0.1);
+    position: absolute;
+    right: -1px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 1px;
+    border-left: 1px solid @black;
+  }
+
+  ul {
+    // display: inline-block;
+    // vertical-align: middle;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      list-style-type: none;
+      color: @onInfoColor;
+      text-shadow: 0 1px 1px rgba(255,255,255,0.15);
+      font-size: 20px;
+      margin: 0;
+      padding: 0;
+      line-height: 1.7;
+      cursor: pointer;
+      &.active {
+        color: @white;
+        text-shadow: 0 2px 2px rgba(0,0,0,0.7);
+        cursor: default;
+      }
+    }
+  }
+}
 
 .content.info {
-
+  .positioned;
   .container {
-    // margin-left: @infoNavigationWidth + @infoNavigationPaddingLeft;
     margin-left: 0;
     padding: 0;
-    //.border-box;
     width: auto;
 
     article {
@@ -97,12 +130,8 @@ aside.infoNavigation {
       }
 
       p {
-        // font-size: 24px;
         color: @onInfoColor;
         text-shadow: 0 1px 1px rgba(255,255,255,0.1);
-
-        // line-height: 32px;
-        // margin-bottom: 15px;
       }
 
       h3, p {
@@ -171,14 +200,12 @@ aside.infoNavigation {
           margin: 0;
           text-align: center;
         }
-        ul.pagination {
+        span.pagination {
           display: inline-block;
-          list-style-type: none;
           margin: 18px 0 0;
           vertical-align: top;
-          li {
+          span {
             display: inline-block;
-            list-style-type: none;
             width: 8px;
             height: 8px;
             margin-left: 10px;
@@ -218,12 +245,12 @@ aside.infoNavigation {
           &:after {
             content: "\e03f";
             font-family: "Homicons";
-            font-size: 50px;
+            font-size: 70px;
             color: @onInfoColor;
             text-shadow: 0 1px 1px rgba(255,255,255,0.15);
             position: absolute;
-            right: -32px;
-            bottom: 50px;
+            right: -42px;
+            bottom: 40px;
           }
           &:last-child {
             margin-right: @bodyPadding;
@@ -237,11 +264,9 @@ aside.infoNavigation {
 
       &#storeInfoPlaceholder {
         header h1 {
-          // font-size: 60px;
-
           color: @onInfoColor60;
           text-shadow: 0 1px 1px rgba(255,255,255,0.15);
-          margin: 0;
+          margin: 0 0 100px;
           line-height: 1.2;
           overflow: hidden;
         }
@@ -277,9 +302,6 @@ aside.infoNavigation {
         .iBtn {
           color: @white;
           text-shadow: 0 2px 2px rgba(0,0,0,0.7);
-          // position: absolute;
-          // left: 580px;
-          // top: 35px;
           margin-top: 10px;
           width: 100px;
           &:before {
@@ -304,9 +326,6 @@ aside.infoNavigation {
     &#storeInfo {
       overflow: hidden;
       .positioned;
-      // article:first-child {
-      //   padding-top: 150px;
-      // }
     }
 
 
@@ -336,14 +355,13 @@ aside.infoNavigation {
           &:first-child {
             margin-right: 7px;
             width: 58px;
-            //text-align: right;
           }
         }
       }
     }
     &#homeInfo:first-child {
       #howItWorks {
-        margin-top: 100px;
+        // margin-top: 100px;
       }
     }
   }
@@ -407,9 +425,6 @@ aside.infoNavigation {
 #impressum {
   background: rgba(0,0,0,0.1);
   padding-bottom: 30px;
-  // header, div {
-  //   .opacity(50);
-  // }
   &:after {
     content: "\e000";
     font-family: "Homicons";
@@ -420,5 +435,26 @@ aside.infoNavigation {
     margin: 20px 0 0;
     text-shadow: 0 1px 1px rgba(255,255,255,0.08);
     color: rgba(0,0,0,0.4);
+  }
+}
+
+#bodyContainer {
+  overflow: hidden;
+}
+
+body.isNavigated {
+
+  aside#header {
+    left: @infoNavigationWidth + 30px + 5px;
+  }
+
+  .note {
+    left: @infoNavigationWidth + 30px;
+  }
+  .content {
+    left: @infoNavigationWidth + 30px;
+  }
+  aside.infoNavigation {
+    left: 0;
   }
 }

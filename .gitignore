@@ -3,5 +3,4 @@
 /dist
 /app/components
 /app/css
-/app/js
 *.sublime-workspace

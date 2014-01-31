@@ -19,6 +19,12 @@ module.exports = (grunt) ->
         options:
           sourceMap: true
 
+      dist:
+        files:
+          "<%= config.dist %>/css/main.css": "<%= config.src %>/less/main.less"
+        options:
+          yuicompress: true
+
     coffee:
       src:
         options:
@@ -31,6 +37,18 @@ module.exports = (grunt) ->
           dest: "<%= config.src %>/js"
           ext: ".js"
         ]
+
+      dist:
+        files: [
+          expand: true
+          cwd: "<%= config.src %>/coffee"
+          src: "**/*.coffee"
+          dest: "<%= config.dist %>/js"
+          ext: ".js"
+        ]
+
+    clean:
+      dist: "<%= config.dist %>"
 
     watch:
       less:
@@ -50,6 +68,22 @@ module.exports = (grunt) ->
           livereload:
             port: "<%= config.livereloadPort %>"
 
+    copy:
+      dist:
+        files: [
+          expand: true
+          dot: true
+          cwd: "<%= config.src %>"
+          dest: "<%= config.dist %>"
+          src: [
+            "index.html"
+            "sitemap.xml"
+            "robots.txt"
+            "favicon.ico"
+            "images/**"
+          ]
+        ]
+
     connect:
       server:
         options:
@@ -63,6 +97,13 @@ module.exports = (grunt) ->
     "newer:coffee:src"
     "connect:server"
     "watch"
+  ]
+
+  grunt.registerTask "build", [
+    "clean:dist"
+    "coffee:dist"
+    "less:dist"
+    "copy:dist"
   ]
 
   grunt.registerTask "default", [

@@ -48,14 +48,18 @@ aside#header {
 aside.infoNavigation {
   position: fixed;
   top: 0;
-  left: -@infoNavigationWidth - 30px;
+  left: 0;
   bottom: 0;
   height: 200%;
   width: @infoNavigationWidth;
   background: @darkBackground;
   background-size: 400px 300px;
   padding: 30% 0 0 30px;
-  .transition(left .3s ease);
+  -webkit-transform: translate3d(-@infoNavigationWidth - 30px, 0, 0);
+  transform: translate3d(-@infoNavigationWidth - 30px, 0, 0);
+  -webkit-transition-duration: .25s;
+  transition-duration: .25s;
+
   &:after {
     content: " ";
     background: rgba(255,255,255,0.1);
@@ -449,16 +453,24 @@ aside.infoNavigation {
 body.isNavigated {
 
   aside#header {
-    left: @infoNavigationWidth + 30px + 5px;
+    // left: @infoNavigationWidth + 30px + 5px;
+    -webkit-transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
+    transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
   }
 
   .note {
-    left: @infoNavigationWidth + 30px;
+    // left: @infoNavigationWidth + 30px;
+    -webkit-transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
+    transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
   }
   .content {
-    left: @infoNavigationWidth + 30px;
+    // left: @infoNavigationWidth + 30px;
+    -webkit-transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
+    transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
   }
   aside.infoNavigation {
-    left: 0;
+    // left: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }

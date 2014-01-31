@@ -22,7 +22,8 @@ aside#header {
   min-width: 100%;
   left: 5px;
   z-index: 8999;
-  .transition(left .3s ease);
+  -webkit-transition-duration: .25s;
+  transition-duration: .25s;
   &:before {
     content: "";
     background: @headerLeft;
@@ -44,7 +45,8 @@ aside#header {
   overflow: visible;
 	padding: @bodyPadding;
   z-index: 100;
-  .transition(left .3s ease);
+  -webkit-transition-duration: .25s;
+  transition-duration: .25s;
     &:after {
       content: " ";
       height: 7px;
@@ -66,5 +68,6 @@ aside#header {
 .content.info {
 	background: @darkBackground;
 	background-size: 400px 300px;
-  .transition(left .3s ease);
+  -webkit-transition-duration: .25s;
+  transition-duration: .25s;
 }

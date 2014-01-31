@@ -11,7 +11,7 @@ html, body {
 // Coming Soon Message
 
 
-aside#header {
+#header {
   div {
     display: inline-block;
     color: @onHeaderColor;
@@ -64,7 +64,7 @@ aside.infoNavigation {
     content: " ";
     background: rgba(255,255,255,0.1);
     position: absolute;
-    right: -1px;
+    right: 0;
     top: 0;
     bottom: 0;
     height: 100%;
@@ -73,8 +73,6 @@ aside.infoNavigation {
   }
 
   ul {
-    // display: inline-block;
-    // vertical-align: middle;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -102,6 +100,7 @@ aside.infoNavigation {
 
 .content.info {
   .positioned;
+  margin-left: 0;
   .container {
     margin-left: 0;
     padding: 0;
@@ -450,26 +449,23 @@ aside.infoNavigation {
   overflow: hidden;
 }
 
-body.isNavigated {
+.isNavigated {
 
-  aside#header {
+  #header {
     // left: @infoNavigationWidth + 30px + 5px;
     -webkit-transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
     transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
   }
 
   .note {
-    // left: @infoNavigationWidth + 30px;
     -webkit-transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
     transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
   }
   .content {
-    // left: @infoNavigationWidth + 30px;
     -webkit-transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
     transform: translate3d(@infoNavigationWidth + 30px, 0, 0);
   }
-  aside.infoNavigation {
-    // left: 0;
+  .infoNavigation {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }

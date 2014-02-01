@@ -3,6 +3,7 @@ var gulp = require('gulp'),
   server = tinylr(),
   livereload = require('gulp-livereload'),
   less = require('gulp-less'),
+  connect = require('gulp-connect'),
   uglify = require('gulp-uglify'),
   karma = require('gulp-karma'),
   hint = require('gulp-jshint'),
@@ -11,8 +12,7 @@ var gulp = require('gulp'),
 gulp.task('less', function() {
   gulp.src('app/less/main.less')
     .pipe(less())
-    .pipe(gulp.dest('app/css'))
-    .pipe(livereload(server));
+    .pipe(gulp.dest('app/css'));
 });
 
 gulp.task('hint', function() {
@@ -20,6 +20,16 @@ gulp.task('hint', function() {
     .pipe(hint('.jshintrc'))
     .pipe(hint.reporter('default'));
 });
+
+gulp.task('connect', connect({
+  root: __dirname + '/app',
+  port: 8888
+}));
+
+gulp.task('livereload', function() {
+  gulp.src(['app/js/**/*.js', 'app/css/*.css'])
+    .pipe(livereload(server));
+})
 
 gulp.task('test:unit', function() {
   gulp.src('test/unit/**/*.js')
@@ -35,13 +45,14 @@ gulp.task('assemble', function() {
     .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('test', ['hint', 'karma']);
-gulp.task('build', ['test', 'less', 'assemble']);
-
 gulp.task('watch', function() {
   server.listen(35729);
   gulp.watch('app/less/*.less', ['less']);
-  gulp.watch('app/js/**/*.js', ['hint']);
+  gulp.watch('app/js/**/*.js', ['hint', 'livereload']);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('test', ['hint', 'karma']);
+gulp.task('server', ['watch', 'connect']);
+gulp.task('build', ['test', 'less', 'assemble']);
+
+gulp.task('default', ['server']);

@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp'),
   tinylr = require('tiny-lr'),
   server = tinylr(),
@@ -16,7 +18,7 @@ gulp.task('less', function() {
 });
 
 gulp.task('hint', function() {
-  gulp.src('app/js/**/*.js')
+  gulp.src(['app/js/**/*.js', '*.js'])
     .pipe(hint('.jshintrc'))
     .pipe(hint.reporter('default'));
 });
@@ -29,14 +31,14 @@ gulp.task('connect', connect({
 gulp.task('livereload', function() {
   gulp.src(['app/js/**/*.js', 'app/css/*.css'])
     .pipe(livereload(server));
-})
+});
 
 gulp.task('test:unit', function() {
   gulp.src('test/unit/**/*.js')
     .pipe(karma({
       configFile: 'test/karma.conf.js'
     }));
-})
+});
 
 gulp.task('assemble', function() {
   gulp.src('app/js/**/*.js')
@@ -54,5 +56,4 @@ gulp.task('watch', function() {
 gulp.task('test', ['hint', 'karma']);
 gulp.task('server', ['watch', 'connect']);
 gulp.task('build', ['test', 'less', 'assemble']);
-
 gulp.task('default', ['server']);

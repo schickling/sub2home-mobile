@@ -1,3 +1,5 @@
 'use strict';
 
-new Imager({ availablePixelRatios: [1, 1.3, 2] });
+new Imager({
+  availablePixelRatios: [1, 2]
+});

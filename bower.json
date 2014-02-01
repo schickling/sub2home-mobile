@@ -5,6 +5,6 @@
   "dependencies": {
     "angular": "~1.2.8",
     "async": "~0.2.5",
-    "imager.js": "~0.1.0"
+    "imager.js": "master"
   }
 }

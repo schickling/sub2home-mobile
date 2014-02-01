@@ -5,11 +5,10 @@ var gulp = require('gulp'),
   server = tinylr(),
   livereload = require('gulp-livereload'),
   less = require('gulp-less'),
+  usemin = require('gulp-usemin'),
   connect = require('gulp-connect'),
-  uglify = require('gulp-uglify'),
   karma = require('gulp-karma'),
-  hint = require('gulp-jshint'),
-  concat = require('gulp-concat');
+  hint = require('gulp-jshint');
 
 gulp.task('less', function() {
   gulp.src('app/less/main.less')
@@ -33,18 +32,17 @@ gulp.task('livereload', function() {
     .pipe(livereload(server));
 });
 
-gulp.task('test:unit', function() {
-  gulp.src('test/unit/**/*.js')
-    .pipe(karma({
-      configFile: 'test/karma.conf.js'
-    }));
+gulp.task('karma', function() {
+  // gulp.src('test/unit/**/*.js')
+  //   .pipe(karma({
+  //     configFile: 'test/karma.conf.js'
+  //   }));
 });
 
-gulp.task('assemble', function() {
-  gulp.src('app/js/**/*.js')
-    .pipe(concat('main.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('dist/js'));
+gulp.task('usemin', function() {
+  gulp.src('app/index.html')
+    .pipe(usemin())
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function() {
@@ -55,5 +53,5 @@ gulp.task('watch', function() {
 
 gulp.task('test', ['hint', 'karma']);
 gulp.task('server', ['watch', 'connect']);
-gulp.task('build', ['test', 'less', 'assemble']);
+gulp.task('build', ['test', 'less', 'usemin']);
 gulp.task('default', ['server']);

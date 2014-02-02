@@ -7,22 +7,19 @@
 	<meta name="description" content="Bei SUBWAY® bestellen war noch nie so einfach: Lieferservice wählen, Sandwich belegen, Lieferadresse angeben, zurücklehnen und liefern lassen.">
     <!-- build:css main.css -->
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/components/angular-snap/angular-snap.css">
     <!-- endbuild -->
 	<!--[if lt IE 9]>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.min.js"></script>
         <![endif]-->
     </head>
     <body>
-        <aside id="header">
-           <div id="toggleNavigation"></div>
-           <div id="initialTitle">Deine Onlinetheke für SUBWAY<span class="superscript">®</span>-Lieferservices</div>
-           <!-- <div id="toTheInfo"></div> -->
-       </aside>
-       <div id="bodyContainer" ng-view></div>
+        <div ng-view></div>
        <!-- build:js js/main.js -->
        <!-- vendor -->
        <script src="components/angular/angular.js"></script>
        <script src="components/angular-route/angular-route.js"></script>
+       <script src="components/snapjs/snap.js"></script>
        <script src="components/angular-snap/angular-snap.js"></script>
        <script src="components/imager.js/Imager.js"></script>
        <!-- bootstrap -->

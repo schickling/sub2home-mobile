@@ -5,17 +5,20 @@ angular.module('mobile', [
   // 'mobile.filters',
   // 'mobile.services',
   // 'mobile.directives',
-  'mobile.controllers'
+  'mobile.controllers',
+  'snap',
 ]).
-config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.when('/', {
-      templateUrl: 'views/home/info/main.html',
-      controller: 'HomeInfoCtrl'
-    });
-    $routeProvider.otherwise({
-      redirectTo: '/'
-    });
-  }
-]);
+config(function($routeProvider, snapRemoteProvider) {
 
+  snapRemoteProvider.globalOptions.disable = 'right';
+
+  $routeProvider.when('/', {
+    templateUrl: 'views/home/info/main.html',
+    controller: 'HomeInfoCtrl'
+  });
+
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
+
+});

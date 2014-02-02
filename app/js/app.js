@@ -11,12 +11,10 @@ angular.module('mobile', [
 .constant('_', window._)
 .config(function($routeProvider, snapRemoteProvider) {
 
-  var snapSettings = {
+  snapRemoteProvider.globalOptions = {
     disable: 'right',
     flickThreshold: 20,
   };
-
-  angular.extend(snapRemoteProvider.globalOptions, snapSettings);
 
   $routeProvider.when('/', {
     templateUrl: 'views/home/info/main.html',

@@ -7,7 +7,7 @@ var gulp = require('gulp'),
   less = require('gulp-less'),
   usemin = require('gulp-usemin'),
   connect = require('gulp-connect'),
-  karma = require('gulp-karma'),
+  // karma = require('gulp-karma'),
   hint = require('gulp-jshint');
 
 gulp.task('less', function() {
@@ -58,6 +58,6 @@ gulp.task('watch', function() {
 });
 
 gulp.task('test', ['hint', 'karma']);
-gulp.task('server', ['hint', 'watch', 'connect']);
+gulp.task('server', ['less', 'hint', 'watch', 'connect']);
 gulp.task('build', ['test', 'less', 'usemin']);
 gulp.task('default', ['server']);

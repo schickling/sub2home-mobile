@@ -7,10 +7,16 @@ angular.module('mobile', [
   // 'mobile.directives',
   'mobile.controllers',
   'snap',
-]).
-config(function($routeProvider, snapRemoteProvider) {
+])
+.constant('_', window._)
+.config(function($routeProvider, snapRemoteProvider) {
 
-  snapRemoteProvider.globalOptions.disable = 'right';
+  var snapSettings = {
+    disable: 'right',
+    flickThreshold: 20,
+  };
+
+  angular.extend(snapRemoteProvider.globalOptions, snapSettings);
 
   $routeProvider.when('/', {
     templateUrl: 'views/home/info/main.html',

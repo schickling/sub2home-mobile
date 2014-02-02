@@ -1,5 +1,21 @@
 'use strict';
 
-new Imager({
-  availablePixelRatios: [1, 2]
-});
+angular.module('mobile', [
+  'ngRoute',
+  // 'mobile.filters',
+  // 'mobile.services',
+  // 'mobile.directives',
+  'mobile.controllers'
+]).
+config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.when('/', {
+      templateUrl: 'views/home/info/main.html',
+      controller: 'HomeInfoCtrl'
+    });
+    $routeProvider.otherwise({
+      redirectTo: '/'
+    });
+  }
+]);
+

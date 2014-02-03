@@ -20,11 +20,11 @@ namespace :deploy do
         execute :bower, "install --silent"
       end
     end
-    on roles(:app) do
-      within release_path do
-        execute :gulp, "build"
-      end
-    end
+    # on roles(:app) do
+    #   within release_path do
+    #     execute :gulp, "build"
+    #   end
+    # end
   end
 
   after :finishing, "deploy:cleanup"

@@ -1,9 +1,6 @@
 'use strict';
 
 var gulp = require('gulp'),
-  tinylr = require('tiny-lr'),
-  server = tinylr(),
-  livereload = require('gulp-livereload'),
   less = require('gulp-less'),
   usemin = require('gulp-usemin'),
   connect = require('gulp-connect'),
@@ -22,21 +19,11 @@ gulp.task('hint', function() {
     .pipe(hint.reporter('default'));
 });
 
-gulp.task('connect', connect({
+gulp.task('connect', connect.server({
   root: __dirname + '/app',
   livereload: true,
   port: 8888
 }));
-
-gulp.task('livereload', function() {
-  gulp.src([
-    'app/js/**/*.js',
-    'app/css/*.css',
-    'app/views/**/*.html',
-    'app/index.html'
-  ])
-    .pipe(livereload(server));
-});
 
 gulp.task('karma', function() {
   // gulp.src('test/unit/**/*.js')
@@ -52,10 +39,15 @@ gulp.task('usemin', function() {
 });
 
 gulp.task('watch', function() {
-  server.listen(35729);
+  // server.listen(35729);
   gulp.watch('app/less/*.less', ['less']);
-  gulp.watch('app/js/**/*.js', ['hint', 'livereload']);
-  gulp.watch(['app/views/**/*.html', 'app/index.html'], ['livereload']);
+  gulp.watch('app/js/**/*.js', ['hint']);
+  gulp.watch([
+    'app/views/**/*.html',
+    'app/js/**/*.js',
+    'app/css/*.css',
+    'app/index.html'
+  ], connect.reload);
 });
 
 gulp.task('test', ['hint', 'karma']);

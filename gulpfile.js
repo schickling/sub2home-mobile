@@ -24,6 +24,7 @@ gulp.task('hint', function() {
 
 gulp.task('connect', connect({
   root: __dirname + '/app',
+  livereload: true,
   port: 8888
 }));
 

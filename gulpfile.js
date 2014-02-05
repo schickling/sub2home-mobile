@@ -4,6 +4,7 @@ var gulp = require('gulp'),
   less = require('gulp-less'),
   usemin = require('gulp-usemin'),
   connect = require('gulp-connect'),
+  clean = require('gulp-clean'),
   // karma = require('gulp-karma'),
   hint = require('gulp-jshint');
 
@@ -32,6 +33,13 @@ gulp.task('karma', function() {
   //   }));
 });
 
+gulp.task('clean:dist', function() {
+  gulp.src('dist', {
+    read: false
+  })
+    .pipe(clean());
+});
+
 gulp.task('usemin', function() {
   gulp.src('app/index.html')
     .pipe(usemin())
@@ -52,5 +60,5 @@ gulp.task('watch', function() {
 
 gulp.task('test', ['hint', 'karma']);
 gulp.task('server', ['less', 'hint', 'watch', 'connect']);
-gulp.task('build', ['test', 'less', 'usemin']);
+gulp.task('build', ['test', 'less', 'clean:dist', 'usemin']);
 gulp.task('default', ['server']);

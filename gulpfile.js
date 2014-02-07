@@ -9,6 +9,7 @@ var gulp = require('gulp'),
   cssmin = require('gulp-minify-css'),
   templateCache = require('gulp-angular-templatecache'),
   connect = require('gulp-connect'),
+  watch = require('gulp-watch'),
   rm = require('gulp-rimraf'),
   // karma = require('gulp-karma'),
   hint = require('gulp-jshint');
@@ -30,6 +31,17 @@ gulp.task('connect', connect.server({
   livereload: true,
   port: 8888
 }));
+
+gulp.task('livereload', function() {
+  gulp.src([
+    'app/views/**/*.html',
+    'app/js/**/*.js',
+    'app/css/*.css',
+    'app/index.html'
+  ])
+    .pipe(watch())
+    .pipe(connect.reload());
+});
 
 gulp.task('karma', function() {
   // return gulp.src('test/unit/**/*.js')
@@ -74,18 +86,11 @@ gulp.task('compress', ['usemin', 'views'], function() {
 });
 
 gulp.task('watch', function() {
-  // server.listen(35729);
   gulp.watch('app/less/*.less', ['less']);
   gulp.watch('app/js/**/*.js', ['hint']);
-  gulp.watch([
-    'app/views/**/*.html',
-    'app/js/**/*.js',
-    'app/css/*.css',
-    'app/index.html'
-  ], connect.reload);
 });
 
 gulp.task('test', ['hint', 'karma']);
-gulp.task('server', ['less', 'hint', 'watch', 'connect']);
+gulp.task('server', ['less', 'hint', 'watch', 'connect', 'livereload']);
 gulp.task('build', ['test', 'clean', 'less', 'usemin', 'views', 'compress']);
 gulp.task('default', ['server']);

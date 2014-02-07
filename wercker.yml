@@ -20,4 +20,3 @@ deploy:
         key-secret: $SECRET
         bucket-url: $BUCKET
         source-dir: $SOURCE
-        opts: --acl-public --exclude=.*

@@ -19,4 +19,5 @@ deploy:
         key-id: $KEY
         key-secret: $SECRET
         bucket-url: $BUCKET
+        source-dir: $SOURCE
         opts: --acl-public

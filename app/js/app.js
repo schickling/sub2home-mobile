@@ -8,21 +8,23 @@ angular.module('mobile', [
   'mobile.controllers',
   'snap',
 ])
-.constant('_', window._)
-.config(function($routeProvider, snapRemoteProvider) {
+  .constant('_', window._)
+  .config(['$routeProvider', 'snapRemoteProvider',
+    function($routeProvider, snapRemoteProvider) {
 
-  snapRemoteProvider.globalOptions = {
-    disable: 'right',
-    flickThreshold: 20,
-  };
+      snapRemoteProvider.globalOptions = {
+        disable: 'right',
+        flickThreshold: 20,
+      };
 
-  $routeProvider.when('/', {
-    templateUrl: 'views/home/info/main.html',
-    controller: 'HomeInfoCtrl'
-  });
+      $routeProvider.when('/', {
+        templateUrl: 'views/home/info/main.html',
+        controller: 'HomeInfoCtrl'
+      });
 
-  $routeProvider.otherwise({
-    redirectTo: '/'
-  });
+      $routeProvider.otherwise({
+        redirectTo: '/'
+      });
 
-});
+    }
+  ]);

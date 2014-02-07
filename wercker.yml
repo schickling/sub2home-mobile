@@ -12,7 +12,7 @@ build:
         code: bower install
     - script:
         name: run tests
-        code: gulp less
+        code: gulp test
 deploy:
   steps:
     - s3sync:

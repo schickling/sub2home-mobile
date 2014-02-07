@@ -1,15 +1,13 @@
 {
-	"folders":
-	[
-		{
-			"follow_symlinks": true,
-			"path": ".",
-			"folder_exclude_patterns": [
-				"dist",
-				"node_modules",
-				// "app/components",
-				"app/css"
-			]
-		}
-	]
+    "folders": [{
+        "follow_symlinks": true,
+        "path": ".",
+        "folder_exclude_patterns": [
+            "dist",
+            "node_modules",
+            // "app/components",
+            "app/css"
+        ],
+        "file_exclude_patterns": [".wercker"]
+    }]
 }

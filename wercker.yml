@@ -1,0 +1,22 @@
+box: wercker/nodejs
+build:
+  steps:
+    - script:
+        name: install global dependencies
+        code: sudo npm install -g gulp bower
+    - script:
+        name: install local dependencies
+        code: npm install
+    - script:
+        name: install bower components
+        code: bower install
+    - script:
+        name: run tests
+        code: gulp less
+deploy:
+  steps:
+    - s3sync:
+        key-id: $KEY
+        key-secret: $SECRET
+        bucket-url: $BUCKET
+        opts: --acl-public

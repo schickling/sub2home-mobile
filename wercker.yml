@@ -13,10 +13,13 @@ build:
     - script:
         name: run tests
         code: gulp test
+    - script:
+        name: build production
+        code: gulp build
 deploy:
   steps:
     - s3sync:
         key-id: $KEY
         key-secret: $SECRET
         bucket-url: $BUCKET
-        source-dir: $SOURCE
+        source-dir: ./dist

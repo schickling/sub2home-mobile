@@ -15,6 +15,7 @@ angular.module('mobile', [
       snapRemoteProvider.globalOptions = {
         disable: 'right',
         flickThreshold: 20,
+        hyperextensible: false,
         maxPosition: 210,
       };
 

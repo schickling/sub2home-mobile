@@ -12,7 +12,8 @@ angular.module('mobile.controllers', [])
       $scope.width = 238;
 
       $scope.increaseOffset = function() {
-        $scope.offset += $scope.width;
+        $scope.offset++;
+        $scope.offset %= 5;
       };
 
     }

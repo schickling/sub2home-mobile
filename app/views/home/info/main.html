@@ -1,11 +1,18 @@
+<div class="snap-drawers">
+    <aside class="infoNavigation" snap-drawer>
+        <ul>
+            <li class="active"><a href="#restaurants">Restaurants</a></li>
+            <li><a href="#officeContact">Kontakt</a></li>
+            <li><a href="#howItWorks">Wie's funktioniert</a></li>
+        </ul>
+    </aside>
+</div>
 <div snap-content>
-	<snap-dragger>
-	<aside id="header">
+	<aside id="header" snap-dragger>
 		<div id="toggleNavigation" snap-toggle="left"></div>
 		<div id="initialTitle">Deine Onlinetheke für SUBWAY<span class="superscript">®</span>-Lieferservices</div>
 		<!-- <div id="toTheInfo"></div> -->
 	</aside>
-	</snap-dragger>
 	<div id="bodyContainer">
 		<div class="note unHe">
 			<p>Hier und bald: Die sub2home-Onlinetheke auch auf dem Handy. Hinterlasse uns deine Email-Adresse, und wir informieren dich, wenn es soweit ist. Bis dahin kannst du von jedem PC oder Mac bestellen.</p>
@@ -27,14 +34,14 @@
 					<header>
 						<h1 class="noWrap" data-nav="So funktioniert's">So funktioniert's</h1>
 						<span class="pagination">
-							<span class="active"></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
+							<span ng-class="{active: offset === 0}"></span>
+							<span ng-class="{active: offset === 1}"></span>
+							<span ng-class="{active: offset === 2}"></span>
+							<span ng-class="{active: offset === 3}"></span>
+							<span ng-class="{active: offset === 4}"></span>
 						</span>
 					</header>
-					<div id="usageInfoSlides" ng-style="{'margin-left': offset * width + 'px'}">
+					<div id="usageInfoSlides" ng-style="{'-webkit-transform': 'translateX(' + -offset * width + 'px)'}">
 						<div class="usageInfoSlide" ng-click="increaseOffset()">
 							<div class="delayed-image-load" data-src="https://d3uu6huyzvecb1.cloudfront.net/images/common/info/selectstore{pixel_ratio}.png" data-alt=""></div>
 							<h3>Store finden</h3>
@@ -134,12 +141,5 @@
 				</article>
 			</div>
 		</div>
-		<aside class="infoNavigation" snap-drawer>
-			<ul>
-				<li class="active"><a href="#restaurants">Restaurants</a></li>
-				<li><a href="#officeContact">Kontakt</a></li>
-				<li><a href="#howItWorks">Wie's funktioniert</a></li>
-			</ul>
-		</aside>
-	</div>
+    </div>
 </div>

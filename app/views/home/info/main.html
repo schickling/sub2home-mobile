@@ -34,11 +34,11 @@
 					<header>
 						<h1 class="noWrap" data-nav="So funktioniert's">So funktioniert's</h1>
 						<span class="pagination">
-							<span ng-class="{active: offset === 0}"></span>
-							<span ng-class="{active: offset === 1}"></span>
-							<span ng-class="{active: offset === 2}"></span>
-							<span ng-class="{active: offset === 3}"></span>
-							<span ng-class="{active: offset === 4}"></span>
+							<span ng-class="{active: offset === 0}" ng-click="offset = 0"></span>
+							<span ng-class="{active: offset === 1}" ng-click="offset = 1"></span>
+							<span ng-class="{active: offset === 2}" ng-click="offset = 2"></span>
+							<span ng-class="{active: offset === 3}" ng-click="offset = 3"></span>
+							<span ng-class="{active: offset === 4}" ng-click="offset = 4"></span>
 						</span>
 					</header>
 					<div id="usageInfoSlides" ng-style="{'-webkit-transform': 'translateX(' + -offset * width + 'px)'}">

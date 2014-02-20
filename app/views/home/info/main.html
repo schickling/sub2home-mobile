@@ -2,9 +2,9 @@
     <div class="snap-drawers">
         <aside class="infoNavigation" snap-drawer>
             <ul>
-                <li class="active"><a href="#restaurants">Restaurants</a></li>
-                <li><a href="#officeContact">Kontakt</a></li>
-                <li><a href="#howItWorks">Wie's funktioniert</a></li>
+                <!-- <li class="active"><a ng-click="scrollTo('officeContact')">Restaurants</a></li> -->
+                <li><a snap-close scroll-to="officeContact">Kontakt</a></li>
+                <li><a snap-close scroll-to="howItWorks">Wie's funktioniert</a></li>
             </ul>
         </aside>
     </div>
@@ -21,14 +21,6 @@
 		<!-- INFO CONTENT -->
 
 		<div class="content info">
-<!-- 		<div class="container" id="storeInfo">
-			<article id="storeInfoPlaceholder">
-				<header>
-					<h1>Sobald du einen Store ausgewählt hast, findest du hier Kontaktdaten und Lieferzeiten.</h1>
-				</header>
-			</article>
-			</div> -->
-
 			<div class="container" id="homeInfo">
 				<article id="howItWorks">
 					<header>

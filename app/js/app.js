@@ -8,6 +8,7 @@ angular.module('mobile', [
   'mobile.controllers',
   'snap',
   'ngTouch',
+  'ngScrollTo',
 ])
   .constant('_', window._)
   .config(['$routeProvider', '$locationProvider', 'snapRemoteProvider',
@@ -18,6 +19,7 @@ angular.module('mobile', [
         flickThreshold: 20,
         hyperextensible: false,
         maxPosition: 210,
+        tapToClose: false,
       };
 
       $locationProvider.html5Mode(true);

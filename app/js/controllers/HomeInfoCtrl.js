@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mobile.controllers', [])
-  .controller('HomeInfoCtrl', ['$scope',
-    function($scope) {
+  .controller('HomeInfoCtrl', ['$scope', '$location', '$anchorScroll',
+    function($scope, $location, $anchorScroll) {
 
       new window.Imager({
         availablePixelRatios: [1, 2]
@@ -22,6 +22,12 @@ angular.module('mobile.controllers', [])
           $scope.offset--;
         }
       };
+
+      $scope.scrollTo = function(id) {
+        $location.hash(id);
+        $anchorScroll();
+        $anchorScroll();
+      }
 
     }
   ]);

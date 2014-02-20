@@ -7,6 +7,7 @@ angular.module('mobile', [
   // 'mobile.directives',
   'mobile.controllers',
   'snap',
+  'ngTouch',
 ])
   .constant('_', window._)
   .config(['$routeProvider', 'snapRemoteProvider',

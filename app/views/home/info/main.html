@@ -41,7 +41,7 @@
 							<span ng-class="{active: offset === 4}" ng-click="offset = 4"></span>
 						</span>
 					</header>
-					<div id="usageInfoSlides" ng-click="increaseOffset()" ng-style="{'-webkit-transform': 'translate3D(' + -offset * width + 'px, 0, 0)'}">
+					<div id="usageInfoSlides" ng-swipe-left="increaseOffset()" ng-swipe-right="decreaseOffset()" ng-style="{'-webkit-transform': 'translate3D(' + -offset * 241 + 'px, 0, 0)'}">
 						<div class="usageInfoSlide">
 							<div class="delayed-image-load" data-src="https://d3uu6huyzvecb1.cloudfront.net/images/common/info/selectstore{pixel_ratio}.png" data-alt=""></div>
 							<h3>Store finden</h3>

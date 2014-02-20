@@ -10,8 +10,8 @@ angular.module('mobile', [
   'ngTouch',
 ])
   .constant('_', window._)
-  .config(['$routeProvider', 'snapRemoteProvider',
-    function($routeProvider, snapRemoteProvider) {
+  .config(['$routeProvider', '$locationProvider', 'snapRemoteProvider',
+    function($routeProvider, $locationProvider, snapRemoteProvider) {
 
       snapRemoteProvider.globalOptions = {
         disable: 'right',
@@ -19,6 +19,8 @@ angular.module('mobile', [
         hyperextensible: false,
         maxPosition: 210,
       };
+
+      $locationProvider.html5Mode(true);
 
       $routeProvider.when('/', {
         templateUrl: 'views/home/info/main.html',

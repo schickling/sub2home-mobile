@@ -19,7 +19,6 @@ angular.module('mobile', [
         flickThreshold: 20,
         hyperextensible: false,
         maxPosition: 210,
-        tapToClose: false,
       };
 
       $locationProvider.html5Mode(true);

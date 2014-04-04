@@ -26,11 +26,13 @@ gulp.task('hint', function() {
     .pipe(hint.reporter('default'));
 });
 
-gulp.task('connect', connect.server({
-  root: __dirname + '/app',
-  livereload: true,
-  port: 8888
-}));
+gulp.task('connect', function() {
+  return connect.server({
+    root: ['app'],
+    livereload: true,
+    port: 8888
+  })
+});
 
 gulp.task('livereload', function() {
   gulp.src([

@@ -28,7 +28,8 @@
     "gulp-connect": "~2.0.4",
     "browserify": "^3.41.0",
     "es6ify": "^1.1.0",
-    "napa": "^0.4.1"
+    "napa": "^0.4.1",
+    "vinyl-source-stream": "^0.1.1"
   },
   "napa": {
     "angular": "angular/bower-angular",

@@ -24,8 +24,8 @@ angular.module('mobile', [
       $locationProvider.html5Mode(true);
 
       $routeProvider.when('/', {
-        templateUrl: 'views/home/info/main.html',
-        controller: 'HomeInfoCtrl'
+        templateUrl: 'views/home/home/main.html',
+        controller: 'HomeHomeCtrl'
       });
 
       $routeProvider.otherwise({

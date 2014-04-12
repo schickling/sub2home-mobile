@@ -94,16 +94,18 @@
 
 // Placeholder text
 // -------------------------
-.placeholder(@color: @placeholderText) {
+
+
+input {
   &:-moz-placeholder {
-    color: @color;
+    color: @onNoteColor50;
   }
   &:-ms-input-placeholder {
-    color: @color;
+    color: @onNoteColor50;
   }
   &::-webkit-input-placeholder {
     .positioned;
-    color: @color;
+    color: @onNoteColor50;
     z-index: 50;
   }
 }

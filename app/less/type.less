@@ -2,64 +2,16 @@
 // Typography
 // --------------------------------------------------
 
-// Text-Selection Overriding
-// -------------------------
-
-
-// General Selection-Style
-
-*::selection {
- background: rgba(0,0,0,0.05);
-  }
-*::-moz-selection {
- background: @greenLighter20;
-}
-
-
-// Selection-Style on Note-backgrounds
-
-.note, .popup, .smallNote, .detailsArticle {
-  *::selection {
-    background: @onNoteColor30;
-  }
-}
-
-.note, .popup, .smallNote, .detailsArticle {
-  *::-moz-selection {
-    background: @onNoteColor30;
-  }
-}
-
-
-// Selection-Style on dark backgrounds
-
-.info, #checkoutSettings {
-  *::selection {
-    background: rgba(0,0,0,0.1);
-  }
-}
-
-.info, #checkoutSettings {
-  *::-moz-selection {
-    background: rgba(0,0,0,0.1);
-  }
-}
-
-
 // On Note Styling
 
 .note {
   color: @onNoteColor;
-  // p, h1, h2, h3 {
-  //  color: @onNoteColor;
-  // }
 }
 
 // Body text
 // -------------------------
 
 p {
-  // margin: 0 0 @baseLineHeight / 2;
   font-size: 14px;
   .backface-visibility(hidden);
   margin: 0;
@@ -90,15 +42,12 @@ cite {
 // -------------------------
 
 h1, h2, h3, h4, h5, h6 {
-  // margin: (@baseLineHeight / 2) 0;
   font-weight: @headingsFontWeight;
   line-height: 1;
-  // color: @headingsColor;
   margin: 0;
   text-rendering: optimizelegibility;
   .backface-visibility(hidden);
 
-  //text-rendering: optimizelegibility; // Fix the character spacing for headings
   small {
     font-weight: normal;
     line-height: 1;
@@ -119,7 +68,7 @@ h6 { font-size: 12px; line-height: 20px; }
 // Unordered and Ordered lists
 ul, ol {
   padding: 0;
-  margin: 0 0 @baseLineHeight / 2 25px;
+  margin: 0;
 }
 ul ul,
 ul ol,
@@ -158,5 +107,4 @@ ol.unstyled {
     color: lighten(@grayDark, 10%) !important;
     text-shadow: none !important;
   }
-
 }

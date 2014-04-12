@@ -27,21 +27,12 @@
 
 // HAND FONT
 
-@font-face {
-  font-family: "Handlee";
-  src: url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/handlee.eot");
-  src: url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/handlee.eot?#iefix") format("embedded-opentype"), url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/handlee.woff") format("woff"), url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/handlee.ttf") format("truetype"), url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/handlee.svg#Handlee") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-
 // ICON FONT
 
 @font-face {
   font-family: "Homicons";
-  src: url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/Homicons.eot");
-  src: url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/Homicons.eot?#iefix") format("embedded-opentype"), url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/Homicons.ttf") format("truetype"), url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/Homicons.svg#Homicons") format("svg");
+  src: url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/Homicons-2.eot");
+  src: url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/Homicons-2.eot?#iefix") format("embedded-opentype"), url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/Homicons-2.ttf") format("truetype"), url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/Homicons-2.svg#Homicons-2") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -50,7 +41,7 @@
   .win {
     @font-face {
         font-family: "Homicons";
-        src: url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/Homicons.svg#Homicons") format("svg");
+        src: url("https://sub2home-static.s3-eu-west-1.amazonaws.com/fonts/Homicons-2.svg#Homicons-2") format("svg");
     }
   }
 }
@@ -64,72 +55,38 @@
 // -------------------------
 
 @black:                 #000;
-@grayDarker:            #222;
-@grayDark:              #555;
-@gray:                  #949494;
-@graySlightlyLight:     #bcbcbc;
-@grayLittleLight:       #ddd;
-@grayLight:             #cecece;
-@grayLighter:           #e4e4e4;
-@grayEvenLighter:       #e0e0e0;
-@grayLightest:          #f4f4f4;
-@grayVeryLightest:      #fdfdfd;
+
+@grayDark:              #828282;
+@grayLight:             #ccc;
+
+@darkWhite:             #fbfbfb
+
 @white:                 #fff;
-@onNoteColor10:         darken(rgba(209,186,130,0.1), 5%);
-@onNoteColor20:         darken(rgba(209,186,130,0.2), 5%);
-@onNoteColor30:         darken(rgba(209,186,130,0.3), 5%);
-@onNoteColor50:         darken(rgba(209,186,130,0.5), 5%);
-@onNoteColor60:         darken(rgba(209,186,130,0.6), 5%);
-@onNoteColor70:         darken(rgba(209,186,130,0.7), 5%);
-@onNoteColor:           darken(rgba(209,186,130,1), 5%);
+
+
+@onNoteColor:           rgba(203,172,94,1);
+@onNoteColor30:         rgba(203,172,94,0.3)
+@onNoteColor50:         rgba(203,172,94,0.5)
+@onNoteColor60:         rgba(203,172,94,0.6)
+@onNoteColor70:         rgba(203,172,94,0.7)
+
+@onDarkNoteColor:       rgba(177,145,68,1);
+@onDarkNoteColor50:     rgba(177,145,68,0.5);
+@onDarkNoteColor70:     rgba(177,145,68,0.7);
+
 @noteColor:             #fbf5d5;
 @darkNoteColor:         #f4e3b7;
-
 @noteBorderColor:       #ddbe84;
 
-@separateStageArea:     #fafaf8;
-
-@slightlyDarkNote:      rgba(224,166,54,0.1);
 @darkNote:              rgba(224,166,54,0.2);
-@rlyDarkNote:           rgba(224,166,54,0.3);
-@onlySlightlyDarkNote:  rgba(224,166,54,0.28);
-@onlyRlyDarkNote:       rgba(224,166,54,0.45);
-
-@onDarkNoteColor50:     darken(rgba(197,168,98,0.5), 5%);
-@onDarkNoteColor70:     darken(rgba(197,168,98,0.7), 5%);
-@onDarkNoteColor:       darken(rgba(197,168,98,1), 5%);
-@onRlyDarkNoteColor:    darken(rgba(197,168,98,1), 7%);
 
 @onInfoColor:           @black;
-@onInfoColor60:         rgba(0,0,0,0.60);
-@onInfoColor70:         rgba(0,0,0,0.65);
 
-@onHeaderColor:         #a78a44;
-@onHeaderColor50:       #d3c4a1;
-
-@onGreenLighterColor:   #597b12;
-
-
-
-// WIN COLORS
-
-
-// @onNoteColor10_win:         darken(rgba(225,186,130,0.1), 5%);
-// @onNoteColor20_win:         darken(rgba(225,186,130,0.2), 5%);
-// @onNoteColor30_win:         darken(rgba(225,186,130,0.3), 5%);
-// @onNoteColor50_win:         darken(rgba(225,186,130,0.5), 5%);
-// @onNoteColor60_win:         darken(rgba(225,186,130,0.6), 5%);
-// @onNoteColor70_win:         darken(rgba(225,186,130,0.7), 5%);
-// @onNoteColor_win:           darken(rgba(225,186,130,1), 5%);
-
-
+@onHeaderColor:         #ac872d;
 
 // Accent colors
 // -------------------------
 
-@blue:              #049cdb;
-@blueDark:          #0064cd;
-@green:             #46a546;
 @red:               #9d261d;
 @red50:             rgba(157,38,29,0.5);
 
@@ -137,33 +94,18 @@
 @orange40:          rgba(220,149,43,0.4);
 @orange50:          rgba(220,149,43,0.5);
 
-@yellow:            #ffc40d;
-@pink:              #c3325f;
-@purple:            #7a43b6;
-
 @greenLight:        #57a827;
-@greenLighter:      #9cc83e;
-@greenDark:         #13493b;
-
-@greenLighter10:    rgba(156,200,62,0.1);
-@greenLighter20:    rgba(156,200,62,0.2);
-@greenLighter30:    rgba(156,200,62,0.3);
-@greenLighter40:    rgba(156,200,62,0.4);
-@greenLighter60:    rgba(156,200,62,0.6);
-@greenLighter70:    rgba(156,200,62,0.7);
-
 
 @greenLight50:      rgba(87,168,39,0.5);
 
-// On Dark Colors
-// -------------------------
+@greenLighter:      #9cc83e;
 
-@labelColorOnDark:     rgba(255,255,255,0.2);
+@greenLighter30:    rgba(156,200,62,0.3);
+@greenLighter50:    rgba(156,200,62,0.5);
+@greenLighter60:    rgba(156,200,62,0.6);
+@greenLighter70:    rgba(156,200,62,0.7);
 
-@grayLightOnDark:      rgba(255,255,255,0.5);
-@grayOnDark:           rgba(255,255,255,0.25);
-@grayOnDarkInactive:   rgba(255,255,255,0.1);
-
+@greenDark:         #13493b;
 
 // Scaffolding
 // -------------------------
@@ -172,38 +114,15 @@
 @textColor:                    @grayDark;
 
 @noteBackground:               url("../images/notebackground.jpg") repeat #fbf4d7;
-@noteTop:                      url("../images/notetop.png") repeat-x;
-@noteBottom:                   url("../images/notebottom.png") repeat-x;
-
-@darkNoteBottom:               url("https://d3uu6huyzvecb1.cloudfront.net/images/common/darknotebottom.png") repeat-x;
-
-
-@smallNoteLeftBackground:      url("https://d3uu6huyzvecb1.cloudfront.net/images/common/smallnote.png") 0 0 no-repeat;
-@smallNoteCenterBackground:    url("https://d3uu6huyzvecb1.cloudfront.net/images/common/smallnotecenter.png") repeat-x;
-@smallNoteRightBackground:     url("https://d3uu6huyzvecb1.cloudfront.net/images/common/smallnote.png") -94px 0 no-repeat;
-
-@headerBackground:             url("../images/headerbackground.png") repeat-x;
-@headerLeft:                   url("../images/headerleft.png") no-repeat;
-
-@headerHoverBackground:        rgba(184,126,0,0.08);
-@headerTrayBackground:         rgba(184,126,0,0.25);
-@headerTrayHoverBackground:    rgba(184,126,0,0.35);
 
 @darkBackground:               url("../images/lighterdarkbackground.jpg") repeat #454545;
 
-@magnifier:                    url("https://d3uu6huyzvecb1.cloudfront.net/images/common/magnifier.png") no-repeat;
-
 @placeholderImage:             url("https://d3uu6huyzvecb1.cloudfront.net/images/common/placeholderimage.gif") no-repeat center;
-
-@logoColor:                    rgba(184,126,0,0.15);
-@logoHoverColor:               rgba(184,126,0,0.25);
 
 // Links
 // -------------------------
 
 @linkColor:             @greenDark;
-@linkColorHover:        darken(@linkColor, 15%);
-
 
 // Typography
 // -------------------------
@@ -212,8 +131,6 @@
 @headingsColor:         @greenDark;
 @headingsFontSize:      20px;
 
-
-@handFontFamily:    "Handlee", Helvetica, Arial, sans-serif;
 @baseFontFamily:    "VAGRoundedStd-Thin", Helvetica, Arial, sans-serif;
 
 @baseFontSize:      13px;
@@ -221,146 +138,55 @@
 
 // Buttons
 // -------------------------
-
-@btnBackground:                     darken(@white, 3%);
-@btnBackgroundCenter:               darken(@white, 5%);
-@btnBackgroundHighlight:            darken(@white, 10%);
-@btnBorder:                         #bbb;
-@btnTextShadow:                     0 1px 0px rgba(255,255,255,0.15);
-@btnMoreTextShadow:                 0 1px 0px rgba(255,255,255,0.50);
-
-@btnPrimaryBackground:              @linkColor;
-@btnPrimaryBackgroundCenter:        @gray;
-@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 20%);
-
-@btnInfoBackground:                 darken(@blueDark, 3%);
-@btnInfoBackgroundCenter:           darken(@blueDark, 5%);
-@btnInfoBackgroundHighlight:        darken(@blueDark, 10%);
-
-@btnDarkInfoBackground:             darken(@blueDark, 13%);
-@btnDarkInfoBackgroundCenter:        darken(@blueDark, 15%);
-@btnDarkInfoBackgroundHighlight:    darken(@blueDark, 20%);
-
-@btnSuccessBackground:              rgb(191,229,110);
-@btnSuccessBackgroundCenter:        rgb(177,218,89);
-@btnSuccessBackgroundHighlight:     rgb(156,200,62);
-@btnSuccessColor:                   darken(#598301, 4%);
-
-@btnWarningBackground:              lighten(@orange, 15%);
-@btnWarningBackgroundCenter:        lighten(@orange, 5%);
-@btnWarningBackgroundHighlight:     @orange;
-
-@btnDangerBackground:               #ee5f5b;
-@btnDangerBackgroundCenter:         @gray;
-@btnDangerBackgroundHighlight:      #bd362f;
-
-@btnInverseBackground:              #444;
-@btnInverseBackgroundCenter:        @gray;
-@btnInverseBackgroundHighlight:     @grayDarker;
-
-@btnDarkBackground:                 lighten(@grayDark, 18%);
-@btnDarkBackgroundCenter:           lighten(@grayDark, 8%);
-@btnDarkBackgroundHighlight:        lighten(@grayDark, 3%);
-@btnDarkColor:                      darken(@grayDark, 18%);
-
-@btnHalfOpBackground:               @onNoteColor10;
-@btnHalfOpBackgroundCenter:         @onNoteColor30;
-@btnHalfOpBackgroundHighlight:      @onNoteColor30;
-
-
-
-
-@bodyBackground:               @white;
-@textColor:                    @grayDark;
-
-@noteBackground:               url("https://d3uu6huyzvecb1.cloudfront.net/images/common/notebackground.jpg") repeat #fbf4d7;
-@noteTop:                      url("https://d3uu6huyzvecb1.cloudfront.net/images/common/notetop.png") repeat-x;
-@noteBottom:                   url("https://d3uu6huyzvecb1.cloudfront.net/images/common/notebottom.png") repeat-x;
-
-// @darkNoteBottom:               url("https://d3uu6huyzvecb1.cloudfront.net/images/common/darknotebottom.png") repeat-x;
-
-
-// @smallNoteLeftBackground:      url("https://d3uu6huyzvecb1.cloudfront.net/images/common/smallnote.png") 0 0 no-repeat;
-// @smallNoteCenterBackground:    url("https://d3uu6huyzvecb1.cloudfront.net/images/common/smallnotecenter.png") repeat-x;
-// @smallNoteRightBackground:     url("https://d3uu6huyzvecb1.cloudfront.net/images/common/smallnote.png") -94px 0 no-repeat;
-
-@headerBackground:             url("https://d3uu6huyzvecb1.cloudfront.net/images/common/mobileonly/headerbackground.png") repeat-x;
-@headerLeft:                   url("https://d3uu6huyzvecb1.cloudfront.net/images/common/mobileonly/headerleft.png") no-repeat;
-
-@headerHoverBackground:        rgba(184,126,0,0.08);
-@headerTrayBackground:         rgba(184,126,0,0.25);
-@headerTrayHoverBackground:    rgba(184,126,0,0.35);
-
-@darkBackground:               url("https://d3uu6huyzvecb1.cloudfront.net/images/common/lighterdarkbackground.jpg") repeat #454545;
-
-// @magnifier:                    url("https://d3uu6huyzvecb1.cloudfront.net/images/common/magnifier.png") no-repeat;
-
-// @placeholderImage:             url("https://d3uu6huyzvecb1.cloudfront.net/images/common/placeholderimage.gif") no-repeat center;
-
-
+//
+// @btnBackground:                     darken(@white, 3%);
+// @btnBackgroundCenter:               darken(@white, 5%);
+// @btnBackgroundHighlight:            darken(@white, 10%);
+// @btnBorder:                         #bbb;
+// @btnTextShadow:                     0 1px 0px rgba(255,255,255,0.15);
+// @btnMoreTextShadow:                 0 1px 0px rgba(255,255,255,0.50);
+//
+// @btnPrimaryBackground:              @linkColor;
+// @btnPrimaryBackgroundCenter:        @gray;
+// @btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 20%);
+//
+// @btnInfoBackground:                 darken(@blueDark, 3%);
+// @btnInfoBackgroundCenter:           darken(@blueDark, 5%);
+// @btnInfoBackgroundHighlight:        darken(@blueDark, 10%);
+//
+// @btnDarkInfoBackground:             darken(@blueDark, 13%);
+// @btnDarkInfoBackgroundCenter:        darken(@blueDark, 15%);
+// @btnDarkInfoBackgroundHighlight:    darken(@blueDark, 20%);
+//
+// @btnSuccessBackground:              rgb(191,229,110);
+// @btnSuccessBackgroundCenter:        rgb(177,218,89);
+// @btnSuccessBackgroundHighlight:     rgb(156,200,62);
+// @btnSuccessColor:                   darken(#598301, 4%);
+//
+// @btnWarningBackground:              lighten(@orange, 15%);
+// @btnWarningBackgroundCenter:        lighten(@orange, 5%);
+// @btnWarningBackgroundHighlight:     @orange;
+//
+// @btnDangerBackground:               #ee5f5b;
+// @btnDangerBackgroundCenter:         @gray;
+// @btnDangerBackgroundHighlight:      #bd362f;
+//
+// @btnInverseBackground:              #444;
+// @btnInverseBackgroundCenter:        @gray;
+// @btnInverseBackgroundHighlight:     @grayDarker;
+//
+// @btnDarkBackground:                 lighten(@grayDark, 18%);
+// @btnDarkBackgroundCenter:           lighten(@grayDark, 8%);
+// @btnDarkBackgroundHighlight:        lighten(@grayDark, 3%);
+// @btnDarkColor:                      darken(@grayDark, 18%);
+//
+// @btnHalfOpBackground:               @onNoteColor10;
+// @btnHalfOpBackgroundCenter:         @onNoteColor30;
+// @btnHalfOpBackgroundHighlight:      @onNoteColor30;
 
 // REATINA IMAGES
 // -------------------------
 
-
   @noteBackground-2x:               url("https://d3uu6huyzvecb1.cloudfront.net/images/common/notebackground-2x.jpg") repeat #fbf4d7;
-  @noteTop-2x:                      url("https://d3uu6huyzvecb1.cloudfront.net/images/common/notetop-2x.png") repeat-x;
-  @noteBottom-2x:                   url("https://d3uu6huyzvecb1.cloudfront.net/images/common/notebottom-2x.png") repeat-x;
-
-  // @darkNoteBottom-2x:               url("https://d3uu6huyzvecb1.cloudfront.net/images/common/darknotebottom-2x.png") repeat-x;
-
-
-  // @smallNoteLeftBackground-2x:      url("https://d3uu6huyzvecb1.cloudfront.net/images/common/smallnote-2x.png") 0 0 no-repeat;
-  // @smallNoteCenterBackground-2x:    url("https://d3uu6huyzvecb1.cloudfront.net/images/common/smallnotecenter-2x.png") repeat-x;
-  // @smallNoteRightBackground-2x:     url("https://d3uu6huyzvecb1.cloudfront.net/images/common/smallnote.png-2x") -94px 0 no-repeat;
-
-  @headerBackground-2x:             url("https://d3uu6huyzvecb1.cloudfront.net/images/common/mobileonly/headerbackground-2x.png") repeat-x;
-  @headerLeft-2x:                   url("https://d3uu6huyzvecb1.cloudfront.net/images/common/mobileonly/headerleft-2x.png") no-repeat;
-
-  @headerHoverBackground-2x:        rgba(184,126,0,0.08);
-  @headerTrayBackground-2x:         rgba(184,126,0,0.25);
-  @headerTrayHoverBackground-2x:    rgba(184,126,0,0.35);
 
   @darkBackground-2x:               url("https://d3uu6huyzvecb1.cloudfront.net/images/common/lighterdarkbackground-2x.jpg") repeat #454545;
-
-  // @magnifier-2x:                    url("https://d3uu6huyzvecb1.cloudfront.net/images/common/magnifier-2x.png") no-repeat;
-
-  // @placeholderImage-2x:             url("https://d3uu6huyzvecb1.cloudfront.net/images/common/placeholderimage-2x.gif") no-repeat center;
-
-
-
-// Sprite icons path
-// -------------------------
-// @iconSpriteSrc:   url('https://d3uu6huyzvecb1.cloudfront.net/images/common/icons.png') no-repeat;
-
-// @storeIconSrc:    url('https://d3uu6huyzvecb1.cloudfront.net/images/common/storeicon.png') no-repeat;
-
-
-// Logo & stuff
-// -------------------------
-
-// @ourLogo:      url("https://d3uu6huyzvecb1.cloudfront.net/images/common/subwaylogo.png") center no-repeat;
-// @subwaySmall:  url("https://d3uu6huyzvecb1.cloudfront.net/images/common/subwaylogo_s.png") center no-repeat;
-
-// @clientAvtr:  url("https://d3uu6huyzvecb1.cloudfront.net/images/common/clientavtr.png") center no-repeat;
-
-// Input placeholder text color
-// -------------------------
-@placeholderText:         @grayLight;
-
-
-// ---------------------------------------------  HEIGHTS  ---------------------------------------------
-
-// Global Variables
-
-@timelineHeight:         90px;
-@timelineSelfHeight:    140px;
-
-@noteStoreHeight:       150px;
-@noteSelectionHeight:   285px;
-
-@noteOrdersHeight:       95px;
-@noteOrdersHeight:      400px;
-
-
-

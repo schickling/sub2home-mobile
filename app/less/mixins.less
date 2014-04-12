@@ -506,71 +506,6 @@
 
 // ---------------------------------------------  SUBTOHOME STYLES  ---------------------------------------------
 
-// VARIOUS
-.white-round-button {
-  background: @white;
-  width: 30px;
-  height: 30px;
-  .img-circle;
-  .dropshadow;
-  position: absolute;
-}
-
-.label {
-  display: inline-block;
-  font-size: 10px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-family: @baseFontFamily;
-  cursor: default;
-}
-
-// STYLING CLASSES
-
-.engraved {
-  .box-shadow(0 1px 0 0 rgba(255,255,255,0.7));
-}
-
-.engraved-text {
-  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
-  color: darken(@onNoteColor, 10%);
-}
-
-.dark-engraved-text {
-  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-  color: @onDarkNoteColor;
-}
-
-.r-engraved-text {
-  text-shadow: 0 1px 0 rgba(255,255,255,1), 0 -1px 0 darken(@onNoteColor, 30%);
-  color: darken(@onNoteColor, 10%);
-}
-
-.header-engraved-text {
-  color: @onHeaderColor;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.7), 0 -1px 0 rgba(0,0,0,0.45);
-}
-
-// DISPLAY CLASSES
-
-.hidden {
-  display: none;
-}
-
-.inactive {
-  .opacity(70);
-  .transition(opacity .1s linear);
-  &:hover {
-    .opacity(100);
-  }
-}
-
-
-.inactiveLink {
-  .opacity(50);
-  cursor: default !important;
-}
-
 .positioned {
   position: relative;
 }
@@ -596,14 +531,3 @@
     text-decoration: inherit !important;
   }
 }
-
-// COLOR CLASSES
-
-// .error {
-//   color: @orange !important;
-// }
-
-// .success {
-//   color: @greenLight !important;
-// }
-

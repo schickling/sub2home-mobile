@@ -2,6 +2,14 @@
   "name": "mobile",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "install": "napa"
+  },
+  "browserify": {
+    "transform": [
+      "es6ify"
+    ]
+  },
   "devDependencies": {
     "karma": "~0.10.9",
     "protractor": "~0.17.0",
@@ -17,6 +25,14 @@
     "gulp-concat": "~2.1.7",
     "gulp-htmlmin": "~0.1.2",
     "gulp-watch": "~0.5.0",
-    "gulp-connect": "^2.0.1"
+    "gulp-connect": "~2.0.4",
+    "browserify": "^3.41.0",
+    "es6ify": "^1.1.0",
+    "napa": "^0.4.1"
+  },
+  "napa": {
+    "angular": "angular/bower-angular",
+    "angular-route": "angular/bower-angular-route",
+    "angular-touch": "angular/bower-angular-touch"
   }
 }

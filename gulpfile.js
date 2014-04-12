@@ -1,6 +1,8 @@
 'use strict';
 
 var gulp = require('gulp'),
+  browserify = require('browserify'),
+  source = require('vinyl-source-stream'),
   less = require('gulp-less'),
   usemin = require('gulp-usemin'),
   uglify = require('gulp-uglify'),
@@ -26,11 +28,19 @@ gulp.task('hint', function() {
     .pipe(hint.reporter('default'));
 });
 
+gulp.task('browserify', ['hint'], function() {
+  return browserify('./app/js/app.js')
+    .bundle({
+      debug: true
+    })
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('.tmp/js'));
+});
+
 gulp.task('connect', function() {
   return connect.server({
-    root: ['app'],
+    root: ['.tmp', 'app'],
     livereload: true,
-    port: 8888
   });
 });
 
@@ -52,7 +62,7 @@ gulp.task('karma', function() {
   //   }));
 });
 
-gulp.task('clean', function() {
+gulp.task('clean:dist', function() {
   return gulp.src('dist/*', {
     read: false
   })
@@ -68,7 +78,7 @@ gulp.task('views', function() {
     .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('usemin', ['clean', 'less'], function() {
+gulp.task('usemin', ['clean:dist', 'less'], function() {
   return gulp.src('app/index.html')
     .pipe(usemin({
       cssmin: cssmin(),
@@ -89,10 +99,24 @@ gulp.task('compress', ['usemin', 'views'], function() {
 
 gulp.task('watch', function() {
   gulp.watch('app/less/*.less', ['less']);
-  gulp.watch('app/js/**/*.js', ['hint']);
+  gulp.watch('app/js/**/*.js', ['hint', 'browserify']);
 });
 
 gulp.task('test', ['hint', 'karma']);
-gulp.task('server', ['less', 'hint', 'watch', 'connect', 'livereload']);
-gulp.task('build', ['test', 'clean', 'less', 'usemin', 'views', 'compress']);
+gulp.task('server', [
+  'less',
+  'hint',
+  'browserify',
+  'watch',
+  'connect',
+  'livereload'
+]);
+gulp.task('build', [
+  'test',
+  'clean:dist',
+  'less',
+  'usemin',
+  'views',
+  'compress'
+]);
 gulp.task('default', ['server']);

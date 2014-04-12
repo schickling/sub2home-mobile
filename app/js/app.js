@@ -1,25 +1,16 @@
 'use strict';
 
+require('angular/angular');
+require('angular-route/angular-route');
+require('angular-touch/angular-touch');
+
 angular.module('mobile', [
   'ngRoute',
-  // 'mobile.filters',
-  // 'mobile.services',
-  // 'mobile.directives',
-  'mobile.controllers',
-  'snap',
   'ngTouch',
-  'ngScrollTo',
+  require('./controllers/home/home/HomeHomeCtrl').name,
 ])
-  .constant('_', window._)
-  .config(['$routeProvider', '$locationProvider', 'snapRemoteProvider',
-    function($routeProvider, $locationProvider, snapRemoteProvider) {
-
-      snapRemoteProvider.globalOptions = {
-        disable: 'right',
-        flickThreshold: 20,
-        hyperextensible: false,
-        maxPosition: 210,
-      };
+  .config(['$routeProvider', '$locationProvider',
+    function($routeProvider, $locationProvider) {
 
       $locationProvider.html5Mode(true);
 

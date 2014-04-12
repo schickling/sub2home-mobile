@@ -6,7 +6,6 @@
             "dist",
             ".tmp",
             "node_modules",
-            // "app/components",
             "app/css"
         ],
         "file_exclude_patterns": [".wercker"]

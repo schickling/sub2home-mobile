@@ -1,5 +1,33 @@
+// Heights and Margins
+
+@bodyPadding: 15px;
+
+
+
 html, body {
 	font-family: @baseFontFamily;
 	font-size: @baseFontSize;
 	color: @textColor;
+
+	-webkit-text-size-adjust:none;
+}
+
+// Backgrounds
+
+.note {
+	.positioned;
+	background: @noteBackground;
+	z-index: 100;
+}
+
+.content.info {
+	background: @darkBackground;
+		-webkit-transition-duration: .25s;
+		transition-duration: .25s;
+}
+
+// Content
+
+.content {
+	padding: @bodyPadding;
 }

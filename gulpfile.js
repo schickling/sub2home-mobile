@@ -31,7 +31,7 @@ gulp.task('connect', function() {
     root: ['app'],
     livereload: true,
     port: 8888
-  })
+  });
 });
 
 gulp.task('livereload', function() {

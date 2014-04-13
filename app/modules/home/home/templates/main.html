@@ -9,13 +9,13 @@
 
 <div class="content note fillPage">
   <section id="introduction">
-    <p>
+    <p ng-show="!hideText">
       Bei sub2home bestellst du<br>genau wie an der Theke in einem SUBWAY-Restaurant. Nur dass du dazu nicht das Haus verlassen musst. Wir kommen zu dir, also:
     </p>
     <p class="callToAction">
       Wohin dürfen wir liefern?
     </p>
+    <postal-input app-focused="hideText" app-postal="postal"></postal-input>
 
-    <input type="tel" class="bigInput" name="" value="" placeholder="Postleitzahl">
   </section>
 </div>

@@ -1,7 +1,9 @@
 'use strict';
 
-module.exports = ['$scope',
-  function($scope) {
-    $scope = $scope;
+module.exports = ['$scope', 'stores',
+  function($scope, stores) {
+    $scope.hideText = false;
+    $scope.postal = '';
+    // console.log(stores);
   }
 ];

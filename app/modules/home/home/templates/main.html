@@ -10,41 +10,35 @@
 <div class="content note fillPage">
 
   <section id="introduction">
-    <p ng-show="!hideText">
+    <p ng-show="!inputFocused && stores.length === 0 && deliveryAreas.length === 0">
       Bei sub2home bestellst du<br>genau wie an der Theke in einem SUBWAY<span class="superscript">&reg;</span>-Restaurant. Nur dass du dazu nicht das Haus verlassen musst. Wir kommen zu dir, also:
     </p>
-    <p class="callToAction">
+    <p class="callToAction" ng-hide="stores.length > 0 || deliveryAreas.length > 0">
       Wohin dürfen wir liefern?
     </p>
-    <postal-input app-focused="hideText" app-postal="postal"></postal-input>
+    <postal-input app-focused="inputFocused" app-postal="postal"></postal-input>
   </section>
 
-  <section id="chooseDeliveryArea">
+  <section id="chooseDeliveryArea" ng-show="!showStores && deliveryAreas.length > 1">
     <header class="callToAction">
       Wähle eines der drei Liefergebiete:
     </header>
     <div id="selectableDeliveryAreas">
-      <div class="deliveryArea">
-        Innenstadt<span>(in 15min für min. 10.00€)</span>
-      </div>
-      <div class="deliveryArea">
-        Amendingen<span>(in 20min für min. 14.00€)</span>
-      </div>
-      <div class="deliveryArea">
-        Steinheim<span>(in 30min für min. 20.00€)</span>
+      <div class="deliveryArea" ng-repeat="deliveryArea in deliveryAreas" ng-click="processDeliveryArea(deliveryArea)">
+        {{ deliveryArea.district }}<span>(in {{ deliveryArea.minimumDuration }}min für mind. {{ deliveryArea.minimumValue }}€)</span>
       </div>
     </div>
   </section>
 
-  <section id="chooseStore">
+  <section id="chooseStore" ng-show="stores.length > 0 && showStores">
     <header class="callToAction">
       Foldgendes SUBWAY<span class="superscript">&reg;</span>-Restaurant liefert in dieses Gebiet:
     </header>
     <div id="selectableStores">
-      <div class="store">Memmingen<span>liefert gerade</span></div>
-      <div class="store isDelivering">Unterschleissheim<span>liefert gerade</span></div>
+      <a class="store" ng-href="/{{store.alias}}" ng-class="{isDelivering: isDelivering(store), isClosed: !store.isOpen}" ng-repeat="store in stores">{{ store.title }}<span>{{ getDeliveryTimeString(store) }}</span></a>
+<!--       <div class="store isDelivering">Unterschleissheim<span>liefert gerade</span></div>
       <div class="store isNotDelivering">Garmisch-Partenkirchen<span>liefert wieder um 12 Uhr</span></div>
-      <div class="store isClosed">Berlin Alexanderplatz<span>geschlossen</span></div>
+      <div class="store isClosed">Berlin Alexanderplatz<span>geschlossen</span></div> -->
     </div>
   </section>
 </div>

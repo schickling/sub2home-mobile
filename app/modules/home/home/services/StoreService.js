@@ -5,7 +5,7 @@ module.exports = ['$http',
     this.get = function() {
       var promise = $http({
         method: 'GET',
-        url: 'api/stores'
+        url: window.location.protocol + '//' + window.location.hostname + ':7777/stores'
       }).success(function(data, status, headers, config) {
         return data;
       });

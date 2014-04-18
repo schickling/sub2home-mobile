@@ -20,6 +20,18 @@ module.exports = [
           scope.$apply();
         });
 
+        input.on('keydown', function(e) {
+          if (input.val().length >= 5) {
+            e.preventDefault();
+            return;
+          }
+
+          if (e.keyCode > 31 && (e.keyCode < 48 || e.keyCode > 57)) {
+            e.preventDefault();
+            return;
+          }
+        });
+
         input.on('keyup', function() {
           postal = input.val();
           if (postal.length === 5) {

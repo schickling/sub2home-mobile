@@ -7,20 +7,28 @@ module.exports = function(config) {
     // base path, that will be used to resolve files and exclude
     basePath: '',
 
-
     // frameworks to use
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'browserify'],
 
+    preprocessors: {
+      'app/modules/**/*Spec.js': ['browserify']
+    },
+
+    browserify: {
+      transform: ['es6ify'],
+      debug: true,
+      watch: true,
+    },
 
     // list of files / patterns to load in the browser
     files: [
-      '../app/js/**/*.js'
+      'app/modules/**/*Spec.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-      
+
     ],
 
 

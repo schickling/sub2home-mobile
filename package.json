@@ -11,12 +11,13 @@
     ]
   },
   "devDependencies": {
-    "karma": "~0.10.9",
+    "karma": "~0.12.0",
+    "karma-jasmine": "~0.2.0",
+    "karma-browserify": "^0.2.0",
     "protractor": "~0.17.0",
     "gulp": "~3.5.0",
     "gulp-jshint": "~1.3.4",
     "gulp-less": "~1.2.1",
-    "gulp-karma": "0.0.2",
     "gulp-usemin": "~0.2.1",
     "gulp-uglify": "~0.2.0",
     "gulp-minify-css": "~0.3.0",
@@ -33,6 +34,7 @@
   },
   "napa": {
     "angular": "angular/bower-angular",
+    "angular-mocks": "angular/bower-angular-mocks",
     "angular-route": "angular/bower-angular-route",
     "angular-touch": "angular/bower-angular-touch"
   }

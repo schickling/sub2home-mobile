@@ -46,7 +46,7 @@ gulp.task('connect', function() {
 
 gulp.task('livereload', function() {
   gulp.src([
-    'app/views/**/*.html',
+    'app/modules/**/*.html',
     '.tmp/bundle.js',
     'app/css/*.css',
     'app/index.html'

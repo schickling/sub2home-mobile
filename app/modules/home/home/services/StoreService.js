@@ -12,7 +12,7 @@ module.exports = function() {
       deliveryTimes = deliveryTimes.sort((a, b) => a.startMinutes - b.startMinutes);
 
       for (var i = 0; i < 7; i++) {
-        var filteredDeliveryTimes = deliveryTimes.filter(function(deliveryTime) {
+        var filteredDeliveryTimes = deliveryTimes.filter(deliveryTime => {
           return day === deliveryTime.dayOfWeek &&
             ((i === 0 && deliveryTime.startMinutes >= minutes) || i !== 0);
         });

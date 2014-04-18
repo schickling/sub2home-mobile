@@ -12,8 +12,8 @@ module.exports = angular.module('home.home', [])
   .service('PostalFilterService', PostalFilterService)
   .service('StoreService', StoreService)
   .directive('postalInput', postalInputDirective)
-  .config(['$routeProvider', '$locationProvider',
-    function($routeProvider, $locationProvider) {
+  .config(['$routeProvider',
+    function($routeProvider) {
 
       $routeProvider.when('/', {
         templateUrl: 'modules/home/home/templates/main.html',

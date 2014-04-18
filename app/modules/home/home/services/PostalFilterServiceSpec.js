@@ -1,3 +1,5 @@
+'use strict';
+
 var PostalFilterService = require('./PostalFilterService')();
 
 describe('PostalFilterService', function() {

@@ -23,7 +23,7 @@ gulp.task('less', function() {
 });
 
 gulp.task('hint', function() {
-  return gulp.src(['app/js/**/*.js', '*.js'])
+  return gulp.src(['app/modules/**/*.js', '*.js'])
     .pipe(hint('.jshintrc'))
     .pipe(hint.reporter('default'));
 });

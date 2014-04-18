@@ -6,11 +6,13 @@ require('angular-route/angular-route');
 require('angular-touch/angular-touch');
 
 // modules
+require('./modules/common');
 require('./modules/home/home');
 
 angular.module('app', [
   'ngRoute',
   'ngTouch',
+  'common',
   'home.home',
 ]);
 

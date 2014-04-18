@@ -1,14 +1,16 @@
 'use strict';
 
-var MainCtrl = require('./controllers/MainCtrl');
-var StoreService = require('./services/StoreService');
-var PostalFilterService = require('./services/PostalFilterService');
-var postalInputDirective = require('./directives/postalInputDirective');
+var MainCtrl = require('./controllers/MainCtrl'),
+  StoresResourceService = require('./services/StoresResourceService'),
+  PostalFilterService = require('./services/PostalFilterService'),
+  StoreService = require('./services/StoreService'),
+  postalInputDirective = require('./directives/postalInputDirective');
 
 module.exports = angular.module('home.home', [])
   .controller('MainCtrl', MainCtrl)
-  .service('StoreService', StoreService)
+  .service('StoresResourceService', StoresResourceService)
   .service('PostalFilterService', PostalFilterService)
+  .service('StoreService', StoreService)
   .directive('postalInput', postalInputDirective)
   .config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
@@ -17,8 +19,8 @@ module.exports = angular.module('home.home', [])
         templateUrl: 'modules/home/home/templates/main.html',
         controller: 'MainCtrl',
         resolve: {
-          stores: function(StoreService) {
-            return StoreService.get();
+          stores: function(StoresResourceService) {
+            return StoresResourceService.get();
           }
         }
       });

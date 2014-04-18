@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$scope', 'stores', 'PostalFilterService',
+module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService', 'StringUtilService',
 
-  function($scope, stores, PostalFilterService) {
+  function($scope, stores, PostalFilterService, StoreService, StringUtilService) {
 
     $scope.inputFocused = false;
     $scope.postal = '';
@@ -22,14 +22,24 @@ module.exports = ['$scope', 'stores', 'PostalFilterService',
 
     $scope.processDeliveryArea = function(deliveryArea) {
       $scope.showStores = true;
+
+      // TODO: filter stores
     };
 
     $scope.getDeliveryTimeString = function(store) {
-      return "liefert gerade";
+      if (!store.isOpen) {
+        return "geschlossen";
+      } else if ($scope.isDelivering(store)) {
+        return "liefert gerade";
+      } else {
+        var nextDeliveryTime = StoreService.nextDeliveryTime(store, new Date()),
+          time = '' + parseInt(nextDeliveryTime.startMinutes / 60) + ':' + StringUtilService.padNumber(parseInt(nextDeliveryTime.startMinutes % 60), 2);
+        return `liefert wieder um ${time} Uhr`;
+      }
     };
 
     $scope.isDelivering = function(store) {
-      return true;
+      return StoreService.isDelivering(store, new Date());
     };
 
   }

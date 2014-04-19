@@ -20,7 +20,7 @@
       <postal-input app-focused="inputFocused" app-postal="postal"></postal-input>
       <span ng-show="selectedDeliveryArea">{{ selectedDeliveryArea.district || selectedDeliveryArea.city }}</span>
     </p>
-    <p ng-show="selectedDeliveryArea && deliveryAreas.length > 0">
+    <p ng-show="selectedDeliveryArea && deliveryAreas.length > 1">
       <span ng-click="resetDeliveryArea()">Liefergebiet bearbeiten</span>
     </p>
   </section>

@@ -34,7 +34,7 @@ describe('PostalFilterService', function() {
         district: 'e2'
       }, {
         postal: 10002,
-        district: 'f'
+        district: 'c'
       }]
     }, {
       deliveryAreasCollection: []
@@ -64,6 +64,12 @@ describe('PostalFilterService', function() {
     PostalFilterService.filter(10000);
     expect(PostalFilterService.getStores().length).toBe(2);
     expect(PostalFilterService.getDeliveryAreas().length).toBe(3);
+  });
+
+  it('should return two stores and one delivery area', function() {
+    PostalFilterService.filter(10002);
+    expect(PostalFilterService.getStores().length).toBe(2);
+    expect(PostalFilterService.getDeliveryAreas().length).toBe(1);
   });
 
 });

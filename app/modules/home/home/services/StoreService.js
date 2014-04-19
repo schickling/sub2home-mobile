@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+
 module.exports = function() {
 
   return {
@@ -38,6 +40,17 @@ module.exports = function() {
         if (deliveryTime.dayOfWeek === day &&
           deliveryTime.startMinutes <= minutes &&
           deliveryTime.endMinutes >= minutes) {
+          return true;
+        }
+      }
+
+      return false;
+    },
+
+    deliversTo: function(store, deliveryArea) {
+      for (var i = 0; i < store.deliveryAreasCollection.length; i++) {
+        var keys = ['district', 'city', 'postal'];
+        if (_.isEqual(_.pick(deliveryArea, keys), _.pick(store.deliveryAreasCollection[i], keys))) {
           return true;
         }
       }

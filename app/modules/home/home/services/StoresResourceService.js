@@ -6,10 +6,10 @@ module.exports = ['$http',
       var promise = $http({
         method: 'GET',
         url: window.location.protocol + '//' + window.location.hostname + ':7777/stores'
-      }).success(function(data, status, headers, config) {
+      }).success(function(data) {
         return data;
       });
       return promise;
-    }
+    };
   }
 ];

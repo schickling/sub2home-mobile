@@ -16,12 +16,18 @@
     <p class="callToAction" ng-hide="stores.length > 0 || deliveryAreas.length > 0">
       Wohin dürfen wir liefern?
     </p>
-    <postal-input app-focused="inputFocused" app-postal="postal"></postal-input>
+    <p>
+      <postal-input app-focused="inputFocused" app-postal="postal"></postal-input>
+      <span ng-show="selectedDeliveryArea">{{ selectedDeliveryArea.district || selectedDeliveryArea.city }}</span>
+    </p>
+    <p ng-show="selectedDeliveryArea && deliveryAreas.length > 0">
+      <span ng-click="resetDeliveryArea()">Liefergebiet bearbeiten</span>
+    </p>
   </section>
 
   <section id="chooseDeliveryArea" ng-show="!showStores && deliveryAreas.length > 1">
     <header class="callToAction">
-      Wähle eines der drei Liefergebiete:
+      Wähle eines der {{ deliveryAreas.length }} Liefergebiete:
     </header>
     <div id="selectableDeliveryAreas">
       <div class="deliveryArea" ng-repeat="deliveryArea in deliveryAreas" ng-click="processDeliveryArea(deliveryArea)">

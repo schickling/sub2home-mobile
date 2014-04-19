@@ -11,6 +11,7 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
     $scope.deliveryAreas = [];
     $scope.stores = [];
     $scope.showStores = false;
+    $scope.selectedDeliveryArea = null;
 
     PostalFilterService.init(stores.data);
 
@@ -23,12 +24,24 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
       $scope.stores = stores;
       $scope.deliveryAreas = deliveryAreas;
       $scope.showStores = stores.length === 1 && deliveryAreas.length === 1;
+
+      if (deliveryAreas.length === 1) {
+        $scope.selectedDeliveryArea = deliveryAreas[0];
+      } else {
+        $scope.selectedDeliveryArea = null;
+      }
     });
 
     $scope.processDeliveryArea = function(deliveryArea) {
       $scope.showStores = true;
+      $scope.selectedDeliveryArea = deliveryArea;
 
-      // TODO: filter stores
+      $scope.stores = $scope.stores.filter(store => StoreService.deliversTo(store, deliveryArea));
+    };
+
+    $scope.resetDeliveryArea = function() {
+      $scope.stores = PostalFilterService.getStores();
+      $scope.showStores = false;
     };
 
     $scope.getDeliveryTimeString = function(store) {
@@ -41,7 +54,7 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
           hours = parseInt(nextDeliveryTime.startMinutes / 60, 10),
           minutes = nextDeliveryTime.startMinutes % 60,
           paddedMinutes = StringUtilService.padNumber(minutes, 2);
-        return `liefert wieder um ${hours}:${minutes} Uhr`;
+        return `liefert wieder um ${hours}:${paddedMinutes} Uhr`;
       }
     };
 

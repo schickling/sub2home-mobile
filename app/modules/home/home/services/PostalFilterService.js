@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+
 module.exports = function() {
 
   return {
@@ -19,8 +21,14 @@ module.exports = function() {
       this.allStores.forEach(function(store) {
         var filteredDeliveryAreas = store.deliveryAreasCollection.filter(d => d.postal === postal);
         if (filteredDeliveryAreas.length > 0) {
-          deliveryAreas = deliveryAreas.concat(filteredDeliveryAreas);
           stores.push(store);
+
+          var keys = ['postal', 'city', 'district'];
+          filteredDeliveryAreas.forEach(function(deliveryArea) {
+            if (!_.findWhere(deliveryAreas, _.pick(deliveryArea, keys))) {
+              deliveryAreas.push(deliveryArea);
+            }
+          });
         }
       });
       this.stores = stores;

@@ -109,4 +109,78 @@ describe('StoreService', function() {
 
   });
 
+  describe('deliversTo', function() {
+
+    var deliveryAreasCollection = [{
+      postal: 87700,
+      district: 'district-a',
+      city: 'city-1'
+    }, {
+      postal: 87700,
+      district: 'district-b',
+      city: 'city-1'
+    }, {
+      postal: 87700,
+      district: 'district-a',
+      city: 'city-2'
+    }, {
+      postal: 87701,
+      district: 'district-a',
+      city: 'city-3'
+    }, {
+      postal: 87701,
+      district: 'district-b',
+      city: 'city-3'
+    }];
+
+    it('should return true', function() {
+      var deliveryArea = {
+        postal: 87700,
+        district: 'district-a',
+        city: 'city-1'
+      };
+      var store = {
+        deliveryAreasCollection
+      };
+      expect(StoreService.deliversTo(store, deliveryArea)).toBe(true);
+    });
+
+    it('should return false', function() {
+      var deliveryArea = {
+        postal: 87702,
+        district: 'district-a',
+        city: 'city-1'
+      };
+      var store = {
+        deliveryAreasCollection
+      };
+      expect(StoreService.deliversTo(store, deliveryArea)).toBe(false);
+    });
+
+    it('should return false', function() {
+      var deliveryArea = {
+        postal: 87700,
+        district: 'district-c',
+        city: 'city-1'
+      };
+      var store = {
+        deliveryAreasCollection
+      };
+      expect(StoreService.deliversTo(store, deliveryArea)).toBe(false);
+    });
+
+    it('should return false', function() {
+      var deliveryArea = {
+        postal: 87700,
+        district: 'district-a',
+        city: 'city-4'
+      };
+      var store = {
+        deliveryAreasCollection
+      };
+      expect(StoreService.deliversTo(store, deliveryArea)).toBe(false);
+    });
+
+  });
+
 });

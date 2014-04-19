@@ -21,6 +21,11 @@ module.exports = [
         });
 
         input.on('keydown', function(e) {
+
+          if (e.keyCode === 8) {
+            return;
+          }
+
           if (input.val().length >= 5) {
             e.preventDefault();
             return;
@@ -40,6 +45,7 @@ module.exports = [
             input[0].blur();
           }
         });
+
       }
     }
   }

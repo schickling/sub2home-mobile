@@ -36,11 +36,18 @@ html, body {
 
 
 // Header ----------------------------------------------------------------------
+
+@headerTopPadding: 	15px;
+
 #header {
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
+
+	color: @onHeaderColor;
+
+	// Background
 
 	background: #e4c988; /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -55,11 +62,14 @@ html, body {
 	height: @headerHeight;
 	z-index: 9000;
 
+
+	// Wooden Border
+
 	&:after {
 		content: " ";
 
 		position: absolute;
-		bottom: -4px;
+		bottom: -3px;
 		left: 0;
 		right: 0;
 		height: 4px;
@@ -76,6 +86,34 @@ html, body {
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f4327', endColorstr='#2c150b',GradientType=0 ); /* IE6-8 */
 
 	}
+
+	> div {
+		display: block;
+		float: left;
+		height: 100%;
+		.border-box;
+		padding: @headerTopPadding 0 0 10px;
+
+		&#toTheInfo {
+			float: right;
+			padding-right: 10px;
+
+			font-size: 22px;
+			top: -1px;
+
+			border-left: 1px solid @onHeaderColor50;
+		}
+	}
+
+}
+
+#ownLogo {
+	top: -5px;
+
+}
+
+#toTheInfo {
+
 }
 
 

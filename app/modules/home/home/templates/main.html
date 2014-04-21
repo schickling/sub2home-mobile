@@ -1,10 +1,9 @@
 <aside id="header">
-  <div id="ownLogo"></div>
+  <div id="ownLogo" class="icn iSub"></div>
   <div id="pageTitle">
     Deine SUBWAY<span class="superscript">&reg;</span>-Onlinetheke
   </div>
-  <div id="toTheInfo"></div>
-  <div id="woodenBorder"></div>
+  <div id="toTheInfo" class="icn iInfo"></div>
 </aside>
 
 <div class="content note fillPage">
@@ -21,7 +20,7 @@
       <span ng-show="selectedDeliveryArea">{{ selectedDeliveryArea.district || selectedDeliveryArea.city }}</span>
     </p>
     <p ng-show="selectedDeliveryArea && deliveryAreas.length > 1">
-      <span ng-click="resetDeliveryArea()">Liefergebiet bearbeiten</span>
+      <span id="editDeliveryArea" ng-click="resetDeliveryArea()"><i class="icn iWrench inSmallText before"></i>Liefergebiet bearbeiten</span>
     </p>
   </section>
 

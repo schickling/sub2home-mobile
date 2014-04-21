@@ -19,7 +19,7 @@
 // GLOBAL STYLES
 
 .icn {
-
+  position: relative;
   display: inline-block;
   font-family: 'Homicons';
   speak: none;
@@ -42,13 +42,26 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  &.inSmallText {
+    font-size: 16px;
+
+    &.before {
+      margin-right: 5px;
+    }
+    &.after {
+      margin-left: 5px;
+    }
+  }
+
 }
 
-.note {
-  .icn {
-    color: @onNoteColor;
-  }
-}
+
+
+// .note {
+//   .icn {
+//     color: @onNoteColor;
+//   }
+// }
 
 a.icn {
   text-decoration: none;
@@ -75,4 +88,8 @@ a.icn {
 }
 .iNext:before {
   content: "\e605";
+}
+
+.iCompass:before {
+  content: "\e606";
 }

@@ -5,7 +5,7 @@
   height: 100%;
 
   #introducingText {
-    margin-top: 70px;
+    margin-top: 50px;
   }
 
   .callToAction {
@@ -108,19 +108,35 @@
 
   background: @darkNote;
   border-top: 1px solid @onNoteColor50;
-  .box-shadow(inset 0 1px 3px 0 @globalShadowColor);
+  .box-shadow(inset 0 1px 3px 0 @globalShadowColor15);
 
   .store {
 
+    position: relative;
     display: block;
-
     text-align: left;
     color: @onDarkNoteColor;
     text-decoration: none;
     font-size: 24px;
-    padding: 10px 20px;
+    padding: 20px 55px 20px 75px;
 
     border-bottom: 1px solid @onDarkNoteColor30;
+
+    .iStore, .iNext {
+      position: absolute;
+      top: 23px;
+      left: 20px;
+      font-size: 40px;
+      color: @onNoteColor50;
+    }
+
+    .iNext {
+      left: auto;
+      right: 10px;
+      color: @noteColor;
+      text-shadow: 0 0 3px @globalShadowColor55;
+
+    }
 
     span {
       display: block;

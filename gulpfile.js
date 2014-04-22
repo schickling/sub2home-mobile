@@ -98,8 +98,8 @@ gulp.task('compress', ['usemin', 'views'], function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('app/less/*.less', ['less']);
-  gulp.watch('app/**/*.js', ['hint', 'browserify']);
+  gulp.watch('app/less/**/*.less', ['less']);
+  gulp.watch('app/modules/**/*.js', ['hint', 'browserify']);
 });
 
 gulp.task('test', ['hint', 'karma']);

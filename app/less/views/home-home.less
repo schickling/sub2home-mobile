@@ -1,22 +1,67 @@
 // home.home
 
 #introduction {
-  margin-top: 70px;
+
+  height: 100%;
+
+  #introducingText {
+    margin-top: 70px;
+  }
 
   .callToAction {
     margin: 0 0 60px;
-    padding: 0;
+    padding: 0 @bodyPadding;
+    .transition(margin .2s ease);
+  }
+
+  &.translated {
+    .translate(0,-400px,0);
   }
 }
 
-// PostalInput --> Should have ID
+#postalInputContainer {
+  display: inline-block;
+  padding: 25px 20px 18px;
+  font-size: 40px;
+  color: @onNoteColor;
 
-.bigInput {
-  text-align: center;
+  border: 3px dashed @onNoteColor50;
+  .border-radius(3px);
+
+  .iCompass {
+    vertical-align: baseline;
+    margin-right: 10px;
+    top: -1px;
+  }
+
+  span {
+    display: block;
+    font-size: 18px;
+  }
 
   &.postalOnly {
     width: 160px;
+
+    #postalInput {
+      width: 100%;
+    }
+    .iCompass {
+      display: none;
+    }
   }
+}
+
+#postalInput {
+  display: inline-block;
+  text-align: center;
+  width: 190px;
+  height: 50px;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+  color: @greenDark;
+  .border-box;
 }
 
 
@@ -101,4 +146,26 @@
       background: @orange;
     }
   }
+}
+
+
+
+// STEPS
+
+.step1 {
+  .translate(0,0,0)
+}
+
+.step2 {
+  .translate(0,-245px,0);
+
+  #introduction {
+    .callToAction {
+      margin: 50px 0 10px;
+    }
+  }
+}
+
+.step3 {
+  .translate(0,-295px,0);
 }

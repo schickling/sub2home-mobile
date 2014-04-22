@@ -297,12 +297,54 @@ input {
   filter: ~"alpha(opacity=@{opacity})";
 }
 
+
+// Translation
+
+.translate(@x,@y,@z) {
+	-moz-transform:translate3d(@x,@y,@z);
+	-webkit-transform:translate3d(@x,@y,@z);
+	-o-transform:translate3d(@x,@y,@z);
+	transform:translate3d(@x,@y,@z);
+}
+
 // Rotations
 .rotation(@deg) {
   -moz-transform:rotate(@deg);
   -webkit-transform:rotate(@deg);
   -o-transform:rotate(@deg);
   transform:rotate(@deg);
+}
+
+.slide100 {
+	.translate(0,0,0);
+	-webkit-transition: -webkit-transform .1s ease;
+	-moz-transition: -moz-transform .1s ease;
+	-o-transition: -o-transform .1s ease;
+	transition: transform .1s ease;
+}
+
+.slide300 {
+	.translate(0,0,0);
+	-webkit-transition: -webkit-transform .3s ease;
+	-moz-transition: -moz-transform .3s ease;
+	-o-transition: -o-transform .3s ease;
+	transition: transform .3s ease;
+}
+
+.slide500 {
+	.translate(0,0,0);
+	-webkit-transition: -webkit-transform .5s ease;
+	-moz-transition: -moz-transform .5s ease;
+	-o-transition: -o-transform .5s ease;
+	transition: transform .5s ease;
+}
+
+.slide2000 {
+	.translate(0,0,0);
+	-webkit-transition: -webkit-transform 2s ease;
+	-moz-transition: -moz-transform 2s ease;
+	-o-transition: -o-transform 2s ease;
+	transition: transform 2s ease;
 }
 
 // BACKGROUNDS

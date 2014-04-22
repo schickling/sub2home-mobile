@@ -9,15 +9,14 @@
 <div class="content note fillPage">
 
   <section id="introduction">
-    <p ng-show="!inputFocused && stores.length === 0 && deliveryAreas.length === 0">
+    <p id="introducingText" ng-show="!inputFocused && stores.length === 0 && deliveryAreas.length === 0">
       Bei sub2home bestellst du<br>genau wie an der Theke in einem SUBWAY<span class="superscript">&reg;</span>-Restaurant. Nur dass du dazu nicht das Haus verlassen musst. Wir kommen zu dir, also:
     </p>
     <p class="callToAction" ng-hide="stores.length > 0 || deliveryAreas.length > 0">
       Wohin dürfen wir liefern?
     </p>
     <p>
-      <postal-input app-focused="inputFocused" app-postal="postal"></postal-input>
-      <span ng-show="selectedDeliveryArea">{{ selectedDeliveryArea.district || selectedDeliveryArea.city }}</span>
+      <postal-input id="postalInputContainer" app-focused="inputFocused" app-postal="postal"></postal-input>
     </p>
     <p ng-show="selectedDeliveryArea && deliveryAreas.length > 1">
       <span id="editDeliveryArea" ng-click="resetDeliveryArea()"><i class="icn iWrench inSmallText before"></i>Liefergebiet bearbeiten</span>
@@ -37,7 +36,7 @@
 
   <section id="chooseStore" ng-show="stores.length > 0 && showStores">
     <header class="callToAction">
-      Foldgendes SUBWAY<span class="superscript">&reg;</span>-Restaurant liefert in dieses Gebiet:
+      Folgendes SUBWAY<span class="superscript">&reg;</span>-Restaurant liefert in dieses Gebiet:
     </header>
     <div id="selectableStores">
       <a class="store" ng-href="/{{store.alias}}" ng-class="{isDelivering: isDelivering(store), isClosed: !store.isOpen}" ng-repeat="store in stores">{{ store.title }}<span>{{ getDeliveryTimeString(store) }}</span></a>

@@ -5,7 +5,7 @@ module.exports = [
   function() {
     return {
       restrict: 'E',
-      template: '<input type="tel" class="bigInput" name="" value="" placeholder="Postleitzahl">',
+      template: '<i class="icn iCompass"></i><input id="postalInput" type="tel" name="" value="" placeholder="Postleitzahl"><span ng-show="selectedDeliveryArea">{{ selectedDeliveryArea.district || selectedDeliveryArea.city }}</span>',
       link: function(scope, elem, attrs) {
         var input = elem.find('input'),
           postal = '';

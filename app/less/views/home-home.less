@@ -4,6 +4,7 @@
 #introduction {
 
   height: 100%;
+  .slide(.3s);
 
   #introducingText {
     margin-top: 50px;
@@ -77,6 +78,10 @@
 
 #chooseDeliveryArea {
   padding: 0;
+  overflow: hidden;
+  display: block;
+  .opacity(0);
+  height: 0;
 
   header {
     margin: 25px 10px 20px;
@@ -107,7 +112,12 @@
 }
 
 #chooseStore {
+  display: block;
   padding: 0;
+  overflow: hidden;
+  .opacity(0);
+  height: 0;
+
   header {
     margin: 25px 10px 20px;
   }
@@ -214,8 +224,11 @@
     }
   }
 
-  #chooseStore {
-    display: none;
+  #chooseDeliveryArea {
+    .opacity(100);
+    height: auto;
+    min-height: 100px;
+    .fadeIn;
   }
 }
 
@@ -229,7 +242,10 @@
     }
   }
 
-  #chooseDeliveryArea {
-    display: none;
+  #chooseStore {
+    .opacity(100);
+    height: auto;
+    min-height: 100px;
+    .fadeIn;
   }
 }

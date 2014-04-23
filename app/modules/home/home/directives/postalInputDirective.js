@@ -5,46 +5,74 @@ module.exports = [
   function() {
     return {
       restrict: 'E',
-      template: '<i class="icn iCompass"></i><input id="postalInput" type="tel" name="" value="" placeholder="Postleitzahl"><span ng-show="selectedDeliveryArea">{{ selectedDeliveryArea.district || selectedDeliveryArea.city }}</span>',
-      link: function(scope, elem, attrs) {
-        var input = elem.find('input'),
+      templateUrl: 'modules/home/home/directives/postalInputDirectiveTemplate.html',
+      scope: true,
+      link: function($scope, $elem, $attrs) {
+        var input = $elem.find('input'),
+          compass = $elem.find('i'),
           postal = '';
 
-        input.on('focus', function() {
-          scope[attrs.appFocused] = true;
-          scope.$apply();
-        });
+        $scope.isFocused = false;
 
-        input.on('blur', function() {
-          scope[attrs.appFocused] = false;
-          scope.$apply();
-        });
+        listenToInput();
+        listenToCompass();
+        watchParentScope();
 
-        input.on('keydown', function(e) {
+        function listenToInput () {
+          input.on('focus', function() {
+            $scope.$parent[$attrs.appFocused] = true;
+            $scope.isFocused = true;
+            $scope.$parent.$apply();
+          });
 
-          if (e.keyCode === 8) {
-            return;
-          }
+          input.on('blur', function() {
+            $scope.$parent[$attrs.appFocused] = false;
+            $scope.isFocused = false;
+            $scope.$parent.$apply();
+          });
 
-          if (input.val().length >= 5) {
-            e.preventDefault();
-            return;
-          }
+          input.on('keydown', function(e) {
 
-          if (e.keyCode > 31 && (e.keyCode < 48 || e.keyCode > 57)) {
-            e.preventDefault();
-            return;
-          }
-        });
+            if (e.keyCode === 8) {
+              return;
+            }
 
-        input.on('keyup', function() {
-          postal = input.val();
-          if (postal.length === 5) {
-            scope[attrs.appPostal] = postal;
-            scope.$apply();
-            input[0].blur();
-          }
-        });
+            if (input.val().length >= 5) {
+              e.preventDefault();
+              return;
+            }
+
+            if (e.keyCode > 31 && (e.keyCode < 48 || e.keyCode > 57)) {
+              e.preventDefault();
+              return;
+            }
+          });
+
+          input.on('keyup', function() {
+            postal = input.val();
+            if (postal.length === 5) {
+              $scope.$parent[$attrs.appPostal] = postal;
+              $scope.$parent.$apply();
+              input[0].blur();
+            }
+          });
+        }
+
+        function listenToCompass () {
+          compass.on('click', function() {
+            determineLocation();
+          });
+        }
+
+        function watchParentScope () {
+          $scope.$parent.$watch($attrs.appDistrict, function() {
+            $scope.district = $scope.$parent[$attrs.appDistrict];
+          });
+        }
+
+        function determineLocation () {
+          $scope.$parent[$attrs.appPostal] = '12345';
+        }
 
       }
     }

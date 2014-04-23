@@ -8,6 +8,7 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
 
     $scope.inputFocused = false;
     $scope.postal = '';
+    $scope.district = '';
     $scope.deliveryAreas = [];
     $scope.stores = [];
     $scope.showStores = false;
@@ -29,6 +30,12 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
         $scope.selectedDeliveryArea = deliveryAreas[0];
       } else {
         $scope.selectedDeliveryArea = null;
+      }
+    });
+
+    $scope.$watch('selectedDeliveryArea', function() {
+      if ($scope.selectedDeliveryArea) {
+        $scope.district = $scope.selectedDeliveryArea.district || $scope.selectedDeliveryArea.city;
       }
     });
 

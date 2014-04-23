@@ -16,9 +16,9 @@
       Wohin dürfen wir liefern?
     </p>
     <p>
-      <postal-input id="postalInputContainer" app-focused="inputFocused" app-postal="postal"></postal-input>
+      <postal-input id="postalInputContainer" app-focused="inputFocused" app-postal="postal" app-district="district"></postal-input>
     </p>
-    <p ng-show="selectedDeliveryArea && deliveryAreas.length > 1">
+    <p ng-show="selectedDeliveryArea && deliveryAreas.length > 1 && showStores">
       <span id="editDeliveryArea" ng-click="resetDeliveryArea()"><i class="icn iWrench inSmallText before"></i>Liefergebiet bearbeiten</span>
     </p>
   </section>

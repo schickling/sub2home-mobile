@@ -6,3 +6,4 @@
 /app/css
 *.sublime-workspace
 *.swp
+npm-debug.log

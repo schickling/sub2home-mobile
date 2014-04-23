@@ -1,5 +1,6 @@
 // home.home
 
+
 #introduction {
 
   height: 100%;
@@ -17,6 +18,14 @@
   &.translated {
     .translate(0,-400px,0);
   }
+
+  &:after {
+    content: "";
+    display: block;
+    height: 0px;
+    .transition(height .2s ease);
+    margin-bottom: -270px;
+  }
 }
 
 #postalInputContainer {
@@ -28,10 +37,13 @@
   border: 3px dashed @onNoteColor50;
   .border-radius(3px);
 
+  .transition(height .2s ease);
+
   .iCompass {
     vertical-align: baseline;
     margin-right: 10px;
     top: -1px;
+    .transformTransition(1s,linear);
   }
 
   span {
@@ -40,13 +52,9 @@
   }
 
   &.postalOnly {
-    width: 160px;
 
     #postalInput {
-      width: 100%;
-    }
-    .iCompass {
-      display: none;
+      width: 110px;
     }
   }
 }
@@ -62,6 +70,7 @@
   outline: none;
   color: @greenDark;
   .border-box;
+  .transition(width .2s ease);
 }
 
 
@@ -166,13 +175,27 @@
 // STEPS
 
 .step1 {
-  .translate(0,0,0)
+
+  #introduction {
+    .translate(0,0,0);
+  }
 }
 
 .step2 {
-  .translate(0,-245px,0);
+
+  overflow: hidden;
+  &.fillPage {
+    position: fixed;
+  }
+  bottom: 0;
 
   #introduction {
+
+    .translate(0,-225px,0);
+
+    &:after {
+      height: 500px;
+    }
     .callToAction {
       margin: 50px 0 10px;
     }
@@ -180,5 +203,33 @@
 }
 
 .step3 {
-  .translate(0,-295px,0);
+
+
+  #introduction {
+
+    .translate(0,-270px,0);
+
+    .callToAction {
+      margin: 50px 0 10px;
+    }
+  }
+
+  #chooseStore {
+    display: none;
+  }
+}
+
+.step4 {
+
+  #introduction {
+    .translate(0,-270px,0);
+
+    .callToAction {
+      margin: 50px 0 10px;
+    }
+  }
+
+  #chooseDeliveryArea {
+    display: none;
+  }
 }

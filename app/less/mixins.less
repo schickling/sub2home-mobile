@@ -315,36 +315,19 @@ input {
   transform:rotate(@deg);
 }
 
-.slide100 {
-	.translate(0,0,0);
-	-webkit-transition: -webkit-transform .1s ease;
-	-moz-transition: -moz-transform .1s ease;
-	-o-transition: -o-transform .1s ease;
-	transition: transform .1s ease;
+.transformTransition(@duration, @easing) {
+	-webkit-transition: -webkit-transform @duration @easing;
+	-moz-transition: -moz-transform @duration @easing;
+	-o-transition: -o-transform @duration @easing;
+	transition: transform @duration @easing;
 }
 
-.slide300 {
+.slide(@duration) {
 	.translate(0,0,0);
-	-webkit-transition: -webkit-transform .3s ease;
-	-moz-transition: -moz-transform .3s ease;
-	-o-transition: -o-transform .3s ease;
-	transition: transform .3s ease;
-}
-
-.slide500 {
-	.translate(0,0,0);
-	-webkit-transition: -webkit-transform .5s ease;
-	-moz-transition: -moz-transform .5s ease;
-	-o-transition: -o-transform .5s ease;
-	transition: transform .5s ease;
-}
-
-.slide2000 {
-	.translate(0,0,0);
-	-webkit-transition: -webkit-transform 2s ease;
-	-moz-transition: -moz-transform 2s ease;
-	-o-transition: -o-transform 2s ease;
-	transition: transform 2s ease;
+	-webkit-transition: -webkit-transform @duration ease;
+	-moz-transition: -moz-transform @duration ease;
+	-o-transition: -o-transform @duration ease;
+	transition: transform @duration ease;
 }
 
 // BACKGROUNDS

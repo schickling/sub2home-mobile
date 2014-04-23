@@ -62,5 +62,15 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
       return StoreService.isDelivering(store, new Date());
     };
 
+    $scope.getStepClass = function() {
+      if ($scope.inputFocused) {
+        return 'step2';
+      } else if ($scope.stores.length > 0 || $scope.deliveryAreas.length > 0) {
+        return 'step3';
+      } else {
+        return 'step1';
+      }
+    };
+
   }
 ];

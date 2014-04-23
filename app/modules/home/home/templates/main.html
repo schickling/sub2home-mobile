@@ -6,13 +6,13 @@
   <div id="toTheInfo" class="icn iInfo"></div>
 </aside>
 
-<div class="content note fillPage">
+<div class="content note fillPage {{ getStepClass() }}">
 
   <section id="introduction">
-    <p id="introducingText" ng-show="!inputFocused && stores.length === 0 && deliveryAreas.length === 0">
+    <p id="introducingText">
       Bei sub2home bestellst du<br>genau wie an der Theke in einem SUBWAY<span class="superscript">&reg;</span>-Restaurant. Nur dass du dazu nicht das Haus verlassen musst. Wir kommen zu dir, also:
     </p>
-    <p class="callToAction" ng-hide="stores.length > 0 || deliveryAreas.length > 0">
+    <p class="callToAction">
       Wohin dürfen wir liefern?
     </p>
     <p>
@@ -23,7 +23,7 @@
     </p>
   </section>
 
-  <section id="chooseDeliveryArea" ng-show="!showStores && deliveryAreas.length > 1">
+  <section id="chooseDeliveryArea" ng-show="deliveryAreas.length > 1">
     <header class="callToAction">
       Wähle eines der {{ deliveryAreas.length }} Liefergebiete:
     </header>
@@ -34,7 +34,7 @@
     </div>
   </section>
 
-  <section id="chooseStore" ng-show="stores.length > 0 && showStores">
+  <section id="chooseStore" ng-show="stores.length">
     <header class="callToAction">
       Folgendes SUBWAY<span class="superscript">&reg;</span>-Restaurant liefert in dieses Gebiet:
     </header>

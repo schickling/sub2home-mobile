@@ -66,7 +66,11 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
       if ($scope.inputFocused) {
         return 'step2';
       } else if ($scope.stores.length > 0 || $scope.deliveryAreas.length > 0) {
-        return 'step3';
+        if ($scope.showStores) {
+          return 'step4';
+        } else {
+          return 'step3';
+        }
       } else {
         return 'step1';
       }

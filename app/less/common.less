@@ -18,6 +18,17 @@ html, body {
 	.positioned;
 	background: @noteBackground;
 	z-index: 100;
+
+	&.above {
+		border-bottom: 1px solid @onNoteColor50;
+		.box-shadow(0 1px 3px 0 @globalShadowColor15);
+	}
+
+	&.below {
+		border-top: 1px solid @onNoteColor50;
+		.box-shadow(0 -1px 3px 0 @globalShadowColor15);
+	}
+
 	&.fillPage {
 		position: absolute;
 		top: 0;
@@ -112,8 +123,11 @@ html, body {
 
 }
 
-#toTheInfo {
-
+#pageTitle {
+	.icn {
+		top: -5px;
+		margin-right: 5px;
+	}
 }
 
 
@@ -122,15 +136,9 @@ html, body {
 .content {
 
 	display: table;
-
-	padding: @headerHeight + @bodyPadding 0 0;
+	width: 100%;
+	padding: @headerHeight 0 0;
 	text-align: center;
-
-
-
-	section {
-		display: table-row;
-	}
 }
 
 
@@ -143,6 +151,27 @@ p {
 .callToAction {
 	color: @greenLight;
 
+}
+
+.infoButton {
+	display: inline-block;
+	position: relative;
+
+	height: 30px;
+	width: 30px;
+	margin: 2px 0 0 10px;
+
+	background: @grayLighter;
+	.img-circle;
+	.icn;
+
+	font-size: 20px;
+	color: @white;
+
+	&:before {
+		content: "\e601";
+		top: 4px;
+	}
 }
 
 

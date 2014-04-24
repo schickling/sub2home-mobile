@@ -1,0 +1,84 @@
+// store.home
+
+#editLocation {
+  padding: 20px @bodyPadding 13px;
+  font-size: 24px;
+  .icn {
+    font-size: 20px;
+  }
+}
+
+#articles {
+
+  > div {
+    padding: 30px @bodyPadding;
+    border-bottom: 1px solid @darkerWhite;
+  }
+
+  h2 {
+    color: @greenDark;
+  }
+
+  .buyingOption {
+
+    margin-top: 15px;
+    
+    > div {
+      display: inline-block;
+      background: @noteBackground;
+      padding: 3px;
+      border-radius: 3px;
+      border: 1px solid @noteBorderColor;
+      .box-shadow(0 1px 3px 0 @globalShadowColor15);
+
+      &:last-child {
+        margin-left: 10px;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      .pricetag {
+        border-radius: 2px;
+        border: 3px dashed @onNoteColor50;
+        padding: 2px 7px;
+
+        h3 {
+          // font-size: 28px;
+          color: @greenDark;
+          display: inline-block;
+          line-height: 1;
+          text-align: left;
+        }
+
+
+        span {
+          font-size: 16px;
+          color: @onNoteColor;
+        }
+      }
+    }
+
+    .buy6inch {
+      .pricetag:before {
+        content: "\e600";
+        font-family: "Homicons";
+        display: inline-block;
+        color: @onNoteColor50;
+        font-size: 40px;
+        margin-right: 5px;
+      }
+    }
+    .buyFootlong {
+      .pricetag:before {
+        content: "\e600";
+        font-family: "Homicons";
+        display: inline-block;
+        color: @onNoteColor50;
+        font-size: 40px;
+        margin-right: 5px;
+      }
+    }
+  }
+}

@@ -1,5 +1,11 @@
 // home.home
 
+#homeHome {
+  section {
+    display: table-row;
+  }
+}
+
 
 #introduction {
 
@@ -7,7 +13,7 @@
   .slide(.3s);
 
   #introducingText {
-    margin-top: 50px;
+    margin-top: 20px;
   }
 
   .callToAction {
@@ -24,8 +30,8 @@
     content: "";
     display: block;
     height: 0px;
-    .transition(height .2s ease);
-    margin-bottom: -270px;
+    .transition(height .3s ease);
+    margin-bottom: -240px;
   }
 }
 
@@ -45,6 +51,11 @@
     margin-right: 10px;
     top: -1px;
     .transformTransition(1s,linear);
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    &.rotate {
+      .rotate(360deg);
+    }
   }
 
   span {
@@ -201,7 +212,7 @@
 
   #introduction {
 
-    .translate(0,-225px,0);
+    .translate(0,-195px,0);
 
     &:after {
       height: 500px;
@@ -217,7 +228,7 @@
 
   #introduction {
 
-    .translate(0,-270px,0);
+    .translate(0,-240px,0);
 
     .callToAction {
       margin: 50px 0 10px;
@@ -227,7 +238,6 @@
   #chooseDeliveryArea {
     .opacity(100);
     height: auto;
-    min-height: 100px;
     .fadeIn;
   }
 }
@@ -235,7 +245,7 @@
 .step4 {
 
   #introduction {
-    .translate(0,-270px,0);
+    .translate(0,-240px,0);
 
     .callToAction {
       margin: 50px 0 10px;
@@ -245,7 +255,6 @@
   #chooseStore {
     .opacity(100);
     height: auto;
-    min-height: 100px;
     .fadeIn;
   }
 }

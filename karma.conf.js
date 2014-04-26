@@ -8,21 +8,11 @@ module.exports = function(config) {
     basePath: '',
 
     // frameworks to use
-    frameworks: ['jasmine', 'browserify'],
-
-    preprocessors: {
-      'app/modules/**/*Spec.js': ['browserify']
-    },
-
-    browserify: {
-      transform: ['es6ify'],
-      debug: true,
-      watch: true,
-    },
+    frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
-      'app/modules/**/*Spec.js'
+      '.tmp/bundle-tests.js'
     ],
 
 

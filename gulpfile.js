@@ -14,6 +14,7 @@ var gulp = require('gulp'),
   watch = require('gulp-watch'),
   rm = require('gulp-rimraf'),
   // karma = require('gulp-karma'),
+  glob = require('glob'),
   hint = require('gulp-jshint');
 
 gulp.task('less', function() {
@@ -34,6 +35,15 @@ gulp.task('browserify', ['hint'], function() {
       debug: true
     })
     .pipe(source('bundle.js'))
+    .pipe(gulp.dest('.tmp'));
+});
+
+gulp.task('browserify.tests', function() {
+  var testFiles = glob.sync('./app/**/*Spec.js');
+  return browserify(testFiles).bundle({
+    debug: true
+  })
+    .pipe(source('bundle-tests.js'))
     .pipe(gulp.dest('.tmp'));
 });
 
@@ -99,7 +109,7 @@ gulp.task('compress', ['usemin', 'views'], function() {
 
 gulp.task('watch', function() {
   gulp.watch('app/less/**/*.less', ['less']);
-  gulp.watch('app/modules/**/*.js', ['hint', 'browserify']);
+  gulp.watch('app/modules/**/*.js', ['hint', 'browserify', 'browserify.tests']);
 });
 
 gulp.task('test', ['hint', 'karma']);
@@ -107,6 +117,7 @@ gulp.task('server', [
   'less',
   'hint',
   'browserify',
+  'browserify.tests',
   'watch',
   'connect',
   'livereload'

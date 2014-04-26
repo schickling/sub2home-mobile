@@ -7,7 +7,7 @@ var MainCtrl = require('./controllers/MainCtrl'),
   postalInputDirective = require('./directives/postalInputDirective');
 
 module.exports = angular.module('home.home', [])
-  .controller('MainCtrl', MainCtrl)
+  .controller('HomeHomeCtrl', MainCtrl)
   .service('StoresResourceService', StoresResourceService)
   .service('PostalFilterService', PostalFilterService)
   .service('StoreService', StoreService)
@@ -17,7 +17,7 @@ module.exports = angular.module('home.home', [])
 
       $routeProvider.when('/', {
         templateUrl: 'modules/home/home/templates/main.html',
-        controller: 'MainCtrl',
+        controller: 'HomeHomeCtrl',
         resolve: {
           stores: function(StoresResourceService) {
             return StoresResourceService.get();

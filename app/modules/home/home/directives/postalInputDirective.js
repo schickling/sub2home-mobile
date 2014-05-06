@@ -15,6 +15,7 @@ module.exports = [
           postal = '';
 
         $scope.isFocused = false;
+        $scope.isLoading = false;
 
         listenToInput();
         listenToCompass();
@@ -73,7 +74,11 @@ module.exports = [
         }
 
         function determineLocation() {
+          $scope.isLoading = true;
+          $scope.$apply();
           zipcoder.location(function(result) {
+            $scope.isLoading = false;
+            $scope.$apply();
             input.val(result.zipcode);
             $scope.$parent[$attrs.appPostal] = result.zipcode;
             $scope.$parent.$apply();

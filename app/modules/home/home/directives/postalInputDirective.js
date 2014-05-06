@@ -1,5 +1,7 @@
 'use strict';
 
+var zipcoder = require('zipcoder');
+
 module.exports = [
 
   function() {
@@ -18,7 +20,7 @@ module.exports = [
         listenToCompass();
         watchParentScope();
 
-        function listenToInput () {
+        function listenToInput() {
           input.on('focus', function() {
             $scope.$parent[$attrs.appFocused] = true;
             $scope.isFocused = true;
@@ -58,20 +60,24 @@ module.exports = [
           });
         }
 
-        function listenToCompass () {
+        function listenToCompass() {
           compass.on('click', function() {
             determineLocation();
           });
         }
 
-        function watchParentScope () {
+        function watchParentScope() {
           $scope.$parent.$watch($attrs.appDistrict, function() {
             $scope.district = $scope.$parent[$attrs.appDistrict];
           });
         }
 
-        function determineLocation () {
-          $scope.$parent[$attrs.appPostal] = '12345';
+        function determineLocation() {
+          zipcoder.location(function(result) {
+            input.val(result.zipcode);
+            $scope.$parent[$attrs.appPostal] = result.zipcode;
+            $scope.$parent.$apply();
+          });
         }
 
       }

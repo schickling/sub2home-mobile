@@ -3,20 +3,36 @@
 sub2home-mobile
 ===============
 
-## Frameworks
-* https://github.com/angular/angular.js
-* https://github.com/collectiveip/prerender
-* https://github.com/HubSpot/offline
-* https://github.com/jimhigson/oboe.js
-* https://github.com/BBC-News/Imager.js
-* https://github.com/caolan/async
+## Dependencies
+* NPM
+* Grunt (`npm install -g gulp`)
 
-## Tools
-* CoffeeScript
-* Batarang
-* Yeoman
-* Grunt
+## Usage
 
-## Optional
-* https://github.com/visionmedia/superagent
-* https://github.com/flatiron/director
+#### Install & Update
+```sh
+$ npm install
+```
+
+#### Development / Server
+Starts webserver on `localhost:8080` with livereload.
+```sh
+$ gulp
+```
+
+#### Build (just needed for deployment)
+```sh
+$ gulp build
+```
+
+## Supported browsers
+
+IE  | Firefox | Chrome | Safari | Opera | iOS  | Android | Blackberry
+--- | ---     | ---    | ---    | ---   | ---  | ---     | ---
+7+  | 4+      | 4+     | 5+     | 10.5+ | 3.2+ | 2.1+    | 7+
+
+### Polyfills
+
+* [html5shiv](https://github.com/aFarkas/html5shiv) (IE7, IE8)
+* [localStorage](https://github.com/remy/polyfills/blob/master/Storage.js) (IE7)
+* [JSON2](https://github.com/douglascrockford/JSON-js) (IE7, iOS 3.2)

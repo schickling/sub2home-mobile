@@ -3,7 +3,7 @@ build:
   steps:
     - script:
         name: install global dependencies
-        code: sudo npm install -g gulp
+        code: sudo npm install -g gulp karma
     - script:
         name: install local dependencies
         code: npm install

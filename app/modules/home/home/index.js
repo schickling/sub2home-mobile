@@ -14,7 +14,7 @@ module.exports = angular.module('home.home', [])
     function($routeProvider) {
 
       $routeProvider.when('/', {
-        templateUrl: 'modules/home/home/templates/main.html',
+        templateUrl: 'modules/home/home/templates/index.html',
         controller: 'HomeHomeCtrl',
         resolve: {
           stores: function(ResourcesService) {

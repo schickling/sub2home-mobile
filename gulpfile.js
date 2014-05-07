@@ -30,7 +30,7 @@ gulp.task('hint', function() {
 });
 
 gulp.task('browserify', ['hint'], function() {
-  return browserify('./app/app.js')
+  return browserify('./app/index.js')
     .bundle({
       debug: true
     })
@@ -39,7 +39,7 @@ gulp.task('browserify', ['hint'], function() {
 });
 
 gulp.task('browserify.tests', function() {
-  var testFiles = glob.sync('./app/**/*Spec.js');
+  var testFiles = glob.sync('./app/modules/**/*Spec.js');
   return browserify(testFiles).bundle({
     debug: true
   })

@@ -7,7 +7,7 @@ module.exports = [
   function() {
     return {
       restrict: 'E',
-      templateUrl: 'modules/home/home/directives/postalInputDirectiveTemplate.html',
+      templateUrl: 'modules/home/home/directives/postalInputDirective.html',
       scope: true,
       link: function($scope, $elem, $attrs) {
         var input = $elem.find('input'),

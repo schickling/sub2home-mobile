@@ -8,8 +8,13 @@ module.exports = angular.module('store.home', [])
     function($routeProvider) {
 
       $routeProvider.when('/memmingen', {
-        templateUrl: 'modules/store/home/templates/main.html',
-        controller: 'StoreHomeCtrl'
+        templateUrl: 'modules/store/home/templates/index.html',
+        controller: 'StoreHomeCtrl',
+        resolve: {
+          store: function() {
+            return [];
+          }
+        }
       });
 
     }

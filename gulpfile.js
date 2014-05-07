@@ -13,7 +13,6 @@ var gulp = require('gulp'),
   connect = require('gulp-connect'),
   watch = require('gulp-watch'),
   rm = require('gulp-rimraf'),
-  // karma = require('gulp-karma'),
   glob = require('glob'),
   hint = require('gulp-jshint');
 
@@ -65,13 +64,6 @@ gulp.task('livereload', function() {
     .pipe(connect.reload());
 });
 
-gulp.task('karma', function() {
-  // return gulp.src('test/unit/**/*.js')
-  //   .pipe(karma({
-  //     configFile: 'test/karma.conf.js'
-  //   }));
-});
-
 gulp.task('clean:dist', function() {
   return gulp.src('dist/*', {
     read: false
@@ -112,7 +104,7 @@ gulp.task('watch', function() {
   gulp.watch('app/modules/**/*.js', ['hint', 'browserify', 'browserify.tests']);
 });
 
-gulp.task('test', ['hint', 'karma']);
+gulp.task('test', ['hint']);
 gulp.task('server', [
   'less',
   'hint',

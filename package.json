@@ -37,7 +37,8 @@
     "angular": "angular/bower-angular",
     "angular-mocks": "angular/bower-angular-mocks",
     "angular-route": "angular/bower-angular-route",
-    "angular-touch": "angular/bower-angular-touch"
+    "angular-touch": "angular/bower-angular-touch",
+    "polyfills": "remy/polyfills"
   },
   "dependencies": {
     "zipcoder": "~0.1.2"

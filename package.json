@@ -41,7 +41,7 @@
     "angular-mocks": "angular/bower-angular-mocks",
     "angular-route": "angular/bower-angular-route",
     "angular-touch": "angular/bower-angular-touch",
-    "polyfills": "remy/polyfills"
+    "angular-local-storage": "grevory/angular-local-storage"
   },
   "dependencies": {
     "zipcoder": "~0.1.2"

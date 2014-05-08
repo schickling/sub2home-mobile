@@ -4,6 +4,7 @@
 require('angular/angular');
 require('angular-route/angular-route');
 require('angular-touch/angular-touch');
+require('angular-local-storage/angular-local-storage');
 
 // modules
 require('./modules/common');
@@ -13,6 +14,7 @@ require('./modules/store/home');
 angular.module('app', [
   'ngRoute',
   'ngTouch',
+  'LocalStorageModule',
   'common',
   'home.home',
   'store.home',

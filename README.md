@@ -34,5 +34,4 @@ IE  | Firefox | Chrome | Safari | Opera | iOS  | Android | Blackberry
 ### Polyfills
 
 * [html5shiv](https://github.com/aFarkas/html5shiv) (IE7, IE8)
-* [localStorage](https://github.com/remy/polyfills/blob/master/Storage.js) (IE7)
 * [JSON2](https://github.com/douglascrockford/JSON-js) (IE7, iOS 3.2)

@@ -1,10 +1,8 @@
 'use strict';
 
-var zipcoder = require('zipcoder');
+module.exports = ['$timeout', 'PostalOracleService',
 
-module.exports = ['$timeout',
-
-  function($timeout) {
+  function($timeout, PostalOracleService) {
     return {
       restrict: 'E',
       templateUrl: 'modules/home/home/directives/postalInputDirective.html',
@@ -21,13 +19,12 @@ module.exports = ['$timeout',
         $scope.determineLocation = function() {
           $scope.isLoading = true;
           abortLocationDetermination = false;
-          zipcoder.location(function(result) {
+          PostalOracleService.query().then(function(postal) {
             if (!abortLocationDetermination) {
               $scope.isLoading = false;
-              input.val(result.zipcode);
+              input.val(postal);
               checkShrinking();
-              $scope.$parent[$attrs.appPostal] = result.zipcode;
-              $scope.$parent.$apply();
+              $scope.$parent[$attrs.appPostal] = postal;
             }
           });
         };
@@ -72,6 +69,7 @@ module.exports = ['$timeout',
           if (postal.length === 5) {
 
             $scope.$parent[$attrs.appPostal] = postal;
+            PostalOracleService.set(postal);
 
             // timeout hack needed for $apply cycle
             $timeout(function() {

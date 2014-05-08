@@ -11,9 +11,12 @@ module.exports = angular.module('store.home', [])
         templateUrl: 'modules/store/home/templates/index.html',
         controller: 'StoreHomeCtrl',
         resolve: {
-          store: function() {
-            return [];
-          }
+          store: function(ResourcesService) {
+            return ResourcesService.get('stores/memmingen');
+          },
+          categories: function(ResourcesService) {
+            return ResourcesService.get('stores/memmingen/categories');
+          },
         }
       });
 

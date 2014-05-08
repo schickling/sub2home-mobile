@@ -16,10 +16,10 @@ module.exports = ['$timeout', 'PostalOracleService',
         $scope.isFocused = false;
         $scope.isLoading = false;
 
-        $scope.determineLocation = function() {
+        $scope.determineLocation = function(overwritePostal) {
           $scope.isLoading = true;
           abortLocationDetermination = false;
-          PostalOracleService.query().then(function(postal) {
+          PostalOracleService.query(overwritePostal).then(function(postal) {
             if (!abortLocationDetermination) {
               $scope.isLoading = false;
               input.val(postal);
@@ -82,7 +82,7 @@ module.exports = ['$timeout', 'PostalOracleService',
 
         };
 
-        $scope.determineLocation();
+        $scope.determineLocation(false);
 
         $scope.$parent.$watch($attrs.appDistrict, function() {
           $scope.district = $scope.$parent[$attrs.appDistrict];

@@ -8,13 +8,13 @@ module.exports = ['localStorageService', '$q',
 
     return {
 
-      query: function() {
+      query: function(overwritePostal) {
 
         var defer = $q.defer();
         var self = this;
         var postal = localStorageService.get('postal');
 
-        if (postal) {
+        if (postal && !overwritePostal) {
           defer.resolve(postal);
         } else {
           zipcoder.location(function(result) {

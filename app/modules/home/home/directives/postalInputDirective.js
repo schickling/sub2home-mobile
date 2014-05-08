@@ -11,34 +11,41 @@ module.exports = ['$timeout',
       scope: true,
       link: function($scope, $elem, $attrs) {
 
-        var input = $elem.find('input'),
-          compass = $elem.find('i');
+        var input = $elem.find('input');
+        var compass = $elem.find('i');
+        var abortLocationDetermination;
 
         $scope.isFocused = false;
         $scope.isLoading = false;
 
         $scope.determineLocation = function() {
           $scope.isLoading = true;
+          abortLocationDetermination = false;
           zipcoder.location(function(result) {
-            $scope.isLoading = false;
-            input.val(result.zipcode);
-            $elem.addClass('postalOnly');
-            $scope.$parent[$attrs.appPostal] = result.zipcode;
-            $scope.$parent.$apply();
+            if (!abortLocationDetermination) {
+              $scope.isLoading = false;
+              input.val(result.zipcode);
+              checkShrinking();
+              $scope.$parent[$attrs.appPostal] = result.zipcode;
+              $scope.$parent.$apply();
+            }
           });
         };
 
-        $scope.blur = function() {
+        $scope.onBlur = function() {
           $scope.$parent[$attrs.appFocused] = false;
           $scope.isFocused = false;
+          checkShrinking();
         };
 
-        $scope.focus = function() {
+        $scope.onFocus = function() {
+          abortLocationDetermination = true;
           $scope.$parent[$attrs.appFocused] = true;
           $scope.isFocused = true;
+          $elem.removeClass('postalOnly');
         };
 
-        $scope.keydown = function($event) {
+        $scope.onKeydown = function($event) {
 
           // allow backspace
           if ($event.keyCode === 8) {
@@ -58,7 +65,7 @@ module.exports = ['$timeout',
 
         };
 
-        $scope.keyup = function() {
+        $scope.onKeyup = function() {
 
           var postal = input.val();
 
@@ -66,16 +73,14 @@ module.exports = ['$timeout',
 
             $scope.$parent[$attrs.appPostal] = postal;
 
-            $elem.addClass('postalOnly');
-
             // timeout hack needed for $apply cycle
             $timeout(function() {
               input[0].blur();
             }, 0, false);
 
-          } else {
-            $elem.removeClass('postalOnly');
           }
+
+          checkShrinking();
 
         };
 
@@ -84,6 +89,11 @@ module.exports = ['$timeout',
         $scope.$parent.$watch($attrs.appDistrict, function() {
           $scope.district = $scope.$parent[$attrs.appDistrict];
         });
+
+        function checkShrinking() {
+          var postal = input.val();
+          $elem.toggleClass('postalOnly', postal.length === 5);
+        }
 
       }
     }

@@ -23,6 +23,12 @@
     </p>
   </section>
 
+  <section class="note" ng-show="noStoresFound">
+    <header class="callToAction">
+      Sorry wir liefern noch nicht nach {{ postal }}. Zieh um!
+    </header>
+  </section>
+
   <section class="note" id="chooseDeliveryArea" ng-show="deliveryAreas.length > 1">
     <header class="callToAction">
       Wähle eines der {{ deliveryAreas.length }} Liefergebiete:

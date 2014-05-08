@@ -12,12 +12,18 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
     $scope.deliveryAreas = [];
     $scope.stores = [];
     $scope.showStores = false;
+    $scope.noStoresFound = false;
     $scope.selectedDeliveryArea = null;
 
     PostalFilterService.init(stores.data);
 
-    $scope.$watch('postal', function() {
-      var postal = parseInt($scope.postal, 10);
+    $scope.$watch('postal', function(newValue, oldValue) {
+
+      if (newValue === oldValue) {
+        return;
+      }
+
+      var postal = parseInt(newValue, 10);
       PostalFilterService.filter(postal);
 
       var stores = PostalFilterService.getStores(),
@@ -25,6 +31,7 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
       $scope.stores = stores;
       $scope.deliveryAreas = deliveryAreas;
       $scope.showStores = stores.length === 1 && deliveryAreas.length === 1;
+      $scope.noStoresFound = stores.length === 0;
 
       if (deliveryAreas.length === 1) {
         $scope.selectedDeliveryArea = deliveryAreas[0];

@@ -1,9 +1,11 @@
 'use strict';
 
 var MainCtrl = require('./controllers/MainCtrl');
+var itemDirective = require('./directives/itemDirective');
 
 module.exports = angular.module('store.home', [])
   .controller('StoreHomeCtrl', MainCtrl)
+  .directive('item', itemDirective)
   .config(['$routeProvider',
     function($routeProvider) {
 

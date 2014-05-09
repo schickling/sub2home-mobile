@@ -1,10 +1,8 @@
 'use strict';
 
-module.exports = ['$scope', 'store', 'categories',
+module.exports = ['$scope', 'store', 'categories', '_',
 
-  function($scope, store, categories) {
-    console.log(store.data);
-    console.log(categories.data);
+  function($scope, store, categories, _) {
 
     $scope.items = categories.data[1].itemsCollection;
 

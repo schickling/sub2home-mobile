@@ -6,8 +6,8 @@ module.exports = [
     return {
       restrict: 'E',
       templateUrl: 'modules/store/home/directives/itemDirective.html',
-      // scope: true,
       link: function($scope, $elem, $attrs) {
+
 
       }
     }

@@ -1,8 +1,13 @@
 'use strict';
 
-var PostalFilterService = require('./PostalFilterService')[1]();
-
 describe('PostalFilterService', function() {
+
+  beforeEach(module('app'));
+
+  var PostalFilterService;
+  beforeEach(inject(function (_PostalFilterService_) {
+    PostalFilterService = _PostalFilterService_;
+  }));
 
   beforeEach(function() {
     var stores = [{

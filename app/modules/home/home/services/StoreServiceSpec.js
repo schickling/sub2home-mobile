@@ -1,8 +1,13 @@
 'use strict';
 
-var StoreService = require('./StoreService')[1]();
-
 describe('StoreService', function() {
+
+  beforeEach(module('app'));
+
+  var StoreService;
+  beforeEach(inject(function (_StoreService_) {
+    StoreService = _StoreService_;
+  }));
 
   var deliveryTimesCollection = [{
     dayOfWeek: 0,
@@ -67,7 +72,7 @@ describe('StoreService', function() {
     it('should return a delivery time of the same day', function() {
       var now = new Date('Fri Apr 18 2014 16:59:59 GMT+0200 (CEST)'),
         store = {
-          deliveryTimesCollection
+          deliveryTimesCollection: deliveryTimesCollection
         };
       expect(StoreService.nextDeliveryTime(store, now)).toEqual({
         dayOfWeek: 5,
@@ -84,7 +89,7 @@ describe('StoreService', function() {
       var now = new Date('Fri Apr 18 2014 20:14:28 GMT+0200 (CEST)'),
         store = {
           isOpen: false,
-          deliveryTimesCollection
+          deliveryTimesCollection: deliveryTimesCollection
         };
       expect(StoreService.isDelivering(store, now)).toBe(false);
     });
@@ -93,7 +98,7 @@ describe('StoreService', function() {
       var now = new Date('Fri Apr 18 2014 20:14:28 GMT+0200 (CEST)'),
         store = {
           isOpen: true,
-          deliveryTimesCollection
+          deliveryTimesCollection: deliveryTimesCollection
         };
       expect(StoreService.isDelivering(store, now)).toBe(true);
     });
@@ -102,7 +107,7 @@ describe('StoreService', function() {
       var now = new Date('Fri Apr 18 2014 16:59:59 GMT+0200 (CEST)'),
         store = {
           isOpen: true,
-          deliveryTimesCollection
+          deliveryTimesCollection: deliveryTimesCollection
         };
       expect(StoreService.isDelivering(store, now)).toBe(false);
     });
@@ -140,7 +145,7 @@ describe('StoreService', function() {
         city: 'city-1'
       };
       var store = {
-        deliveryAreasCollection
+        deliveryAreasCollection: deliveryAreasCollection
       };
       expect(StoreService.deliversTo(store, deliveryArea)).toBe(true);
     });
@@ -152,7 +157,7 @@ describe('StoreService', function() {
         city: 'city-1'
       };
       var store = {
-        deliveryAreasCollection
+        deliveryAreasCollection: deliveryAreasCollection
       };
       expect(StoreService.deliversTo(store, deliveryArea)).toBe(false);
     });
@@ -164,7 +169,7 @@ describe('StoreService', function() {
         city: 'city-1'
       };
       var store = {
-        deliveryAreasCollection
+        deliveryAreasCollection: deliveryAreasCollection
       };
       expect(StoreService.deliversTo(store, deliveryArea)).toBe(false);
     });
@@ -176,7 +181,7 @@ describe('StoreService', function() {
         city: 'city-4'
       };
       var store = {
-        deliveryAreasCollection
+        deliveryAreasCollection: deliveryAreasCollection
       };
       expect(StoreService.deliversTo(store, deliveryArea)).toBe(false);
     });

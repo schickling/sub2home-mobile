@@ -1,20 +1,20 @@
 'use strict';
 
-var gulp = require('gulp'),
-  browserify = require('browserify'),
-  source = require('vinyl-source-stream'),
-  less = require('gulp-less'),
-  usemin = require('gulp-usemin'),
-  uglify = require('gulp-uglify'),
-  concat = require('gulp-concat'),
-  htmlmin = require('gulp-htmlmin'),
-  cssmin = require('gulp-minify-css'),
-  templateCache = require('gulp-angular-templatecache'),
-  connect = require('gulp-connect'),
-  watch = require('gulp-watch'),
-  rm = require('gulp-rimraf'),
-  glob = require('glob'),
-  hint = require('gulp-jshint');
+var gulp = require('gulp');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var less = require('gulp-less');
+var usemin = require('gulp-usemin');
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
+var htmlmin = require('gulp-htmlmin');
+var cssmin = require('gulp-minify-css');
+var templateCache = require('gulp-angular-templatecache');
+var connect = require('gulp-connect');
+var watch = require('gulp-watch');
+var rm = require('gulp-rimraf');
+var glob = require('glob');
+var hint = require('gulp-jshint');
 
 gulp.task('less', function() {
   return gulp.src('app/less/main.less')
@@ -28,21 +28,30 @@ gulp.task('hint', function() {
     .pipe(hint.reporter('default'));
 });
 
-gulp.task('browserify', ['hint'], function() {
+gulp.task('browserify', function() {
   return browserify('./app/index.js')
+    .external('lodash')
+    .external('angular/angular')
+    .external('angular-route/angular-route')
+    .external('angular-touch/angular-touch')
+    .external('angular-local-storage/angular-local-storage')
     .bundle({
-      debug: true
+      debug: true,
+      standalone: 'app',
     })
-    .pipe(source('bundle.js'))
+    .pipe(source('app.js'))
     .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('browserify.tests', function() {
-  var testFiles = glob.sync('./app/modules/**/*Spec.js');
-  return browserify(testFiles).bundle({
-    debug: true
-  })
-    .pipe(source('bundle-tests.js'))
+gulp.task('browserify.libs', function() {
+  return browserify()
+    .require('lodash')
+    .require('angular/angular')
+    .require('angular-route/angular-route')
+    .require('angular-touch/angular-touch')
+    .require('angular-local-storage/angular-local-storage')
+    .bundle()
+    .pipe(source('libs.js'))
     .pipe(gulp.dest('.tmp'));
 });
 
@@ -56,7 +65,7 @@ gulp.task('connect', function() {
 gulp.task('livereload', function() {
   gulp.src([
     'app/modules/**/*.html',
-    '.tmp/bundle.js',
+    '.tmp/*.js',
     'app/css/*.css',
     'app/index.html'
   ])
@@ -101,7 +110,8 @@ gulp.task('compress', ['usemin', 'views'], function() {
 
 gulp.task('watch', function() {
   gulp.watch('app/less/**/*.less', ['less']);
-  gulp.watch('app/modules/**/*.js', ['hint', 'browserify', 'browserify.tests']);
+  gulp.watch('app/modules/**/*.js', ['browserify']);
+  gulp.watch('package.json', ['browserify.libs']);
 });
 
 gulp.task('test', ['hint']);
@@ -109,7 +119,7 @@ gulp.task('server', [
   'less',
   'hint',
   'browserify',
-  'browserify.tests',
+  'browserify.libs',
   'watch',
   'connect',
   'livereload'

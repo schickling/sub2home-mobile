@@ -1,22 +1,22 @@
-<div class="sub">
-  <img ng-src="{{ item.largeImage }}" alt="{{ item.title }}" />
-  <h2>{{ item.title }}<span class="infoButton"></span></h2>
+<div class="sub" bindonce>
+  <img bo-src="item.largeImage" bo-alt="item.title" />
+  <h2><span bo-text="item.title"></span><span class="infoButton"></span></h2>
   <dev class="buyingOption">
-    <a class="buy6inch" ng-href="#/memmingen/theke/artikel/{{ item.id }}">
+    <a class="buy6inch" bo-href="'#/memmingen/theke/artikel/' + item.id">
       <div class="pricetag">
         <h3>
-          <span>{{ item.info }}</span>
+          <span bo-text="item.info"></span>
           <br />
-          {{ item.price }} €
+          <span bo-text="item.price"></span> €
         </h3>
       </div>
     </a>
-    <a class="buyFootlong" ng-repeat="chainedArticle in item.chainedArticlesCollection" ng-href="#/memmingen/theke/artikel/{{ chainedArticle.id }}">
+    <a class="buyFootlong" ng-repeat="chainedArticle in item.chainedArticlesCollection" bo-href="'#/memmingen/theke/artikel/' + chainedArticle.id">
       <div class="pricetag">
         <h3>
-          <span>{{ chainedArticle.info }}</span>
+          <span bo-text="chainedArticle.info"></span>
           <br />
-          {{ chainedArticle.price }} €
+          <span bo-text="chainedArticle.price"></span> €
         </h3>
       </div>
     </a>

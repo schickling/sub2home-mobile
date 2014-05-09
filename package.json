@@ -38,6 +38,7 @@
     "angular-mocks": "angular/bower-angular-mocks",
     "angular-route": "angular/bower-angular-route",
     "angular-touch": "angular/bower-angular-touch",
+    "angular-bind-once": "Pasvaz/bindonce",
     "angular-local-storage": "grevory/angular-local-storage"
   },
   "dependencies": {

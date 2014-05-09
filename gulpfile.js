@@ -34,6 +34,7 @@ gulp.task('browserify', function() {
     .external('angular-route/angular-route')
     .external('angular-touch/angular-touch')
     .external('angular-local-storage/angular-local-storage')
+    .external('angular-bind-once/bindonce')
     .bundle({
       debug: true,
       standalone: 'app',
@@ -49,6 +50,7 @@ gulp.task('browserify.libs', function() {
     .require('angular-route/angular-route')
     .require('angular-touch/angular-touch')
     .require('angular-local-storage/angular-local-storage')
+    .require('angular-bind-once/bindonce')
     .bundle()
     .pipe(source('libs.js'))
     .pipe(gulp.dest('.tmp'));
@@ -110,7 +112,6 @@ gulp.task('compress', ['usemin', 'views'], function() {
 gulp.task('watch', function() {
   gulp.watch('app/less/**/*.less', ['less']);
   gulp.watch('app/modules/**/*.js', ['browserify']);
-  gulp.watch('package.json', ['browserify.libs']);
 });
 
 gulp.task('test', ['hint']);

@@ -1,48 +1,49 @@
 'use strict';
 
-var _ = require('lodash');
+module.exports = ['_',
 
-module.exports = function() {
+  function(_) {
 
-  return {
+    return {
 
-    allStores: null,
-    stores: null,
-    deliveryAreas: null,
+      allStores: null,
+      stores: null,
+      deliveryAreas: null,
 
-    init: function(stores) {
-      this.allStores = stores;
-    },
+      init: function(stores) {
+        this.allStores = stores;
+      },
 
-    filter: function(postal) {
-      var deliveryAreas = [],
-        stores = [];
+      filter: function(postal) {
+        var deliveryAreas = [],
+          stores = [];
 
-      this.allStores.forEach(function(store) {
-        var filteredDeliveryAreas = store.deliveryAreasCollection.filter(d => d.postal === postal);
-        if (filteredDeliveryAreas.length > 0) {
-          stores.push(store);
+        this.allStores.forEach(function(store) {
+          var filteredDeliveryAreas = store.deliveryAreasCollection.filter(d => d.postal === postal);
+          if (filteredDeliveryAreas.length > 0) {
+            stores.push(store);
 
-          var keys = ['postal', 'city', 'district'];
-          filteredDeliveryAreas.forEach(function(deliveryArea) {
-            if (!_.findWhere(deliveryAreas, _.pick(deliveryArea, keys))) {
-              deliveryAreas.push(deliveryArea);
-            }
-          });
-        }
-      });
-      this.stores = stores;
-      this.deliveryAreas = deliveryAreas;
-    },
+            var keys = ['postal', 'city', 'district'];
+            filteredDeliveryAreas.forEach(function(deliveryArea) {
+              if (!_.findWhere(deliveryAreas, _.pick(deliveryArea, keys))) {
+                deliveryAreas.push(deliveryArea);
+              }
+            });
+          }
+        });
+        this.stores = stores;
+        this.deliveryAreas = deliveryAreas;
+      },
 
-    getStores: function() {
-      return this.stores;
-    },
+      getStores: function() {
+        return this.stores;
+      },
 
-    getDeliveryAreas: function() {
-      return this.deliveryAreas;
-    }
+      getDeliveryAreas: function() {
+        return this.deliveryAreas;
+      }
 
-  };
+    };
 
-};
+  }
+];

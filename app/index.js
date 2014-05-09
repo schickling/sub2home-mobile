@@ -5,6 +5,7 @@ require('angular/angular');
 require('angular-route/angular-route');
 require('angular-touch/angular-touch');
 require('angular-local-storage/angular-local-storage');
+var _ = require('lodash');
 
 // modules
 require('./modules/common');
@@ -19,6 +20,8 @@ angular.module('app', [
   'home.home',
   'store.home',
 ]);
+
+angular.module('app').constant('_', _);
 
 angular.module('app').config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {

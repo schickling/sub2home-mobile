@@ -1,6 +1,6 @@
 'use strict';
 
-var StoreService = require('./StoreService')();
+var StoreService = require('./StoreService')[1]();
 
 describe('StoreService', function() {
 

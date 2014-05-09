@@ -27,20 +27,4 @@ describe('PostalOracleService', function() {
 
   });
 
-  it('should overwrite the cached postal', function() {
-
-    localStorageService.set('postal', 99999);
-
-    var overwritePostal = true;
-    var result;
-
-    PostalOracleService.query(overwritePostal).then(function(postal) {
-      result = parseInt(postal, 10);
-    });
-
-    $rootScope.$apply();
-    expect(result).not.toBe(99999);
-
-  });
-
 });

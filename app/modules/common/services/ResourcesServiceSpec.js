@@ -4,14 +4,27 @@ describe('ResourcesService', function() {
 
   beforeEach(module('app'));
 
-  var ResourcesService;
-  beforeEach(inject(function (_ResourcesService_) {
+  var ResourcesService, $httpBackend;
+  beforeEach(inject(function(_ResourcesService_, _$httpBackend_) {
     ResourcesService = _ResourcesService_;
+    $httpBackend = _$httpBackend_;
   }));
 
   it('should return something', function() {
 
-    console.log('TODO: ResourcesService');
+    $httpBackend.when('GET', 'http://localhost:1071/test').respond({
+      hello: 'world'
+    });
+
+    var result;
+
+    ResourcesService.get('test').then(function(response) {
+      result = response;
+    });
+
+    $httpBackend.flush();
+
+    expect(result.data.hello).toBe('world');
 
   });
 

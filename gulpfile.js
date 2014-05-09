@@ -13,7 +13,6 @@ var templateCache = require('gulp-angular-templatecache');
 var connect = require('gulp-connect');
 var watch = require('gulp-watch');
 var rm = require('gulp-rimraf');
-var glob = require('glob');
 var hint = require('gulp-jshint');
 
 gulp.task('less', function() {

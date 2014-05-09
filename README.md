@@ -1,4 +1,4 @@
-[![wercker status](https://app.wercker.com/status/2c51ad0340170fd74cdbd133fe770a79/m "wercker status")](https://app.wercker.com/project/bykey/2c51ad0340170fd74cdbd133fe770a79)
+[![wercker status](https://app.wercker.com/status/2c51ad0340170fd74cdbd133fe770a79/m/ "wercker status")](https://app.wercker.com/project/bykey/2c51ad0340170fd74cdbd133fe770a79)
 
 sub2home-mobile
 ===============

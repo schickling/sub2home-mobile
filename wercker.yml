@@ -3,7 +3,7 @@ build:
   steps:
     - script:
         name: install global dependencies
-        code: sudo npm install -g gulp karma
+        code: sudo npm install -g gulp
     - script:
         name: install local dependencies
         code: npm install
@@ -11,7 +11,7 @@ build:
         name: run tests
         code: |
             gulp test
-            karma start --single-run --browsers PhantomJS
+            node_modules/karma/bin/karma start --single-run --browsers PhantomJS
     - script:
         name: build production
         code: gulp build

@@ -11,6 +11,8 @@ build:
         name: run tests
         code: |
             gulp test
+            gulp browserify.libs
+            gulp browserify
             node_modules/karma/bin/karma start --single-run --browsers PhantomJS
     - script:
         name: build production

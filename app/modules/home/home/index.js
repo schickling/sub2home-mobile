@@ -19,7 +19,10 @@ module.exports = angular.module('home.home', [])
         resolve: {
           stores: function(ResourcesService) {
             return ResourcesService.get('stores');
-          }
+          },
+          selectedDeliveryArea: function(PersistenceService) {
+            return PersistenceService.load('selectedDeliveryArea');
+          },
         }
       });
 

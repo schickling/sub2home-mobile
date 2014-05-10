@@ -1,10 +1,10 @@
 'use strict';
 
-module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
-  'StringUtilService', 'PersistenceService',
+module.exports = ['$scope', 'stores', 'selectedDeliveryArea',
+  'PostalFilterService', 'StoreService', 'StringUtilService', 'PersistenceService',
 
-  function($scope, stores, PostalFilterService, StoreService,
-    StringUtilService, PersistenceService) {
+  function($scope, stores, selectedDeliveryArea, PostalFilterService,
+    StoreService, StringUtilService, PersistenceService) {
 
     $scope.inputFocused = false;
     $scope.postal = '';
@@ -13,7 +13,7 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
     $scope.stores = [];
     $scope.showStores = false;
     $scope.noStoresFound = false;
-    $scope.selectedDeliveryArea = null;
+    $scope.selectedDeliveryArea = selectedDeliveryArea;
 
     PostalFilterService.init(stores.data);
 
@@ -28,6 +28,7 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
 
       var stores = PostalFilterService.getStores(),
         deliveryAreas = PostalFilterService.getDeliveryAreas();
+
       $scope.stores = stores;
       $scope.deliveryAreas = deliveryAreas;
       $scope.showStores = stores.length === 1 && deliveryAreas.length === 1;
@@ -38,12 +39,15 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
       } else {
         $scope.selectedDeliveryArea = null;
       }
+
     });
 
     $scope.$watch('selectedDeliveryArea', function() {
       if ($scope.selectedDeliveryArea) {
         $scope.district = $scope.selectedDeliveryArea.district || $scope.selectedDeliveryArea.city;
         PersistenceService.save('selectedDeliveryArea', $scope.selectedDeliveryArea);
+      } else {
+        $scope.district = '';
       }
     });
 

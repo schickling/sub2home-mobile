@@ -6,12 +6,16 @@ module.exports = ['$timeout', 'PostalOracleService',
     return {
       restrict: 'E',
       templateUrl: 'modules/home/home/directives/postalInputDirective.html',
-      scope: true,
+      scope: {
+        postal: '=appPostal',
+        isFocused: '=appFocused',
+        district: '=appDistrict',
+      },
       link: function($scope, $elem, $attrs) {
 
         var input = $elem.find('input');
         var compass = $elem.find('i');
-        var abortLocationDetermination;
+        var abortLocationDetermination = false;
 
         $scope.isFocused = false;
         $scope.isLoading = false;
@@ -24,20 +28,18 @@ module.exports = ['$timeout', 'PostalOracleService',
               $scope.isLoading = false;
               input.val(postal);
               checkShrinking();
-              $scope.$parent[$attrs.appPostal] = postal;
+              $scope.postal = postal;
             }
           });
         };
 
         $scope.onBlur = function() {
-          $scope.$parent[$attrs.appFocused] = false;
           $scope.isFocused = false;
           checkShrinking();
         };
 
         $scope.onFocus = function() {
           abortLocationDetermination = true;
-          $scope.$parent[$attrs.appFocused] = true;
           $scope.isFocused = true;
           $elem.removeClass('postalOnly');
         };
@@ -68,7 +70,9 @@ module.exports = ['$timeout', 'PostalOracleService',
 
           if (postal.length === 5) {
 
-            $scope.$parent[$attrs.appPostal] = postal;
+            $scope.district = '';
+            $scope.postal = postal;
+
             PostalOracleService.set(postal);
 
             // timeout hack needed for $apply cycle
@@ -83,10 +87,6 @@ module.exports = ['$timeout', 'PostalOracleService',
         };
 
         $scope.determineLocation(false);
-
-        $scope.$parent.$watch($attrs.appDistrict, function() {
-          $scope.district = $scope.$parent[$attrs.appDistrict];
-        });
 
         function checkShrinking() {
           var postal = input.val();

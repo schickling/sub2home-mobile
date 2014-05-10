@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
-  'StringUtilService',
+  'StringUtilService', 'PersistenceService',
 
   function($scope, stores, PostalFilterService, StoreService,
-    StringUtilService) {
+    StringUtilService, PersistenceService) {
 
     $scope.inputFocused = false;
     $scope.postal = '';
@@ -43,6 +43,7 @@ module.exports = ['$scope', 'stores', 'PostalFilterService', 'StoreService',
     $scope.$watch('selectedDeliveryArea', function() {
       if ($scope.selectedDeliveryArea) {
         $scope.district = $scope.selectedDeliveryArea.district || $scope.selectedDeliveryArea.city;
+        PersistenceService.save('selectedDeliveryArea', $scope.selectedDeliveryArea);
       }
     });
 

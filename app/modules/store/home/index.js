@@ -19,6 +19,9 @@ module.exports = angular.module('store.home', [])
           categories: function(ResourcesService) {
             return ResourcesService.get('stores/memmingen/categories');
           },
+          selectedDeliveryArea: function(PersistenceService) {
+            return PersistenceService.load('selectedDeliveryArea');
+          },
         }
       });
 

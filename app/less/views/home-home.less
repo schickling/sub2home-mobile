@@ -90,7 +90,7 @@
 #chooseDeliveryArea {
   padding: 0;
   overflow: hidden;
-  display: block;
+  display: block !important;
   .opacity(0);
   height: 0;
 
@@ -123,7 +123,7 @@
 }
 
 #chooseStore {
-  display: block;
+  display: block !important;
   padding: 0;
   overflow: hidden;
   .opacity(0);
@@ -212,14 +212,14 @@
 
   #introduction {
 
-    .translate(0,-195px,0);
+    // .translate(0,-195px,0);
 
-    &:after {
-      height: 500px;
-    }
-    .callToAction {
-      margin: 50px 0 10px;
-    }
+    // &:after {
+    //   height: 500px;
+    // }
+    // .callToAction {
+    //   margin: 50px 0 10px;
+    // }
   }
 }
 
@@ -228,7 +228,7 @@
 
   #introduction {
 
-    .translate(0,-240px,0);
+    .translate(0,-220px,0);
 
     .callToAction {
       margin: 50px 0 10px;
@@ -238,6 +238,7 @@
   #chooseDeliveryArea {
     .opacity(100);
     height: auto;
+    display: block;
     .fadeIn;
   }
 }
@@ -245,7 +246,7 @@
 .step4 {
 
   #introduction {
-    .translate(0,-240px,0);
+    .translate(0,-220px,0);
 
     .callToAction {
       margin: 50px 0 10px;
@@ -254,6 +255,7 @@
 
   #chooseStore {
     .opacity(100);
+    display: block;
     height: auto;
     .fadeIn;
   }

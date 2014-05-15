@@ -35,3 +35,4 @@ IE  | Firefox | Chrome | Safari | Opera | iOS  | Android | Blackberry
 
 * [html5shiv](https://github.com/aFarkas/html5shiv) (IE7, IE8)
 * [JSON2](https://github.com/douglascrockford/JSON-js) (IE7, iOS 3.2)
+* [HTML5-History-API](https://github.com/devote/HTML5-History-API) (IE7 - IE9, Android 2.1 - Android 4.1)

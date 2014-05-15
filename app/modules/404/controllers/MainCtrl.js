@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$scope',
+module.exports = [
 
-  function($scope) {
+  function() {
 
   }
 ];

@@ -29,8 +29,9 @@ module.exports = ['localStorageService', '$q',
 
       set: function(postal) {
         localStorageService.set('postal', postal);
-      }
+      },
 
-    }
+    };
+
   }
 ];

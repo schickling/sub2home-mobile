@@ -59,6 +59,7 @@
 
   "globals": {
     "angular": true,
+    "inject": true,
     "describe": false,
     "expect": false,
     "it": false,

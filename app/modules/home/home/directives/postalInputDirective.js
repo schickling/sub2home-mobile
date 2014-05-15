@@ -14,7 +14,6 @@ module.exports = ['$timeout', 'PostalOracleService',
       link: function($scope, $elem, $attrs) {
 
         var input = $elem.find('input');
-        var compass = $elem.find('i');
         var abortLocationDetermination = false;
 
         $scope.isFocused = false;
@@ -94,6 +93,7 @@ module.exports = ['$timeout', 'PostalOracleService',
         }
 
       }
-    }
+    };
+
   }
 ];

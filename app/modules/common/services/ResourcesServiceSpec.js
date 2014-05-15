@@ -24,7 +24,7 @@ describe('ResourcesService', function() {
 
     $httpBackend.flush();
 
-    expect(result.data.hello).toBe('world');
+    expect(result.hello).toBe('world');
 
   });
 

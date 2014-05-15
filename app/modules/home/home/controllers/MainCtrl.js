@@ -15,7 +15,7 @@ module.exports = ['$scope', 'stores', 'selectedDeliveryArea',
     $scope.noStoresFound = false;
     $scope.selectedDeliveryArea = selectedDeliveryArea;
 
-    PostalFilterService.init(stores.data);
+    PostalFilterService.init(stores);
 
     $scope.$watch('postal', function(newValue, oldValue) {
 

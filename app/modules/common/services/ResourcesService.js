@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$http', 'ApiService',
+module.exports = ['$http', '$q', 'ApiService',
 
-  function($http, ApiService) {
+  function($http, $q, ApiService) {
 
     return {
 
@@ -11,21 +11,22 @@ module.exports = ['$http', 'ApiService',
       get: function(fragment) {
 
         var url = ApiService.buildUrl(fragment);
+        var defer = $q.defer();
 
-        var promise = $http({
+        var httpPromise = $http({
           method: 'GET',
           url: url,
         });
 
-        promise.success(function(data) {
-          return data;
+        httpPromise.then(function(response) {
+          defer.resolve(response.data);
         });
 
         if (this.errorCallback) {
-          promise.error(this.errorCallback);
+          httpPromise.error(this.errorCallback);
         }
 
-        return promise;
+        return defer.promise;
 
       },
 

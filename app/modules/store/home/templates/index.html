@@ -10,10 +10,7 @@
 
 <nav id="categoriesNavigation">
   <ul>
-    <li><a href="#" class="icn iSub"></a></li>
-    <li><a href="#" class="icn iWrap"></a></li>
-    <li><a href="#" class="icn iSalad"></a></li>
-    <li><a href="#" class="icn iSnacks"></a></li>
+    <li bindonce ng-repeat="category in categories"><a bo-href="'#/' + $route.current.params.alias + '/' + category.id" class="icn" bo-class="category.icon"><span bo-text="category.title"></span></a></li>
   </ul>
 </nav>
 

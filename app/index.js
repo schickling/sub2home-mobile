@@ -4,12 +4,14 @@
 require('angular/angular');
 require('angular-route/angular-route');
 require('angular-touch/angular-touch');
+require('angular-resource/angular-resource');
 require('angular-local-storage/angular-local-storage');
 require('angular-bind-once/bindonce');
 var _ = require('lodash');
 
 // modules
 require('./modules/common');
+require('./modules/resources');
 require('./modules/404');
 require('./modules/home');
 require('./modules/store');
@@ -19,11 +21,13 @@ angular.module('app', [
   // core
   'ngRoute',
   'ngTouch',
+  'ngResource',
   // libs
   'LocalStorageModule',
   'pasvaz.bindonce',
   // own code
   'common',
+  'resources',
   '404',
   'home',
   'store',
@@ -38,14 +42,14 @@ angular.module('app').config(['$locationProvider',
   }
 ]);
 
-angular.module('app').run(['ResourcesService', '$location',
-  function(ResourcesService, $location) {
+angular.module('app').run(['ResourceService', '$location',
+  function(ResourceService, $location) {
 
     var errorCallback = function() {
       $location.path('/404');
     };
 
-    ResourcesService.setErrorCallback(errorCallback);
+    ResourceService.setErrorCallback(errorCallback);
 
   }
 ])

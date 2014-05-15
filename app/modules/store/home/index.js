@@ -9,17 +9,21 @@ module.exports = angular.module('store.home', [])
   .config(['$routeProvider',
     function($routeProvider) {
 
-      $routeProvider.when('/:alias', {
+      $routeProvider.when('/:storeAlias', {
         resolve: {
-          load: ['$route', '$location', 'ResourcesService',
-            function($route, $location, ResourcesService) {
+          load: ['$route', '$location', 'CategoriesFactory',
+            function($route, $location, CategoriesFactory) {
 
-              var alias = $route.current.params.alias;
-              var promise = ResourcesService.get('stores/' + alias + '/categories');
+              var storeAlias = $route.current.params.storeAlias;
+
+              var promise = CategoriesFactory.query({
+                storeAlias: storeAlias
+              }).$promise;
 
               promise.then(function(data) {
                 if (data.length > 0) {
-                  $location.path('/' + alias + '/' + data[0].id);
+                  $location.path('/' + storeAlias + '/' + data[0].id);
+                  $location.replace();
                 } else {
                   $location.path('/404');
                 }
@@ -32,29 +36,33 @@ module.exports = angular.module('store.home', [])
         }
       });
 
-      $routeProvider.when('/:alias/:categoryId', {
+      $routeProvider.when('/:storeAlias/:categoryId', {
         templateUrl: 'modules/store/home/templates/index.html',
         controller: 'StoreHomeCtrl',
         resolve: {
-          store: ['ResourcesService', '$route',
-            function(ResourcesService, $route) {
-              return ResourcesService.get('stores/' + $route.current.params.alias);
+          store: ['StoresFactory', '$route',
+            function(StoresFactory, $route) {
+              return StoresFactory.get({
+                storeAlias: $route.current.params.storeAlias
+              });
             }
           ],
-          categories: ['ResourcesService', '$route', '$q', '$location', '_',
-            function(ResourcesService, $route, $q, $location, _) {
+          categories: ['CategoriesFactory', '$route', '$q', '$location', '_',
+            function(CategoriesFactory, $route, $q, $location, _) {
 
               var defer = $q.defer();
-              var fragment = 'stores/' + $route.current.params.alias + '/categories';
               var categoryId = parseInt($route.current.params.categoryId, 10);
+              var resourcePromise = CategoriesFactory.query({
+                storeAlias: $route.current.params.storeAlias
+              }).$promise;
 
-              ResourcesService.get(fragment).then(function(data) {
-                var category = _.findWhere(data, {
+              resourcePromise.then(function(categories) {
+                var category = _.findWhere(categories, {
                   id: categoryId
                 });
                 if (category) {
-                  data.current = category;
-                  defer.resolve(data);
+                  categories.current = category;
+                  defer.resolve(categories);
                 } else {
                   $location.path('/404');
                 }

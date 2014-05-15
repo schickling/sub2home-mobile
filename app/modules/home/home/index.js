@@ -17,8 +17,8 @@ module.exports = angular.module('home.home', [])
         templateUrl: 'modules/home/home/templates/index.html',
         controller: 'HomeHomeCtrl',
         resolve: {
-          stores: function(ResourcesService) {
-            return ResourcesService.get('stores');
+          stores: function(StoresFactory) {
+            return StoresFactory.query().$promise;
           },
           selectedDeliveryArea: function(PersistenceService) {
             return PersistenceService.load('selectedDeliveryArea');

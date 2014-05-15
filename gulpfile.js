@@ -34,6 +34,7 @@ gulp.task('browserify', ['views'], function() {
     .external('angular/angular')
     .external('angular-route/angular-route')
     .external('angular-touch/angular-touch')
+    .external('angular-resource/angular-resource')
     .external('angular-local-storage/angular-local-storage')
     .external('angular-bind-once/bindonce')
     .bundle({
@@ -50,6 +51,7 @@ gulp.task('browserify.libs', function() {
     .require('angular/angular')
     .require('angular-route/angular-route')
     .require('angular-touch/angular-touch')
+    .require('angular-resource/angular-resource')
     .require('angular-local-storage/angular-local-storage')
     .require('angular-bind-once/bindonce')
     .bundle()
@@ -66,7 +68,6 @@ gulp.task('connect', function() {
 
 gulp.task('livereload', function() {
   gulp.src([
-    'app/modules/**/*.html',
     'app/index.html',
     '.tmp/*.js',
     '.tmp/css/*.css',

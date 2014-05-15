@@ -11,8 +11,8 @@ var _ = require('lodash');
 // modules
 require('./modules/common');
 require('./modules/404');
-require('./modules/home/home');
-require('./modules/store/home');
+require('./modules/home');
+require('./modules/store');
 require('./modules/template-cache');
 
 angular.module('app', [
@@ -25,8 +25,8 @@ angular.module('app', [
   // own code
   'common',
   '404',
-  'home.home',
-  'store.home',
+  'home',
+  'store',
   'template-cache',
 ]);
 

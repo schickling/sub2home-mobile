@@ -10,7 +10,7 @@ describe('ResourcesService', function() {
     $httpBackend = _$httpBackend_;
   }));
 
-  it('should return something', function() {
+  it('should return a resolving promise', function() {
 
     $httpBackend.when('GET', 'http://localhost:1071/test').respond({
       hello: 'world'

@@ -10,6 +10,7 @@ var _ = require('lodash');
 
 // modules
 require('./modules/common');
+require('./modules/404');
 require('./modules/home/home');
 require('./modules/store/home');
 
@@ -22,17 +23,27 @@ angular.module('app', [
   'pasvaz.bindonce',
   // own code
   'common',
+  '404',
   'home.home',
   'store.home',
 ]);
 
 angular.module('app').constant('_', _);
 
-angular.module('app').config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
+angular.module('app').config(['$locationProvider',
+  function($locationProvider) {
     // $locationProvider.html5Mode(true);
-    $routeProvider.otherwise({
-      redirectTo: '/'
-    });
   }
 ]);
+
+angular.module('app').run(['ResourcesService', '$location',
+  function(ResourcesService, $location) {
+
+    var errorCallback = function() {
+      $location.path('/404');
+    };
+
+    ResourcesService.setErrorCallback(errorCallback);
+
+  }
+])

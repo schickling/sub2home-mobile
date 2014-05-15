@@ -6,6 +6,8 @@ module.exports = ['$http', 'ApiService',
 
     return {
 
+      errorCallback: null,
+
       get: function(fragment) {
 
         var url = ApiService.buildUrl(fragment);
@@ -19,9 +21,17 @@ module.exports = ['$http', 'ApiService',
           return data;
         });
 
+        if (this.errorCallback) {
+          promise.error(this.errorCallback);
+        }
+
         return promise;
 
-      }
+      },
+
+      setErrorCallback: function(errorCallback) {
+        this.errorCallback = errorCallback;
+      },
 
     }
   }

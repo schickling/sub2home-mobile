@@ -3,7 +3,7 @@
 /.tmp
 /dist
 /app/components
-/app/css
+/app/modules/template-cache
 *.sublime-workspace
 *.swp
 npm-debug.log

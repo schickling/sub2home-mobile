@@ -13,6 +13,7 @@ require('./modules/common');
 require('./modules/404');
 require('./modules/home/home');
 require('./modules/store/home');
+require('./modules/template-cache');
 
 angular.module('app', [
   // core
@@ -26,6 +27,7 @@ angular.module('app', [
   '404',
   'home.home',
   'store.home',
+  'template-cache',
 ]);
 
 angular.module('app').constant('_', _);

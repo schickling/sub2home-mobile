@@ -31,7 +31,8 @@
     "browserify": "^3.41.0",
     "es6ify": "^1.1.0",
     "napa": "^0.4.1",
-    "vinyl-source-stream": "^0.1.1"
+    "vinyl-source-stream": "^0.1.1",
+    "gulp-header": "^1.0.2"
   },
   "napa": {
     "angular": "angular/bower-angular",

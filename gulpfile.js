@@ -111,7 +111,7 @@ gulp.task('compress', ['usemin', 'views'], function() {
 
 gulp.task('watch', function() {
   gulp.watch('app/less/**/*.less', ['less']);
-  gulp.watch('app/modules/**/*.js', ['browserify']);
+  gulp.watch(['index.js', 'app/modules/**/*.js'], ['browserify']);
 });
 
 gulp.task('test', ['hint']);

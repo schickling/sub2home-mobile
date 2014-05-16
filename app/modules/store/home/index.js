@@ -23,10 +23,10 @@ module.exports = angular.module('store.home', [])
               promise.then(function(data) {
                 if (data.length > 0) {
                   $location.path('/' + storeAlias + '/' + data[0].id);
-                  $location.replace();
                 } else {
                   $location.path('/404');
                 }
+                $location.replace();
               });
 
               return promise;
@@ -65,6 +65,7 @@ module.exports = angular.module('store.home', [])
                   defer.resolve(categories);
                 } else {
                   $location.path('/404');
+                  $location.replace();
                 }
               });
 

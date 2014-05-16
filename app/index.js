@@ -47,6 +47,7 @@ angular.module('app').run(['ResourceService', '$location',
 
     var errorCallback = function() {
       $location.path('/404');
+      $location.replace();
     };
 
     ResourceService.setErrorCallback(errorCallback);

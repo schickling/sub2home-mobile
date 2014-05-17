@@ -132,12 +132,10 @@
 
 // Toggle States
 
-body.navToggled {
-  #categoriesNavigation {
-    .translate(0,0,0);
-  }
+#categoriesNavigation.navToggled {
+  .translate(0,0,0);
+}
 
-  #storeHome {
-    .translate(@navWidth,0,0);
-  }
+#storeHome.navToggled {
+  .translate(@navWidth,0,0);
 }

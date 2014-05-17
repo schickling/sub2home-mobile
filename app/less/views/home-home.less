@@ -58,15 +58,22 @@
     }
   }
 
+
+
   span {
     display: block;
     font-size: 18px;
   }
 
-  &.postalOnly {
+  &.postalOnly, &.focus {
+
+    // .focus = after first character is typed; stays as long as at least one character is set
 
     #postalInput {
       width: 110px;
+    }
+    .iCompass {
+      display: none;
     }
   }
 }

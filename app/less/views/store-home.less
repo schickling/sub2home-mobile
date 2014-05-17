@@ -1,5 +1,51 @@
 // store.home
 
+// Variables
+
+@navWidth:   50px;
+
+#toggleCategories {
+  &:before {
+    top: -5px;
+  }
+
+}
+
+
+#categoriesNavigation {
+  position: absolute;
+  padding-top: 53px;
+  .border-box;
+
+  width: @navWidth;
+  overflow: hidden;
+  height: 100%;
+  background: @darkBackground;
+
+  .translate(-@navWidth,0,0);
+  .transformTransition(.3s,ease);
+
+  ul {
+    li {
+      display: block;
+      height: 50px;
+      .border-box;
+      padding: 10px;
+      color: @white;
+      text-shadow: 0 0 5px rgba(0,0,0,0.5);
+      border-bottom: 1px solid rgba(0,0,0,0.3);
+    }
+  }
+}
+
+#storeHome {
+  .translate(0,0,0);
+  .transformTransition(.3s,ease);
+  .box-shadow(0 0 5px 0 rgba(0,0,0,0.5));
+}
+
+
+
 #editLocation {
   padding: 20px @bodyPadding 13px;
   font-size: 24px;
@@ -10,7 +56,7 @@
 
 #articles {
 
-  > div {
+  .item {
     padding: 30px @bodyPadding;
     border-bottom: 1px solid @darkerWhite;
   }
@@ -22,8 +68,8 @@
   .buyingOption {
 
     margin-top: 15px;
-    
-    > div {
+
+    > a {
       display: inline-block;
       background: @noteBackground;
       padding: 3px;
@@ -53,7 +99,7 @@
         }
 
 
-        span {
+        .sizeTag {
           font-size: 16px;
           color: @onNoteColor;
         }
@@ -80,5 +126,18 @@
         margin-right: 5px;
       }
     }
+  }
+}
+
+
+// Toggle States
+
+body.navToggled {
+  #categoriesNavigation {
+    .translate(0,0,0);
+  }
+
+  #storeHome {
+    .translate(@navWidth,0,0);
   }
 }

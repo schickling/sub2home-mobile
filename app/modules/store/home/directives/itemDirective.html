@@ -1,7 +1,7 @@
-<div class="sub" bindonce>
+<div class="item sub" bindonce>
   <img bo-src="item.largeImage" bo-alt="item.title" />
   <h2><span bo-text="item.title"></span><span class="infoButton"></span></h2>
-  <dev class="buyingOption">
+  <div class="buyingOption">
     <a class="buy6inch" bo-href="'#/memmingen/theke/artikel/' + item.id">
       <div class="pricetag">
         <h3>
@@ -14,7 +14,7 @@
     <a class="buyFootlong" ng-repeat="chainedArticle in item.chainedArticlesCollection" bo-href="'#/memmingen/theke/artikel/' + chainedArticle.id">
       <div class="pricetag">
         <h3>
-          <span bo-text="chainedArticle.info"></span>
+          <span class="sizeTag" bo-text="chainedArticle.info"></span>
           <br />
           <span bo-text="chainedArticle.price"></span> €
         </h3>

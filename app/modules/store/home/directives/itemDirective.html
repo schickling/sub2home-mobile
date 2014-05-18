@@ -1,11 +1,14 @@
 <div class="item sub" bindonce>
   <img bo-src="item.largeImage" bo-alt="item.title" />
   <h2><span bo-text="item.title"></span><span class="infoButton"></span></h2>
+  <p class="itemDescription hidden">
+    BBQ Rib-Hacksteak mit rauchiger BBQ Sauce, Belag ganz nach deinem Geschmack.
+  </p>
   <div class="buyingOption">
     <a class="buy6inch" bo-href="'#/memmingen/theke/artikel/' + item.id">
       <div class="pricetag">
         <h3>
-          <span bo-text="item.info"></span>
+          <span class="sizeTag" bo-text="item.info"></span>
           <br />
           <span bo-text="item.price"></span> €
         </h3>

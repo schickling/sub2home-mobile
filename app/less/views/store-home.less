@@ -36,7 +36,7 @@
       text-shadow: 0 0 5px rgba(0,0,0,0.5);
       border-bottom: 1px solid rgba(0,0,0,0.3);
       overflow: visible;
-      &:last-child:before {
+      &.active:before {
         content: " ";
         position: absolute;
         left: -1px;
@@ -46,9 +46,6 @@
         width: 5px;
         background: @greenLight;
         .box-shadow(0 0 5px 0 rgba(0,0,0,0.5));
-      }
-      &.active {
-
       }
     }
   }
@@ -105,7 +102,7 @@
       .box-shadow(0 1px 3px 0 @globalShadowColor15);
 
       &:last-child {
-        margin-left: 10px;
+        margin-left: 5px;
       }
 
       &:first-child {
@@ -118,7 +115,11 @@
         padding: 2px 7px;
 
         h3 {
-          // font-size: 28px;
+
+          // SIZE ADJUST
+
+          font-size: 19px;
+
           color: @greenDark;
           display: inline-block;
           line-height: 1;
@@ -129,28 +130,32 @@
         .sizeTag {
           font-size: 16px;
           color: @onNoteColor;
+
+          // SIZE ADJUST
+
+          font-size: 13px;
         }
       }
     }
 
     .buy6inch {
       .pricetag:before {
-        content: "\e600";
+        content: "\e60b";
         font-family: "Homicons";
         display: inline-block;
         color: @onNoteColor50;
-        font-size: 40px;
-        margin-right: 5px;
+        font-size: 30px;
+        margin-right: 0px;
       }
     }
     .buyFootlong {
       .pricetag:before {
-        content: "\e600";
+        content: "\e60c";
         font-family: "Homicons";
         display: inline-block;
         color: @onNoteColor50;
-        font-size: 40px;
-        margin-right: 5px;
+        font-size: 30px;
+        margin-right: 0px;
       }
     }
   }

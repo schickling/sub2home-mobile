@@ -1,5 +1,5 @@
 <aside id="header">
-  <div id="toggleCategories" class="icn iNav" ng-click="navToggled = !navToggled"></div>
+  <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
   <div id="pageTitle">
     <i class="icn iSub"></i>Subs
   </div>
@@ -16,7 +16,7 @@
 
 <!-- / Categories Navigation -->
 
-<div id="storeHome" class="content" ng-class="{navToggled: navToggled}">
+<div id="storeHome" class="content" ng-class="{navToggled: navToggled}" ng-click="toggleNav(false)">
 
   <section class="note above" id="editLocation">
       in 20min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>

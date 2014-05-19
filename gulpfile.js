@@ -28,15 +28,17 @@ gulp.task('hint', function() {
     .pipe(hint.reporter('default'));
 });
 
-gulp.task('browserify', ['views'], function() {
+gulp.task('browserify', function() {
   return browserify('./app/index.js')
     .external('lodash')
+    .external('zipcoder')
     .external('angular/angular')
     .external('angular-route/angular-route')
     .external('angular-touch/angular-touch')
     .external('angular-resource/angular-resource')
     .external('angular-local-storage/angular-local-storage')
-    .external('angular-bind-once/bindonce')
+    .external('angular-bindonce/bindonce')
+    .external('./modules/template-cache')
     .bundle({
       debug: true,
       standalone: 'app',
@@ -48,14 +50,23 @@ gulp.task('browserify', ['views'], function() {
 gulp.task('browserify.libs', function() {
   return browserify()
     .require('lodash')
+    .require('zipcoder')
     .require('angular/angular')
     .require('angular-route/angular-route')
     .require('angular-touch/angular-touch')
     .require('angular-resource/angular-resource')
     .require('angular-local-storage/angular-local-storage')
-    .require('angular-bind-once/bindonce')
+    .require('angular-bindonce/bindonce')
     .bundle()
     .pipe(source('libs.js'))
+    .pipe(gulp.dest('.tmp'));
+});
+
+gulp.task('browserify.templates', ['views'], function() {
+  return browserify()
+    .require('./.tmp/templates', {expose: './modules/template-cache'})
+    .bundle()
+    .pipe(source('template-cache.js'))
     .pipe(gulp.dest('.tmp'));
 });
 
@@ -85,13 +96,13 @@ gulp.task('clean:dist', function() {
 
 gulp.task('views', function() {
   return gulp.src('app/modules/**/*.html')
-    .pipe(templateCache('index.js', {
+    .pipe(templateCache('templates.js', {
       module: 'template-cache',
       standalone: true,
       root: 'modules',
     }))
     .pipe(header('module.exports = '))
-    .pipe(gulp.dest('app/modules/template-cache'));
+    .pipe(gulp.dest('.tmp'));
 });
 
 gulp.task('usemin', ['clean:dist', 'less'], function() {
@@ -115,7 +126,7 @@ gulp.task('compress', ['usemin', 'views'], function() {
 
 gulp.task('watch', function() {
   gulp.watch('app/less/**/*.less', ['less']);
-  gulp.watch('app/modules/**/*.html', ['views', 'browserify']);
+  gulp.watch('app/modules/**/*.html', ['browserify.templates']);
   gulp.watch(['app/index.js', 'app/modules/**/*.js'], ['browserify']);
 });
 
@@ -123,8 +134,9 @@ gulp.task('test', ['hint']);
 gulp.task('server', [
   'less',
   'hint',
-  'browserify',
   'browserify.libs',
+  'browserify.templates',
+  'browserify',
   'watch',
   'connect',
   'livereload'

@@ -6,7 +6,7 @@ require('angular-route/angular-route');
 require('angular-touch/angular-touch');
 require('angular-resource/angular-resource');
 require('angular-local-storage/angular-local-storage');
-require('angular-bind-once/bindonce');
+require('angular-bindonce/bindonce');
 var _ = require('lodash');
 
 // modules

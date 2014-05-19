@@ -4,8 +4,7 @@ sub2home-mobile
 ===============
 
 ## Dependencies
-* NPM
-* Grunt (`npm install -g gulp`)
+* node.js (with NPM)
 
 ## Usage
 
@@ -17,12 +16,12 @@ $ npm install
 #### Development / Server
 Starts webserver on `localhost:8080` with livereload.
 ```sh
-$ gulp
+$ npm run-script server
 ```
 
 #### Build (just needed for deployment)
 ```sh
-$ gulp build
+$ npm run-script build
 ```
 
 ## Supported browsers

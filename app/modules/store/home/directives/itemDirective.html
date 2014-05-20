@@ -8,7 +8,7 @@
     <a ng-class="getBuyClass(item.icon)" bo-href="'#/memmingen/theke/artikel/' + item.id">
       <div class="pricetag">
         <h3>
-          <span class="sizeTag" bo-text="item.info"></span>
+          <span class="sizeTag" bo-text="item.info" bo-if="item.info"></span>
           <br />
           <span class="price" bo-text="item.price"></span>
         </h3>

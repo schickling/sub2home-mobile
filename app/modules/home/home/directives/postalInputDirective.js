@@ -15,16 +15,18 @@ module.exports = ['$timeout', 'PostalOracleService',
 
         var input = $elem.find('input');
         var abortLocationDetermination = false;
+        var isDeterminingLocation = false;
+        var rotationDegrees = 0;
 
         $scope.isFocused = false;
-        $scope.isLoading = false;
 
         $scope.determineLocation = function(overwritePostal) {
-          $scope.isLoading = true;
+          isDeterminingLocation = true;
           abortLocationDetermination = false;
+          updateRotationDegrees();
           PostalOracleService.query(overwritePostal).then(function(postal) {
+            isDeterminingLocation = false;
             if (!abortLocationDetermination) {
-              $scope.isLoading = false;
               input.val(postal);
               checkShrinking();
               $scope.postal = postal;
@@ -90,6 +92,18 @@ module.exports = ['$timeout', 'PostalOracleService',
         function checkShrinking() {
           var postal = input.val();
           $elem.toggleClass('postalOnly', postal.length === 5);
+        }
+
+        function updateRotationDegrees() {
+          $timeout(function() {
+            rotationDegrees = rotationDegrees + 4;
+            $scope.rotationDegrees = rotationDegrees;
+            if (isDeterminingLocation) {
+              updateRotationDegrees();
+            } else {
+              $scope.rotationDegrees = 0;
+            }
+          }, 30);
         }
 
       }

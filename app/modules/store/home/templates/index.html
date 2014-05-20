@@ -1,7 +1,7 @@
 <aside id="header">
   <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
-  <div id="pageTitle">
-    <i class="icn iSub"></i>Subs
+  <div id="pageTitle" bindonce>
+    <i class="icn iSub" bo-class="categories.current.icon"></i><span bo-text="categories.current.title"></span>
   </div>
   <div id="toTheInfo" class="icn iInfo"></div>
 </aside>

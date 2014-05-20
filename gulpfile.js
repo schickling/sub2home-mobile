@@ -4,15 +4,9 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var less = require('gulp-less');
-var usemin = require('gulp-usemin');
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
-var htmlmin = require('gulp-htmlmin');
-var cssmin = require('gulp-minify-css');
 var templateCache = require('gulp-angular-templatecache');
 var connect = require('gulp-connect');
 var watch = require('gulp-watch');
-var rm = require('gulp-rimraf');
 var hint = require('gulp-jshint');
 var header = require('gulp-header');
 
@@ -28,7 +22,7 @@ gulp.task('hint', function() {
     .pipe(hint.reporter('default'));
 });
 
-gulp.task('browserify', function() {
+gulp.task('browserify.app', function() {
   return browserify('./app/index.js')
     .external('lodash')
     .external('zipcoder')
@@ -64,7 +58,9 @@ gulp.task('browserify.libs', function() {
 
 gulp.task('browserify.templates', ['views'], function() {
   return browserify()
-    .require('./.tmp/templates', {expose: './modules/template-cache'})
+    .require('./.tmp/templates', {
+      expose: './modules/template-cache'
+    })
     .bundle()
     .pipe(source('template-cache.js'))
     .pipe(gulp.dest('.tmp'));
@@ -87,13 +83,6 @@ gulp.task('livereload', function() {
     .pipe(connect.reload());
 });
 
-gulp.task('clean:dist', function() {
-  return gulp.src('dist/*', {
-      read: false
-    })
-    .pipe(rm());
-});
-
 gulp.task('views', function() {
   return gulp.src('app/modules/**/*.html')
     .pipe(templateCache('templates.js', {
@@ -105,48 +94,29 @@ gulp.task('views', function() {
     .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('usemin', ['clean:dist', 'less'], function() {
-  return gulp.src('app/index.html')
-    .pipe(usemin({
-      cssmin: cssmin(),
-      htmlmin: htmlmin({
-        removeComments: true,
-        collapseWhitespace: true,
-      }),
-    }))
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('compress', ['usemin', 'views'], function() {
-  return gulp.src(['dist/js/main.js', '.tmp/templates.js'])
-    .pipe(concat('main.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('dist/js'));
-});
-
 gulp.task('watch', function() {
   gulp.watch('app/less/**/*.less', ['less']);
   gulp.watch('app/modules/**/*.html', ['browserify.templates']);
-  gulp.watch(['app/index.js', 'app/modules/**/*.js'], ['browserify']);
+  gulp.watch(['app/index.js', 'app/modules/**/*.js'], ['browserify.app']);
 });
 
-gulp.task('test', ['hint']);
+gulp.task('test', [
+  'hint'
+]);
+
+gulp.task('browserify', [
+  'browserify.libs',
+  'browserify.templates',
+  'browserify.app',
+]);
+
 gulp.task('server', [
   'less',
   'hint',
-  'browserify.libs',
-  'browserify.templates',
   'browserify',
   'watch',
   'connect',
   'livereload'
 ]);
-gulp.task('build', [
-  'test',
-  'clean:dist',
-  'less',
-  'usemin',
-  'views',
-  'compress'
-]);
+
 gulp.task('default', ['server']);

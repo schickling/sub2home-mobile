@@ -9,8 +9,10 @@
 <!-- Categories Navigation -->
 
 <nav id="categoriesNavigation" ng-class="{navToggled: navToggled}">
-  <ul>
-    <li bindonce ng-repeat="category in categories"><a bo-href="'#/' + $route.current.params.storeAlias + '/' + category.id" class="icn" bo-class="category.icon"></a></li>
+  <ul bindonce>
+    <li ng-repeat="category in categories" bo-class="{ active: category.id === categories.current.id }">
+      <a bo-href="'#/' + $route.current.params.storeAlias + '/' + category.id" class="icn" bo-class="category.icon"></a>
+    </li>
   </ul>
 </nav>
 
@@ -19,10 +21,10 @@
 <div id="storeHome" class="content" ng-class="{navToggled: navToggled}" ng-click="toggleNav(false)">
 
   <section class="note above" id="editLocation">
-      in 20min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>
+    in 20min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>
   </section>
-  <section id="articles">
-    <item ng-repeat="item in items"></item>
+  <section id="articles" col-repeat app-items="items" app-col="col">
+    <item ng-repeat="item in col"></item>
   </section>
 
 </div>

@@ -2,10 +2,12 @@
 
 var MainCtrl = require('./controllers/MainCtrl');
 var itemDirective = require('./directives/itemDirective');
+var colRepeatDirective = require('./directives/colRepeatDirective');
 
 module.exports = angular.module('store.home', [])
   .controller('StoreHomeCtrl', MainCtrl)
   .directive('item', itemDirective)
+  .directive('colRepeat', colRepeatDirective)
   .config(['$routeProvider',
     function($routeProvider) {
 

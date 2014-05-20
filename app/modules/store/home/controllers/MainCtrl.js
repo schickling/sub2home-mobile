@@ -10,9 +10,8 @@ module.exports = ['$scope', '$route', 'store', 'categories',
     $scope.$route = $route;
     $scope.navToggled = false;
 
-    $scope.toggleNav = function() {
-      $scope.navToggled = !$scope.navToggled;
-      // console.log($scope);
+    $scope.toggleNav = function(value) {
+      $scope.navToggled = value !== undefined ? value : !$scope.navToggled;
     };
 
     $scope.getDistrict = function() {

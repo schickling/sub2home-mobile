@@ -13,9 +13,6 @@ build:
             gulp test
             gulp browserify
             node_modules/karma/bin/karma start --single-run --browsers PhantomJS
-    - script:
-        name: build production
-        code: gulp build
 deploy:
   steps:
     - s3sync:

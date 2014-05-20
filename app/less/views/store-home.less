@@ -9,11 +9,12 @@
   // Right Border Test
   padding-right: 9px !important;
   border-right: 1px solid @onHeaderColor50;
-  
+
   &:before {
     top: -5px;
+    .rotate(0deg);
+    .transformTransition(0.3s, ease);
   }
-
 }
 
 
@@ -244,10 +245,15 @@
 
 // Toggle States
 
-#categoriesNavigation.navToggled {
-  .translate(0,0,0);
-}
+.navToggled {
 
-#storeHome.navToggled {
-  .translate(@navWidth,0,0);
+  #categoriesNavigation {
+    .translate(0,0,0);
+  }
+  #storeHome {
+    .translate(@navWidth,0,0);
+  }
+  #toggleCategories:before {
+    .rotate(180deg);
+  }
 }

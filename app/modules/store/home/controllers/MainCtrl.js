@@ -8,7 +8,8 @@ module.exports = ['$scope', '$route', 'store', 'categories', '_',
     $scope.categories = categories;
     $scope.currentCategory = categories.current;
     $scope.items = categories.current.itemsCollection;
-    $scope.nextCategory = categories[categories.indexOf(categories.current) + 1] || null;
+    var nextCategoryIndex = (categories.indexOf(categories.current) + 1) % categories.length;
+    $scope.nextCategory = categories[nextCategoryIndex];
     $scope.$route = $route;
     $scope.navToggled = false;
 

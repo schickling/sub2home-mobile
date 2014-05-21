@@ -1,15 +1,15 @@
-<div ng-class="{navToggled: navToggled}">
+<div bindonce ng-class="{navToggled: navToggled}">
   <aside id="header">
     <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
-    <div id="pageTitle" bindonce>
-      <i class="icn iSub" bo-class="categories.current.icon"></i><span bo-text="categories.current.title"></span>
+    <div id="pageTitle" ng-click="toggleNav()">
+      <i class="icn iSub" bo-class="currentCategory.icon"></i><span bo-text="currentCategory.title"></span>
     </div>
     <div id="toTheInfo" class="icn iInfo"></div>
   </aside>
 
   <nav id="categoriesNavigation">
-    <ul bindonce>
-      <li ng-repeat="category in categories" bo-class="{ active: category.id === categories.current.id }">
+    <ul>
+      <li ng-repeat="category in categories" bo-class="{ active: category.id === currentCategory.id }">
         <a bo-href="'#/' + $route.current.params.storeAlias + '/' + category.id" class="icn" bo-class="category.icon"></a>
       </li>
     </ul>
@@ -21,10 +21,12 @@
     </section>
     <section id="articles" col-repeat app-items="items" app-col="col">
       <item ng-repeat="item in col"></item>
-      <div id="toNextCategory" class="iSnacks">
-        <p>Nächste Kategorie</p>
-        <h3>Snacks</h3>
-      </div>
     </section>
+    <a bo-href="'#/' + $route.current.params.storeAlias + '/' + nextCategory.id" bo-if="nextCategory">
+      <div id="toNextCategory" bo-class="nextCategory.icon">
+        <p>Nächste Kategorie</p>
+        <h3 bo-text="nextCategory.title"></h3>
+      </div>
+    </a>
   </div>
 </div>

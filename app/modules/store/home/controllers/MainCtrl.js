@@ -1,12 +1,14 @@
 'use strict';
 
-module.exports = ['$scope', '$route', 'store', 'categories',
+module.exports = ['$scope', '$route', 'store', 'categories', '_',
   'selectedDeliveryArea',
 
-  function($scope, $route, store, categories, selectedDeliveryArea) {
+  function($scope, $route, store, categories, _, selectedDeliveryArea) {
 
     $scope.categories = categories;
+    $scope.currentCategory = categories.current;
     $scope.items = categories.current.itemsCollection;
+    $scope.nextCategory = categories[categories.indexOf(categories.current) + 1] || null;
     $scope.$route = $route;
     $scope.navToggled = false;
 

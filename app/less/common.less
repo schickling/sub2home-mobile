@@ -3,6 +3,12 @@
 @bodyPadding: 15px;
 @headerHeight: 50px;
 
+// Header Item Widths
+
+@toTheInfoWidth:				46px;
+@toggleCategoriesWidth: 50px;
+@toTrayWidth: 					50px;
+
 
 html, body {
 	font-family: @baseFontFamily;
@@ -10,6 +16,8 @@ html, body {
 	color: @textColor;
 
 	-webkit-text-size-adjust:none;
+
+	min-width: 320px;
 }
 
 body > .ng-scope {overflow-x: hidden;}
@@ -61,6 +69,8 @@ body > .ng-scope {overflow-x: hidden;}
 	overflow: visible;
 
 	color: @onHeaderColor;
+
+	min-width: 320px;
 
 	// Background
 
@@ -115,6 +125,7 @@ body > .ng-scope {overflow-x: hidden;}
 
 			font-size: 22px;
 			top: -1px;
+			width: @toTheInfoWidth;
 
 			border-left: 1px solid @onHeaderColor50;
 		}

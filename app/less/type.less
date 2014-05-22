@@ -13,7 +13,7 @@
 // -------------------------
 
 p {
-  font-size: 18px;
+  // font-size: @mobileBaseFontSize;
   .backface-visibility(hidden);
   margin: 0;
   line-height: 1.3;
@@ -61,10 +61,19 @@ h1, h2, h3, h4, h5, h6 {
     color: @grayLight;
   }
 }
-h1 { font-size: 40px; line-height: 50px; }
-h2 { font-size: 32px; line-height: 40px; }
-h3 { font-size: 24px; line-height: 30px; }
-h4 { font-size: 18px; line-height: 20px; }
+h1 { font-size: @mobileH1FontSize;}
+h2 { font-size: @mobileH2FontSize;}
+h3 { font-size: @mobileH3FontSize;}
+h4 { font-size: @mobileH4FontSize;}
+
+// TABLET SIZES:
+
+@media only screen and (min-device-width : 400px) {
+  h1 { font-size: @tabletH1FontSize;}
+  h2 { font-size: @tabletH2FontSize;}
+  h3 { font-size: @tabletH3FontSize;}
+  h4 { font-size: @tabletH4FontSize;}
+}
 
 
 // Lists

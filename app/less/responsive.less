@@ -4,11 +4,43 @@
 // Common Styles
 // -----------------------------------------------------------------------------
 
-
 // Larger-Than-Mobile
 @media only screen and (min-device-width : 400px) {
-  p {
-    font-size: 30px;
+
+  body {
+    font-size: @tabletBaseFontSize;
+  }
+
+  .icn {
+    &.inSmallText {
+      font-size: 24px;
+
+      &.before {
+        margin-right: 10px;
+      }
+      &.after {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+// header
+// -----------------------------------------------------------------------------
+@media only screen and (min-device-width : 400px) {
+  #header {
+    > div {
+      padding: 10px 0 0 15px;
+
+      &#toTheInfo {
+        font-size: 26px;
+        padding-left: 9px;
+        top: 1px;
+      }
+    }
+    #ownLogo {
+      font-size: 40px;
+    }
   }
 }
 
@@ -19,6 +51,74 @@
 // Larger-Than-Mobile
 @media only screen and (min-device-width : 400px) {
   #introducingText {
-    padding:  30px 20% 10px; 
+    padding:  30px 20% 10px;
+  }
+
+  #postalInputContainer {
+    font-size: @tabletH1FontSize;
+    padding: 25px 30px 18px;
+    .iCompass {
+      font-size: 45px;
+    }
+    &.postalOnly, &.focus {
+      #postalInput {
+        width: 170px;
+      }
+    }
+
+    span {
+      font-size: @tabletH4FontSize;
+    }
+  }
+
+  #postalInput {
+    width: 300px;
+    height: 60px;
+  }
+
+  #selectableDeliveryAreas .deliveryArea {
+    font-size: @tabletH3FontSize;
+
+    span {
+      font-size: @tabletSmallFontSize;
+    }
+  }
+
+  #selectableStores .store {
+    font-size: @tabletH3FontSize;
+    padding-left: 95px;
+    .iStore, .iNext {
+      top: 25px;
+      font-size: 56px;
+    }
+
+    span {
+      font-size: @tabletSmallFontSize;
+      &:before {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+
+  // STEPS
+
+  .step3 {
+    #introduction {
+      .translate(0,-280px,0);
+      .callToAction {
+        margin: 50px 0 20px;
+      }
+    }
+  }
+
+  .step4 {
+    #introduction {
+      .translate(0,-280px,0);
+      .callToAction {
+        margin: 50px 0 20px;
+      }
+    }
   }
 }

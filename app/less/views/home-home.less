@@ -63,7 +63,7 @@
 
   span {
     display: block;
-    font-size: 18px;
+    font-size: @mobileH4FontSize;
   }
 
   &.postalOnly, &.focus {
@@ -109,6 +109,7 @@
 
 #editDeliveryArea {
   color: @onNoteColor50;
+  cursor: pointer;
 }
 
 #selectableDeliveryAreas {
@@ -116,8 +117,9 @@
   .deliveryArea {
 
     padding: 10px;
-    font-size: 24px;
+    font-size: @mobileH3FontSize;;
     border-bottom: 1px solid @onNoteColor30;
+    cursor: pointer;
 
     &:first-child {
       border-top: 1px solid @onNoteColor30
@@ -125,7 +127,7 @@
 
     span {
       display: block;
-      font-size: 13px;
+      font-size: @mobileSmallFontSize;
     }
   }
 }
@@ -155,7 +157,7 @@
     text-align: left;
     color: @onDarkNoteColor;
     text-decoration: none;
-    font-size: 24px;
+    font-size: @mobileH3FontSize;;
     padding: 20px 55px 20px 75px;
 
     border-bottom: 1px solid @onDarkNoteColor30;
@@ -178,7 +180,7 @@
 
     span {
       display: block;
-      font-size: 13px;
+      font-size: @mobileSmallFontSize;
 
       &:before {
         content: " ";

@@ -137,9 +137,11 @@ body > .ng-scope {overflow-x: hidden;}
 			position: relative;
 			background: @headerTrayBackground;
 			border-left: 1px solid @onHeaderColor50;
-			padding-right: 10px;
+			padding: 8px 10px 0;
 			min-width: 55px;
-
+			.iTray {
+				font-size: 34px;
+			}
 		}
 	}
 
@@ -157,14 +159,14 @@ body > .ng-scope {overflow-x: hidden;}
 #traySize {
 	display: block;
 	position: absolute;
-	top: 5px;
-	right: 0px;
-	min-width: 17px;
-	height: 17px;
+	bottom: -2px;
+	right: -5px;
+	min-width: 16px;
+	height: 16px;
 	background: @greenLight;
 	color: @white;
 	.img-circle;
-	font-size: 12px;
+	font-size: 11px;
 	text-align: center;
 	.border-box;
 	padding: 2px;

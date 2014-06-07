@@ -2,9 +2,14 @@
   <aside id="header">
     <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
     <div id="pageTitle" ng-click="toggleNav()">
-      <i class="icn iSub" bo-class="currentCategory.icon"></i><span bo-text="currentCategory.title"></span>
+      <i class="icn" bo-class="currentCategory.icon"></i><span bo-text="currentCategory.title"></span>
     </div>
     <div id="toTheInfo" class="icn iInfo"></div>
+    <div id="toTheTray">
+      <i class="icn iTray">
+        <span id="traySize">5</span>
+      </i>
+    </div>
   </aside>
 
   <nav id="categoriesNavigation">

@@ -8,19 +8,17 @@
     <a ng-class="getBuyClass(item.icon)" bo-href="'#/memmingen/theke/artikel/' + item.id">
       <div class="pricetag">
         <h3>
-          <span class="sizeTag" bo-text="item.info" bo-if="item.info"></span>
-          <br />
-          <span class="price" bo-text="item.price"></span>
+          <div class="sizeTag" bo-text="item.info" bo-if="item.info"></div>
+          <div class="price" bo-text="item.price"></div>
         </h3>
-        <span class="deposit" bo-if="item.deposit > 0">+25 ct Pfand</span>
+        <div class="deposit" bo-if="item.deposit > 0">+25 ct Pfand</div>
       </div>
     </a>
     <a ng-repeat="chainedArticle in item.chainedArticlesCollection" ng-class="getBuyClass(chainedArticle.icon)" bo-href="'#/memmingen/theke/artikel/' + chainedArticle.id">
       <div class="pricetag">
         <h3>
-          <span class="sizeTag" bo-text="chainedArticle.info"></span>
-          <br />
-          <span class="price" bo-text="chainedArticle.price"></span>
+          <div class="sizeTag" bo-text="chainedArticle.info"></div>
+          <div class="price" bo-text="chainedArticle.price"></div>
         </h3>
       </div>
     </a>

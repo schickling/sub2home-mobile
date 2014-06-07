@@ -138,6 +138,9 @@
 
         }
 
+        // .sizeTag, .price {
+        //   display: block;
+        // }
 
         .sizeTag {
           font-size: 16px;
@@ -153,7 +156,7 @@
     .buy {
       .pricetag {
         &:before {
-          content: "\e60d";
+          content: "\e613";
           font-family: "Homicons";
           display: inline-block;
           color: @onNoteColor50;
@@ -168,17 +171,20 @@
 
     .buy6inch, .buyFootlong {
       .pricetag:before {
-        content: "\e60b";
+        content: "\e614";
         font-family: "Homicons";
         display: inline-block;
         color: @onNoteColor50;
         font-size: 30px;
         margin-top: 7px;
       }
+      h3 {
+        margin: 6px 0 0;
+      }
     }
     .buyFootlong {
       .pricetag:before {
-        content: "\e60c";
+        content: "\e615";
       }
     }
 
@@ -186,11 +192,16 @@
       .pricetag:before {
         display: inline-block;
         color: @onNoteColor50;
-        content: "\e60d";
+        content: "\e613";
         font-family: "Homicons";
         font-size: 30px;
         margin: 7px 5px 0 0;
       }
+
+      h3 {
+        margin: 6px 0 0;
+      }
+
       .deposit {
         display: inline-block;
         color: @onNoteColor50;
@@ -206,44 +217,6 @@
   }
 }
 
-
-// To next Category
-
-#toNextCategory {
-
-  background: @darkWhite;
-  width: 100%;
-  position: relative;
-
-  p {
-    font-size: 13px;
-    padding: 15px 15px 0;
-    margin: 0;
-    color: @grayLight;
-  }
-
-  h3 {
-    padding-bottom: 10px;
-    &:after {
-      content: "\e60f";
-      .icn;
-      display: block;
-      font-size: 20px;
-    }
-  }
-
-
-
-  &:before {
-    .icn;
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    margin-top: -25px;
-    font-size: 50px;
-    color: @grayLighter;
-  }
-}
 
 
 // Toggle States

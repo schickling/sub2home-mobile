@@ -131,9 +131,45 @@ body > .ng-scope {overflow-x: hidden;}
 
 			border-left: 1px solid @onHeaderColor50;
 		}
+
+		&#toTheTray {
+			float: right;
+			position: relative;
+			background: @headerTrayBackground;
+			border-left: 1px solid @onHeaderColor50;
+			padding-right: 10px;
+			min-width: 55px;
+
+		}
 	}
 
+	img {
+		position: relative;
+		top: -6px;
+		display: inline-block;
+		height: 30px;
+		width: auto;
+		vertical-align: top;
+		margin-right: 5px;
+	}
 }
+
+#traySize {
+	display: block;
+	position: absolute;
+	top: 5px;
+	right: 0px;
+	min-width: 17px;
+	height: 17px;
+	background: @greenLight;
+	color: @white;
+	.img-circle;
+	font-size: 12px;
+	text-align: center;
+	.border-box;
+	padding: 2px;
+}
+
 
 #ownLogo {
 	top: -5px;
@@ -195,6 +231,60 @@ p {
 .price {
 	&:after {
 		content: " €";
+	}
+}
+
+// Hints on Notes
+
+.note.hint {
+	padding: 20px @bodyPadding 13px;
+	font-size: 24px;
+	.icn {
+		font-size: 20px;
+	}
+	&.highlighted {
+		color: @greenLight;
+	}
+}
+
+// Items used on more than one page
+
+#toNextCategory, #toNextStep, #skipThisStep {
+
+	background: @darkWhite;
+	width: 100%;
+	position: relative;
+
+	cursor: pointer;
+
+	p {
+		font-size: 13px;
+		padding: 15px 15px 0;
+		margin: 0;
+		color: @grayLight;
+	}
+
+	h3 {
+		padding-bottom: 10px;
+		&:after {
+			content: "\e605";
+			.icn;
+			display: block;
+			margin-top: 5px;
+			font-size: 16px;
+		}
+	}
+
+
+
+	&:before {
+		.icn;
+		position: absolute;
+		left: 10px;
+		top: 50%;
+		margin-top: -25px;
+		font-size: 50px;
+		color: @grayLighter;
 	}
 }
 

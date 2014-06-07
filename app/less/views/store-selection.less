@@ -1,0 +1,269 @@
+// store.home
+
+// Variables
+
+@timelineHeight: 65px;
+
+
+#ingredients {
+  text-align: left;
+}
+
+.ingredient {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  margin: 15px 0;
+  text-align: center;
+
+  .imageContainer {
+    display: inline-block;
+    .img-circle;
+    border: 2px dashed @grayLighter;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 110px;
+    width: 110px;
+
+    img {
+      .img-circle;
+    }
+
+    &:after {
+      content: "\e609";
+      display: block;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-family: "Homicons";
+      height: 10px;
+      width: 10px;
+      .opacity(0);
+
+      // REMOVE THIS WHEN USING ICON / GET BORDER VIA TEXTSHADOW
+      background: @greenLighter;
+      .img-circle;
+      border: 3px solid @white;
+    }
+  }
+
+  h3 {
+    color: @grayLighter;
+  }
+
+  &.selected {
+    .imageContainer {
+      border: 2px solid @greenLighter;
+
+      &:after {
+        .opacity(100);
+      }
+    }
+
+    h3 {
+      color: @greenLighter;
+    }
+  }
+}
+
+
+
+
+#skipThisStep, #toNextStep {
+  height: 100px;
+
+  h3:after {
+    content: "\e604";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top: -8px;
+  }
+}
+
+#toNextStep {
+  border-top: 1px solid @darkerWhite;
+  margin-bottom: @timelineHeight;
+
+  p {
+    padding-top: 30px;
+  }
+}
+
+#skipThisStep {
+  border-top: none;
+  border-bottom: 1px solid @darkerWhite;;
+
+  p {
+    padding-bottom: 10px;
+  }
+}
+
+
+// Timeline
+
+#timeline {
+  position: fixed;
+  bottom: 0;
+  height: @timelineHeight;
+  width: 100%;
+  overflow: hidden;
+}
+
+#timelineStage {
+  padding: 10px 0 0;
+
+}
+
+.timelineStep {
+  height: 45px;
+  width: 45px;
+  margin-left: 25px;
+  text-align: center;
+  .border-box;
+  padding-top: 7px;
+  font-size: 28px;
+  .img-circle;
+  border: 2px dashed @onNoteColor;
+
+  &:after {
+    content: "\e60b";
+    position: absolute;
+    display: block;
+    bottom: 0px;
+    left: -28px;
+    font-size: 8px;
+
+    // Icon is missing ...
+  }
+
+  &:first-child {
+    margin-left: 8px;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  // States
+
+  &.passed {
+    color: @onNoteColor50;
+    border: 2px solid @onNoteColor50;
+
+    &.successfully {
+      border: 2px solid @onNoteColor50;
+    }
+  }
+
+  &.missing {
+    color: @orange;
+    border: 2px dashed @orange;
+  }
+
+  // Articles & their states
+
+  &.article, &.iTray {
+    color: @noteColor;
+
+    border: none;
+    background: @onNoteColor;
+    // padding-top: 9px;
+
+    &:after {
+      color: @onNoteColor;
+      left: -26px;
+    }
+
+    &.passed {
+      background: @onNoteColor50;
+    }
+
+    &.missing {
+      background: @orange;
+    }
+  }
+
+  // Last Timeline-Step: Link to tray
+
+  &.iTray {
+
+    background: @onNoteColor50;
+
+    &.available {
+      background: @greenLight70;
+    }
+  }
+
+}
+
+
+// Timeline-Controls
+
+
+#previousTimelineStep, #nextTimelineStep {
+  position: absolute;
+  top: 12px;
+
+  width: 48px;
+  height: 42px;
+  // border: 1px solid @grayLight;
+  text-align: center;
+  background: @white;
+  .border-radius(3px);
+  .box-shadow(0 0 3px 0 rgba(0,0,0,0.2));
+
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    position:absolute;
+    top: -2px;
+
+
+    width: 48px;
+    height: 45px;
+
+    background: @white;
+    .border-radius(3px);
+    .box-shadow(0 0 3px 0 rgba(0,0,0,0.2));
+  }
+
+  &:after {
+    display: inline-block;
+    font-family: "Homicons";
+    color: @grayLight;
+    font-size: 25px;
+    margin-top: 9px;
+    position: relative;
+    z-index: 999;
+
+  }
+
+  &.unavailable {
+    display: none;
+  }
+}
+
+#previousTimelineStep {
+  left: -3px;
+
+  &:before {
+    right: 2px;
+  }
+  &:after {
+    content: "\e603";
+  }
+}
+
+#nextTimelineStep {
+  right: -3px;
+
+  &:before {
+    left: 2px;
+  }
+
+  &:after {
+    content: "\e604";
+  }
+}

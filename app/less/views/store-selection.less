@@ -36,14 +36,20 @@
       top: 20px;
       right: 20px;
       font-family: "Homicons";
-      height: 10px;
-      width: 10px;
       .opacity(0);
+      color: @greenLighter;
+      font-size: 16px;
 
-      // REMOVE THIS WHEN USING ICON / GET BORDER VIA TEXTSHADOW
-      background: @greenLighter;
-      .img-circle;
-      border: 3px solid @white;
+      // Text-Border:
+      text-shadow:
+        3px 0 0 @white,
+        -3px 0 0 @white,
+        3px 3px 0 @white,
+        -3px 3px 0 @white,
+        -3px -3px 0 @white,
+        3px -3px 0 @white,
+        0 3px 0 @white,
+        0 -3px 0 @white;
     }
   }
 

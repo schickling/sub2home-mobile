@@ -1,3 +1,131 @@
 // store.tray
 
 // Variables
+
+#storeTray {
+  background: @noteBackground;
+  .border-box;
+  padding-right: 36px;
+
+  section {
+    padding-top: 50px;
+    text-align: left;
+
+    header {
+      color: @greenLight;
+      padding: 0 0 25px 20px;
+      border-bottom: 1px solid @onNoteColor50;
+    }
+    .container {
+
+    }
+  }
+}
+
+
+// Tray-Storyline
+
+#storyline {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+  // &:before {
+  //   content: "";
+  //   display: block;
+  //   position: absolute;
+  //   right: 16px;
+  //   top: 0;
+  //   bottom: 0;
+  //   width: 1px;
+  //   background: @onNoteColor50;
+  // }
+
+  ul {
+    list-style-type: none;
+    padding-top: @headerHeight;
+    .border-box;
+    height: 100%;
+
+    li {
+      height: 20px;
+      width: 20px;
+      padding-left: 14px;
+      position: relative;
+      height: 20%;
+      min-height: 15px;
+      margin: 0;
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        right: 14px;
+        top: -50%;
+        height: 100%;
+        margin-top: 5px;
+        width: 1px;
+        background: @onNoteColor50;
+
+      }
+      &:after {
+        display: block;
+        content: "";
+        height: 11px;
+        width: 11px;
+        .img-circle;
+        border: 1px solid @onNoteColor50;
+        background: @noteColor;
+        position: absolute;
+        top: 50%;
+        margin-top: -5px;
+        .border-box;
+      }
+
+
+
+      &.passed {
+
+        &:before {
+          background: @greenLight50;
+        }
+
+        &:after {
+          background: @greenLight;
+          border: 2px solid @noteColor;
+        }
+
+        &.previousNotPassed {
+          &:before {
+            background: @onNoteColor50;
+          }
+        }
+      }
+
+      &.active {
+        position: relative;
+        z-index: 9999;
+
+        &:before {
+          margin-top: 11px;
+        }
+        &:after {
+          position: relative;
+          background: @greenLight;
+          border: 2px solid @noteColor;
+          width: 15px;
+          height: 15px;
+          left: -2px;
+        }
+      }
+
+      &.forgotten {
+        &:after {
+          background: @orange;
+          border: 2px solid @noteColor;
+        }
+      }
+    }
+  }
+}

@@ -135,10 +135,10 @@ body > .ng-scope {overflow-x: hidden;}
 
 		&#toTheInfo {
 			float: right;
-			padding-right: 10px;
+			padding: 14px 10px 0;
 
 			font-size: 22px;
-			top: -2px;
+
 			width: @toTheInfoWidth;
 
 			cursor: pointer;
@@ -153,11 +153,20 @@ body > .ng-scope {overflow-x: hidden;}
 			border-left: 1px solid @onHeaderColor50;
 			padding: 8px 10px 0;
 			min-width: 55px;
+			text-align: center;
 
 			cursor: pointer;
 
 			.iTray {
 				font-size: 34px;
+			}
+
+			&.atTray {
+				width: 286px;
+			}
+
+			> div {
+				vertical-align: top;
 			}
 		}
 
@@ -209,10 +218,38 @@ body > .ng-scope {overflow-x: hidden;}
 	padding: 2px;
 }
 
+#trayTitle {
+	display: inline-block;
+	margin: 8px 10px 0 0;
+}
+
+#trayValue {
+	display: inline-block;
+	text-align: left;
+	margin: 3px 0 0 10px;
+
+	> div {
+		font-size: 80%;
+
+		&#minValue {
+			color: @onHeaderColor50;
+		}
+	}
+	&.sufficing {
+		margin-top: 8px;
+		> div {
+			font-size: 100%;
+			&#minValue {
+				display: none;
+			}
+		}
+	}
+}
+
+
 
 #ownLogo {
 	top: -5px;
-
 }
 
 

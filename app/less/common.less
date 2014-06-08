@@ -58,7 +58,7 @@ body > .ng-scope {overflow-x: hidden;}
 
 // Header ----------------------------------------------------------------------
 
-@headerTopPadding: 	15px;
+@headerTopPadding: 	16px;
 
 #header {
 	position: fixed;
@@ -119,12 +119,26 @@ body > .ng-scope {overflow-x: hidden;}
 		.border-box;
 		padding: @headerTopPadding 0 0 10px;
 
+		&#pageTitle {
+
+
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			.icn {
+				top: -2px;
+				margin-right: 5px;
+				font-size: 24px;
+			}
+		}
+
 		&#toTheInfo {
 			float: right;
 			padding-right: 10px;
 
 			font-size: 22px;
-			top: -1px;
+			top: -2px;
 			width: @toTheInfoWidth;
 
 			cursor: pointer;
@@ -201,13 +215,6 @@ body > .ng-scope {overflow-x: hidden;}
 
 }
 
-#pageTitle {
-	.icn {
-		top: -2px;
-		margin-right: 5px;
-		font-size: 24px;
-	}
-}
 
 
 

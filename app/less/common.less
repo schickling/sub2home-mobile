@@ -139,8 +139,31 @@ body > .ng-scope {overflow-x: hidden;}
 			border-left: 1px solid @onHeaderColor50;
 			padding: 8px 10px 0;
 			min-width: 55px;
+
+			cursor: pointer;
+
 			.iTray {
 				font-size: 34px;
+			}
+		}
+
+		&#getBack {
+			position: relative;
+			font-size: 12px;
+			padding: 25px 10px 0;
+
+			border-right: 1px solid @onHeaderColor50;
+
+			cursor: pointer;
+
+			&:before {
+				content: "\e61d";
+				position: absolute;
+				top: 14px;
+
+				font-family: "Homicons";
+				font-size: 10px;
+
 			}
 		}
 	}
@@ -185,6 +208,8 @@ body > .ng-scope {overflow-x: hidden;}
 		font-size: 24px;
 	}
 }
+
+
 
 
 // Content ---------------------------------------------------------------------

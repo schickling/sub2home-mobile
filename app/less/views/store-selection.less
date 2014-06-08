@@ -92,6 +92,11 @@
   border-top: 1px solid @darkerWhite;
   margin-bottom: @timelineHeight;
 
+  &:before {
+    margin-top: -35px;
+    font-size: 70px;
+  }
+
   p {
     padding-top: 30px;
   }
@@ -143,8 +148,6 @@
     bottom: 0px;
     left: -28px;
     font-size: 8px;
-
-    // Icon is missing ...
   }
 
   &:first-child {
@@ -208,7 +211,18 @@
       background: @greenLight70;
     }
   }
+}
 
+// Magnifier
+
+#magnifier {
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  height: 45px;
+  width: 45px;
+  .img-circle;
+  background: @onNoteColor30;
 }
 
 

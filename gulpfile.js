@@ -103,6 +103,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('test', [
+  'browserify',
   'hint'
 ]);
 

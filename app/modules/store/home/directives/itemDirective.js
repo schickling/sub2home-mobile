@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$location',
+module.exports = ['$location', '$route',
 
-  function($location) {
+  function($location, $route) {
     return {
       restrict: 'E',
       templateUrl: 'modules/store/home/directives/itemDirective.html',
@@ -16,12 +16,12 @@ module.exports = ['$location',
           console.log(item);
           if (item.hasOwnProperty('allowsIngredients')) {
             if (item.allowsIngredients) {
-              $location.path('memmingen/theke/artikel/' + item.id);
+              $location.path($route.current.params.storeAlias + '/theke/artikel/' + item.id);
             } else {
               console.log('add to cart');
             }
           } else {
-            $location.path('memmingen/theke/menu/' + item.id);
+            $location.path($route.current.params.storeAlias + '/theke/menu/' + item.id);
           }
         };
 

@@ -45,7 +45,7 @@
       Folgendes SUBWAY<span class="superscript">&reg;</span>-Restaurant liefert in dieses Gebiet:
     </header>
     <div id="selectableStores">
-      <a class="store" ng-href="#/{{store.alias}}" ng-class="{isDelivering: isDelivering(store), isClosed: !store.isOpen}" ng-repeat="store in stores"><i class="icn iStore"></i>{{ store.title }}<span>{{ getDeliveryTimeString(store) }}</span><i class="icn iNext"></i></a>
+      <div class="store" ng-click="selectStore(store)" ng-class="{isDelivering: isDelivering(store), isClosed: !store.isOpen}" ng-repeat="store in stores"><i class="icn iStore"></i>{{ store.title }}<span>{{ getDeliveryTimeString(store) }}</span><i class="icn iNext"></i></div>
     </div>
   </section>
 

@@ -1,10 +1,11 @@
 'use strict';
 
 module.exports = ['$scope', 'stores', 'selectedDeliveryArea',
-  'PostalFilterService', 'StoreService', 'StringUtilService', 'PersistenceService',
+  'PostalFilterService', 'StoreService', 'StringUtilService',
+  'PersistenceService', '$location',
 
   function($scope, stores, selectedDeliveryArea, PostalFilterService,
-    StoreService, StringUtilService, PersistenceService) {
+    StoreService, StringUtilService, PersistenceService, $location) {
 
     $scope.inputFocused = false;
     $scope.postal = '';
@@ -93,6 +94,10 @@ module.exports = ['$scope', 'stores', 'selectedDeliveryArea',
       } else {
         return 'step1';
       }
+    };
+
+    $scope.selectStore = function(store) {
+      $location.path(store.alias);
     };
 
   }

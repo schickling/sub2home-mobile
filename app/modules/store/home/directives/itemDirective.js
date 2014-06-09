@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$location', '$route',
+module.exports = ['RoutingService',
 
-  function($location, $route) {
+  function(RoutingService) {
     return {
       restrict: 'E',
       templateUrl: 'modules/store/home/directives/itemDirective.html',
@@ -13,16 +13,17 @@ module.exports = ['$location', '$route',
         };
 
         $scope.handleBuyClick = function(item) {
-          console.log(item);
+
           if (item.hasOwnProperty('allowsIngredients')) {
             if (item.allowsIngredients) {
-              $location.path($route.current.params.storeAlias + '/theke/artikel/' + item.id);
+              RoutingService.navigate(':storeAlias/theke/artikel/' + item.id);
             } else {
-              console.log('add to cart');
+              alert('add to cart');
             }
           } else {
-            $location.path($route.current.params.storeAlias + '/theke/menu/' + item.id);
+            RoutingService.navigate(':storeAlias/theke/menu/' + item.id);
           }
+
         };
 
       }

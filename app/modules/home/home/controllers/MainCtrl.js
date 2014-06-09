@@ -2,10 +2,10 @@
 
 module.exports = ['$scope', 'stores', 'selectedDeliveryArea',
   'PostalFilterService', 'StoreService', 'StringUtilService',
-  'PersistenceService', '$location',
+  'PersistenceService', 'RoutingService',
 
   function($scope, stores, selectedDeliveryArea, PostalFilterService,
-    StoreService, StringUtilService, PersistenceService, $location) {
+    StoreService, StringUtilService, PersistenceService, RoutingService) {
 
     $scope.inputFocused = false;
     $scope.postal = '';
@@ -97,7 +97,7 @@ module.exports = ['$scope', 'stores', 'selectedDeliveryArea',
     };
 
     $scope.selectStore = function(store) {
-      $location.path(store.alias);
+      RoutingService.navigate(store.alias);
     };
 
   }

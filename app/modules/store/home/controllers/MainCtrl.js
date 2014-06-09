@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = ['$scope', '$route', '$location', 'store', 'categories', '_',
-  'selectedDeliveryArea',
+module.exports = ['$scope', 'store', 'categories', '_', 'selectedDeliveryArea',
+  'RoutingService',
 
-  function($scope, $route, $location, store, categories, _, selectedDeliveryArea) {
+  function($scope, store, categories, _, selectedDeliveryArea, RoutingService) {
 
     $scope.categories = categories;
     $scope.currentCategory = categories.current;
@@ -21,7 +21,7 @@ module.exports = ['$scope', '$route', '$location', 'store', 'categories', '_',
     };
 
     $scope.selectCategory = function(category) {
-      $location.path($route.current.params.storeAlias + '/' + category.id);
+      RoutingService.navigate(':storeAlias/' + category.id);
     };
 
   }

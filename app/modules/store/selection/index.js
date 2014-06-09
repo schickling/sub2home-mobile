@@ -7,7 +7,12 @@ module.exports = angular.module('store.selection', [])
   .config(['$routeProvider',
     function($routeProvider) {
 
-      $routeProvider.when('/:storeAlias/theke', {
+      $routeProvider.when('/:storeAlias/theke/artikel/:articleId', {
+        templateUrl: 'modules/store/selection/templates/index.html',
+        controller: 'StoreSelectionCtrl',
+      });
+
+      $routeProvider.when('/:storeAlias/theke/menu/:menuId', {
         templateUrl: 'modules/store/selection/templates/index.html',
         controller: 'StoreSelectionCtrl',
       });

@@ -5,7 +5,7 @@
     BBQ Rib-Hacksteak mit rauchiger BBQ Sauce, Belag ganz nach deinem Geschmack.
   </p>
   <div class="buyingOption">
-    <a ng-class="getBuyClass(item.icon)" bo-href="'#/memmingen/theke/artikel/' + item.id">
+    <div ng-class="getBuyClass(item.icon)" ng-click="handleBuyClick(item)">
       <div class="pricetag">
         <h3>
           <div class="sizeTag" bo-text="item.info" bo-if="item.info"></div>
@@ -13,14 +13,14 @@
         </h3>
         <div class="deposit" bo-if="item.deposit > 0">+25 ct Pfand</div>
       </div>
-    </a>
-    <a ng-repeat="chainedArticle in item.chainedArticlesCollection" ng-class="getBuyClass(chainedArticle.icon)" bo-href="'#/memmingen/theke/artikel/' + chainedArticle.id">
+    </div>
+    <div ng-repeat="chainedArticle in item.chainedArticlesCollection" ng-class="getBuyClass(chainedArticle.icon)" ng-click="handleBuyClick(chainedArticle)">
       <div class="pricetag">
         <h3>
           <div class="sizeTag" bo-text="chainedArticle.info"></div>
           <div class="price" bo-text="chainedArticle.price"></div>
         </h3>
       </div>
-    </a>
+    </div>
   </div>
 </div>

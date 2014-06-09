@@ -18,7 +18,7 @@
     <p>
       <postal-input id="postalInputContainer" app-focused="inputFocused" app-postal="postal" app-district="district"></postal-input>
     </p>
-    <p ng-show="selectedDeliveryArea && deliveryAreas.length > 1 && showStores">
+    <p ng-show="selectedDeliveryAreaModel && deliveryAreasCollection.length > 1 && showStores">
       <span id="editDeliveryArea" ng-click="resetDeliveryArea()"><i class="icn iWrench inSmallText before"></i>Liefergebiet bearbeiten</span>
     </p>
   </section>
@@ -29,23 +29,23 @@
     </header>
   </section>
 
-  <section class="note" id="chooseDeliveryArea" ng-show="deliveryAreas.length > 1">
+  <section class="note" id="chooseDeliveryArea" ng-show="deliveryAreasCollection.length > 1">
     <header class="callToAction">
-      Wähle eines der {{ deliveryAreas.length }} Liefergebiete:
+      Wähle eines der {{ deliveryAreasCollection.length }} Liefergebiete:
     </header>
     <div id="selectableDeliveryAreas">
-      <div class="deliveryArea" ng-repeat="deliveryArea in deliveryAreas" ng-click="processDeliveryArea(deliveryArea)">
-        {{ deliveryArea.district }}<span>(in {{ deliveryArea.minimumDuration }}min für mind. {{ deliveryArea.minimumValue }}€)</span>
+      <div class="deliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="processDeliveryArea(deliveryAreaModel)">
+        {{ deliveryAreaModel.district }}<span>(in {{ deliveryAreaModel.minimumDuration }}min für mind. {{ deliveryAreaModel.minimumValue }}€)</span>
       </div>
     </div>
   </section>
 
-  <section class="note" id="chooseStore" ng-show="stores.length">
+  <section class="note" id="chooseStore" ng-show="storesCollection.length">
     <header class="callToAction">
       Folgendes SUBWAY<span class="superscript">&reg;</span>-Restaurant liefert in dieses Gebiet:
     </header>
     <div id="selectableStores">
-      <div class="store" ng-click="selectStore(store)" ng-class="{isDelivering: isDelivering(store), isClosed: !store.isOpen}" ng-repeat="store in stores"><i class="icn iStore"></i>{{ store.title }}<span>{{ getDeliveryTimeString(store) }}</span><i class="icn iNext"></i></div>
+      <div class="store" ng-click="selectStore(storeModel)" ng-class="{isDelivering: isDelivering(storeModel), isClosed: !storeModel.isOpen}" ng-repeat="storeModel in storesCollection"><i class="icn iStore"></i>{{ storeModel.title }}<span>{{ getDeliveryTimeString(storeModel) }}</span><i class="icn iNext"></i></div>
     </div>
   </section>
 

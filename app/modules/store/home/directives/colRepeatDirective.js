@@ -7,7 +7,7 @@ module.exports = ['$window',
       transclude: true,
       templateUrl: 'modules/store/home/directives/colRepeatDirective.html',
       scope: {
-        items: '=appItems',
+        itemsCollection: '=appItemsCollection',
         col: '=appCol',
       },
       link: function($scope, $elem, $attrs) {
@@ -20,8 +20,8 @@ module.exports = ['$window',
           cols.push([]);
         }
 
-        $scope.items.forEach(function(item, index) {
-          cols[index % numberOfCols].push(item);
+        $scope.itemsCollection.forEach(function(itemModel, index) {
+          cols[index % numberOfCols].push(itemModel);
         });
 
         $scope.cols = cols;

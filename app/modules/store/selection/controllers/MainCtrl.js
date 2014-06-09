@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = [
+module.exports = ['$scope', 'orderedItemModel',
 
-  function() {
-
+  function($scope, orderedItemModel) {
+    console.log(orderedItemModel);
   }
 ];

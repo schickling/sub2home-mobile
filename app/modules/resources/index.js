@@ -2,11 +2,15 @@
 
 var ApiService = require('./services/ApiService');
 var ResourceService = require('./services/ResourceService');
-var CategoriesFactory = require('./services/CategoriesFactory');
-var StoresFactory = require('./services/StoresFactory');
+var CategoryModelFactory = require('./services/CategoryModelFactory');
+var ArticleModelFactory = require('./services/ArticleModelFactory');
+var MenuBundleModelFactory = require('./services/MenuBundleModelFactory');
+var StoreModelFactory = require('./services/StoreModelFactory');
 
 module.exports = angular.module('resources', [])
   .service('ApiService', ApiService)
   .service('ResourceService', ResourceService)
-  .factory('CategoriesFactory', CategoriesFactory)
-  .factory('StoresFactory', StoresFactory);
+  .factory('CategoryModelFactory', CategoryModelFactory)
+  .factory('ArticleModelFactory', ArticleModelFactory)
+  .factory('MenuBundleModelFactory', MenuBundleModelFactory)
+  .factory('StoreModelFactory', StoreModelFactory);

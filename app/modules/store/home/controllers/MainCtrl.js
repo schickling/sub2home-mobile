@@ -1,15 +1,16 @@
 'use strict';
 
-module.exports = ['$scope', 'store', 'categories', '_', 'selectedDeliveryArea',
-  'RoutingService',
+module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
+  'selectedDeliveryAreaModel', 'RoutingService',
 
-  function($scope, store, categories, _, selectedDeliveryArea, RoutingService) {
+  function($scope, storeModel, categoriesCollection, _,
+    selectedDeliveryAreaModel, RoutingService) {
 
-    $scope.categories = categories;
-    $scope.currentCategory = categories.current;
-    $scope.items = categories.current.itemsCollection;
-    var nextCategoryIndex = (categories.indexOf(categories.current) + 1) % categories.length;
-    $scope.nextCategory = categories[nextCategoryIndex];
+    $scope.categoriesCollection = categoriesCollection;
+    $scope.currentCategoryModel = categoriesCollection.current;
+    $scope.itemsCollection = categoriesCollection.current.itemsCollection;
+    var nextCategoryIndex = (categoriesCollection.indexOf(categoriesCollection.current) + 1) % categoriesCollection.length;
+    $scope.nextCategoryModel = categoriesCollection[nextCategoryIndex];
     $scope.navToggled = false;
 
     $scope.toggleNav = function(value) {
@@ -17,11 +18,11 @@ module.exports = ['$scope', 'store', 'categories', '_', 'selectedDeliveryArea',
     };
 
     $scope.getDistrict = function() {
-      return selectedDeliveryArea.district || selectedDeliveryArea.city;
+      return selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city;
     };
 
-    $scope.selectCategory = function(category) {
-      RoutingService.navigate(':storeAlias/' + category.id);
+    $scope.selectCategory = function(categoryModel) {
+      RoutingService.navigate(':storeAlias/' + categoryModel.id);
     };
 
   }

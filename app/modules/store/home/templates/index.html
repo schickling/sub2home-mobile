@@ -2,7 +2,7 @@
   <aside id="header">
     <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
     <div id="pageTitle" ng-click="toggleNav()">
-      <i class="icn" bo-class="currentCategory.icon"></i><span bo-text="currentCategory.title"></span>
+      <i class="icn" bo-class="currentCategory.icon"></i><span bo-text="currentCategoryModel.title"></span>
     </div>
     <div id="toTheInfo" class="icn iInfo"></div>
     <div id="toTheTray">
@@ -14,8 +14,8 @@
 
   <nav id="categoriesNavigation">
     <ul>
-      <li ng-repeat="category in categories" bo-class="{ active: category.id === currentCategory.id }">
-        <div ng-click="selectCategory(category)" class="icn" bo-class="category.icon"></div>
+      <li ng-repeat="categoryModel in categoriesCollection" bo-class="{ active: categoryModel.id === currentCategory.id }">
+        <div ng-click="selectCategory(categoryModel)" class="icn" bo-class="categoryModel.icon"></div>
       </li>
     </ul>
   </nav>
@@ -24,13 +24,13 @@
     <section class="note above" id="editLocation">
       in 20min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>
     </section>
-    <section id="articles" col-repeat app-items="items" app-col="col">
-      <item ng-repeat="item in col"></item>
+    <section id="articles" col-repeat app-items-collection="itemsCollection" app-col="col">
+      <item ng-repeat="itemModel in col"></item>
     </section>
-    <div ng-click="selectCategory(nextCategory)" bo-if="nextCategory">
-      <div id="toNextCategory" bo-class="nextCategory.icon">
+    <div ng-click="selectCategory(nextCategoryModel)" bo-if="nextCategoryModel">
+      <div id="toNextCategory" bo-class="nextCategoryModel.icon">
         <p>Nächste Kategorie</p>
-        <h3 bo-text="nextCategory.title"></h3>
+        <h3 bo-text="nextCategoryModel.title"></h3>
       </div>
     </div>
   </div>

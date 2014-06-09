@@ -1,22 +1,22 @@
 'use strict';
 
-module.exports = ['$scope', 'stores', 'selectedDeliveryArea',
+module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
   'PostalFilterService', 'StoreService', 'StringUtilService',
   'PersistenceService', 'RoutingService',
 
-  function($scope, stores, selectedDeliveryArea, PostalFilterService,
+  function($scope, storesCollection, selectedDeliveryAreaModel, PostalFilterService,
     StoreService, StringUtilService, PersistenceService, RoutingService) {
 
     $scope.inputFocused = false;
     $scope.postal = '';
     $scope.district = '';
-    $scope.deliveryAreas = [];
-    $scope.stores = [];
+    $scope.deliveryAreasCollection = [];
+    $scope.storesCollection = [];
     $scope.showStores = false;
     $scope.noStoresFound = false;
-    $scope.selectedDeliveryArea = selectedDeliveryArea;
+    $scope.selectedDeliveryAreaModel = selectedDeliveryAreaModel;
 
-    PostalFilterService.init(stores);
+    PostalFilterService.init(storesCollection);
 
     $scope.$watch('postal', function(newValue, oldValue) {
 
@@ -27,26 +27,26 @@ module.exports = ['$scope', 'stores', 'selectedDeliveryArea',
       var postal = parseInt(newValue, 10);
       PostalFilterService.filter(postal);
 
-      var stores = PostalFilterService.getStores(),
-        deliveryAreas = PostalFilterService.getDeliveryAreas();
+      var storesCollection = PostalFilterService.getStores(),
+        deliveryAreasCollection = PostalFilterService.getDeliveryAreas();
 
-      $scope.stores = stores;
-      $scope.deliveryAreas = deliveryAreas;
-      $scope.showStores = stores.length === 1 && deliveryAreas.length === 1;
-      $scope.noStoresFound = stores.length === 0;
+      $scope.storesCollection = storesCollection;
+      $scope.deliveryAreasCollection = deliveryAreasCollection;
+      $scope.showStores = storesCollection.length === 1 && deliveryAreasCollection.length === 1;
+      $scope.noStoresFound = storesCollection.length === 0;
 
-      if (deliveryAreas.length === 1) {
-        $scope.selectedDeliveryArea = deliveryAreas[0];
+      if (deliveryAreasCollection.length === 1) {
+        $scope.selectedDeliveryAreaModel = deliveryAreasCollection[0];
       } else {
-        $scope.selectedDeliveryArea = null;
+        $scope.selectedDeliveryAreaModel = null;
       }
 
     });
 
-    $scope.$watch('selectedDeliveryArea', function() {
-      if ($scope.selectedDeliveryArea) {
-        $scope.district = $scope.selectedDeliveryArea.district || $scope.selectedDeliveryArea.city;
-        PersistenceService.save('selectedDeliveryArea', $scope.selectedDeliveryArea);
+    $scope.$watch('selectedDeliveryAreaModel', function() {
+      if ($scope.selectedDeliveryAreaModel) {
+        $scope.district = $scope.selectedDeliveryAreaModel.district || $scope.selectedDeliveryAreaModel.city;
+        PersistenceService.save('selectedDeliveryAreaModel', $scope.selectedDeliveryAreaModel);
       } else {
         $scope.district = '';
       }
@@ -54,13 +54,13 @@ module.exports = ['$scope', 'stores', 'selectedDeliveryArea',
 
     $scope.processDeliveryArea = function(deliveryArea) {
       $scope.showStores = true;
-      $scope.selectedDeliveryArea = deliveryArea;
+      $scope.selectedDeliveryAreaModel = deliveryArea;
 
-      $scope.stores = $scope.stores.filter(store => StoreService.deliversTo(store, deliveryArea));
+      $scope.storesCollection = $scope.storesCollection.filter(store => StoreService.deliversTo(store, deliveryArea));
     };
 
     $scope.resetDeliveryArea = function() {
-      $scope.stores = PostalFilterService.getStores();
+      $scope.storesCollection = PostalFilterService.getStores();
       $scope.showStores = false;
     };
 
@@ -85,7 +85,7 @@ module.exports = ['$scope', 'stores', 'selectedDeliveryArea',
     $scope.getStepClass = function() {
       if ($scope.inputFocused) {
         return 'step2';
-      } else if ($scope.stores.length > 0 || $scope.deliveryAreas.length > 0) {
+      } else if ($scope.storesCollection.length > 0 || $scope.deliveryAreasCollection.length > 0) {
         if ($scope.showStores) {
           return 'step4';
         } else {

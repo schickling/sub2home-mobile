@@ -12,16 +12,16 @@ module.exports = ['RoutingService',
           return 'buy' + icon.substring(0, 1).toUpperCase() + icon.substring(1);
         };
 
-        $scope.handleBuyClick = function(item) {
+        $scope.handleBuyClick = function(itemModel) {
 
-          if (item.hasOwnProperty('allowsIngredients')) {
-            if (item.allowsIngredients) {
-              RoutingService.navigate(':storeAlias/theke/artikel/' + item.id);
+          if (itemModel.hasOwnProperty('allowsIngredients')) {
+            if (itemModel.allowsIngredients) {
+              RoutingService.navigate(':storeAlias/theke/artikel/' + itemModel.id);
             } else {
               alert('add to cart');
             }
           } else {
-            RoutingService.navigate(':storeAlias/theke/menu/' + item.id);
+            RoutingService.navigate(':storeAlias/theke/menu/' + itemModel.id);
           }
 
         };

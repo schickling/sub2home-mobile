@@ -1,24 +1,24 @@
 <div class="item sub" bindonce>
-  <img bo-src="item.largeImage" bo-alt="item.title" />
-  <h2><span bo-text="item.title"></span><span class="infoButton"></span></h2>
+  <img bo-src="itemModel.largeImage" bo-alt="itemModel.title" />
+  <h2><span bo-text="itemModel.title"></span><span class="infoButton"></span></h2>
   <p class="itemDescription hidden">
     BBQ Rib-Hacksteak mit rauchiger BBQ Sauce, Belag ganz nach deinem Geschmack.
   </p>
   <div class="buyingOption">
-    <div ng-class="getBuyClass(item.icon)" ng-click="handleBuyClick(item)">
+    <div ng-class="getBuyClass(itemModel.icon)" ng-click="handleBuyClick(itemModel)">
       <div class="pricetag">
         <h3>
-          <div class="sizeTag" bo-text="item.info" bo-if="item.info"></div>
-          <div class="price" bo-text="item.price"></div>
+          <div class="sizeTag" bo-text="itemModel.info" bo-if="itemModel.info"></div>
+          <div class="price" bo-text="itemModel.price"></div>
         </h3>
-        <div class="deposit" bo-if="item.deposit > 0">+25 ct Pfand</div>
+        <div class="deposit" bo-if="itemModel.deposit > 0">+25 ct Pfand</div>
       </div>
     </div>
-    <div ng-repeat="chainedArticle in item.chainedArticlesCollection" ng-class="getBuyClass(chainedArticle.icon)" ng-click="handleBuyClick(chainedArticle)">
+    <div ng-repeat="chainedArticleModel in itemModel.chainedArticlesCollection" ng-class="getBuyClass(chainedArticleModel.icon)" ng-click="handleBuyClick(chainedArticleModel)">
       <div class="pricetag">
         <h3>
-          <div class="sizeTag" bo-text="chainedArticle.info"></div>
-          <div class="price" bo-text="chainedArticle.price"></div>
+          <div class="sizeTag" bo-text="chainedArticleModel.info"></div>
+          <div class="price" bo-text="chainedArticleModel.price"></div>
         </h3>
       </div>
     </div>

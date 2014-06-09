@@ -139,6 +139,45 @@
 
   // Element Styles
 
+  .itemContent {
+    position: relative;
+    .transformTransition(.2s,ease);
+  }
+
+  .itemOptions {
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    margin-top: -25px;
+
+    > div {
+      height: 50px;
+      width: 50px;
+      .img-circle;
+      background: @onNoteColor50;
+      display: inline-block;
+      margin-left: 10px;
+      text-align: center;
+      .border-box;
+      padding-top: 12px;
+      font-size: 24px;
+      color: @noteColor;
+      &:before {
+        font-family: "Homicons";
+
+      }
+    }
+    .editItem:before {
+      content: "\e61e";
+    }
+    .removeItem:before {
+      content: "\e61f";
+    }
+
+    .opacity(0);
+    .transition(opacity .1s .1s linear);
+  }
+
   .itemDescription {
     margin-right: 120px;
   }
@@ -177,7 +216,7 @@
     position: absolute;
     right: 0;
     top: 50%;
-    width: 105px;
+    width: 106px;
     .border-box;
     padding: 0 45px 0 0;
     margin-top: -10px;
@@ -197,12 +236,16 @@
     right: 6px;
     top: 50%;
     margin-top: -12px;
+    height: 25px;
     font-size: 24px;
     color: @onNoteColor50;
+    .transformTransition(.2s, linear);
     &:before {
       content: "\e604";
       font-family: "Homicons";
+
     }
+
   }
 
   // Basic Item Styles
@@ -244,6 +287,22 @@
 
       .staticColumn {
         margin-top: -19px;
+      }
+    }
+
+
+    // Edit State
+
+    &.edit {
+      .itemContent {
+        .translate(-140px,0,0);
+        .opacity(50);
+      }
+      .itemOptions {
+        .opacity(100);
+      }
+      .toggleOptions {
+        .rotate(180deg);
       }
     }
   }

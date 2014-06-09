@@ -25,6 +25,7 @@ gulp.task('hint', function() {
 gulp.task('browserify.app', function() {
   return browserify('./app/index.js')
     .external('lodash')
+    .external('fastclick')
     .external('zipcoder')
     .external('angular/angular')
     .external('angular-route/angular-route')
@@ -44,6 +45,7 @@ gulp.task('browserify.app', function() {
 gulp.task('browserify.libs', function() {
   return browserify()
     .require('lodash')
+    .require('fastclick')
     .require('zipcoder')
     .require('angular/angular')
     .require('angular-route/angular-route')

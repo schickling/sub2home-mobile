@@ -7,6 +7,7 @@ require('angular-touch/angular-touch');
 require('angular-resource/angular-resource');
 require('angular-local-storage/angular-local-storage');
 require('angular-bindonce/bindonce');
+var fastclick = require('fastclick');
 var _ = require('lodash');
 
 // modules
@@ -20,7 +21,7 @@ require('./modules/template-cache');
 angular.module('app', [
   // core
   'ngRoute',
-  'ngTouch',
+  // 'ngTouch',
   'ngResource',
   // libs
   'LocalStorageModule',
@@ -51,6 +52,8 @@ angular.module('app').run(['ResourceService', '$location',
     };
 
     ResourceService.setErrorCallback(errorCallback);
+
+    fastclick(document.body);
 
   }
 ])

@@ -2,25 +2,15 @@
 
 // Variables
 
-#storeTray {
-  background: @noteBackground;
-  .border-box;
-  padding-right: 36px;
+// Image-Widths:
 
-  section {
-    padding-top: 50px;
-    text-align: left;
+// @subImageWidth:
+// @WrapImageWidth:
+// @SaladImageWidth:
+@snacksImageWidth:     35px;
+@beverageImageWidth:  22px;
+@cateringImageWidth:  35px;
 
-    header {
-      color: @greenLight;
-      padding: 0 0 25px 20px;
-      border-bottom: 1px solid @onNoteColor50;
-    }
-    .container {
-
-    }
-  }
-}
 
 
 // Tray-Storyline
@@ -31,16 +21,7 @@
   right: 0;
   bottom: 0;
   width: 36px;
-  // &:before {
-  //   content: "";
-  //   display: block;
-  //   position: absolute;
-  //   right: 16px;
-  //   top: 0;
-  //   bottom: 0;
-  //   width: 1px;
-  //   background: @onNoteColor50;
-  // }
+  z-index: 101;
 
   ul {
     list-style-type: none;
@@ -127,5 +108,158 @@
         }
       }
     }
+  }
+}
+
+
+// Content
+
+#storeTray {
+  // background: @noteBackground;
+  .border-box;
+  padding-right: 36px;
+
+  section {
+    padding-top: 50px;
+    text-align: left;
+
+    header {
+      color: @greenLight;
+      padding: 0 0 25px 20px;
+      border-bottom: 1px solid @onNoteColor50;
+    }
+    .container {
+
+    }
+  }
+}
+
+
+#traySummary {
+
+  // Element Styles
+
+  .itemDescription {
+    margin-right: 120px;
+  }
+
+  .itemPreviewTitle {
+    margin-right: 110px;
+    line-height: 40px;
+    white-space: nowrap;
+
+    .itemPreview, h4 {
+      white-space: normal;
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    h4 {
+      margin-left: 5px;
+    }
+
+  }
+
+  h4 {
+    font-size: 20px;
+    .itemInfo {
+      color: @onNoteColor50;
+    }
+  }
+
+  p {
+    padding: 6px 0 0;
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .staticColumn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 105px;
+    .border-box;
+    padding: 0 45px 0 0;
+    margin-top: -10px;
+  }
+
+  .price {
+    font-size: 20px;
+    text-align: right;
+  }
+
+  .deposit {
+    font-size: 12px;
+  }
+
+  .toggleOptions {
+    position:absolute;
+    right: 6px;
+    top: 50%;
+    margin-top: -12px;
+    font-size: 24px;
+    color: @onNoteColor50;
+    &:before {
+      content: "\e604";
+      font-family: "Homicons";
+    }
+  }
+
+  // Basic Item Styles
+
+  .item {
+    position: relative;
+    padding: 20px 0 20px 20px;
+    border-bottom: 1px solid @onNoteColor50;
+
+
+    .itemPreview {
+      height: 35px;
+      width: auto;
+    }
+
+    &.sub {
+
+      .itemPreview {
+        width: 65px;
+        height: auto;
+      }
+
+      .staticColumn {
+        margin-top: -35px;
+      }
+    }
+
+    &.snacks {
+      .itemTitle {
+        margin-right: @snacksImageWidth + 5px;
+      }
+    }
+
+    &.beverage {
+
+      .itemTitle {
+        margin-right: @beverageImageWidth + 5px;
+      }
+
+      .staticColumn {
+        margin-top: -19px;
+      }
+    }
+  }
+}
+
+#totalValueContainer {
+  position: relative;
+  margin-top: 2px;
+  padding: 22px 0 0 20px;
+  border-top: 1px solid @onNoteColor50;
+  color: @onNoteColor50;
+
+  #totalValue {
+    position: absolute;
+    right: 45px;
+    top: 20px;
+    color: @onNoteColor;
   }
 }

@@ -83,6 +83,33 @@
     border-bottom: 1px solid @darkerWhite;
   }
 
+  item:last-child .item {
+    border-bottom: none;
+  }
+
+  // Columns
+
+  display: table;
+
+  .tableRow {
+    display: table-row;
+    table-layout: fixed;
+  }
+  .col {
+    width: 3000px;
+    display: table-cell;
+    border-left: 1px solid @darkerWhite;
+    vertical-align: top;
+
+    &:first-child {
+      border-left: none;
+    }
+  }
+
+
+
+  // -------
+
   h2 {
     color: @greenDark;
   }
@@ -217,6 +244,10 @@
   }
 }
 
+
+#toNextCategory {
+  border-top: 1px solid @darkerWhite;
+}
 
 
 // Toggle States

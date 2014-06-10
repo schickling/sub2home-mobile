@@ -260,7 +260,11 @@
       width: auto;
     }
 
-    &.sub {
+    &.sub, &.menuBundle {
+
+      // .itemContent {
+      //   min-height: 50px;
+      // }
 
       .itemPreview {
         width: 65px;
@@ -270,6 +274,23 @@
       .staticColumn {
         margin-top: -35px;
       }
+    }
+
+    &.menuBundle {
+
+      .staticColumn {
+        margin-top: -11px;
+      }
+
+      .itemDescription {
+        line-height: 50px;
+
+        h4 {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+
     }
 
     &.snacks {

@@ -24,8 +24,10 @@
     <section class="note above" id="editLocation">
       in 20min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>
     </section>
-    <section id="articles" col-repeat app-items-collection="itemsCollection" app-col="col">
-      <item ng-repeat="itemModel in col"></item>
+    <section id="articles" >
+      <div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">
+        <item ng-repeat="itemModel in col"></item>
+      </div>
     </section>
     <div ng-click="selectCategory(nextCategoryModel)" bo-if="nextCategoryModel">
       <div id="toNextCategory" bo-class="nextCategoryModel.icon">

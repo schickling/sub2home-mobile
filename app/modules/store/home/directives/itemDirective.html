@@ -1,9 +1,7 @@
 <div class="item sub" bindonce>
   <img bo-src="itemModel.largeImage" bo-alt="itemModel.title" />
   <h2><span bo-text="itemModel.title | wordSplit:true"></span> <span style="white-space: nowrap;"><span bo-text="itemModel.title | wordSplit:false"></span><span class="infoButton"></span></span></h2>
-  <p class="itemDescription hidden">
-    BBQ Rib-Hacksteak mit rauchiger BBQ Sauce, Belag ganz nach deinem Geschmack.
-  </p>
+  <p class="itemDescription hidden" bo-text="itemModel.description"></p>
   <div class="buyingOption">
     <div ng-class="getBuyClass(itemModel.icon)" ng-click="handleBuyClick(itemModel)">
       <div class="pricetag">
@@ -11,7 +9,7 @@
           <div class="sizeTag" bo-text="itemModel.info" bo-if="itemModel.info"></div>
           <div class="price" bo-text="itemModel.price"></div>
         </h3>
-        <div class="deposit" bo-if="itemModel.deposit > 0">+25 ct Pfand</div>
+        <div class="deposit" bo-if="itemModel.deposit > 0">+<span bo-text="itemModel.deposit * 100"></span> ct Pfand</div>
       </div>
     </div>
     <div ng-repeat="chainedArticleModel in itemModel.chainedArticlesCollection" ng-class="getBuyClass(chainedArticleModel.icon)" ng-click="handleBuyClick(chainedArticleModel)">
@@ -19,6 +17,7 @@
         <h3>
           <div class="sizeTag" bo-text="chainedArticleModel.info"></div>
           <div class="price" bo-text="chainedArticleModel.price"></div>
+          <div class="deposit" bo-if="chainedArticleModel.deposit > 0">+<span bo-text="chainedArticleModel.deposit * 100"></span> ct Pfand</div>
         </h3>
       </div>
     </div>

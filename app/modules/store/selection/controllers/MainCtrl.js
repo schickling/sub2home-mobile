@@ -3,6 +3,9 @@
 module.exports = ['$scope', 'orderedItemModel',
 
   function($scope, orderedItemModel) {
-    console.log(orderedItemModel);
+
+    $scope.title = 'Sandwich';
+    $scope.ingredientsCollection = orderedItemModel.orderedArticlesCollection[0].articleModel.ingredientCategoriesCollection[0].ingredientsCollection;
+
   }
 ];

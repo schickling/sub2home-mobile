@@ -5,7 +5,7 @@
     </div>
     <div id="pageTitle">
 <!--       <img src="images/articles/smallimages/bbqrib.png" alt="" /> -->
-      <span>BBQ-Rib<small> (6inch)</small></span>
+      <span>{{ title }}<small> (6inch)</small></span>
     </div>
     <div id="toTheInfo" class="icn iInfo"></div>
     <div id="toTheTray">
@@ -24,37 +24,12 @@
       <h3>Gleich weiter</h3>
     </div>
     <section id="ingredients">
-
-      <!-- Ingredients -->
-      <div class="ingredient">
+      <div class="ingredient" ng-repeat="ingredientModel in ingredientsCollection">
         <div class="imageContainer">
-          <img src="images/ingredients/veggiesample.jpg" height="110" width="110" alt="" />
+          <img ng-src="{{ ingredientModel.largeImage }}" height="110" width="110" alt="" />
         </div>
-        <h3>Tomaten</h3>
-      </div><div class="ingredient selected">
-      <!-- (Wichtig: Kein Leerzeichen nach </div>) -->
-        <div class="imageContainer">
-          <img src="images/ingredients/veggiesample.jpg" height="110" width="110" alt="" />
-        </div>
-        <h3>Eisbergsalat</h3>
-      </div><div class="ingredient">
-        <div class="imageContainer">
-          <img src="images/ingredients/veggiesample.jpg" height="110" width="110" alt="" />
-        </div>
-        <h3>Salatgurken</h3>
-      </div><div class="ingredient">
-        <div class="imageContainer">
-          <img src="images/ingredients/veggiesample.jpg" height="110" width="110" alt="" />
-        </div>
-        <h3>Oliven</h3>
-      </div><div class="ingredient">
-        <div class="imageContainer">
-          <img src="images/ingredients/veggiesample.jpg" height="110" width="110" alt="" />
-        </div>
-        <h3>Jalapeños</h3>
+        <h3>{{ ingredientModel.title }}</h3>
       </div>
-      <!-- / Ingredient -->
-
     </section>
     <div>
       <div id="toNextStep" class="iExtras">

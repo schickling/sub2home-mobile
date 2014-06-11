@@ -28,10 +28,9 @@ $ npm run-script build
 
 IE  | Firefox | Chrome | Safari | Opera | iOS  | Android | Blackberry
 --- | ---     | ---    | ---    | ---   | ---  | ---     | ---
-7+  | 4+      | 4+     | 5+     | 10.5+ | 3.2+ | 2.1+    | 7+
+8+  | 4+      | 4+     | 5+     | 10.5+ | 4+   | 2.1+    | 7+
 
 ### Polyfills
 
-* [html5shiv](https://github.com/aFarkas/html5shiv) (IE7, IE8)
-* [JSON2](https://github.com/douglascrockford/JSON-js) (IE7, iOS 3.2)
-* [HTML5-History-API](https://github.com/devote/HTML5-History-API) (IE7 - IE9, Android 2.1 - Android 4.1)
+* [html5shiv](https://github.com/aFarkas/html5shiv) (IE8)
+* [HTML5-History-API](https://github.com/devote/HTML5-History-API) (IE8, IE9, Android 2.1 - Android 4.1)

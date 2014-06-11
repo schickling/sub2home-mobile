@@ -43,8 +43,8 @@ angular.module('app').config(['$locationProvider',
   }
 ]);
 
-angular.module('app').run(['ResourceService', '$location',
-  function(ResourceService, $location) {
+angular.module('app').run(['ResourceService', '$location', '$rootScope', '$window',
+  function(ResourceService, $location, $rootScope, $window) {
 
     var errorCallback = function() {
       $location.path('/404');
@@ -54,6 +54,10 @@ angular.module('app').run(['ResourceService', '$location',
     ResourceService.setErrorCallback(errorCallback);
 
     fastclick(document.body);
+
+    $rootScope.$on('$routeChangeSuccess', function() {
+      $window.scrollTo(0, 0);
+    });
 
   }
 ])

@@ -13,8 +13,6 @@ module.exports = ['$location', '$routeParams', '$window',
 
         $location.path(path);
 
-        $window.scrollTo(0,0);
-
       },
 
     };

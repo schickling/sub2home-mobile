@@ -1,6 +1,6 @@
 <div class="item sub" bindonce>
   <img bo-src="itemModel.largeImage" bo-alt="itemModel.title" />
-  <h2><span bo-text="itemModel.title"></span><span class="infoButton"></span></h2>
+  <h2><span bo-text="itemModel.title | wordSplit:true"></span> <span style="white-space: nowrap;"><span bo-text="itemModel.title | wordSplit:false"></span><span class="infoButton"></span></span></h2>
   <p class="itemDescription hidden">
     BBQ Rib-Hacksteak mit rauchiger BBQ Sauce, Belag ganz nach deinem Geschmack.
   </p>

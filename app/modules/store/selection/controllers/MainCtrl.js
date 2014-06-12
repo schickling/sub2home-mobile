@@ -1,13 +1,15 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window',
+module.exports = ['$scope', 'orderedItemModel', '$window', 'OrderedItemModelIteratorService',
 
-  function($scope, orderedItemModel, $window) {
+  function($scope, orderedItemModel, $window, OrderedItemModelIteratorService) {
+
+    OrderedItemModelIteratorService.init(orderedItemModel);
 
     $scope.title = 'Sandwich';
-    $scope.ingredientCategoryModel = orderedItemModel.orderedArticlesCollection[0].articleModel.ingredientCategoriesCollection[0];
+    $scope.ingredientCategoryModel = OrderedItemModelIteratorService.getEntity();
     $scope.ingredientsCollection = $scope.ingredientCategoryModel.ingredientsCollection;
-    $scope.type = 'ingredient';
+    $scope.type = OrderedItemModelIteratorService.getType();
 
     $scope.back = function() {
       $window.history.back();

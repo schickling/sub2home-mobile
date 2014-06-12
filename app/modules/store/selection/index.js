@@ -2,10 +2,12 @@
 
 var MainCtrl = require('./controllers/MainCtrl');
 var OrderedItemModelBuilderService = require('./services/OrderedItemModelBuilderService');
+var OrderedItemModelIteratorService = require('./services/OrderedItemModelIteratorService');
 
 module.exports = angular.module('store.selection', [])
   .controller('StoreSelectionCtrl', MainCtrl)
   .service('OrderedItemModelBuilderService', OrderedItemModelBuilderService)
+  .service('OrderedItemModelIteratorService', OrderedItemModelIteratorService)
   .config(['$routeProvider',
     function($routeProvider) {
 

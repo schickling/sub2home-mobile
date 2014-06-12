@@ -35,6 +35,10 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'OrderedItemModelIter
 
       ingredientModel.isSelected = newIsSelected;
 
+      if ($scope.ingredientCategoryModel.isSingle) {
+        $scope.next();
+      }
+
     };
 
     $scope.next = function() {

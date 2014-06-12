@@ -20,10 +20,21 @@ module.exports = [
       },
 
       next: function() {
+        
+        var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex];
+        var numberOfIngredientCategoryModels = orderedArticleModel.articleModel.ingredientCategoriesCollection.length;
+
+        this._currentIngredientCategoryModelIndex++;
+
+        this._adjust();
 
       },
 
       prev: function() {
+
+        this._currentIngredientCategoryModelIndex--;
+
+        this._adjust();
 
       },
 

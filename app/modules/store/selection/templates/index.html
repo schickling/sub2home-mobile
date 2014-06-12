@@ -24,7 +24,7 @@
       <h3>Gleich weiter</h3>
     </div>
     <section id="ingredients">
-      <div class="ingredient" ng-repeat="ingredientModel in ingredientsCollection">
+      <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
         <div class="imageContainer">
           <img ng-src="{{ ingredientModel.largeImage }}" height="110" width="110" alt="" />
         </div>

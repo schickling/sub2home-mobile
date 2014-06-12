@@ -20,11 +20,16 @@ module.exports = [
       },
 
       next: function() {
-        
+
         var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex];
         var numberOfIngredientCategoryModels = orderedArticleModel.articleModel.ingredientCategoriesCollection.length;
 
-        this._currentIngredientCategoryModelIndex++;
+        if (this._currentIngredientCategoryModelIndex === numberOfIngredientCategoryModels - 1) {
+          this._currentOrderedArticleModelIndex++;
+          this._currentIngredientCategoryModelIndex = 0;
+        } else {
+          this._currentIngredientCategoryModelIndex++;
+        }
 
         this._adjust();
 
@@ -32,7 +37,15 @@ module.exports = [
 
       prev: function() {
 
-        this._currentIngredientCategoryModelIndex--;
+        var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex];
+        var numberOfIngredientCategoryModels = orderedArticleModel.articleModel.ingredientCategoriesCollection.length;
+
+        if (this._currentIngredientCategoryModelIndex === 0) {
+          this._currentOrderedArticleModelIndex--;
+          this._currentIngredientCategoryModelIndex = numberOfIngredientCategoryModels - 1;
+        } else {
+          this._currentIngredientCategoryModelIndex--;
+        }
 
         this._adjust();
 

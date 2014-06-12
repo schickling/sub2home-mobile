@@ -1,15 +1,10 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window', 'OrderedItemModelIteratorService',
+module.exports = ['$scope', 'orderedItemModel', '$window', 'OrderedItemModelIteratorService', '$timeout',
 
-  function($scope, orderedItemModel, $window, OrderedItemModelIteratorService) {
+  function($scope, orderedItemModel, $window, OrderedItemModelIteratorService, $timeout) {
 
     OrderedItemModelIteratorService.init(orderedItemModel);
-
-    $scope.title = 'Sandwich';
-    $scope.ingredientCategoryModel = OrderedItemModelIteratorService.getEntity();
-    $scope.ingredientsCollection = $scope.ingredientCategoryModel.ingredientsCollection;
-    $scope.type = OrderedItemModelIteratorService.getType();
 
     $scope.back = function() {
       $window.history.back();
@@ -36,14 +31,31 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'OrderedItemModelIter
       ingredientModel.isSelected = newIsSelected;
 
       if ($scope.ingredientCategoryModel.isSingle) {
-        $scope.next();
+        $timeout($scope.next, 600);
       }
 
     };
 
     $scope.next = function() {
-
+      OrderedItemModelIteratorService.next();
+      updateScope();
     };
+
+    $scope.prev = function() {
+      OrderedItemModelIteratorService.prev();
+      updateScope();
+    };
+
+    function updateScope() {
+
+      $scope.title = 'Sandwich';
+      $scope.ingredientCategoryModel = OrderedItemModelIteratorService.getEntity();
+      $scope.ingredientsCollection = $scope.ingredientCategoryModel.ingredientsCollection;
+      $scope.type = OrderedItemModelIteratorService.getType();
+
+    }
+
+    updateScope();
 
   }
 ];

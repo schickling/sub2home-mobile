@@ -32,7 +32,7 @@
       </div>
     </section>
     <div>
-      <div id="toNextStep" class="iExtras">
+      <div id="toNextStep" class="iExtras" ng-click="next()">
         <p>Nächster Schritt</p>
         <h3>Extras</h3>
       </div>
@@ -53,7 +53,7 @@
 
     </div>
 
-    <div id="previousTimelineStep" class="unavailable"></div>
-    <div id="nextTimelineStep"></div>
+    <div id="previousTimelineStep" class="unavailable" ng-click="prev()"></div>
+    <div id="nextTimelineStep" ng-click="next()"></div>
   </aside>
 </div>

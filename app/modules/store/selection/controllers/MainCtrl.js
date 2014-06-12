@@ -14,23 +14,23 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'OrderedItemModelIter
 
       var newIsSelected = !ingredientModel.isSelected;
 
-      var numberOfSelectedIngredients = $scope.ingredientsCollection.reduce(function(sum, model) {
+      var numberOfSelectedIngredients = $scope.entity.ingredientsCollection.reduce(function(sum, model) {
         return sum + model.isSelected;
       }, 0);
 
-      if ($scope.ingredientCategoryModel.isMandatory && numberOfSelectedIngredients <= 1 && !newIsSelected) {
+      if ($scope.entity.isMandatory && numberOfSelectedIngredients <= 1 && !newIsSelected) {
         return;
       }
 
-      if ($scope.ingredientCategoryModel.isSingle && numberOfSelectedIngredients > 0) {
-        $scope.ingredientsCollection.forEach(function(model) {
+      if ($scope.entity.isSingle && numberOfSelectedIngredients > 0) {
+        $scope.entity.ingredientsCollection.forEach(function(model) {
           model.isSelected = false;
         });
       }
 
       ingredientModel.isSelected = newIsSelected;
 
-      if ($scope.ingredientCategoryModel.isSingle) {
+      if ($scope.entity.isSingle) {
         $timeout($scope.next, 600);
       }
 
@@ -46,11 +46,16 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'OrderedItemModelIter
       updateScope();
     };
 
+    $scope.jumpToEntity = function(entity) {
+      OrderedItemModelIteratorService.jumpToEntity(entity);
+      updateScope();
+    };
+
     function updateScope() {
 
+      $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
       $scope.title = 'Sandwich';
-      $scope.ingredientCategoryModel = OrderedItemModelIteratorService.getEntity();
-      $scope.ingredientsCollection = $scope.ingredientCategoryModel.ingredientsCollection;
+      $scope.entity = OrderedItemModelIteratorService.getEntity();
       $scope.type = OrderedItemModelIteratorService.getType();
 
     }

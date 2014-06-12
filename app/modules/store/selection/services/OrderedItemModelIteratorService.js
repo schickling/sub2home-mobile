@@ -59,6 +59,25 @@ module.exports = [
         return this._currentType;
       },
 
+      jumpToEntity: function(entity) {
+
+        for (var orderedArticleModelIndex = 0; orderedArticleModelIndex < this._orderedItemModel.orderedArticlesCollection.length; ++orderedArticleModelIndex) {
+
+          var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[orderedArticleModelIndex];
+          var ingredientCategoriesCollection = orderedArticleModel.articleModel.ingredientCategoriesCollection;
+
+          for (var ingredientCategoryModelIndex = 0; ingredientCategoryModelIndex < ingredientCategoriesCollection.length; ++ingredientCategoryModelIndex) {
+            if (entity === ingredientCategoriesCollection[ingredientCategoryModelIndex]) {
+              this._currentOrderedArticleModelIndex = orderedArticleModelIndex;
+              this._currentIngredientCategoryModelIndex = ingredientCategoryModelIndex;
+            }
+          }
+        }
+
+        this._adjust();
+
+      },
+
       _adjust: function() {
 
         var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex];

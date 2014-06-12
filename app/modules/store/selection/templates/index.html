@@ -23,8 +23,8 @@
       <p>Oder einfach nur schnell bestellen?<br>Verlass dich auf unsere Empfehlung.</p>
       <h3>Gleich weiter</h3>
     </div>
-    <section id="ingredients">
-      <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
+    <section id="ingredients" ng-if="type === 'ingredient'">
+      <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
         <div class="imageContainer">
           <img ng-src="{{ ingredientModel.largeImage }}" height="110" width="110" alt="" />
         </div>
@@ -40,13 +40,10 @@
   </div>
   <aside id="timeline" class="note below">
     <div id="timelineStage">
-      <div class="timelineStep icn iBread"></div>
-      <div class="timelineStep icn iCheese"></div>
-      <div class="timelineStep icn iVegetables"></div>
-      <div class="timelineStep icn iExtras"></div>
-      <div class="timelineStep icn iSauce"></div>
+      <div ng-repeat="orderedArticleModel in orderedArticlesCollection">
+        <div class="timelineStep icn {{ ingredientCategoryModel.icon }}" ng-class="{active: ingredientCategoryModel === entity}" ng-repeat="ingredientCategoryModel in orderedArticleModel.articleModel.ingredientCategoriesCollection" ng-click="jumpToEntity(ingredientCategoryModel)"></div>
+      </div>
       <div class="timelineStep icn iMenuUpgrade"></div>
-      <!-- immer am Ende -->
       <div class="timelineStep icn iTray"></div>
     </div>
     <div id="magnifier">

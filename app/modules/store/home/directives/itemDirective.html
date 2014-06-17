@@ -1,7 +1,7 @@
 <div class="item sub" bindonce>
   <img bo-src="itemModel.largeImage" bo-alt="itemModel.title" />
-  <h2><span bo-text="itemModel.title | wordSplit:true"></span> <span style="white-space: nowrap;"><span bo-text="itemModel.title | wordSplit:false"></span><span class="infoButton"></span></span></h2>
-  <p class="itemDescription hidden" bo-text="itemModel.description"></p>
+  <h2><span bo-text="itemModel.title | wordSplit:true"></span> <span style="white-space: nowrap;"><span bo-text="itemModel.title | wordSplit:false"></span><span class="infoButton" ng-click="hidden = !hidden"></span></span></h2>
+  <p class="itemDescription" ng-hide="hidden" bo-text="itemModel.description"></p>
   <div class="buyingOption">
     <div ng-class="getBuyClass(itemModel.icon)" ng-click="handleBuyClick(itemModel)">
       <div class="pricetag">

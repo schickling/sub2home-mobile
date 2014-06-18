@@ -15,16 +15,17 @@
   width: 50%;
   margin: 15px 0;
   text-align: center;
+  vertical-align: top;
 
   .imageContainer {
     position: relative;
     display: inline-block;
     .img-circle;
     border: 2px dashed @grayLighter;
-    padding: 10px;
+    padding: 0px;
     margin-bottom: 10px;
-    height: 110px;
-    width: 110px;
+    height: 130px;
+    width: 130px;
 
     img {
       .img-circle;
@@ -35,7 +36,7 @@
       display: block;
       position: absolute;
       top: 10px;
-      right: 10px;
+      right: 6px;
       font-family: "Homicons";
       .opacity(0);
       color: @greenLighter;
@@ -124,22 +125,41 @@
 
 #timelineStage {
   text-align: center;
-  padding: 10px 0 0;
+  padding: 10px 8px 0;
   white-space: nowrap;
+
+  // Prevent every first-child from leftmargin
+
+  > .timelineGroup, > .timelineStep {
+    display: inline-block;
+    &:first-child {
+      margin-left: 0;
+      .timelineStep:first-child {
+        margin-left: 0;
+      }
+    }
+  }
 }
 
 .timelineStep {
+  position: relative;
+  display: inline-block;
   height: 45px;
   width: 45px;
   margin-left: 25px;
   text-align: center;
   .border-box;
-  padding-top: 6px;
+  padding-top: 5px;
   font-size: 28px;
   .img-circle;
   border: 2px dashed @onNoteColor;
-
+  font-family: "Homicons";
   cursor: pointer;
+
+  .icn {
+    top: 0;
+    .transition(e('font-size .1s linear, top .1s linear'));
+  }
 
   &:after {
     content: "\e60b";
@@ -151,7 +171,7 @@
   }
 
   &:first-child {
-    margin-left: 8px;
+    // margin-left: 8px;
 
     &:after {
       display: none;
@@ -159,10 +179,29 @@
   }
 
   &:last-child {
-    margin-right: 8px;
+    // margin-right: 8px;
   }
 
   // States
+
+  &.active {
+    .icn {
+      font-size: 36px;
+      top: -3px;
+      z-index: 1;
+    }
+    &:before {
+      content:"";
+      position: absolute;
+      left: -7px;
+      top: -7px;
+      background: @magnifierImage;
+      background-size: 55px;
+      width: 55px;
+      height: 55px;
+      z-index: 50;
+    }
+  }
 
   &.passed {
     color: @onNoteColor50;
@@ -213,17 +252,6 @@
   }
 }
 
-// Magnifier
-
-#magnifier {
-  position: absolute;
-  left: 8px;
-  top: 10px;
-  height: 45px;
-  width: 45px;
-  .img-circle;
-  background: @onNoteColor30;
-}
 
 
 // Timeline-Controls
@@ -232,7 +260,7 @@
 #previousTimelineStep, #nextTimelineStep {
   position: fixed;
   bottom: 11px;
-
+  z-index: 99999;
   width: 48px;
   height: 42px;
   // border: 1px solid @grayLight;

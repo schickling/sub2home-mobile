@@ -26,7 +26,7 @@
     <section id="ingredients" ng-if="type === 'ingredient'">
       <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
         <div class="imageContainer">
-          <img ng-src="{{ ingredientModel.largeImage }}" height="110" width="110" alt="" />
+          <img ng-src="{{ ingredientModel.largeImage }}" height="130" width="130" alt="" />
         </div>
         <h3>{{ ingredientModel.title }}</h3>
       </div>
@@ -40,11 +40,17 @@
   </div>
   <aside id="timeline" class="note below">
     <div id="timelineStage">
-      <div ng-repeat="orderedArticleModel in orderedArticlesCollection">
-        <div class="timelineStep icn {{ ingredientCategoryModel.icon }}" ng-class="{active: ingredientCategoryModel === entity}" ng-repeat="ingredientCategoryModel in orderedArticleModel.articleModel.ingredientCategoriesCollection" ng-click="jumpToEntity(ingredientCategoryModel)"></div>
+      <div class="timelineGroup" ng-repeat="orderedArticleModel in orderedArticlesCollection">
+        <div class="timelineStep" ng-class="{active: ingredientCategoryModel === entity}" ng-repeat="ingredientCategoryModel in orderedArticleModel.articleModel.ingredientCategoriesCollection" ng-click="jumpToEntity(ingredientCategoryModel)">
+          <div class="icn {{ ingredientCategoryModel.icon }}"></div>
+        </div>
       </div>
-      <div class="timelineStep icn iMenuUpgrade"></div>
-      <div class="timelineStep icn iTray"></div>
+      <div class="timelineStep ">
+        <div class="icn iMenuUpgrade"></div>
+      </div>
+      <div class="timelineStep">
+        <div class="icn iTray"></div>
+      </div>
     </div>
     <div id="magnifier">
 

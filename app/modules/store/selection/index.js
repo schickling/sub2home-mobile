@@ -3,11 +3,13 @@
 var MainCtrl = require('./controllers/MainCtrl');
 var OrderedItemModelBuilderService = require('./services/OrderedItemModelBuilderService');
 var OrderedItemModelIteratorService = require('./services/OrderedItemModelIteratorService');
+var EntityCheckerService = require('./services/EntityCheckerService');
 
 module.exports = angular.module('store.selection', [])
   .controller('StoreSelectionCtrl', MainCtrl)
   .service('OrderedItemModelBuilderService', OrderedItemModelBuilderService)
   .service('OrderedItemModelIteratorService', OrderedItemModelIteratorService)
+  .service('EntityCheckerService', EntityCheckerService)
   .config(['$routeProvider',
     function($routeProvider) {
 

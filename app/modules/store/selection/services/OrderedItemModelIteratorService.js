@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = [
+module.exports = ['EntityCheckerService',
 
-  function() {
+  function(EntityCheckerService) {
 
     return {
 
@@ -20,6 +20,10 @@ module.exports = [
       },
 
       next: function() {
+
+        if (!EntityCheckerService.isCompled(this._currentEntity)) {
+          return;
+        }
 
         var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex];
         var numberOfIngredientCategoryModels = orderedArticleModel.articleModel.ingredientCategoriesCollection.length;
@@ -60,6 +64,10 @@ module.exports = [
       },
 
       jumpToEntity: function(entity) {
+
+        if (!EntityCheckerService.isCompled(this._currentEntity)) {
+          return;
+        }
 
         for (var orderedArticleModelIndex = 0; orderedArticleModelIndex < this._orderedItemModel.orderedArticlesCollection.length; ++orderedArticleModelIndex) {
 

@@ -124,122 +124,122 @@
       // padding: 0 15px;
     }
   }
+}
 
-  .buyingOption {
+.buyingOption {
 
-    margin-top: 15px;
+  margin-top: 15px;
 
-    > div {
-      display: inline-block;
-      background: @noteBackground;
-      padding: 3px;
-      border-radius: 3px;
-      border: 1px solid @noteBorderColor;
-      .box-shadow(0 1px 3px 0 @globalShadowColor15);
+  > div {
+    display: inline-block;
+    background: @noteBackground;
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid @noteBorderColor;
+    .box-shadow(0 1px 3px 0 @globalShadowColor15);
 
-      &:last-child {
-        margin-left: 5px;
-      }
-
-      &:first-child {
-        margin-left: 0;
-      }
-
-      .pricetag {
-        border-radius: 2px;
-        border: 3px dashed @onNoteColor50;
-        padding: 2px 7px;
-
-        h3 {
-
-          // SIZE ADJUST
-
-          font-size: 19px;
-
-          color: @greenDark;
-          display: inline-block;
-          line-height: 1;
-          text-align: left;
-
-          vertical-align: top;
-
-        }
-
-        // .sizeTag, .price {
-        //   display: block;
-        // }
-
-        .sizeTag {
-          font-size: 16px;
-          color: @onNoteColor;
-
-          // SIZE ADJUST
-
-          font-size: 13px;
-        }
-      }
+    &:last-child {
+      margin-left: 5px;
     }
 
-    .buy {
-      .pricetag {
-        &:before {
-          content: "\e613";
-          font-family: "Homicons";
-          display: inline-block;
-          color: @onNoteColor50;
-          font-size: 20px;
-          margin-top: 6px;
-        }
-        h3 {
-          margin: 7px 0 0 3px;
-        }
-      }
+    &:first-child {
+      margin-left: 0;
     }
 
-    .buy6inch, .buyFootlong {
-      .pricetag:before {
-        content: "\e614";
-        font-family: "Homicons";
-        display: inline-block;
-        color: @onNoteColor50;
-        font-size: 30px;
-        margin-top: 7px;
-      }
+    .pricetag {
+      border-radius: 2px;
+      border: 3px dashed @onNoteColor50;
+      padding: 2px 7px;
+
       h3 {
-        margin: 6px 0 0;
-      }
-    }
-    .buyFootlong {
-      .pricetag:before {
-        content: "\e615";
-      }
-    }
 
-    .buyBeverage {
-      .pricetag:before {
+        // SIZE ADJUST
+
+        font-size: 19px;
+
+        color: @greenDark;
         display: inline-block;
-        color: @onNoteColor50;
+        line-height: 1;
+        text-align: left;
+
+        vertical-align: top;
+
+      }
+
+      // .sizeTag, .price {
+      //   display: block;
+      // }
+
+      .sizeTag {
+        font-size: 16px;
+        color: @onNoteColor;
+
+        // SIZE ADJUST
+
+        font-size: 13px;
+      }
+    }
+  }
+
+  .buy {
+    .pricetag {
+      &:before {
         content: "\e613";
         font-family: "Homicons";
-        font-size: 30px;
-        margin: 7px 5px 0 0;
-      }
-
-      h3 {
-        margin: 6px 0 0;
-      }
-
-      .deposit {
         display: inline-block;
         color: @onNoteColor50;
-        font-size: 13px;
-        margin: 4px 0 0 5px;
-        width: 40px;
-        height: 30px;
-        padding: 1px 0 1px 5px;
-        vertical-align: top;
-        border-left: 1px solid @onNoteColor50;
+        font-size: 20px;
+        margin-top: 6px;
       }
+      h3 {
+        margin: 7px 0 0 3px;
+      }
+    }
+  }
+
+  .buy6inch, .buyFootlong {
+    .pricetag:before {
+      content: "\e614";
+      font-family: "Homicons";
+      display: inline-block;
+      color: @onNoteColor50;
+      font-size: 30px;
+      margin-top: 7px;
+    }
+    h3 {
+      margin: 6px 0 0;
+    }
+  }
+  .buyFootlong {
+    .pricetag:before {
+      content: "\e615";
+    }
+  }
+
+  .buyBeverage {
+    .pricetag:before {
+      display: inline-block;
+      color: @onNoteColor50;
+      content: "\e613";
+      font-family: "Homicons";
+      font-size: 30px;
+      margin: 7px 5px 0 0;
+    }
+
+    h3 {
+      margin: 6px 0 0;
+    }
+
+    .deposit {
+      display: inline-block;
+      color: @onNoteColor50;
+      font-size: 13px;
+      margin: 4px 0 0 5px;
+      width: 40px;
+      height: 30px;
+      padding: 1px 0 1px 5px;
+      vertical-align: top;
+      border-left: 1px solid @onNoteColor50;
     }
   }
 }

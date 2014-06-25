@@ -19,9 +19,11 @@
     <section class="note above hint highlighted">
       Wähle deine Zutaten
     </section>
+
+
     <div id="skipThisStep" class="iFast">
       <p>Oder einfach nur schnell bestellen?<br>Verlass dich auf unsere Empfehlung.</p>
-      <h3>Gleich weiter</h3>
+      <h3>Schritt überspringen</h3>
     </div>
     <section id="ingredients" ng-if="type === 'ingredient'">
       <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
@@ -31,12 +33,38 @@
         <h3>{{ ingredientModel.title }}</h3>
       </div>
     </section>
-    <div>
-      <div id="toNextStep" class="iExtras" ng-click="next()">
-        <p>Nächster Schritt</p>
-        <h3>Extras</h3>
-      </div>
+    <div id="toNextStep" class="iExtras" ng-click="next()">
+      <p>Nächster Schritt</p>
+      <h3>Extras</h3>
     </div>
+    <section id="menuUpgrades">
+      <div class="menuUpgrade">
+        <div class="menuUpgradePreview">
+          <img class="menuUpgradeBase" src="images/articles/smallimages/bbqrib.png">
+          <div class="menuUpgradeComponent icn iBeverage"></div>
+          <div class="menuUpgradeComponent icn iSnacks"></div>
+        </div>
+        <h2>Sparmenü</h2>
+        <p class="itemDescription">Was auch immer hier stehen könnte und so weiter.</p>
+        <div class="buyingOption">
+          <div class="buy">
+            <div class="pricetag">
+              <h3>
+                <div class="price">7,49</div>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <div id="toNextStep" class="iTray" ng-click="next()">
+      <p>Oder nur ein BBQ-Rib <br/>und gleich weiter</p>
+      <h3>zum Tablett</h3>
+    </div>
+
   </div>
   <aside id="timeline" class="note below">
     <div id="timelineStage">
@@ -52,10 +80,6 @@
         <div class="icn iTray"></div>
       </div>
     </div>
-    <div id="magnifier">
-
-    </div>
-
     <div id="previousTimelineStep" class="unavailable" ng-click="prev()"></div>
     <div id="nextTimelineStep" ng-click="next()"></div>
   </aside>

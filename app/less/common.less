@@ -281,7 +281,7 @@ p {
 .infoButton, &.closeButton {
 	display: inline-block;
 	position: relative;
-
+	text-align: center;
 	height: 30px;
 	width: 30px;
 	margin: 0 0 10px 10px;
@@ -296,6 +296,9 @@ p {
 	&:before {
 		content: "\e600";
 		top: 4px;
+	}
+	&.inCopyText {
+		margin: -4px 0 0 10px;
 	}
 }
 
@@ -314,18 +317,31 @@ p {
 	}
 }
 
-// Hints on Notes
 
-.note.hint {
-	padding: 20px @bodyPadding 13px;
-	font-size: 24px;
-	.icn {
-		font-size: 20px;
+
+.note {
+
+	// Hints on Notes
+
+	&.hint {
+		padding: 20px @bodyPadding 13px;
+		font-size: 24px;
+		.icn {
+			font-size: 20px;
+		}
+		&.highlighted {
+			color: @greenLight;
+		}
 	}
-	&.highlighted {
-		color: @greenLight;
+
+	// Buttons on Notes
+
+	.infoButton, .closeButton {
+		background: @onNoteColor50;
+		color: @noteColor;
 	}
 }
+
 
 // Items used on more than one page
 
@@ -374,6 +390,14 @@ p {
 
 // Big Input
 
+input[type="text"]{
+	background: none;
+	border: 1px solid @onNoteColor50;
+	padding: 10px 10px 8px;
+	.border-radius(3px);
+}
+
+
 .bigInput {
 	height: 90px;
 	width: 100%;
@@ -382,7 +406,6 @@ p {
 	font-size: 40px;
 	color: @onNoteColor;
 
-	background: none;
 	border: 3px dashed @onNoteColor50;
 	.border-radius(3px);
 	.border-box;

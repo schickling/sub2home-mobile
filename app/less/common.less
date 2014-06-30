@@ -278,7 +278,7 @@ p {
 
 }
 
-.infoButton {
+.infoButton, &.closeButton {
 	display: inline-block;
 	position: relative;
 
@@ -296,6 +296,15 @@ p {
 	&:before {
 		content: "\e600";
 		top: 4px;
+	}
+}
+
+.closeButton {
+	// background: @orange;
+	&:before {
+		// color: @red;
+		content: "\e60a";
+		top: 5px;
 	}
 }
 
@@ -325,7 +334,7 @@ p {
 	background: @darkWhite;
 	width: 100%;
 	position: relative;
-	
+
 
 	cursor: pointer;
 

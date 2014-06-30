@@ -25,123 +25,18 @@
   }
 }
 
+@media only screen and (min-width : 450px) {
+  #categoriesNavigation {
+    .translate(0,0,0);
+  }
+  #storeHome {
+    margin-left: 50px;
+    width: auto;
+  }
+}
+
 // header
 // -----------------------------------------------------------------------------
-
-// header Pagetitle
-
-@media only screen and (min-width : 240px) {
-  #header > div#pageTitle { width: 77px; }
-}
-
-@media only screen and (min-width : 250px) {
-  #header > div#pageTitle { width: 87px; }
-}
-
-@media only screen and (min-width : 260px) {
-  #header > div#pageTitle { width: 97px; }
-}
-
-@media only screen and (min-width : 270px) {
-  #header > div#pageTitle { width: 107px; }
-}
-
-@media only screen and (min-width : 280px) {
-  #header > div#pageTitle { width: 117px; }
-}
-
-@media only screen and (min-width : 290px) {
-  #header > div#pageTitle { width: 127px; }
-}
-
-@media only screen and (min-width : 300px) {
-  #header > div#pageTitle { width: 137px; }
-}
-
-@media only screen and (min-width : 310px) {
-  #header > div#pageTitle { width: 147px; }
-}
-
-@media only screen and (min-width : 320px) {
-  #header > div#pageTitle { width: 157px; }
-}
-
-@media only screen and (min-width : 330px) {
-  #header > div#pageTitle { width: 167px; }
-}
-
-@media only screen and (min-width : 340px) {
-  #header > div#pageTitle { width: 167px; }
-}
-
-@media only screen and (min-width : 350px) {
-  #header > div#pageTitle { width: 177px; }
-}
-
-@media only screen and (min-width : 360px) {
-  #header > div#pageTitle { width: 187px; }
-}
-
-@media only screen and (min-width : 370px) {
-  #header > div#pageTitle { width: 197px; }
-}
-
-@media only screen and (min-width : 380px) {
-  #header > div#pageTitle { width: 207px; }
-}
-
-@media only screen and (min-width : 390px) {
-  #header > div#pageTitle { width: 217px; }
-}
-
-@media only screen and (min-width : 390px) {
-  #header > div#pageTitle { width: 217px; }
-}
-
-@media only screen and (min-width : 400px) {
-  #header > div#pageTitle { width: 227px; }
-}
-
-@media only screen and (min-width : 410px) {
-  #header > div#pageTitle { width: 237px; }
-}
-
-@media only screen and (min-width : 420px) {
-  #header > div#pageTitle { width: 247px; }
-}
-
-@media only screen and (min-width : 430px) {
-  #header > div#pageTitle { width: 257px; }
-}
-
-@media only screen and (min-width : 440px) {
-  #header > div#pageTitle { width: 267px; }
-}
-
-@media only screen and (min-width : 450px) {
-  #header > div#pageTitle { width: 277px; }
-}
-
-@media only screen and (min-width : 460px) {
-  #header > div#pageTitle { width: 287px; }
-}
-
-@media only screen and (min-width : 470px) {
-  #header > div#pageTitle { width: 297px; }
-}
-
-@media only screen and (min-width : 480px) {
-  #header > div#pageTitle { width: 307px; }
-}
-
-@media only screen and (min-width : 490px) {
-  #header > div#pageTitle { width: 317px; }
-}
-
-@media only screen and (min-width : 500px) {
-  #header > div#pageTitle { width: 327px; }
-}
-
 
 // header for larger-than-mobile
 
@@ -149,6 +44,19 @@
   #header {
     > div {
       padding: 10px 0 0 15px;
+
+      &#pageTitle {
+        padding-left: 10px;
+        .icn {
+          font-size: 30px;
+          top: -1px;
+          margin-right: 15px;
+        }
+      }
+
+      &#toggleCategories {
+        display: none;
+      }
 
       &#toTheInfo {
         font-size: 26px;
@@ -352,7 +260,7 @@
 }
 
 
-// home.home
+// store.home
 // -----------------------------------------------------------------------------
 
 @media only screen and (min-width : 450px) {
@@ -363,7 +271,9 @@
         h2 {
           font-size: 36px;
         }
+        p {
+          font-size: 18px;
+        }
       }
     }
-
 }

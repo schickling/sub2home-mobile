@@ -136,8 +136,44 @@
       padding: 20px 0 0 20px;
       color: @onNoteColor50;
     }
+
+    // trayQuestions
+
+    .trayQuestion {
+      position: relative;
+      border-bottom: 1px solid @onNoteColor50;
+      // &:last-child {
+      //   border-bottom: 1px solid @onNoteColor50;
+      // }
+      .questionText {
+        padding: 20px 45px 15px 20px;
+        margin: 0;
+        color: @onNoteColor;
+      }
+    }
   }
 }
+
+
+// Used in more than one section:
+
+.toggleOptions, .triggerQuestion {
+  position:absolute;
+  right: 6px;
+  top: 50%;
+  margin-top: -12px;
+  height: 25px;
+  font-size: 24px;
+  color: @onNoteColor50;
+  .transformTransition(.2s, linear);
+  &:before {
+    content: "\e604";
+    font-family: "Homicons";
+
+  }
+}
+
+
 
 
 // Tray Summary -----------------------------------
@@ -235,23 +271,6 @@
 
   .deposit {
     font-size: 12px;
-  }
-
-  .toggleOptions {
-    position:absolute;
-    right: 6px;
-    top: 50%;
-    margin-top: -12px;
-    height: 25px;
-    font-size: 24px;
-    color: @onNoteColor50;
-    .transformTransition(.2s, linear);
-    &:before {
-      content: "\e604";
-      font-family: "Homicons";
-
-    }
-
   }
 
   // Basic Item Styles
@@ -407,13 +426,15 @@
 // Delivery Address -----------------------------------
 
 #setDeliveryAddress {
-
+  .trayQuestion {
+    border-top: 1px solid @onNoteColor50;
+  }
 }
 
 .inputGroup {
   margin: 10px 0 0 20px;
   position: relative;
-  
+
   input {
     width: 100%;
     .border-box;
@@ -468,5 +489,35 @@
         top: 9px;
       }
     }
+  }
+}
+
+#trayDeliveryArea {
+  margin-bottom: 25px;
+  color: @onNoteColor;
+}
+
+
+#paymentMethods {
+  margin-left: 20px;
+  padding-top: 20px;
+}
+
+.paymentMethod {
+  display: inline-block;
+  border: 1px solid @onNoteColor50;
+  .border-radius(3px);
+  padding: 10px 10px 7px;
+  margin-left: 9px;
+  .border-box;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &.active {
+    background: @onNoteColor;
+    color: @noteColor;
+    border: none;
   }
 }

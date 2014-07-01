@@ -141,7 +141,7 @@
       </header>
       <div class="container ">
         <div class="inputGroup">
-          <div class="inputContainer">
+          <div class="inputContainer valid">
             <input type="text" name="firstName" value="" placeholder="Vorname">
           </div>
           <div class="inputContainer">
@@ -149,7 +149,7 @@
           </div>
         </div>
         <div class="inputGroup">
-          <div class="inputContainer">
+          <div class="inputContainer invalid">
             <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
           </div>
           <div class="inputContainer">
@@ -162,10 +162,15 @@
             <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
           </div>
         </div>
-        <p>in 87700 Memmingen<span class="infoButton inCopyText"></span></p>
+        <p id="trayDeliveryArea">in 87700 Memmingen<span class="infoButton inCopyText"></span></p>
         <p class="ng-hide">Postleitzahl und Stadt hast du bereits zu Beginn des Bestellvorganges ausgewählt.<br/><br/>
         Sie sind an dieser Stelle nicht mehr veränderbar, um eine reibungslose Lieferung sicherzustellen.
         </p>
+        <div class="trayQuestion">
+          <p class="questionText">Hast du noch einen Wunsch oder einen Hinweis?</p>
+          <div class="triggerQuestion"></div>
+
+        </div>
       </div>
     </section>
 
@@ -174,7 +179,16 @@
         <h3>4) Subcard & Gratiscookie</h3>
       </header>
       <div class="container ">
-        
+        <div class="trayQuestion">
+          <p class="questionText">Hast du eine Subcard?</p>
+          <div class="triggerQuestion"></div>
+
+        </div>
+        <div class="trayQuestion">
+          <p class="questionText">Möchtest du einen Gratis-Cookie einlösen?</p>
+          <div class="triggerQuestion"></div>
+
+        </div>
       </div>
     </section>
 
@@ -182,8 +196,15 @@
       <header>
         <h3>5) Deine Zahlungsart</h3>
       </header>
-      <div class="container ">
-
+      <div class="container">
+        <div id="paymentMethods">
+          <div class="paymentMethod">Bar
+          </div><div class="paymentMethod active">Ec-Karte
+          </div><div class="paymentMethod">Kreditkarte</div>
+        </div>
+        <p>
+          Die EC- und Kreditkartenzahlung erfolgt an der Haustür mit einem Kartenleser
+        </p>
       </div>
     </section>
 

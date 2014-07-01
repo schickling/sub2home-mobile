@@ -12,7 +12,7 @@ module.exports = ['$window',
       },
       link: function($scope, $elem, $attrs) {
 
-        var maxWidth = 320;
+        var maxWidth = 330;
         var numberOfCols = parseInt($window.innerWidth / maxWidth, 10);
         var cols = [];
 

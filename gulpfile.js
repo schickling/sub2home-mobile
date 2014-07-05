@@ -5,7 +5,7 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var less = require('gulp-less');
 var templateCache = require('gulp-angular-templatecache');
-var connect = require('gulp-connect');
+var webserver = require('gulp-webserver');
 var watch = require('gulp-watch');
 var hint = require('gulp-jshint');
 var header = require('gulp-header');
@@ -68,21 +68,11 @@ gulp.task('browserify.templates', ['views'], function() {
     .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('connect', function() {
-  return connect.server({
-    root: ['.tmp', 'app'],
-    livereload: true,
-  });
-});
-
-gulp.task('livereload', function() {
-  gulp.src([
-    'app/index.html',
-    '.tmp/*.js',
-    '.tmp/css/*.css',
-  ])
-    .pipe(watch())
-    .pipe(connect.reload());
+gulp.task('webserver', function() {
+  return gulp.src(['.tmp', 'app'])
+    .pipe(webserver({
+      livereload: true
+    }));
 });
 
 gulp.task('views', function() {
@@ -118,8 +108,7 @@ gulp.task('server', [
   'hint',
   'browserify',
   'watch',
-  'connect',
-  'livereload'
+  'webserver',
 ]);
 
 gulp.task('default', ['server']);

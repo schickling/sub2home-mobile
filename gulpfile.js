@@ -71,6 +71,7 @@ gulp.task('browserify.templates', ['views'], function() {
 gulp.task('webserver', function() {
   return gulp.src(['.tmp', 'app'])
     .pipe(webserver({
+      port: 8080,
       livereload: true,
       fallback: 'index.html'
     }));

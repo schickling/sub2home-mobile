@@ -19,6 +19,19 @@ Starts webserver on `localhost:8080` with livereload.
 $ npm run-script server
 ```
 
+#### Run tests
+
+##### Once
+```sh
+$ npm test
+```
+
+##### Watch for changes
+```sh
+$ karma start
+```
+
+
 #### Build (just needed for deployment)
 ```sh
 $ npm run-script build

@@ -151,6 +151,59 @@
         color: @onNoteColor;
       }
     }
+    .trayQuestionContent {
+      margin: 20px 0 20px 20px;
+      &.textareaContent {
+        position: relative;
+        &:before, &:after {
+          content: "";
+          display: block;
+
+          position: absolute;
+          left: 0px;
+          right: 0px;
+          top: 33px;
+
+          height: 26px;
+          margin: 0 10px;
+          border-top: 1px solid @onNoteColor50;
+          border-bottom: 1px solid @onNoteColor50;
+        }
+        &:after {
+          top: 87px;
+        }
+      }
+
+      &.inputContent {
+        input {
+          width: 100%;
+          .border-box;
+        }
+      }
+
+      &.subcardContent {
+        p {
+          padding: 0;
+          margin-right: 100px;
+          &.postSuccess {
+            display: none;
+          }
+        }
+        .icn {
+          position: absolute;
+          top: -5px;
+          right: 0;
+          font-size: 80px;
+        }
+        &.success {
+          p {
+            &.preSuccess {display: none}
+            &.postSuccess {display: block}
+          }
+          .icn {color: @greenLighter}
+        }
+      }
+    }
   }
 }
 

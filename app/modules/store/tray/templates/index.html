@@ -169,7 +169,9 @@
         <div class="trayQuestion">
           <p class="questionText">Hast du noch einen Wunsch oder einen Hinweis?</p>
           <div class="triggerQuestion"></div>
-
+          <div class="trayQuestionContent textareaContent ng-hide">
+            <textarea class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung" name="additionalMessage" rows="4" cols="40"></textarea>
+          </div>
         </div>
       </div>
     </section>
@@ -182,12 +184,23 @@
         <div class="trayQuestion">
           <p class="questionText">Hast du eine Subcard?</p>
           <div class="triggerQuestion"></div>
+          <div class="trayQuestionContent subcardContent success ng-hide">
+            <p class="preSuccess">
+              Fotografiere den QR-Code deiner Subcard und lade ihn hier hoch, um Punkte zu sammeln.
+            </p>
+            <p class="postSuccess">
+              Glückwunsch! Dir werden für deine Bestellung 209 Pkt. gutgeschrieben.
+            </p>
+            <i class="icn iSubcard"></i>
+          </div>
 
         </div>
         <div class="trayQuestion">
           <p class="questionText">Möchtest du einen Gratis-Cookie einlösen?</p>
           <div class="triggerQuestion"></div>
-
+          <div class="trayQuestionContent inputContent ng-hide">
+              <input type="text" name="gratiscookieInput" placeholder="XX-XX-XXXX-X" value="">
+          </div>
         </div>
       </div>
     </section>

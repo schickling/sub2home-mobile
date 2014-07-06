@@ -21,6 +21,10 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
       return selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city;
     };
 
+    $scope.getMinumumDuration = function() {
+      return selectedDeliveryAreaModel.minimumDuration;
+    };
+
     $scope.selectCategory = function(categoryModel) {
       RoutingService.navigate(':storeAlias/' + categoryModel.id);
     };

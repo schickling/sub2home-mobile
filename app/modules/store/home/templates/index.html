@@ -22,7 +22,7 @@
 
   <div id="storeHome" class="content" ng-click="toggleNav(false)">
     <section class="note above" id="editLocation">
-      in 20min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>
+      in {{ getMinumumDuration() }}min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>
     </section>
     <section id="articles" >
       <div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">

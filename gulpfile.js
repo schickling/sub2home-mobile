@@ -71,7 +71,8 @@ gulp.task('browserify.templates', ['views'], function() {
 gulp.task('webserver', function() {
   return gulp.src(['.tmp', 'app'])
     .pipe(webserver({
-      livereload: true
+      livereload: true,
+      fallback: 'index.html'
     }));
 });
 

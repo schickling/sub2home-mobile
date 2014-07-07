@@ -17,10 +17,10 @@
 
 #storyline {
   position: fixed;
-  top: 0;
   right: 0;
   bottom: 0;
   width: 36px;
+  height: 568px;
   z-index: 101;
 
   ul {
@@ -28,6 +28,19 @@
     padding-top: @headerHeight;
     .border-box;
     height: 100%;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      right: 16px;
+      bottom: 0;
+      height: 10%;
+      // margin-top: 5px;
+      width: 1px;
+      background: @onNoteColor50;
+      z-index: 3;
+    }
 
     li {
       height: 20px;
@@ -37,6 +50,7 @@
       height: 20%;
       min-height: 15px;
       margin: 0;
+      z-index: 4;
 
       &:before {
         content: "";
@@ -63,8 +77,6 @@
         margin-top: -5px;
         .border-box;
       }
-
-
 
       &.passed {
 
@@ -109,13 +121,16 @@
       }
     }
   }
+
+  &.static {
+    position: absolute;
+  }
 }
 
 
 // Content
 
-#storeTray {
-  // background: @noteBackground;
+#storeTrayMainContent {
   .border-box;
   padding-right: 36px;
 
@@ -497,6 +512,7 @@
     padding-top: 9px;
     position: relative;
     .border-box;
+    .box-shadow(none);
 
     &:after {
       font-family: "Homicons";
@@ -550,10 +566,19 @@
   color: @onNoteColor;
 }
 
+// Payment Method -----------------------------------
+
+#storeTrayMainContent #setPaymentMethod {
+
+  p {
+    padding: 0 0 15px 20px;
+    margin-bottom: 0;
+  }
+}
 
 #paymentMethods {
   margin-left: 20px;
-  padding-top: 20px;
+  padding: 20px 0;
 }
 
 .paymentMethod {
@@ -575,7 +600,10 @@
   }
 }
 
-#storeTray #sendOrderHint {
+// Order Hint -----------------------------------
+
+#storeTrayMainContent #sendOrderHint {
+  display: none;
   text-align: center;
   border-top: 1px solid @onNoteColor50;
   padding-bottom: 30px;
@@ -592,11 +620,36 @@
   }
 }
 
+// Send Order -----------------------------------
+
 #sendOrder {
+  width: 100%;
+  text-align: center;
+  background: @noteBackground;
 
-  display: none;
+  .container {
+    background: @darkNote;
+    border-top: 1px solid @onNoteColor50;
+    .box-shadow(inset 0 1px 3px 0 @globalShadowColor15);
+    padding: 30px 20px 20px;
+  }
 
-  padding: 50px 20px;
-  background: @darkNote;
+  p {
+    padding: 0;
+    color: @onDarkNoteColor50;
+  }
+}
 
+#sendOrderButton {
+  padding: 30px 20px;
+  margin: 30px 0 0;
+
+  color: @greenLight;
+  font-size: 24px;
+  .border-radius(3px);
+  border: 2px solid @greenLight;
+
+  &:active {
+    background: @greenLighter30;
+  }
 }

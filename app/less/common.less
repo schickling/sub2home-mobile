@@ -162,7 +162,7 @@ body > .ng-scope {overflow-x: hidden;}
 			}
 
 			&.atTray {
-				width: 226px;
+				width: 210px;
 			}
 
 			> div {
@@ -173,16 +173,19 @@ body > .ng-scope {overflow-x: hidden;}
 		&#getBack {
 			position: relative;
 			font-size: 12px;
-			padding: 25px 10px 0;
+			padding: 13px 5px 0;
+			width: 60px;
+			text-align: center;
 
-			border-right: 1px solid @onHeaderColor50;
-
+			// border-right: 1px solid @onHeaderColor50;
+			.border-box;
 			cursor: pointer;
 
 			&:before {
 				content: "\e61d";
-				position: absolute;
-				top: 14px;
+				position: relative;
+				margin: 0 0 5px;
+				display: block;
 
 				font-family: "Homicons";
 				font-size: 10px;

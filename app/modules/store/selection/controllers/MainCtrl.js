@@ -1,10 +1,10 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window', 'OrderedItemModelIteratorService', '$timeout',
+module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout',
 
-  function($scope, orderedItemModel, $window, OrderedItemModelIteratorService, $timeout) {
+  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout) {
 
-    OrderedItemModelIteratorService.init(orderedItemModel);
+    EntityIteratorService.init(orderedItemModel);
 
     $scope.back = function() {
       $window.history.back();
@@ -37,28 +37,36 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'OrderedItemModelIter
     };
 
     $scope.next = function() {
-      OrderedItemModelIteratorService.next();
+      EntityIteratorService.next();
       updateScope();
     };
 
     $scope.prev = function() {
-      OrderedItemModelIteratorService.prev();
+      EntityIteratorService.prev();
       updateScope();
     };
 
     $scope.jumpToEntity = function(entity) {
-      OrderedItemModelIteratorService.jumpToEntity(entity);
+      EntityIteratorService.jumpToEntity(entity);
       updateScope();
     };
 
-    function updateScope() {
+    var updateScope = function() {
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
-      $scope.title = 'Sandwich';
-      $scope.entity = OrderedItemModelIteratorService.getEntity();
-      $scope.type = OrderedItemModelIteratorService.getType();
+      $scope.articleModel = EntityIteratorService.getArticleModel();
+      $scope.entity = EntityIteratorService.getEntity();
+      $scope.type = EntityIteratorService.getType();
+      $scope.menuUpgrade = false;
 
-    }
+      if (EntityIteratorService.getNextEntity() === undefined) {
+        $scope.toTray = true;
+      } else {
+        $scope.toTray = false;
+        $scope.nextStep = EntityIteratorService.getNextEntity().title;
+      }
+
+    };
 
     updateScope();
 

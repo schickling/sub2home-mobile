@@ -2,13 +2,19 @@
 
 var MainCtrl = require('./controllers/MainCtrl');
 var OrderedItemModelBuilderService = require('./services/OrderedItemModelBuilderService');
-var OrderedItemModelIteratorService = require('./services/OrderedItemModelIteratorService');
+var EntityIteratorService = require('./services/EntityIteratorService');
+var ArticleIteratorService = require('./services/ArticleIteratorService');
+var IngredientIteratorService = require('./services/IngredientIteratorService');
+var MenuUpgradeIteratorService = require('./services/MenuUpgradeIteratorService');
 var EntityCheckerService = require('./services/EntityCheckerService');
 
 module.exports = angular.module('store.selection', [])
   .controller('StoreSelectionCtrl', MainCtrl)
   .service('OrderedItemModelBuilderService', OrderedItemModelBuilderService)
-  .service('OrderedItemModelIteratorService', OrderedItemModelIteratorService)
+  .service('EntityIteratorService', EntityIteratorService)
+  .service('ArticleIteratorService', ArticleIteratorService)
+  .service('IngredientIteratorService', IngredientIteratorService)
+  .service('MenuUpgradeIteratorService', MenuUpgradeIteratorService)
   .service('EntityCheckerService', EntityCheckerService)
   .config(['$routeProvider',
     function($routeProvider) {

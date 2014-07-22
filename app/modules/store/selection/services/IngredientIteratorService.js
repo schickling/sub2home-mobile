@@ -16,15 +16,10 @@ module.exports = [
       },
 
       next: function() {
-        if (this.getNextEntity() !== undefined) {
-          this._currentIngredientCategoryIndex++;
-          return this._ingredientCategories[this._currentIngredientCategoryIndex];
-        } else {
-          this._currentIngredientCategoryIndex++;
-          return undefined;
-        }
+        var next = this.getNextEntity();
+        this._currentIngredientCategoryIndex++;
 
-
+        return next;
       },
 
       prev: function() {

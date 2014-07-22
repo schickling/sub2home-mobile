@@ -44,8 +44,8 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService',
         return this._currentIterator.getType();
       },
 
-      getArticleModel: function() {
-        return this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex].articleModel;
+      getArticle: function() {
+        return this._currentIterator.getArticle();
       },
 
       jumpToEntity: function(entity) {

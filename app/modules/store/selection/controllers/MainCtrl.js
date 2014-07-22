@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout',
+module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 
 
   function($scope, orderedItemModel, $window, EntityIteratorService, $timeout) {
 
@@ -51,19 +51,40 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       updateScope();
     };
 
+    $scope.goToTray = function() {
+      console.log("I'm hungry. Hurry up!!");
+    };
+
+    $scope.upgrade = function(menu) {
+      angular.forEach($scope.articleModel.menuUpgradesCollection, function (upgrade) {
+        if (menu === upgrade) {
+          upgrade.isSelected = true;
+          $scope.menuUpgrade = upgrade.menuComponentBlocksCollection;
+        }
+      });
+
+      $scope.next();
+    };
+
     var updateScope = function() {
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
-      $scope.articleModel = EntityIteratorService.getArticleModel();
+
+      $scope.articleModel = EntityIteratorService.getArticle();
       $scope.entity = EntityIteratorService.getEntity();
       $scope.type = EntityIteratorService.getType();
-      $scope.menuUpgrade = false;
 
-      if (EntityIteratorService.getNextEntity() === undefined) {
+      var nextEntity = EntityIteratorService.getNextEntity();
+
+      // checks whether the next step is the tray or not
+      if (!nextEntity) {
         $scope.toTray = true;
+      } else if (Object.prototype.toString.call(nextEntity) === '[object Array]') {
+        $scope.toTray = false;
+        $scope.nextStep = nextEntity[0];
       } else {
         $scope.toTray = false;
-        $scope.nextStep = EntityIteratorService.getNextEntity().title;
+        $scope.nextStep = nextEntity;
       }
 
     };

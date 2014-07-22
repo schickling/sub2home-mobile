@@ -26,13 +26,13 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
       },
 
       next: function() {
-        var entity = undefined;
+        var entity = null;
 
-        if (this._ingredientIterator !== null )  {
+        if (this._ingredientIterator)  {
           entity = this._ingredientIterator.next();
         }
 
-        if (this._menuUpgradeIterator !== null && entity === undefined) {
+        if (this._menuUpgradeIterator && !entity) {
           entity = this._menuUpgradeIterator.next();
         }
 
@@ -40,12 +40,12 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
       },
 
       getNextEntity: function() {
-        if (this._ingredientIterator === null) {
+        if (!this._ingredientIterator) {
           return undefined;
         }
         var entity = this._ingredientIterator.getNextEntity();
 
-        if (entity === undefined && this._menuUpgradeIterator !== null) {
+        if (!entity && this._menuUpgradeIterator) {
           entity = this._menuUpgradeIterator.getNextEntity();
         }
 
@@ -53,13 +53,13 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
       },
 
       getEntity: function() {
-        if (this._ingredientIterator === null) {
-          return undefined;
+        if (!this._ingredientIterator) {
+          return null;
         }
 
         var entity = this._ingredientIterator.getEntity();
 
-        if (entity === undefined && this._menuUpgradeIterator !== null) {
+        if (!entity && this._menuUpgradeIterator) {
           entity = this._menuUpgradeIterator.getEntity();
         }
 
@@ -68,15 +68,19 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
       },
 
       getType: function() {
-        if (this._ingredientIterator !== null && this._ingredientIterator.getEntity() !== undefined) {
+        if (this._ingredientIterator && this._ingredientIterator.getEntity()) {
           return this._ingredientIterator.getType();
         }
 
-       if (this._menuUpgradeIterator !== null && this._menuUpgradeIterator.getEntity() !== undefined) {
+       if (this._menuUpgradeIterator && this._menuUpgradeIterator.getEntity()) {
           return this._menuUpgradeIterator.getType();
        }
 
         return undefined;
+      },
+
+      getArticle: function() {
+        return this._orderedArticleModel;
       },
 
       jumpToEntity: function(entity) {

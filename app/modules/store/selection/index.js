@@ -7,6 +7,7 @@ var ArticleIteratorService = require('./services/ArticleIteratorService');
 var IngredientIteratorService = require('./services/IngredientIteratorService');
 var MenuUpgradeIteratorService = require('./services/MenuUpgradeIteratorService');
 var EntityCheckerService = require('./services/EntityCheckerService');
+var articleDirective = require('./directives/articleDirective');
 
 module.exports = angular.module('store.selection', [])
   .controller('StoreSelectionCtrl', MainCtrl)
@@ -16,6 +17,7 @@ module.exports = angular.module('store.selection', [])
   .service('IngredientIteratorService', IngredientIteratorService)
   .service('MenuUpgradeIteratorService', MenuUpgradeIteratorService)
   .service('EntityCheckerService', EntityCheckerService)
+  .directive('article', articleDirective)
   .config(['$routeProvider',
     function($routeProvider) {
 

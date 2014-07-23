@@ -10,7 +10,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       $window.history.back();
     };
 
-    $scope.selectIngredient = function(ingredientModel) {
+    $scope.selectIngredient = function(ingredientModel, showNext) {
 
       var newIsSelected = !ingredientModel.isSelected;
 
@@ -30,7 +30,9 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
       ingredientModel.isSelected = newIsSelected;
 
-      if ($scope.entity.isSingle) {
+      if (showNext) {
+        $scope.next();
+      } else if ($scope.entity.isSingle) {
         $timeout($scope.next, 600);
       }
 

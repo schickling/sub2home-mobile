@@ -21,15 +21,16 @@
         </section>
 
 
-        <div id="skipThisStep" class="iFast">
+        <div id="skipThisStep" class="iFast" ng-if="type === 'ingredient' && entity.defaultIngredientModel"
+        ng-click="selectIngredient(entity.defaultIngredientModel, true)">
             <p>Oder einfach nur schnell bestellen?
                 <br>Verlass dich auf unsere Empfehlung.</p>
             <h3>Schritt überspringen</h3>
         </div>
 
-        <section id="ingredients" ng-if="type === 'ingredient'">
+        <section id="ingredients">
             <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection"
-            ng-click="selectIngredient(ingredientModel)">
+            ng-click="selectIngredient(ingredientModel, false)">
                 <div class="imageContainer">
                     <img ng-src="{{ ingredientModel.largeImage }}" height="130" width="130" alt=""
                     />

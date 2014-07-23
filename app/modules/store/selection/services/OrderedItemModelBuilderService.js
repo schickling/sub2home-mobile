@@ -1,29 +1,47 @@
 'use strict';
 
-module.exports = function() {
+module.exports = ['_',
+  function(_) {
 
-  return {
+    return {
 
-    buildWithArticle: function(articleModel) {
+      buildWithArticle: function(articleModel) {
 
-      var orderedItemModel = {
-        orderedArticlesCollection: []
-      };
+        this._seperateDefaultIngredients(articleModel);
 
-      var orderedArticleModel = {
-        articleModel
-      };
+        var orderedItemModel = {
+          orderedArticlesCollection: []
+        };
 
-      orderedItemModel.orderedArticlesCollection.push(orderedArticleModel);
+        var orderedArticleModel = {
+          articleModel
+        };
 
-      return orderedItemModel;
+        orderedItemModel.orderedArticlesCollection.push(orderedArticleModel);
 
-    },
+        return orderedItemModel;
 
-    buildWithMenuBundle: function(menuBundleModel) {
+      },
 
-    },
+      buildWithMenuBundle: function(menuBundleModel) {
 
-  };
+      },
 
-};
+      _seperateDefaultIngredients: function(articleModel) {
+
+        _.each(articleModel.ingredientCategoriesCollection, function(ingredientCategoryModel) {
+
+          var group = _.groupBy(ingredientCategoryModel.ingredientsCollection, 'isDefault');
+
+          ingredientCategoryModel.ingredientsCollection = group[0];
+          ingredientCategoryModel.defaultIngredientModel = group.hasOwnProperty(1) ? group[1][0] : null;
+
+        });
+
+
+      },
+
+    };
+
+  }
+];

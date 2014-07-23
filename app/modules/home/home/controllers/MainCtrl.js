@@ -57,6 +57,10 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
       $scope.selectedDeliveryAreaModel = deliveryArea;
 
       $scope.storesCollection = $scope.storesCollection.filter(store => StoreService.deliversTo(store, deliveryArea));
+
+      if ($scope.storesCollection.length === 1) {
+        $scope.selectStore($scope.storesCollection[0]);
+      }
     };
 
     $scope.resetDeliveryArea = function() {

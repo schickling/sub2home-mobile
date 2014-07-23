@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 
+module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout',
 
   function($scope, orderedItemModel, $window, EntityIteratorService, $timeout) {
 
@@ -56,7 +56,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     };
 
     $scope.upgrade = function(menu) {
-      angular.forEach($scope.articleModel.menuUpgradesCollection, function (upgrade) {
+      angular.forEach($scope.articleModel.menuUpgradesCollection, function(upgrade) {
         if (menu === upgrade) {
           upgrade.isSelected = true;
           $scope.menuUpgrade = upgrade.menuComponentBlocksCollection;

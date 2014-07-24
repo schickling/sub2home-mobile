@@ -35,7 +35,7 @@
       </div>
     </section>
 
-    <section id="articles" ng-if="type === 'menuUpgradeArticle'">
+    <section id="articles" ng-if="type === 'menuUpgradeArticle' || type === 'Article'">
       <div id="tableRow" col-repeat app-items-collection="entity" app-col="col" watch="true">
         <article ng-repeat="itemModel in col"></article>
       </div>
@@ -77,12 +77,12 @@
     <div id="timelineStage">
 
       <!-- Ordered Item -->
-      <div class="timelineGroup" >
+      <div class="timelineGroup" ng-repeat="orderedArticleModel in orderedArticlesCollection" >
         <!-- All Articles -->
-        <div ng-repeat="orderedArticleModel in orderedArticlesCollection">
+        <div >
           <!-- Article -->
           <div class="timelineStep article">
-            <div class="icn iSub"></div>
+            <div class="icn {{orderedArticleModel.menuComponentBlockMediaModel.icon}}"></div>
           </div>
 
           <!-- Ingredients -->

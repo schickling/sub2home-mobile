@@ -1,29 +1,41 @@
 'use strict';
 
-module.exports = function() {
+module.exports = ['_',
 
-  return {
+  function(_) {
 
-    buildWithArticle: function(articleModel) {
+    return {
 
-      var orderedItemModel = {
-        orderedArticlesCollection: []
-      };
+      buildWithArticle: function(articleModel) {
 
-      var orderedArticleModel = {
-        articleModel
-      };
+        var orderedItemModel = {
+          orderedArticlesCollection: []
+        };
 
-      orderedItemModel.orderedArticlesCollection.push(orderedArticleModel);
+        var orderedArticleModel = {
+          articleModel
+        };
 
-      return orderedItemModel;
+        orderedItemModel.orderedArticlesCollection.push(orderedArticleModel);
 
-    },
+        return orderedItemModel;
 
-    buildWithMenuBundle: function(menuBundleModel) {
+      },
 
-    },
+      buildWithMenuBundle: function(menuBundleModel) {
+        var orderedItemModel = {
+          orderedArticlesCollection: [],
+          menuBundleModel: menuBundleModel
+        };
 
-  };
+        _.each(menuBundleModel.menuComponentBlocksCollection, function(article) {
+          orderedItemModel.orderedArticlesCollection.push(article);
+        });
 
-};
+        return orderedItemModel;
+      },
+
+    };
+
+  }
+];

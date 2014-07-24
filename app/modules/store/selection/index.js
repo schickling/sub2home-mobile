@@ -6,6 +6,7 @@ var EntityIteratorService = require('./services/EntityIteratorService');
 var ArticleIteratorService = require('./services/ArticleIteratorService');
 var IngredientIteratorService = require('./services/IngredientIteratorService');
 var MenuUpgradeIteratorService = require('./services/MenuUpgradeIteratorService');
+var MenuIteratorService = require('./services/MenuIteratorService');
 var EntityCheckerService = require('./services/EntityCheckerService');
 var articleDirective = require('./directives/articleDirective');
 
@@ -16,6 +17,7 @@ module.exports = angular.module('store.selection', [])
   .service('ArticleIteratorService', ArticleIteratorService)
   .service('IngredientIteratorService', IngredientIteratorService)
   .service('MenuUpgradeIteratorService', MenuUpgradeIteratorService)
+  .service('MenuIteratorService', MenuIteratorService)
   .service('EntityCheckerService', EntityCheckerService)
   .directive('article', articleDirective)
   .config(['$routeProvider',
@@ -50,16 +52,21 @@ module.exports = angular.module('store.selection', [])
         templateUrl: 'modules/store/selection/templates/index.html',
         controller: 'StoreSelectionCtrl',
         resolve: {
-          orderedItemModel: ['MenuBundleModelFactory', '$route', 'OrderedItemModelBuilderService',
-            function(MenuBundleModelFactory, $route, OrderedItemModelBuilderService) {
+          orderedItemModel: ['MenuBundleModelFactory', '$route', 'OrderedItemModelBuilderService', '$q',
+            function(MenuBundleModelFactory, $route, OrderedItemModelBuilderService, $q) {
+
+              var defer = $q.defer();
 
               var menuBundleModel = MenuBundleModelFactory.get({
                 storeAlias: $route.current.params.storeAlias,
                 menuId: $route.current.params.menuId
               });
 
-              return OrderedItemModelBuilderService.buildWithMenuBundle(menuBundleModel);
+              menuBundleModel.$promise.then(function() {
+                defer.resolve(OrderedItemModelBuilderService.buildWithMenuBundle(menuBundleModel));
+              });
 
+              return defer.promise;
             }
           ],
         }

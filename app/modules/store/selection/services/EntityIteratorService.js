@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['EntityCheckerService', 'ArticleIteratorService',
+module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIteratorService',
 
-  function(EntityCheckerService, ArticleIteratorService) {
+  function(EntityCheckerService, ArticleIteratorService, MenuIteratorService) {
 
     return {
 
@@ -12,15 +12,12 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService',
       init: function(orderedItemModel) {
         this._orderedItemModel = orderedItemModel;
 
-        switch('article') {
-          case 'article':
-                this._currentIterator = ArticleIteratorService.init(orderedItemModel);
-                break;
-          case 'menu':
-
-                break;
+        // if the length is equals one the orderetItem is a article otherwise it is a menu
+        if (orderedItemModel.orderedArticlesCollection.length == 1) {
+          this._currentIterator = ArticleIteratorService.init(orderedItemModel);
+        } else {
+          this._currentIterator = MenuIteratorService.init(orderedItemModel);
         }
-
 
         this._currentOrderedArticleModelIndex = 0;
         this._currentIngredientCategoryModelIndex = 0;
@@ -73,10 +70,10 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService',
 
       _adjust: function() {
 
-        var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex];
+//        var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex];
 
-        this._currentEntity = orderedArticleModel.articleModel.ingredientCategoriesCollection[this._currentIngredientCategoryModelIndex];
-        this._currentType = 'ingredient';
+//        this._currentEntity = orderedArticleModel.articleModel.ingredientCategoriesCollection[this._currentIngredientCategoryModelIndex];
+//        this._currentType = 'ingredient';
 
       },
 

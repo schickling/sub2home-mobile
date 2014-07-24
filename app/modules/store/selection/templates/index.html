@@ -1,78 +1,88 @@
 <div>
-  <aside id="header">
-    <div id="getBack" ng-click="back()">
-      zurück
-    </div>
-    <div id="pageTitle">
-<!--       <img src="images/articles/smallimages/bbqrib.png" alt="" /> -->
-<span>{{ articleModel.title }}<small> {{ articleModel.info }}</small></span>
-    </div>
-    <div id="toTheInfo" class="icn iInfo"></div>
-    <div id="toTheTray">
-      <div class="icn iTray">
-        <span id="traySize">5</span>
-      </div>
-    </div>
-  </aside>
-
-  <div id="storeSelection" class="content">
-    <section class="note above hint highlighted">
-      Wähle deine Zutaten
-    </section>
-
-
-    <div id="skipThisStep" class="iFast">
-      <p>Oder einfach nur schnell bestellen?<br>Verlass dich auf unsere Empfehlung.</p>
-      <h3>Schritt überspringen</h3>
-    </div>
-
-    <section id="ingredients" ng-if="type === 'ingredient'">
-      <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
-        <div class="imageContainer">
-          <img ng-src="{{ ingredientModel.largeImage }}" height="130" width="130" alt="" />
+    <aside id="header">
+        <div id="getBack" ng-click="back()">
+            zurück
         </div>
-        <h3>{{ ingredientModel.title }}</h3>
-      </div>
-    </section>
-
-    <section id="articles" ng-if="type === 'menuUpgradeArticle' || type === 'Article'">
-      <div id="tableRow" col-repeat app-items-collection="entity" app-col="col" watch="true">
-        <article ng-repeat="itemModel in col"></article>
-      </div>
-    </section>
-
-    <section id="menuUpgrades" ng-if="type === 'menuUpgrade'">
-      <div bindonce ng-repeat="menu in articleModel.menuUpgradesCollection" class="menuUpgrade">
-        <div class="menuUpgradePreview">
-          <img class="menuUpgradeBase" bo-alt="articleModel.title" bo-src="articleModel.smallImage">
-          <div class="menuUpgradeComponent icn iBeverage"></div>
-          <div class="menuUpgradeComponent icn iSnacks"></div>
+        <div id="pageTitle">
+            <!--       <img src="images/articles/smallimages/bbqrib.png" alt="" /> -->
+            <span>{{ articleModel.title }}<small> {{ articleModel.info }}</small></span>
         </div>
-        <h2>Sparmenü</h2>
-        <p class="itemDescription" bo-text="menu.description"></p>
-        <div ng-click="upgrade(menu)" class="buyingOption">
-          <div class="buy">
-            <div class="pricetag">
-              <h3>
+        <div id="toTheInfo" class="icn iInfo"></div>
+        <div id="toTheTray">
+            <div class="icn iTray">
+                <span id="traySize">5</span>
+            </div>
+        </div>
+    </aside>
+
+    <div id="storeSelection" class="content" ng-swipe-left="next()" ng-swipe-right="prev()">
+
+        <section class="note above hint highlighted">
+            Wähle deine Zutaten
+        </section>
+
+
+        <div id="skipThisStep" class="iFast" ng-if="type === 'ingredient' && entity.defaultIngredientModel"
+        ng-click="selectIngredient(entity.defaultIngredientModel, true)">
+            <p>Oder einfach nur schnell bestellen?
+                <br>Verlass dich auf unsere Empfehlung.</p>
+            <h3>Schritt überspringen</h3>
+        </div>
+
+        <section id="ingredients">
+            <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection"
+            ng-click="selectIngredient(ingredientModel, false)">
+                <div class="imageContainer">
+                    <img ng-src="{{ ingredientModel.largeImage }}" height="130" width="130" alt=""
+                    />
+                </div>
+                <h3>{{ ingredientModel.title }}</h3>
+            </div>
+        </section>
+
+
+        <section id="articles" ng-if="type === 'menuUpgradeArticle' || type === 'Article'">
+          <div id="tableRow" col-repeat app-items-collection="entity" app-col="col" watch="true">
+            <article ng-repeat="itemModel in col"></article>
+          </div>
+        </section>
+
+        <section id="menuUpgrades" ng-if="type === 'menuUpgrade'">
+            <div bindonce ng-repeat="menu in articleModel.menuUpgradesCollection" class="menuUpgrade">
+                <div class="menuUpgradePreview">
+                    <img class="menuUpgradeBase" bo-alt="articleModel.title" bo-src="articleModel.smallImage">
+                    <div class="menuUpgradeComponent icn iBeverage"></div>
+                    <div class="menuUpgradeComponent icn iSnacks"></div>
+                </div>
+
+
+            <h2>Sparmenü</h2>
+                <p class="itemDescription" bo-text="menu.description"></p>
+                <div ng-click="upgrade(menu)" class="buyingOption">
+                    <div class="buy">
+                        <div class="pricetag">
+                            <h3>
+
                 <div bo-text="menu.price" class="price"></div>
               </h3>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+        </section>
+
+        <div id="toNextStep" class="{{nextStep.icon}}" ng-hide="toTray" ng-click="next()">
+            <p>Nächster Schritt</p>
+            <h3>{{nextStep.title}}</h3>
         </div>
-      </div>
-    </section>
 
-    <div id="toNextStep" class="{{nextStep.icon}}" ng-hide="toTray" ng-click="next()">
-      <p>Nächster Schritt</p>
-      <h3>{{nextStep.title}}</h3>
-    </div>
-
-    <div id="toNextStep" class="iTray" ng-show="toTray" ng-click="goToTray()">
-      <p>Oder nur ein BBQ-Rib <br/>und gleich weiter</p>
-      <h3>zum Tablett</h3>
-    </div>
-
+        <div id="toNextStep" class="iTray" ng-show="toTray" ng-click="goToTray()">
+            <p>Oder nur ein BBQ-Rib
+                <br/>und gleich weiter</p>
+            <h3>zum Tablett</h3>
+        </div>
   </div>
+
   <aside id="timeline" class="note below">
     <div id="timelineStage">
 
@@ -100,14 +110,12 @@
           </div>
         </div>
 
-      </div>
+            <div class="timelineStep tray">
+                <div class="icn iTray"></div>
+            </div>
 
-        <div class="timelineStep tray">
-          <div class="icn iTray"></div>
         </div>
-
-      </div>
-    </div>
-  </aside>
+</div>
+</aside>
 
 </div>

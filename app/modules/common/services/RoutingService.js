@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = ['$location', '$routeParams', '$window',
-  function($location, $routeParams, $window) {
+module.exports = ['$location', '$routeParams',
+  function($location, $routeParams) {
 
     return {
 

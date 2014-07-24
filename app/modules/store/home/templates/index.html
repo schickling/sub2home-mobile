@@ -1,39 +1,40 @@
 <div bindonce ng-class="{navToggled: navToggled}">
-  <aside id="header">
-    <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
-    <div id="pageTitle" ng-click="toggleNav()">
-      <i class="icn" bo-class="currentCategoryModel.icon"></i><span bo-text="currentCategoryModel.title"></span>
-    </div>
-    <div id="toTheInfo" class="icn iInfo"></div>
-    <div id="toTheTray">
-      <div class="icn iTray">
-        <span id="traySize">5</span>
-      </div>
-    </div>
-  </aside>
+    <aside id="header">
+        <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
+        <div id="pageTitle" ng-click="toggleNav()">
+            <i class="icn" bo-class="currentCategoryModel.icon"></i><span bo-text="currentCategoryModel.title"></span>
+        </div>
+        <div id="toTheInfo" class="icn iInfo"></div>
+        <div id="toTheTray">
+            <div class="icn iTray">
+                <span id="traySize">5</span>
+            </div>
+        </div>
+    </aside>
 
-  <nav id="categoriesNavigation">
-    <ul>
-      <li ng-repeat="categoryModel in categoriesCollection" bo-class="{ active: categoryModel.id === currentCategoryModel.id }">
-        <div ng-click="selectCategory(categoryModel)" class="icn" bo-class="categoryModel.icon"></div>
-      </li>
-    </ul>
-  </nav>
+    <nav id="categoriesNavigation">
+        <ul>
+            <li ng-repeat="categoryModel in categoriesCollection" bo-class="{ active: categoryModel.id === currentCategoryModel.id }">
+                <div ng-click="selectCategory(categoryModel)" class="icn" bo-class="categoryModel.icon"></div>
+            </li>
+        </ul>
+    </nav>
 
-  <div id="storeHome" class="content" ng-click="toggleNav(false)">
-    <section class="note above" id="editLocation">
-      in {{ getMinumumDuration() }}min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>
-    </section>
-    <section id="articles" >
-      <div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">
-        <item ng-repeat="itemModel in col"></item>
-      </div>
-    </section>
-    <div ng-click="selectCategory(nextCategoryModel)" bo-if="nextCategoryModel">
-      <div id="toNextCategory" bo-class="nextCategoryModel.icon">
-        <p>Nächste Kategorie</p>
-        <h3 bo-text="nextCategoryModel.title"></h3>
-      </div>
+    <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)"
+    ng-swipe-right="toggleNav(true)">
+        <section class="note above" id="editLocation">
+            in {{ getMinumumDuration() }}min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>
+        </section>
+        <section id="articles">
+            <div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">
+                <item ng-repeat="itemModel in col"></item>
+            </div>
+        </section>
+        <div ng-click="selectCategory(nextCategoryModel)" bo-if="nextCategoryModel">
+            <div id="toNextCategory" bo-class="nextCategoryModel.icon">
+                <p>Nächste Kategorie</p>
+                <h3 bo-text="nextCategoryModel.title"></h3>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

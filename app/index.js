@@ -21,7 +21,7 @@ require('./modules/template-cache');
 angular.module('app', [
   // core
   'ngRoute',
-  // 'ngTouch',
+  'ngTouch',
   'ngResource',
   // libs
   'LocalStorageModule',
@@ -39,11 +39,12 @@ angular.module('app').constant('_', _);
 
 angular.module('app').config(['$locationProvider',
   function($locationProvider) {
-     $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
   }
 ]);
 
-angular.module('app').run(['ResourceService', '$location', '$rootScope', '$window',
+angular.module('app').run(['ResourceService', '$location', '$rootScope',
+  '$window',
   function(ResourceService, $location, $rootScope, $window) {
 
     var errorCallback = function() {
@@ -60,4 +61,4 @@ angular.module('app').run(['ResourceService', '$location', '$rootScope', '$windo
     });
 
   }
-])
+]);

@@ -18,9 +18,16 @@ html, body {
 	-webkit-text-size-adjust:none;
 
 	min-width: 320px;
+	height: 100%;
 }
 
-body > .ng-scope {overflow-x: hidden;}
+body > .ng-scope {
+	overflow-x: hidden;
+	height: 100%;
+	> .ng-scope {
+		height: 100%;
+	}
+}
 
 // Backgrounds -----------------------------------------------------------------
 
@@ -65,6 +72,8 @@ body > .ng-scope {overflow-x: hidden;}
 	top: 0;
 	left: 0;
 	right: 0;
+
+	font-size: 18px;
 
 	overflow: visible;
 
@@ -162,7 +171,9 @@ body > .ng-scope {overflow-x: hidden;}
 			}
 
 			&.atTray {
-				width: 210px;
+				position: absolute;
+				left: 60px;
+				right: 46px;
 			}
 
 			> div {
@@ -300,6 +311,8 @@ p {
 	font-size: 20px;
 	color: @white;
 
+	cursor: pointer;
+
 	&:before {
 		content: "\e600";
 		top: 4px;
@@ -358,7 +371,6 @@ p {
 	width: 100%;
 	position: relative;
 
-
 	cursor: pointer;
 
 	p {
@@ -377,6 +389,7 @@ p {
 			margin-top: 5px;
 			font-size: 16px;
 		}
+		font-size: 24px;
 	}
 
 
@@ -391,7 +404,6 @@ p {
 		color: @grayLighter;
 	}
 }
-
 
 // Inputs ----------------------------------------------------------------------
 

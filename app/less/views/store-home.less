@@ -45,6 +45,9 @@
       text-shadow: 0 0 5px rgba(0,0,0,0.5);
       border-bottom: 1px solid rgba(0,0,0,0.3);
       overflow: visible;
+
+      cursor: pointer;
+
       &.active:before {
         content: " ";
         position: absolute;
@@ -89,13 +92,13 @@
 
 
   display: table;
+  table-layout: fixed;
   width: 100%;
 
   // Columns
 
   #tableRow {
     display: table-row;
-    table-layout: fixed;
   }
   .col {
     // width: 3000px;
@@ -139,6 +142,8 @@
     border-radius: 3px;
     border: 1px solid @noteBorderColor;
     .box-shadow(0 1px 3px 0 @globalShadowColor15);
+
+    cursor: pointer;
 
     &:last-child {
       margin-left: 5px;

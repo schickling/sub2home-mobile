@@ -5,6 +5,11 @@
 @timelineHeight: 65px;
 
 
+#storeSelection {
+  display: table;
+  height: 100%;
+}
+
 #ingredients {
   text-align: left;
 }
@@ -121,7 +126,8 @@
 // MenuUpgrade
 
 #menuUpgrades {
-
+  display: table-row;
+  height: 100%;
 }
 
 .menuUpgrade {
@@ -274,6 +280,11 @@
     border: none;
     background: @onNoteColor;
     padding-top: 8px;
+
+    &:before {
+      top: -5px;
+      left: -5px;
+    }
 
     &:after {
       color: @onNoteColor;

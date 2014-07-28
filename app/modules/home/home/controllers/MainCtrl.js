@@ -56,11 +56,14 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
       $scope.showStores = true;
       $scope.selectedDeliveryAreaModel = deliveryArea;
 
-      $scope.storesCollection = $scope.storesCollection.filter(store => StoreService.deliversTo(store, deliveryArea));
+      var filteredStoresCollection = $scope.storesCollection.filter(store => StoreService.deliversTo(store, deliveryArea));
 
-      if ($scope.storesCollection.length === 1) {
-        $scope.selectStore($scope.storesCollection[0]);
+      if (filteredStoresCollection.length === 1) {
+        $scope.selectStore(filteredStoresCollection[0]);
+        return;
       }
+
+      $scope.storesCollection = filteredStoresCollection;
     };
 
     $scope.resetDeliveryArea = function() {

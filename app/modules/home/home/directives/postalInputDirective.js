@@ -42,7 +42,6 @@ module.exports = ['$timeout', 'PostalOracleService',
         $scope.onFocus = function() {
           abortLocationDetermination = true;
           $scope.isFocused = true;
-          $elem.removeClass('postalOnly');
         };
 
         $scope.onKeydown = function($event) {
@@ -91,7 +90,7 @@ module.exports = ['$timeout', 'PostalOracleService',
 
         function checkShrinking() {
           var postal = input.val();
-          $elem.toggleClass('postalOnly', postal.length === 5);
+          $elem.toggleClass('postalOnly', postal.length > 0);
         }
 
         function updateRotationDegrees() {

@@ -11,7 +11,7 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
       _menuUpgradeIterator: null,
 
       init: function(orderedArticleModel) {
-        this._orderedArticleModel = orderedArticleModel.orderedArticlesCollection[0].articleModel;
+        this._orderedArticleModel = orderedArticleModel;
 
         if(this._orderedArticleModel.allowsIngredients) {
           this._ingredientIterator = IngredientIteratorService.init(this._orderedArticleModel.ingredientCategoriesCollection);

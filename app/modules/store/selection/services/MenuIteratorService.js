@@ -1,40 +1,118 @@
 'use strict';
 
-module.exports = [ '_', 'ArticleIteratorService',
+module.exports = [ '_', 'ArticleIteratorService', 'ArticleModelFactory', '$route', '$q',
 
-  function(_, ArticleIteratorService) {
+
+  function(_, ArticleIteratorService, ArticleModelFactory, $route, $q) {
+
+    var getSelectedArticle = function(entity) {
+      var result = null;
+
+      if (entity instanceof Array) {
+        _.each(entity, function(option) {
+          if (option.isSelected) {
+            result = option;
+          }
+        });
+      }
+
+      return result;
+    };
+
+    var fetchArticle =  function(article) {
+        var articleModel = ArticleModelFactory.get({
+          storeAlias: $route.current.params.storeAlias,
+          articleId: article.id
+        });
+
+        return articleModel.$promise.then(function() {
+          return ArticleIteratorService.init(articleModel);
+        });
+    };
+
 
     return {
 
       _menu: null,
-      _articleIterators: null,
+      _menuComponentCollection: null,
+      _currentArticleIndex: null,
+      _articleIterator: null
 
-//      _menuUpgradeIndex: null,
-//      _menuUpgradeArticleIndex: null,
+
+
+      },
 
       init: function(menu) {
-        this._articleIterators = [];
+        this._menu = menu;
+        this._currentArticleIndex = 0;
+        this._menuComponentCollection = menu.menuBundleModel.menuComponentBlocksCollection;
 
-        _.each(menu.orderedArticlesCollection, function(article) {
-          _articleIterators.push(ArticleIteratorService.init(article));
-        });
        return this;
       },
 
       next: function() {
-        return null;
+        var nextEntity = this.getNextEntity();
+
+        if (nextEntity) {
+          this._currentArticleIndex++;
+        }
+        return nextEntity;
       },
 
       getNextEntity: function() {
-        return null;
+
+        var defer = $q.defer();
+
+        if (!this._articleIterator) {
+
+          var article = getSelectedArticle(this.getEntity());
+
+
+          if (article && article.allowsIngredients) {
+            // fetch from server
+
+
+            // defer.promise = this.fetchArtile(article);
+            this._articleIterator = fetchArticle(article);
+
+            this._articleIterator.then(function(iterator) {
+              defer.resolve(iterator.getEntity());
+            });
+
+          } else {
+
+            if (this._currentArticleIndex + 1 < this._menuComponentCollection.length) {
+              var entity = this._menuComponentCollection[this._currentArticleIndex + 1];
+              defer.resolve(entity.menuComponentOptionsCollection[0]);
+            }
+          }
+        } else {
+          defer.resolve(this._articleIterator.getNextEntity());
+          // TODO when getNextEntity is Null
+        }
+
+        return defer.promise;
       },
 
       getEntity: function() {
-        return null;
+        var entity = this._menuComponentCollection[this._currentArticleIndex];
+
+          if (!this._articleIterator) {
+            // if getSelected annd has ingrediants fetch from server
+            return entity.menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection;
+
+            //this._articleIterator = ArticleIteratorService.init();
+            //result = this._articleIterator();
+          } else {
+            return this._articleIterator.then(function() {
+
+            });
+          }
+
       },
 
       getArticle: function() {
-
+        return this._menu.menuBundleModel;
       },
 
       jumpToEntity: function(entity) {
@@ -42,7 +120,7 @@ module.exports = [ '_', 'ArticleIteratorService',
       },
 
       getType: function() {
-        return 'menu';
+        return 'Article';
       }
     };
 

@@ -43,7 +43,7 @@
 
         <section id="articles" ng-if="type === 'menuUpgradeArticle' || type === 'Article'">
           <div id="tableRow" col-repeat app-items-collection="entity" app-col="col" watch="true">
-            <article ng-repeat="itemModel in col"></article>
+            <article ng-repeat="itemModel in col" item-model="itemModel"></article>
           </div>
         </section>
 
@@ -110,11 +110,12 @@
           </div>
         </div>
 
-            <div class="timelineStep tray">
-                <div class="icn iTray"></div>
             </div>
-
+        <div class="timelineStep tray">
+          <div class="icn iTray"></div>
         </div>
+
+
 </div>
 </aside>
 

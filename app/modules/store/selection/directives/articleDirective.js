@@ -1,31 +1,23 @@
 'use strict';
 
-module.exports = ['RoutingService',
+module.exports = [
 
-  function(RoutingService) {
+  function() {
     return {
+      transclude: true,
       restrict: 'E',
       templateUrl: 'modules/store/selection/directives/articleDirective.html',
+      scope: {
+        itemModel: '=itemModel',
+      },
       link: function($scope, $elem, $attrs) {
 
         $scope.hidden = true;
 
-        $scope.getBuyClass = function(icon) {
-          return 'buy' + icon.substring(0, 1).toUpperCase() + icon.substring(1);
-        };
+        $scope.handleClick = function(itemModel) {
+          itemModel.isSelected = !itemModel.isSelected;
 
-        $scope.handleBuyClick = function(itemModel) {
-
-          if (itemModel.hasOwnProperty('allowsIngredients')) {
-            if (itemModel.allowsIngredients) {
-              RoutingService.navigate(':storeAlias/theke/artikel/' + itemModel.id);
-            } else {
-              alert('add to cart');
-            }
-          } else {
-            RoutingService.navigate(':storeAlias/theke/menu/' + itemModel.id);
-          }
-
+          $scope.$emit('nextEntity', true);
         };
 
       }

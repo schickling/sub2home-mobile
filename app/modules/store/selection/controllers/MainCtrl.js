@@ -68,6 +68,8 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       $scope.next();
     };
 
+    $scope.$on('nextEntity', function(event, data) { $scope.next();  });
+
     var updateScope = function() {
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
@@ -81,7 +83,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       // checks whether the next step is the tray or not
       if (!nextEntity) {
         $scope.toTray = true;
-      } else if (Object.prototype.toString.call(nextEntity) === '[object Array]') {
+      } else if (nextEntity instanceof Array) {
         $scope.toTray = false;
         $scope.nextStep = nextEntity[0];
       } else {

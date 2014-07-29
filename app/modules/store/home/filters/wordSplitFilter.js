@@ -4,13 +4,17 @@ module.exports = [
 
   function() {
     return function(sentence, takeFirstPart) {
+      var result = null;
 
-      var words = sentence.split(' ');
+      if (sentence) {
+        var words = sentence.split(' ');
 
-      var wordsToTake = takeFirstPart ? words.slice(0, -1) : words.slice(-1);
+        var wordsToTake = takeFirstPart ? words.slice(0, -1) : words.slice(-1);
 
-      return wordsToTake.join(' ');
+        result =  wordsToTake.join(' ');
+      }
 
+      return result;
     };
   }
 

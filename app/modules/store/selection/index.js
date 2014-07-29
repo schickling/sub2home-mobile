@@ -27,22 +27,17 @@ module.exports = angular.module('store.selection', [])
         templateUrl: 'modules/store/selection/templates/index.html',
         controller: 'StoreSelectionCtrl',
         resolve: {
-          orderedItemModel: ['ArticleModelFactory', '$route', 'OrderedItemModelBuilderService', '$q',
-            function(ArticleModelFactory, $route, OrderedItemModelBuilderService, $q) {
-
-              var defer = $q.defer();
+          orderedItemModel: ['ArticleModelFactory', '$route', 'OrderedItemModelBuilderService',
+            function(ArticleModelFactory, $route, OrderedItemModelBuilderService) {
 
               var articleModel = ArticleModelFactory.get({
                 storeAlias: $route.current.params.storeAlias,
                 articleId: $route.current.params.articleId
               });
 
-              articleModel.$promise.then(function() {
-                defer.resolve(OrderedItemModelBuilderService.buildWithArticle(articleModel));
+              return articleModel.$promise.then(function() {
+                return OrderedItemModelBuilderService.buildWithArticle(articleModel);
               });
-
-              return defer.promise;
-
             }
           ],
         }

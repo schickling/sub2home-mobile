@@ -246,7 +246,7 @@
       height: 30px;
       padding: 1px 0 1px 5px;
       vertical-align: top;
-      border-left: 1px solid @onNoteColor50;
+      border-left: 1px solid @onNoteColor30;
     }
   }
 }
@@ -269,5 +269,111 @@
   }
   #toggleCategories:before {
     .rotate(180deg);
+  }
+}
+
+
+// DELIVERYAREA-OVERLAY --------------------------------------------------------
+
+#deliveryAreaOverlayContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.8);
+
+  overflow: auto;
+  z-index: 9500;
+}
+
+#deliveryAreaOverlay {
+  margin: 15px;
+  .note;
+  border: 1px solid @onNoteColor30;
+  .box-shadow(0 1px 3px 0 @globalShadowColor15);
+  .border-radius(3px);
+  padding: 30px 15px 15px;
+  text-align: center;
+
+  .logo {
+    font-size: 40px;
+    color: @onNoteColor50;
+  }
+
+  .callToAction {
+    padding-top: 0;
+  }
+}
+
+.storeDeliveryArea {
+  position: relative;
+  display: table;
+  width: 100%;
+  .border-box;
+  padding: 0;
+  text-align: left;
+  border-bottom: 1px solid @onNoteColor30;
+
+  .postal {
+    // position: absolute;
+    display: table-cell;
+    width: 40px;
+    padding-left: 10px;
+    font-size: 13px;
+    color: @greenLight;
+    // vertical-align: baseline;
+    // left: 0;
+    // top: 0;
+  }
+
+  .storeDeliveryAreaDescription {
+    display: table-cell;
+    position: relative;
+    padding: 10px 5px;
+
+    h3 {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 13px;
+      padding: 5px 0 0;
+      margin: 0;
+      color: @onNoteColor50;
+    }
+    &:after {
+      content: "\e604";
+      font-family: "Homicons";
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      font-size: 16px;
+      margin-top: -8px;
+      color: @onNoteColor50;
+    }
+  }
+}
+
+.storeMultipleDeliveryAreas {
+  border-bottom: 1px solid @onNoteColor30;
+  .storeDeliveryArea {
+    border-bottom: none;
+    .storeDeliveryAreaDescription {
+      border-bottom: 1px solid @onNoteColor30;
+    }
+    &:last-child {
+      .storeDeliveryAreaDescription {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+#storeDeliveryAreas {
+  > .storeDeliveryArea, .storeMultipleDeliveryAreas {
+    &:last-child {
+      border-bottom: none;
+    }
   }
 }

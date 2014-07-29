@@ -496,6 +496,17 @@ input, textarea {
   outline-offset: -2px;
 }
 
+// Filter
+
+.blur(@value) {
+	-webkit-filter: blur(@value);
+	-moz-filter: blur(@value);
+	-o-filter: blur(@value);
+	-ms-filter: blur(@value);
+}
+
+
+
 
 // Center-align a block level element
 // ----------------------------------
@@ -565,6 +576,10 @@ input, textarea {
     color: inherit !important;
     text-decoration: inherit !important;
   }
+}
+
+.overlayed {
+	.blur(2px);
 }
 
 

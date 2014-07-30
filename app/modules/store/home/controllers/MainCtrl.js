@@ -18,8 +18,10 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.groupedDeliveryAreasCollection = _.groupBy(storeModel.deliveryAreasCollection, 'postal');
     $scope.suggestedDeliveryAreasCollection = [];
     $scope.chooseDeliveryArea = !selectedDeliveryAreaModel;
-    $scope.selectedDeliveryAreaModel = selectedDeliveryAreaModel;
     $scope.checkingPostal = false;
+    $scope.selectedDeliveryAreaModel = selectedDeliveryAreaModel && _.find(storeModel.deliveryAreasCollection, {
+      id: selectedDeliveryAreaModel.id
+    });
 
     $scope.toggleNav = function(value) {
       $scope.navToggled = value !== undefined ? value : !$scope.navToggled;

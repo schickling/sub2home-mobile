@@ -48,10 +48,10 @@
         <div id="storeDeliveryAreaSuggestion" ng-class="{ loading: checkingPostal }">
             <compass id="suggestionLoader" rotate="checkingPostal"></compass>
             <div class="storeMultipleDeliveryAreas" ng-if="suggestedDeliveryAreasCollection.length > 0">
-                <div class="storeDeliveryArea" ng-repeat="suggestedDeliveryAreaModel in suggestedDeliveryAreasCollection" ng-click="selectDeliveryArea(suggestedDeliveryAreaModel)">
-                    <div class="postal">{{ suggestedDeliveryAreaModel.postal }}</div>
+                <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea" ng-repeat="deliveryAreaModel in suggestedDeliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
+                    <div class="postal">{{ deliveryAreaModel.postal }}</div>
                     <div class="storeDeliveryAreaDescription">
-                        <h3>{{ suggestedDeliveryAreaModel.district || suggestedDeliveryAreaModel.city }}</h3>
+                        <h3>{{ deliveryAreaModel.district || deliveryAreaModel.city }}</h3>
                         <p>(in <span>30</span> min für min. <span>15</span>€)</p>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
         </div>
         <div id="storeDeliveryAreas">
             <div class="storeMultipleDeliveryAreas" ng-repeat="(postal, deliveryAreasCollection) in groupedDeliveryAreasCollection">
-                <div class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
+                <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
                     <div class="postal" bo-text="postal"></div>
                     <div class="storeDeliveryAreaDescription">
                         <h3 bo-text="deliveryAreaModel.district || deliveryAreaModel.city"></h3>

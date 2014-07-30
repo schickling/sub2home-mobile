@@ -327,6 +327,17 @@
 
   .storeDeliveryArea {
     padding: 0 10px;
+    &.selected {
+      .storeDeliveryAreaDescription{
+        &:after {
+          content: "\e609";
+          font-size: 14px;
+          right: 7px;
+          margin-top: -7px;
+          color: @greenLight !important;
+        }
+      }
+    }
   }
 
   .storeDeliveryAreaDescription {
@@ -398,18 +409,6 @@
       font-size: 16px;
       margin-top: -8px;
       color: @onNoteColor50;
-    }
-  }
-
-  &.selected {
-    .storeDeliveryAreaDescription{
-      &:after {
-        content: "\e609";
-        font-size: 14px;
-        right: 7px;
-        top: -7px;
-        color: @greenLight;
-      }
     }
   }
 }

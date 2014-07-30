@@ -400,6 +400,18 @@
       color: @onNoteColor50;
     }
   }
+
+  &.selected {
+    .storeDeliveryAreaDescription{
+      &:after {
+        content: "\e609";
+        font-size: 14px;
+        right: 7px;
+        top: -7px;
+        color: @greenLight;
+      }
+    }
+  }
 }
 
 .storeMultipleDeliveryAreas {

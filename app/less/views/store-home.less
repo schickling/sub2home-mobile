@@ -293,7 +293,7 @@
   border: 1px solid @onNoteColor30;
   .box-shadow(0 1px 3px 0 @globalShadowColor15);
   .border-radius(3px);
-  padding: 30px 15px 15px;
+  padding: 30px 0 15px;
   text-align: center;
 
   .logo {
@@ -310,9 +310,27 @@
 
   #suggestionLoader {
     display: none;
+    font-size: 50px;
+    margin: 15px 0 20px;
+    color: @onNoteColor50;
   }
 
+  .storeMultipleDeliveryAreas {
+    border-top: 1px solid @onNoteColor30;
+    // border-bottom: none;
+    background: @darkNote;
+    // color: @greenLight;
+  }
 
+  .storeDeliveryArea {
+    padding: 0 10px;
+  }
+
+  .smallHint {
+    margin: 20px 0 10px;
+    padding: 0;
+    color: @onNoteColor50;
+  }
 
   &.loading {
     #suggestionLoader {
@@ -350,7 +368,7 @@
   .storeDeliveryAreaDescription {
     display: table-cell;
     position: relative;
-    padding: 10px 5px;
+    padding: 10px 5px 8px;
 
     h3 {
       font-size: 18px;
@@ -398,6 +416,9 @@
 }
 
 #storeDeliveryAreas {
+
+  padding: 0 10px;
+
   > .storeDeliveryArea, .storeMultipleDeliveryAreas {
     &:last-child {
       border-bottom: none;

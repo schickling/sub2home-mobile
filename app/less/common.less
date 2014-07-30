@@ -302,7 +302,7 @@ p {
 
 }
 
-.infoButton, &.closeButton {
+.infoButton, .closeButton, .editButton {
 	display: inline-block;
 	position: relative;
 	text-align: center;
@@ -319,12 +319,22 @@ p {
 
 	cursor: pointer;
 
+	&.inCopyText {
+		margin: -4px 0 0 10px;
+	}
+}
+
+.note {
+	.infoButton, .closeButton, .editButton {
+		background: @onNoteColor50;
+		color: @noteColor;
+	}
+}
+
+.infoButton {
 	&:before {
 		content: "\e600";
 		top: 4px;
-	}
-	&.inCopyText {
-		margin: -4px 0 0 10px;
 	}
 }
 
@@ -334,6 +344,13 @@ p {
 		// color: @red;
 		content: "\e60a";
 		top: 5px;
+	}
+}
+
+.editButton {
+	&:before {
+		content: "\e61e";
+		top: 6px;
 	}
 }
 

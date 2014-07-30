@@ -319,11 +319,17 @@
     border-top: 1px solid @onNoteColor30;
     // border-bottom: none;
     background: @darkNote;
-    // color: @greenLight;
+    color: @onDarkNoteColor;
   }
 
   .storeDeliveryArea {
     padding: 0 10px;
+  }
+
+  .storeDeliveryAreaDescription {
+    p, &:after {
+      color: @onDarkNoteColor50;
+    }
   }
 
   .smallHint {

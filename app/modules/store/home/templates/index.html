@@ -12,6 +12,14 @@
         </div>
     </aside>
 
+    <nav id="categoriesNavigation">
+        <ul>
+            <li ng-repeat="categoryModel in categoriesCollection" bo-class="{ active: categoryModel.id === currentCategoryModel.id }">
+                <div ng-click="selectCategory(categoryModel)" class="icn" bo-class="categoryModel.icon"></div>
+            </li>
+        </ul>
+    </nav>
+
     <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)" ng-swipe-right="toggleNav(true)">
         <section class="note above" id="editLocation">
             in {{ selectedDeliveryAreaModel.minimumDuration }}min nach {{ selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city }} <i class="icn iWrench inSmallText after" ng-click="chooseDeliveryArea = true"></i>

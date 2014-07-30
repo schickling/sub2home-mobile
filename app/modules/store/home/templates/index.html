@@ -22,7 +22,7 @@
 
     <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)" ng-swipe-right="toggleNav(true)">
         <section class="note above" id="editLocation">
-            in {{ selectedDeliveryAreaModel.minimumValue }}min nach {{ selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city }} <i class="icn iWrench inSmallText after" ng-click="chooseDeliveryArea = true"></i>
+            in {{ selectedDeliveryAreaModel.minimumDuration }}min nach {{ selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city }} <i class="icn iWrench inSmallText after" ng-click="chooseDeliveryArea = true"></i>
         </section>
         <section id="articles">
             <div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">

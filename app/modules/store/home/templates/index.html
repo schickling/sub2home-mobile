@@ -4,8 +4,8 @@
         <div id="pageTitle" ng-click="toggleNav()">
             <span bo-text="currentCategoryModel.title"></span>
         </div>
-        <div id="toTheInfo" class="icn iInfo"></div>
-        <div id="toTheTray">
+        <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
+        <div ng-click="navigate(':storeAlias/tablett')" id="toTheTray">
             <div class="icn iTray">
                 <span id="traySize">5</span>
             </div>
@@ -22,7 +22,8 @@
 
     <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)" ng-swipe-right="toggleNav(true)">
         <section class="note above" id="editLocation">
-            <i class="editButton inSmallText before" ng-click="chooseDeliveryArea = true"></i><p>in {{ selectedDeliveryAreaModel.minimumDuration }}min nach {{ selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city }}</p>
+            <i class="editButton inSmallText before" ng-click="chooseDeliveryArea = true"></i>
+            <p>in {{ selectedDeliveryAreaModel.minimumDuration }}min nach {{ selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city }}</p>
         </section>
         <section id="articles">
             <div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">

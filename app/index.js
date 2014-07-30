@@ -60,6 +60,7 @@ angular.module('app').run(['ResourceService', '$location', '$rootScope',
       $window.scrollTo(0, 0);
     });
 
+    // convenient way to navigate in templates and controllers
     $rootScope.navigate = RoutingService.navigate;
 
   }

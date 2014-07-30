@@ -44,8 +44,8 @@ angular.module('app').config(['$locationProvider',
 ]);
 
 angular.module('app').run(['ResourceService', '$location', '$rootScope',
-  '$window',
-  function(ResourceService, $location, $rootScope, $window) {
+  '$window', 'RoutingService',
+  function(ResourceService, $location, $rootScope, $window, RoutingService) {
 
     var errorCallback = function() {
       $location.path('/404');
@@ -59,6 +59,8 @@ angular.module('app').run(['ResourceService', '$location', '$rootScope',
     $rootScope.$on('$routeChangeSuccess', function() {
       $window.scrollTo(0, 0);
     });
+
+    $rootScope.navigate = RoutingService.navigate;
 
   }
 ]);

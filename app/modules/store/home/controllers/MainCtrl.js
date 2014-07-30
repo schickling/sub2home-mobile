@@ -2,9 +2,11 @@
 
 module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
   'selectedDeliveryAreaModel', 'RoutingService', 'PersistenceService',
+  'PostalOracleService',
 
   function($scope, storeModel, categoriesCollection, _,
-    selectedDeliveryAreaModel, RoutingService, PersistenceService) {
+    selectedDeliveryAreaModel, RoutingService, PersistenceService,
+    PostalOracleService) {
 
     $scope.categoriesCollection = categoriesCollection;
     $scope.currentCategoryModel = categoriesCollection.current;
@@ -14,6 +16,7 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.navToggled = false;
     $scope.storeModel = storeModel;
     $scope.groupedDeliveryAreasCollection = _.groupBy(storeModel.deliveryAreasCollection, 'postal');
+    $scope.suggestedDeliveryAreasCollection = [];
     $scope.chooseDeliveryArea = !selectedDeliveryAreaModel;
     $scope.selectedDeliveryAreaModel = selectedDeliveryAreaModel;
 
@@ -30,6 +33,12 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
       $scope.selectedDeliveryAreaModel = deliveryAreaModel;
       $scope.chooseDeliveryArea = false;
     };
+
+    if ($scope.chooseDeliveryArea) {
+      PostalOracleService.query().then(function(postal) {
+        $scope.suggestedDeliveryAreasCollection = $scope.groupedDeliveryAreasCollection[postal];
+      });
+    }
 
   }
 ];

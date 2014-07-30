@@ -20,8 +20,7 @@
         </ul>
     </nav>
 
-    <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)"
-    ng-swipe-right="toggleNav(true)">
+    <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)" ng-swipe-right="toggleNav(true)">
         <section class="note above" id="editLocation">
             in {{ getMinumumDuration() }}min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>
         </section>
@@ -39,60 +38,24 @@
     </div>
 </div>
 <div id="deliveryAreaOverlayContainer">
-  <div id="deliveryAreaOverlay">
-    <header>
-      <div class="logo"></div>
-      <p>Subway<span class="superscript">®</span> Memmingen<br>kommt zu dir nach Hause.</p>
-      <p class="callToAction">Wohin dürfen wir liefern?</p>
-    </header>
-    <div id="storeDeliveryAreas">
-      <div class="storeMultipleDeliveryAreas">
-
-        <div class="storeDeliveryArea">
-          <div class="postal">87700</div>
-          <div class="storeDeliveryAreaDescription">
-            <h3>Innenstadt</h3>
-            <p>(in 20 min für min. 13€)</p>
-          </div>
-        </div>
-        <div class="storeDeliveryArea">
-          <div class="postal"></div>
-          <div class="storeDeliveryAreaDescription">
-            <h3>Amendingen</h3>
-            <p>(in 20 min für min. 13€)</p>
-          </div>
-        </div>
-        <div class="storeDeliveryArea">
-          <div class="postal"></div>
-          <div class="storeDeliveryAreaDescription">
-            <h3>Germering</h3>
-            <p>(in 20 min für min. 13€)</p>
-          </div>
+    <div id="deliveryAreaOverlay" bindonce>
+        <header>
+            <div class="logo"></div>
+            <p>Subway<span class="superscript">®</span>  <span bo-text="storeModel.title"></span>
+                <br>kommt zu dir nach Hause.</p>
+            <p class="callToAction">Wohin dürfen wir liefern?</p>
+        </header>
+        <div id="storeDeliveryAreas">
+            <div class="storeMultipleDeliveryAreas" ng-repeat="(postal, deliveryAreasCollection) in groupedDeliveryAreasCollection">
+                <div class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection">
+                    <div class="postal" bo-text="postal"></div>
+                    <div class="storeDeliveryAreaDescription">
+                        <h3 bo-text="deliveryAreaModel.district || deliveryAreaModel.city"></h3>
+                        <p>(in <span bo-text="deliveryAreaModel.minimumDuration"></span> min für min. <span bo-text="deliveryAreaModel.minimumValue"></span>€)</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-      </div>
-      <div class="storeDeliveryArea">
-        <div class="postal">87724</div>
-        <div class="storeDeliveryAreaDescription">
-          <h3>Ottobeuren</h3>
-          <p>(in 20 min für min. 13€)</p>
-        </div>
-      </div>
-      <div class="storeDeliveryArea">
-        <div class="postal">87730</div>
-        <div class="storeDeliveryAreaDescription">
-          <h3>Harlingen</h3>
-          <p>(in 20 min für min. 13€)</p>
-        </div>
-      </div>
-      <div class="storeDeliveryArea">
-        <div class="postal">87731</div>
-        <div class="storeDeliveryAreaDescription">
-          <h3>Großhadern</h3>
-          <p>(in 20 min für min. 13€)</p>
-        </div>
-      </div>
     </div>
-
-  </div>
 </div>

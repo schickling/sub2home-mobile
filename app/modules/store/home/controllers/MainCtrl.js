@@ -12,6 +12,8 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     var nextCategoryIndex = (categoriesCollection.indexOf(categoriesCollection.current) + 1) % categoriesCollection.length;
     $scope.nextCategoryModel = categoriesCollection[nextCategoryIndex];
     $scope.navToggled = false;
+    $scope.storeModel = storeModel;
+    $scope.groupedDeliveryAreasCollection = _.groupBy(storeModel.deliveryAreasCollection, 'postal');
 
     $scope.toggleNav = function(value) {
       $scope.navToggled = value !== undefined ? value : !$scope.navToggled;

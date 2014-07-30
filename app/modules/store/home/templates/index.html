@@ -1,4 +1,4 @@
-<div bindonce class="overlayed" ng-class="{navToggled: navToggled}">
+<div bindonce ng-class="{overlayed: chooseDeliveryArea}" ng-class="{navToggled: navToggled}">
     <aside id="header">
         <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
         <div id="pageTitle" ng-click="toggleNav()">
@@ -22,7 +22,7 @@
 
     <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)" ng-swipe-right="toggleNav(true)">
         <section class="note above" id="editLocation">
-            in {{ getMinumumDuration() }}min nach {{ getDistrict() }} <i class="icn iWrench inSmallText after"></i>
+            in {{ selectedDeliveryAreaModel.minimumValue }}min nach {{ selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city }} <i class="icn iWrench inSmallText after" ng-click="chooseDeliveryArea = true"></i>
         </section>
         <section id="articles">
             <div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">
@@ -37,11 +37,11 @@
         </div>
     </div>
 </div>
-<div id="deliveryAreaOverlayContainer">
+<div id="deliveryAreaOverlayContainer" ng-if="chooseDeliveryArea">
     <div id="deliveryAreaOverlay" bindonce>
         <header>
             <div class="logo"></div>
-            <p>Subway<span class="superscript">®</span>  <span bo-text="storeModel.title"></span>
+            <p>SUBWAY<span class="superscript">®</span>  <span bo-text="storeModel.title"></span>
                 <br>kommt zu dir nach Hause.</p>
             <p class="callToAction">Wohin dürfen wir liefern?</p>
         </header>

@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
-  'selectedDeliveryAreaModel', 'RoutingService',
+  'selectedDeliveryAreaModel', 'RoutingService', 'PersistenceService',
 
   function($scope, storeModel, categoriesCollection, _,
-    selectedDeliveryAreaModel, RoutingService) {
+    selectedDeliveryAreaModel, RoutingService, PersistenceService) {
 
     $scope.categoriesCollection = categoriesCollection;
     $scope.currentCategoryModel = categoriesCollection.current;
@@ -14,21 +14,21 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.navToggled = false;
     $scope.storeModel = storeModel;
     $scope.groupedDeliveryAreasCollection = _.groupBy(storeModel.deliveryAreasCollection, 'postal');
+    $scope.chooseDeliveryArea = !selectedDeliveryAreaModel;
+    $scope.selectedDeliveryAreaModel = selectedDeliveryAreaModel;
 
     $scope.toggleNav = function(value) {
       $scope.navToggled = value !== undefined ? value : !$scope.navToggled;
     };
 
-    $scope.getDistrict = function() {
-      return selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city;
-    };
-
-    $scope.getMinumumDuration = function() {
-      return selectedDeliveryAreaModel.minimumDuration;
-    };
-
     $scope.selectCategory = function(categoryModel) {
       RoutingService.navigate(':storeAlias/' + categoryModel.id);
+    };
+
+    $scope.selectDeliveryArea = function(deliveryAreaModel) {
+      PersistenceService.save('selectedDeliveryAreaModel', deliveryAreaModel);
+      $scope.selectedDeliveryAreaModel = deliveryAreaModel;
+      $scope.chooseDeliveryArea = false;
     };
 
   }

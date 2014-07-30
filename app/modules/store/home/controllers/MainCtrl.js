@@ -41,6 +41,9 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
         $scope.checkingPostal = false;
         $scope.suggestedDeliveryAreasCollection = $scope.groupedDeliveryAreasCollection[postal];
       });
+    } else {
+      var postal = $scope.selectedDeliveryAreaModel.postal;
+      $scope.suggestedDeliveryAreasCollection = $scope.groupedDeliveryAreasCollection[postal];
     }
 
   }

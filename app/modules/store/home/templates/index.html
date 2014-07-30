@@ -47,7 +47,7 @@
         </header>
         <div id="storeDeliveryAreaSuggestion" ng-class="{ loading: checkingPostal }">
             <compass id="suggestionLoader" rotate="checkingPostal"></compass>
-            <div class="storeMultipleDeliveryAreas">
+            <div class="storeMultipleDeliveryAreas" ng-if="suggestedDeliveryAreasCollection.length > 0">
                 <div class="storeDeliveryArea" ng-repeat="suggestedDeliveryAreaModel in suggestedDeliveryAreasCollection" ng-click="selectDeliveryArea(suggestedDeliveryAreaModel)">
                     <div class="postal">{{ suggestedDeliveryAreaModel.postal }}</div>
                     <div class="storeDeliveryAreaDescription">

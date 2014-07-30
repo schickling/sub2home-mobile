@@ -38,12 +38,14 @@
             <p class="callToAction">Wohin dürfen wir liefern?</p>
         </header>
         <div id="storeDeliveryAreaSuggestion">
-          <div id="suggstionLoader" class="icn iCompass"></div>
-          <div class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
-              <div class="postal" bo-text="postal"></div>
-              <div class="storeDeliveryAreaDescription">
-                  <h3 bo-text="deliveryAreaModel.district || deliveryAreaModel.city"></h3>
-                  <p>(in <span bo-text="deliveryAreaModel.minimumDuration"></span> min für min. <span bo-text="deliveryAreaModel.minimumValue"></span>€)</p>
+          <div id="suggestionLoader" class="icn iCompass"></div>
+          <div class="storeMultipleDeliveryAreas">
+              <div class="storeDeliveryArea">
+                  <div class="postal"></div>
+                  <div class="storeDeliveryAreaDescription">
+                      <h3>Innenstadt</h3>
+                      <p>(in <span>30</span> min für min. <span>15</span>€)</p>
+                  </div>
               </div>
           </div>
           <p>Außerdem liefern wir in folgende Gebiete:</p>

@@ -307,7 +307,22 @@
 }
 
 #storeDeliveryAreaSuggestion {
-  
+
+  #suggestionLoader {
+    display: none;
+  }
+
+
+
+  &.loading {
+    #suggestionLoader {
+      display: block;
+    }
+
+    .storeMultipleDeliveryAreas, > p {
+      display: none;
+    }
+  }
 }
 
 .storeDeliveryArea {

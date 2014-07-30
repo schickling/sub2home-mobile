@@ -17,11 +17,16 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.storeModel = storeModel;
     $scope.groupedDeliveryAreasCollection = _.groupBy(storeModel.deliveryAreasCollection, 'postal');
     $scope.suggestedDeliveryAreasCollection = [];
-    $scope.chooseDeliveryArea = !selectedDeliveryAreaModel;
     $scope.checkingPostal = false;
-    $scope.selectedDeliveryAreaModel = selectedDeliveryAreaModel && _.find(storeModel.deliveryAreasCollection, {
-      id: selectedDeliveryAreaModel.id
-    });
+    $scope.selectedDeliveryAreaModel = null;
+
+    if (selectedDeliveryAreaModel) {
+      $scope.selectedDeliveryAreaModel = _.find(storeModel.deliveryAreasCollection, {
+        id: selectedDeliveryAreaModel.id
+      });
+    }
+
+    $scope.chooseDeliveryArea = !$scope.selectedDeliveryAreaModel;
 
     $scope.toggleNav = function(value) {
       $scope.navToggled = value !== undefined ? value : !$scope.navToggled;
@@ -34,6 +39,7 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.selectDeliveryArea = function(deliveryAreaModel) {
       PersistenceService.save('selectedDeliveryAreaModel', deliveryAreaModel);
       $scope.selectedDeliveryAreaModel = deliveryAreaModel;
+      $scope.suggestedDeliveryAreasCollection = $scope.groupedDeliveryAreasCollection[deliveryAreaModel.postal];
       $scope.chooseDeliveryArea = false;
     };
 

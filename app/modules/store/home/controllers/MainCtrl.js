@@ -19,6 +19,7 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.suggestedDeliveryAreasCollection = [];
     $scope.chooseDeliveryArea = !selectedDeliveryAreaModel;
     $scope.selectedDeliveryAreaModel = selectedDeliveryAreaModel;
+    $scope.checkingPostal = false;
 
     $scope.toggleNav = function(value) {
       $scope.navToggled = value !== undefined ? value : !$scope.navToggled;
@@ -35,7 +36,9 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     };
 
     if ($scope.chooseDeliveryArea) {
+      $scope.checkingPostal = true;
       PostalOracleService.query().then(function(postal) {
+        $scope.checkingPostal = false;
         $scope.suggestedDeliveryAreasCollection = $scope.groupedDeliveryAreasCollection[postal];
       });
     }

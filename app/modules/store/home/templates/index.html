@@ -45,18 +45,18 @@
                 <br>kommt zu dir nach Hause.</p>
             <p class="callToAction">Wohin dürfen wir liefern?</p>
         </header>
-        <div id="storeDeliveryAreaSuggestion">
-            <compass id="suggestionLoader" rotate="true"></compass>
+        <div id="storeDeliveryAreaSuggestion" ng-class="{ loading: checkingPostal }">
+            <compass id="suggestionLoader" rotate="checkingPostal"></compass>
             <div class="storeMultipleDeliveryAreas">
-                <div class="storeDeliveryArea">
-                    <div class="postal">87798</div>
+                <div class="storeDeliveryArea" ng-repeat="suggestedDeliveryAreaModel in suggestedDeliveryAreasCollection" ng-click="selectDeliveryArea(suggestedDeliveryAreaModel)">
+                    <div class="postal">{{ suggestedDeliveryAreaModel.postal }}</div>
                     <div class="storeDeliveryAreaDescription">
-                        <h3>Innenstadt</h3>
+                        <h3>{{ suggestedDeliveryAreaModel.district || suggestedDeliveryAreaModel.city }}</h3>
                         <p>(in <span>30</span> min für min. <span>15</span>€)</p>
                     </div>
                 </div>
             </div>
-            <p class="smallHint">Außerdem liefern wir in folgende Gebiete:</p>
+            <p class="smallHint" ng-if="suggestedDeliveryAreasCollection.length > 0">Außerdem liefern wir in folgende Gebiete:</p>
         </div>
         <div id="storeDeliveryAreas">
             <div class="storeMultipleDeliveryAreas" ng-repeat="(postal, deliveryAreasCollection) in groupedDeliveryAreasCollection">

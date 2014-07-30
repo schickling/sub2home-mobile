@@ -42,7 +42,7 @@
     "vinyl-source-stream": "^0.1.1"
   },
   "dependencies": {
-    "zipcoder": "~0.1.2",
+    "zipcoder": "~0.2.0",
     "lodash": "^2.4.1",
     "fastclick": "^1.0.2"
   }

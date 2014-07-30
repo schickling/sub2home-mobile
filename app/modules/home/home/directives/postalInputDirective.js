@@ -22,7 +22,10 @@ module.exports = ['$timeout', 'PostalOracleService',
         $scope.determineLocation = function(overwritePostal) {
           $scope.isDeterminingLocation = true;
           abortLocationDetermination = false;
-          PostalOracleService.query(overwritePostal).then(function(postal) {
+
+          var postalPromise = PostalOracleService.query(overwritePostal);
+
+          postalPromise.then(function(postal) {
             $scope.isDeterminingLocation = false;
             if (!abortLocationDetermination) {
               input.val(postal);
@@ -30,6 +33,11 @@ module.exports = ['$timeout', 'PostalOracleService',
               $scope.postal = postal;
             }
           });
+
+          postalPromise.catch(function() {
+            $scope.isDeterminingLocation = false;
+          });
+
         };
 
         $scope.onBlur = function() {

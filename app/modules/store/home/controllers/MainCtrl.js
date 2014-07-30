@@ -38,11 +38,20 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     };
 
     if ($scope.chooseDeliveryArea) {
+
       $scope.checkingPostal = true;
-      PostalOracleService.query().then(function(postal) {
+
+      var postalPromise = PostalOracleService.query();
+
+      postalPromise.then(function(postal) {
         $scope.checkingPostal = false;
         $scope.suggestedDeliveryAreasCollection = $scope.groupedDeliveryAreasCollection[postal];
       });
+
+      postalPromise.catch(function() {
+        $scope.checkingPostal = false;
+      });
+
     } else {
       var postal = $scope.selectedDeliveryAreaModel.postal;
       $scope.suggestedDeliveryAreasCollection = $scope.groupedDeliveryAreasCollection[postal];

@@ -348,7 +348,7 @@
 
   .smallHint {
     margin: 20px 0 10px;
-    padding: 0;
+    padding: 0 10px;
     color: @onNoteColor50;
   }
 
@@ -366,6 +366,7 @@
 .storeDeliveryArea {
   position: relative;
   display: table;
+  table-layout: fixed;
   width: 100%;
   .border-box;
   padding: 0;
@@ -388,10 +389,13 @@
   .storeDeliveryAreaDescription {
     display: table-cell;
     position: relative;
-    padding: 10px 5px 8px;
+    padding: 10px 30px 8px 5px;
 
     h3 {
       font-size: 18px;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     p {

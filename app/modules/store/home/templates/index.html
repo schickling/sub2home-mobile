@@ -47,7 +47,7 @@
         </header>
         <div id="storeDeliveryAreas">
             <div class="storeMultipleDeliveryAreas" ng-repeat="(postal, deliveryAreasCollection) in groupedDeliveryAreasCollection">
-                <div class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection">
+                <div class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
                     <div class="postal" bo-text="postal"></div>
                     <div class="storeDeliveryAreaDescription">
                         <h3 bo-text="deliveryAreaModel.district || deliveryAreaModel.city"></h3>

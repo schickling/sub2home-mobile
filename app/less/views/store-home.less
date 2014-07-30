@@ -306,6 +306,10 @@
   }
 }
 
+#storeDeliveryAreaSuggestion {
+  
+}
+
 .storeDeliveryArea {
   position: relative;
   display: table;
@@ -322,6 +326,7 @@
     padding-left: 10px;
     font-size: 13px;
     color: @greenLight;
+    visibility: hidden;
     // vertical-align: baseline;
     // left: 0;
     // top: 0;
@@ -359,12 +364,19 @@
   border-bottom: 1px solid @onNoteColor30;
   .storeDeliveryArea {
     border-bottom: none;
+
     .storeDeliveryAreaDescription {
       border-bottom: 1px solid @onNoteColor30;
     }
     &:last-child {
       .storeDeliveryAreaDescription {
         border-bottom: none;
+      }
+    }
+
+    &:first-child {
+      .postal {
+        visibility: visible;
       }
     }
   }

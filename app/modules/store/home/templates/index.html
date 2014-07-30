@@ -12,14 +12,6 @@
         </div>
     </aside>
 
-    <nav id="categoriesNavigation">
-        <ul>
-            <li ng-repeat="categoryModel in categoriesCollection" bo-class="{ active: categoryModel.id === currentCategoryModel.id }">
-                <div ng-click="selectCategory(categoryModel)" class="icn" bo-class="categoryModel.icon"></div>
-            </li>
-        </ul>
-    </nav>
-
     <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)" ng-swipe-right="toggleNav(true)">
         <section class="note above" id="editLocation">
             in {{ selectedDeliveryAreaModel.minimumDuration }}min nach {{ selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city }} <i class="icn iWrench inSmallText after" ng-click="chooseDeliveryArea = true"></i>
@@ -45,6 +37,17 @@
                 <br>kommt zu dir nach Hause.</p>
             <p class="callToAction">Wohin dürfen wir liefern?</p>
         </header>
+        <div id="storeDeliveryAreaSuggestion">
+          <div id="suggstionLoader" class="icn iCompass"></div>
+          <div class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
+              <div class="postal" bo-text="postal"></div>
+              <div class="storeDeliveryAreaDescription">
+                  <h3 bo-text="deliveryAreaModel.district || deliveryAreaModel.city"></h3>
+                  <p>(in <span bo-text="deliveryAreaModel.minimumDuration"></span> min für min. <span bo-text="deliveryAreaModel.minimumValue"></span>€)</p>
+              </div>
+          </div>
+          <p>Außerdem liefern wir in folgende Gebiete:</p>
+        </div>
         <div id="storeDeliveryAreas">
             <div class="storeMultipleDeliveryAreas" ng-repeat="(postal, deliveryAreasCollection) in groupedDeliveryAreasCollection">
                 <div class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
@@ -56,6 +59,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

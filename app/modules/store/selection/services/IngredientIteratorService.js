@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = [
+module.exports = ['$q',
 
-  function() {
+  function($q) {
 
     return {
 
@@ -10,9 +10,9 @@ module.exports = [
       _currentIngredientCategoryIndex: 0,
 
       init: function(ingredientCategories) {
-       this._ingredientCategories = ingredientCategories;
+        this._ingredientCategories = ingredientCategories;
 
-       return this;
+        return this;
       },
 
       next: function() {
@@ -26,20 +26,37 @@ module.exports = [
 
       },
 
+
       getNextEntity: function() {
+        var defer = $q.defer();
+
         if (this._currentIngredientCategoryIndex >= this._ingredientCategories.length) {
-          return undefined;
+          defer.resolve(null);
+        } else {
+          defer.resolve(this._ingredientCategories[this._currentIngredientCategoryIndex + 1]);
         }
 
-        return this._ingredientCategories[this._currentIngredientCategoryIndex + 1];
+        return defer.promise;
+      },
+
+      hasNextEntity: function() {
+        return this._currentIngredientCategoryIndex + 1  < this._ingredientCategories.length;
       },
 
       getEntity: function() {
+        var defer = $q.defer();
+
         if (this._currentIngredientCategoryIndex === this._ingredientCategories.length) {
-          return undefined;
+          defer.resolve(null);
+        } else {
+          defer.resolve(this._ingredientCategories[this._currentIngredientCategoryIndex]);
         }
 
-        return this._ingredientCategories[this._currentIngredientCategoryIndex];
+        return defer.promise;
+      },
+
+      hasEntity: function() {
+        return this._currentIngredientCategoryIndex < this._ingredientCategories.length;
       },
 
       jumpToEntity: function(entity) {

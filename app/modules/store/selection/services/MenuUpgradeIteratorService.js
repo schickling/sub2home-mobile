@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = [ '_',
+module.exports = [ '_', '$q',
 
-  function(_) {
+  function(_, $q) {
 
     return {
 
@@ -25,7 +25,7 @@ module.exports = [ '_',
 
       init: function(menuUpgrades) {
        this._menuUpgrades = menuUpgrades;
-       this._menuUpgradeIndex = -1;
+       this._menuUpgradeIndex = 0;
        this._menuUpgradeArticleIndex = -1;
 
        return this;
@@ -45,39 +45,52 @@ module.exports = [ '_',
       },
 
       getNextEntity: function() {
-        if (this._menuUpgradeIndex + 1  === 0) {
-          return this._menuUpgrades;
-        }
+        var defer = $q.defer();
 
-        var selectedUpgradeMenu = this._getSelected();
-        if (selectedUpgradeMenu && this._menuUpgradeArticleIndex + 1 < selectedUpgradeMenu.menuComponentBlocksCollection.length) {
-          return selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex + 1];
+        if (this._menuUpgradeIndex  === 0) {
+          defer.resolve(this._menuUpgrades);
         } else {
-          return null;
+          var selectedUpgradeMenu = this._getSelected();
+          if (selectedUpgradeMenu && this._menuUpgradeArticleIndex + 1 < selectedUpgradeMenu.menuComponentBlocksCollection.length) {
+            defer.resolve(selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex + 1]);
+          } else {
+            defer.resolve(null);
+          }
         }
 
 
+        return defer.promise;
+      },
+
+      hasNextEntity: function() {
+        return this._menuUpgradeIndex  === 0 || this._getSelected();
       },
 
       getEntity: function() {
+        var defer = $q.defer();
+
         // returns all menu upgrades of the article
         if (this._menuUpgradeIndex === 0) {
-          return this._menuUpgrades;
+          defer.resolve(this._menuUpgrades);
+        } else {
+            // returns all the articles of the current menuComponentBlocks as one collection
+          var selectedUpgradeMenu = this._getSelected();
+          if (selectedUpgradeMenu && this._menuUpgradeArticleIndex < selectedUpgradeMenu.menuComponentBlocksCollection.length) {
+            var tmp = [];
+            angular.forEach(selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex].menuComponentOptionsCollection, function(collection) {
+              tmp = _.union(tmp, collection.menuComponentOptionArticlesCollection);
+            });
+            defer.resolve(tmp);
+          } else {
+            defer.resolve(null);
+          }
         }
 
+        return defer.promise;
+      },
 
-        // returns all the articles of the current menuComponentBlocks as one collection
-        var selectedUpgradeMenu = this._getSelected();
-        if (selectedUpgradeMenu && this._menuUpgradeArticleIndex < selectedUpgradeMenu.menuComponentBlocksCollection.length) {
-          var tmp = [];
-          angular.forEach(selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex].menuComponentOptionsCollection, function(collection) {
-            tmp = _.union(tmp, collection.menuComponentOptionArticlesCollection);
-          });
-          return tmp;
-        }
-
-        return null;
-
+      hasEntity: function() {
+        return this._menuUpgradeIndex  === 0 || this._getSelected();
       },
 
       jumpToEntity: function(entity) {

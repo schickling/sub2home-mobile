@@ -13,8 +13,8 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
         this._orderedItemModel = orderedItemModel;
 
         // if the length is equals one the orderetItem is a article otherwise it is a menu
-        if (orderedItemModel.orderedArticlesCollection.length == 1) {
-          this._currentIterator = ArticleIteratorService.init(orderedItemModel.orderedArticlesCollection[0]);
+        if (orderedItemModel.articlesCollection.length == 1) {
+          this._currentIterator = ArticleIteratorService.init(orderedItemModel.articlesCollection[0]);
         } else {
           this._currentIterator = MenuIteratorService.init(orderedItemModel);
         }

@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgradeIteratorService',
+module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgradeIteratorService', '$q',
 
-  function(EntityCheckerService, IngredientIteratorService, MenuUpgradeIteratorService) {
+  function(EntityCheckerService, IngredientIteratorService, MenuUpgradeIteratorService, $q) {
 
     return {
 
@@ -28,11 +28,11 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
       next: function() {
         var entity = null;
 
-        if (this._ingredientIterator)  {
+        if (this._ingredientIterator.hasEntity())  {
           entity = this._ingredientIterator.next();
         }
 
-        if (this._menuUpgradeIterator && !entity) {
+        if (this._menuUpgradeIterator.hasEntity() && !entity) {
           entity = this._menuUpgradeIterator.next();
         }
 
@@ -40,39 +40,45 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
       },
 
       getNextEntity: function() {
+        var defer = $q.defer();
+
         if (!this._ingredientIterator) {
-          return undefined;
-        }
-        var entity = this._ingredientIterator.getNextEntity();
+          defer.resolve(null);
+          return defer.promise;
 
-        if (!entity && this._menuUpgradeIterator) {
-          entity = this._menuUpgradeIterator.getNextEntity();
+        } else {
+          if (this._ingredientIterator.hasNextEntity()) {
+            return this._ingredientIterator.getNextEntity();
+          } else {
+            return this._menuUpgradeIterator.getNextEntity();
+          }
         }
 
-        return entity;
       },
 
       getEntity: function() {
+        var defer = $q.defer();
+
         if (!this._ingredientIterator) {
-          return null;
+          defer.resolve(null);
+          return defer.promise;
+        } else {
+
+          if (this._ingredientIterator.hasEntity()) {
+            return this._ingredientIterator.getEntity();
+          } else {
+            return this._menuUpgradeIterator.getEntity();
+          }
         }
-
-        var entity = this._ingredientIterator.getEntity();
-
-        if (!entity && this._menuUpgradeIterator) {
-          entity = this._menuUpgradeIterator.getEntity();
-        }
-
-          return entity;
 
       },
 
       getType: function() {
-        if (this._ingredientIterator && this._ingredientIterator.getEntity()) {
+        if (this._ingredientIterator.hasEntity()) {
           return this._ingredientIterator.getType();
         }
 
-       if (this._menuUpgradeIterator && this._menuUpgradeIterator.getEntity()) {
+       if (this._menuUpgradeIterator.hasEntity()) {
           return this._menuUpgradeIterator.getType();
        }
 

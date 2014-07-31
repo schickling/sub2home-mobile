@@ -36,11 +36,7 @@ module.exports = [ '_', 'ArticleIteratorService', 'ArticleModelFactory', '$route
       _menu: null,
       _menuComponentCollection: null,
       _currentArticleIndex: null,
-      _articleIterator: null
-
-
-
-      },
+      _articleIterator: null,
 
       init: function(menu) {
         this._menu = menu;
@@ -59,6 +55,7 @@ module.exports = [ '_', 'ArticleIteratorService', 'ArticleModelFactory', '$route
         return nextEntity;
       },
 
+      
       getNextEntity: function() {
 
         var defer = $q.defer();
@@ -73,10 +70,11 @@ module.exports = [ '_', 'ArticleIteratorService', 'ArticleModelFactory', '$route
 
 
             // defer.promise = this.fetchArtile(article);
-            this._articleIterator = fetchArticle(article);
-
-            this._articleIterator.then(function(iterator) {
-              defer.resolve(iterator.getEntity());
+            //this._articleIterator = fetchArticle(article);
+            var self = this;
+            fetchArticle(article).then(function(iterator) {
+              self._articleIterator = iterator;
+              return iterator.getEntity();
             });
 
           } else {
@@ -84,6 +82,7 @@ module.exports = [ '_', 'ArticleIteratorService', 'ArticleModelFactory', '$route
             if (this._currentArticleIndex + 1 < this._menuComponentCollection.length) {
               var entity = this._menuComponentCollection[this._currentArticleIndex + 1];
               defer.resolve(entity.menuComponentOptionsCollection[0]);
+              return defer.promise;
             }
           }
         } else {
@@ -91,24 +90,24 @@ module.exports = [ '_', 'ArticleIteratorService', 'ArticleModelFactory', '$route
           // TODO when getNextEntity is Null
         }
 
-        return defer.promise;
       },
 
       getEntity: function() {
+        var defer = $q.defer();
+
         var entity = this._menuComponentCollection[this._currentArticleIndex];
 
           if (!this._articleIterator) {
             // if getSelected annd has ingrediants fetch from server
-            return entity.menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection;
+            defer.resolve(entity.menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection);
 
             //this._articleIterator = ArticleIteratorService.init();
             //result = this._articleIterator();
           } else {
-            return this._articleIterator.then(function() {
-
-            });
+            defer.resolve(this._articleIterator);
           }
 
+        return defer.promise;
       },
 
       getArticle: function() {

@@ -8,17 +8,9 @@ module.exports = ['_',
 
       buildWithArticle: function(articleModel) {
 
-        this._seperateDefaultIngredients(articleModel);
-
         var orderedItemModel = {
-          orderedArticlesCollection: []
+          articlesCollection: [articleModel]
         };
-
-        var orderedArticleModel = {
-          articleModel
-        };
-
-        orderedItemModel.orderedArticlesCollection.push(orderedArticleModel);
 
         return orderedItemModel;
 
@@ -26,12 +18,12 @@ module.exports = ['_',
 
       buildWithMenuBundle: function(menuBundleModel) {
         var orderedItemModel = {
-          orderedArticlesCollection: [],
+          articlesCollection: [],
           menuBundleModel: menuBundleModel
         };
 
         _.each(menuBundleModel.menuComponentBlocksCollection, function(article) {
-          orderedItemModel.orderedArticlesCollection.push(article);
+          orderedItemModel.articlesCollection.push(article);
         });
 
         return orderedItemModel;

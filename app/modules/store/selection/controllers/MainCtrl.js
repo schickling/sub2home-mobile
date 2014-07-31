@@ -75,21 +75,28 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
 
       $scope.articleModel = EntityIteratorService.getArticle();
-      $scope.entity = EntityIteratorService.getEntity();
+
+//      entityiteratorservice.getentity().then(function(entity) {
+//        $scope.entity = entity;
+//      });
+      EntityIteratorService.getEntity().then(function(entity){
+        $scope.entity = entity;
+      });
+
       $scope.type = EntityIteratorService.getType();
 
-      var nextEntity = EntityIteratorService.getNextEntity();
-
-      // checks whether the next step is the tray or not
-      if (!nextEntity) {
-        $scope.toTray = true;
-      } else if (nextEntity instanceof Array) {
-        $scope.toTray = false;
-        $scope.nextStep = nextEntity[0];
-      } else {
-        $scope.toTray = false;
-        $scope.nextStep = nextEntity;
-      }
+      EntityIteratorService.getNextEntity().then(function(nextEntity) {
+        // checks whether the next step is the tray or not
+        if (!nextEntity) {
+          $scope.toTray = true;
+        } else if (nextEntity instanceof Array) {
+          $scope.toTray = false;
+          $scope.nextStep = nextEntity[0];
+        } else {
+          $scope.toTray = false;
+          $scope.nextStep = nextEntity;
+        }
+      });
 
     };
 

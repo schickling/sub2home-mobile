@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "angular-bindonce": "^0.3.1",
+    "bowser": "^0.7.1",
     "fastclick": "^1.0.2",
     "gulp-rev": "^1.0.0",
     "lodash": "^2.4.1",

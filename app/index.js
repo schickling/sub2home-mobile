@@ -1,12 +1,18 @@
 'use strict';
 
+var bowser = require('bowser');
+
+if (bowser.msie && bowser.version < 8) {
+  window.location.href = 'http://browser.sub2home.com';
+}
+
 // vendor
 require('angular/angular');
 require('angular-route/angular-route');
 require('angular-touch/angular-touch');
 require('angular-resource/angular-resource');
 require('angular-local-storage/angular-local-storage');
-require('angular-bindonce/bindonce');
+require('angular-bindonce');
 var fastclick = require('fastclick');
 var _ = require('lodash');
 

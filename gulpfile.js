@@ -28,6 +28,7 @@ gulp.task('hint', function() {
 
 gulp.task('browserify.app', function() {
   return browserify('./app/index.js')
+    .external('bowser')
     .external('lodash')
     .external('fastclick')
     .external('zipcoder')
@@ -36,7 +37,7 @@ gulp.task('browserify.app', function() {
     .external('angular-touch/angular-touch')
     .external('angular-resource/angular-resource')
     .external('angular-local-storage/angular-local-storage')
-    .external('angular-bindonce/bindonce')
+    .external('angular-bindonce')
     .external('./modules/template-cache')
     .bundle({
       debug: true,
@@ -48,6 +49,7 @@ gulp.task('browserify.app', function() {
 
 gulp.task('browserify.libs', function() {
   return browserify()
+    .require('bowser')
     .require('lodash')
     .require('fastclick')
     .require('zipcoder')
@@ -56,7 +58,7 @@ gulp.task('browserify.libs', function() {
     .require('angular-touch/angular-touch')
     .require('angular-resource/angular-resource')
     .require('angular-local-storage/angular-local-storage')
-    .require('angular-bindonce/bindonce')
+    .require('angular-bindonce')
     .bundle()
     .pipe(source('libs.js'))
     .pipe(gulp.dest('app/.tmp/js'));

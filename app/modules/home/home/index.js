@@ -17,12 +17,16 @@ module.exports = angular.module('home.home', [])
         templateUrl: 'modules/home/home/templates/index.html',
         controller: 'HomeHomeCtrl',
         resolve: {
-          storesCollection: function(StoreModelFactory) {
-            return StoreModelFactory.query().$promise;
-          },
-          selectedDeliveryAreaModel: function(PersistenceService) {
-            return PersistenceService.load('selectedDeliveryAreaModel');
-          },
+          storesCollection: ['StoreModelFactory',
+            function(StoreModelFactory) {
+              return StoreModelFactory.query().$promise;
+            }
+          ],
+          selectedDeliveryAreaModel: ['PersistenceService',
+            function(PersistenceService) {
+              return PersistenceService.load('selectedDeliveryAreaModel');
+            }
+          ],
         }
       });
 

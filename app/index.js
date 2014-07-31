@@ -11,6 +11,7 @@ var fastclick = require('fastclick');
 var _ = require('lodash');
 
 // modules
+require('./modules/vendor');
 require('./modules/common');
 require('./modules/resources');
 require('./modules/404');

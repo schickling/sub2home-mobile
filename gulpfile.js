@@ -6,14 +6,18 @@ var source = require('vinyl-source-stream');
 var less = require('gulp-less');
 var templateCache = require('gulp-angular-templatecache');
 var webserver = require('gulp-webserver');
-var watch = require('gulp-watch');
 var hint = require('gulp-jshint');
 var header = require('gulp-header');
+var usemin = require('gulp-usemin');
+var rev = require('gulp-rev');
+var uglify = require('gulp-uglify');
+var minifyCss = require('gulp-minify-css');
+var minifyHtml = require('gulp-minify-html');
 
 gulp.task('less', function() {
   return gulp.src('app/less/main.less')
     .pipe(less())
-    .pipe(gulp.dest('.tmp/css'));
+    .pipe(gulp.dest('app/.tmp/css'));
 });
 
 gulp.task('hint', function() {
@@ -39,7 +43,7 @@ gulp.task('browserify.app', function() {
       standalone: 'app',
     })
     .pipe(source('app.js'))
-    .pipe(gulp.dest('.tmp'));
+    .pipe(gulp.dest('app/.tmp/js'));
 });
 
 gulp.task('browserify.libs', function() {
@@ -55,7 +59,7 @@ gulp.task('browserify.libs', function() {
     .require('angular-bindonce/bindonce')
     .bundle()
     .pipe(source('libs.js'))
-    .pipe(gulp.dest('.tmp'));
+    .pipe(gulp.dest('app/.tmp/js'));
 });
 
 gulp.task('browserify.templates', ['views'], function() {
@@ -65,17 +69,39 @@ gulp.task('browserify.templates', ['views'], function() {
     })
     .bundle()
     .pipe(source('template-cache.js'))
-    .pipe(gulp.dest('.tmp'));
+    .pipe(gulp.dest('app/.tmp/js'));
 });
 
 gulp.task('webserver', function() {
-  return gulp.src(['.tmp', 'app'])
+  return gulp.src(['app'])
     .pipe(webserver({
       port: 8080,
       host: '0.0.0.0',
       livereload: true,
       fallback: 'index.html'
     }));
+});
+
+gulp.task('minify', ['browserify', 'less'], function() {
+  return gulp.src('app/index.html')
+    .pipe(usemin({
+      css: [minifyCss(), rev()],
+      html: [minifyHtml({
+        empty: true
+      })],
+      js: [uglify(), rev()]
+    }))
+    .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('copy.fonts', function() {
+  return gulp.src('app/fonts/*')
+    .pipe(gulp.dest('dist/fonts'));
+});
+
+gulp.task('copy.images', function() {
+  return gulp.src('app/images/*')
+    .pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('views', function() {
@@ -96,7 +122,6 @@ gulp.task('watch', function() {
 });
 
 gulp.task('test', [
-  'browserify',
   'hint'
 ]);
 
@@ -112,6 +137,13 @@ gulp.task('server', [
   'browserify',
   'watch',
   'webserver',
+]);
+
+gulp.task('build', [
+  'test',
+  'minify',
+  'copy.fonts',
+  'copy.images',
 ]);
 
 gulp.task('default', ['server']);

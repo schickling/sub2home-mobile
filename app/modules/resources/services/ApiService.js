@@ -12,7 +12,7 @@ module.exports = ['$window',
         var hostname = $window.location.hostname;
 
         if (hostname.indexOf('sub2home.com') !== -1) {
-          return 'http://api.sub2home.com/' + fragment;
+          return 'https://api.sub2home.com/' + fragment;
         } else {
           return 'http://' + hostname + ':1071/' + fragment;
         }

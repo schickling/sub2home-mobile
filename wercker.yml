@@ -5,8 +5,8 @@ build:
         name: install local dependencies
         code: npm install
     - script:
-        name: run tests
-        code: npm test
+        name: build
+        code: npm run-script build
 deploy:
   steps:
     - s3sync:

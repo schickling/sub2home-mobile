@@ -1,17 +1,17 @@
 <div bindonce ng-class="{navToggled: navToggled, overlayed: chooseDeliveryArea}">
     <aside id="header">
         <div id="headerContent">
-          <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
-          <div id="pageTitle" ng-click="toggleNav()">
-              <span bo-text="currentCategoryModel.title"></span>
-          </div>
+            <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
+            <div id="pageTitle" ng-click="toggleNav()">
+                <span bo-text="currentCategoryModel.title"></span>
+            </div>
 
-          <div ng-click="navigate(':storeAlias/tablett')" id="toTheTray">
-              <div class="icn iTray">
-                  <span id="traySize">5</span>
-              </div>
-          </div>
-          <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
+            <div ng-click="navigate(':storeAlias/tablett')" id="toTheTray">
+                <div class="icn iTray">
+                    <span id="traySize">5</span>
+                </div>
+            </div>
+            <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
         </div>
     </aside>
 
@@ -48,30 +48,30 @@
             <p>SUBWAY<span class="superscript">&reg;</span>  <span bo-text="storeModel.title"></span>
                 <br>kommt zu dir nach Hause.</p>
             <p class="callToAction">Wohin dürfen wir liefern?</p>
-            <div class="close"></div>
+            <div ng-click="hideDeliveryArea()" class="close"></div>
         </header>
         <div id="storeDeliveryAreaSuggestion" ng-class="{ loading: checkingPostal }">
-          <compass id="suggestionLoader" rotate="checkingPostal"></compass>
-          <div class="storeMultipleDeliveryAreas" ng-if="suggestedDeliveryAreasCollection.length > 0">
-              <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea" ng-repeat="deliveryAreaModel in suggestedDeliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
-                  <div class="postal">{{ deliveryAreaModel.postal }}</div>
-                  <div class="storeDeliveryAreaDescription">
-                      <h3>{{ deliveryAreaModel.district || deliveryAreaModel.city }}</h3>
-                      <p>(in <span>30</span> min für min. <span>15</span>€)</p>
-                  </div>
-              </div>
-          </div>
-          <p class="smallHint" ng-if="suggestedDeliveryAreasCollection.length > 0">Außerdem liefern wir in folgende Gebiete:</p>
+            <compass id="suggestionLoader" rotate="checkingPostal"></compass>
+            <div class="storeMultipleDeliveryAreas" ng-if="suggestedDeliveryAreasCollection.length > 0">
+                <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea" ng-repeat="deliveryAreaModel in suggestedDeliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
+                    <div class="postal">{{ deliveryAreaModel.postal }}</div>
+                    <div class="storeDeliveryAreaDescription">
+                        <h3>{{ deliveryAreaModel.district || deliveryAreaModel.city }}</h3>
+                        <p>(in <span>30</span> min für min. <span>15</span>€)</p>
+                    </div>
+                </div>
+            </div>
+            <p class="smallHint" ng-if="suggestedDeliveryAreasCollection.length > 0">Außerdem liefern wir in folgende Gebiete:</p>
 
-          <!-- If Geo-Detection finds a postal out of the current store's range // This replaces .storeMultipleDeliveryAreas and .smallHint, .callToAction (Wohin dürfen wir liefern) is not Needed-->
+            <!-- If Geo-Detection finds a postal out of the current store's range // This replaces .storeMultipleDeliveryAreas and .smallHint, .callToAction (Wohin dürfen wir liefern) is not Needed-->
 
-<!--           <div class="backHome">
+            <!--           <div class="backHome">
             <p class="smallHint">Unter Umständen befindest du dich außerhalb der Reichweite von SUBWAY<span class="superscript">&reg;</span> Memmingen. Über unsere Restaurant-Suche findest du zum Glück:</p>
             <div class="button">Zur Startseite</div>
             <p class="smallHint">SUBWAY<span class="superscript">&reg;</span> Memmingen liefert in folgende Gebiete:</p>
           </div> -->
 
-          <!-- / -->
+            <!-- / -->
 
 
         </div>
@@ -90,8 +90,8 @@
         <!-- If Geo-Detection fails, or is blocked by user, or detected postal is within the store's delivery areas -->
 
         <div class="backHome">
-          <p class="smallHint">Dein Liefergebiet ist nicht dabei? Dann versuch es bei einem anderen SUBWAY<span class="superscript">&reg;</span>-Restaurant:</p>
-          <div class="button">Zur Startseite</div>
+            <p class="smallHint">Dein Liefergebiet ist nicht dabei? Dann versuch es bei einem anderen SUBWAY<span class="superscript">&reg;</span>-Restaurant:</p>
+            <div ng-click="navigate('/')" class="button">Zur Startseite</div>
         </div>
 
         <!-- / -->

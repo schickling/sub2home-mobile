@@ -28,6 +28,10 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
 
     $scope.chooseDeliveryArea = !$scope.selectedDeliveryAreaModel;
 
+    $scope.hideDeliveryArea = function() {
+      $scope.chooseDeliveryArea = false;
+    };
+
     $scope.toggleNav = function(value) {
       $scope.navToggled = value !== undefined ? value : !$scope.navToggled;
     };

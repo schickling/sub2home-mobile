@@ -71,7 +71,6 @@ body > .ng-scope {
 	transition-duration: .25s;
 }
 
-
 // Header ----------------------------------------------------------------------
 
 @headerTopPadding: 	16px;
@@ -407,7 +406,17 @@ p {
 	}
 }
 
-
+.close {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	color: @onNoteColor50;
+	&:before {
+		content: "\e60a";
+		font-family: "Homicons";
+		font-size: 20px;
+	}
+}
 
 .note {
 

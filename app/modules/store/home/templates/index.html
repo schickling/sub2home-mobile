@@ -15,7 +15,7 @@
         </div>
     </aside>
 
-    <nav id="categoriesNavigation">
+    <nav id="categoriesNavigation" class="dark">
         <ul>
             <li ng-repeat="categoryModel in categoriesCollection" bo-class="{ active: categoryModel.id === currentCategoryModel.id }">
                 <div ng-click="selectCategory(categoryModel)" class="icn" bo-class="categoryModel.icon"></div>

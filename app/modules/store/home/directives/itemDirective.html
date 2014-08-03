@@ -3,7 +3,7 @@
   <h2><span bo-text="itemModel.title | wordSplit:true"></span> <span style="white-space: nowrap;"><span bo-text="itemModel.title | wordSplit:false"></span><span class="infoButton" ng-click="hidden = !hidden"></span></span></h2>
   <p class="itemDescription" ng-hide="hidden" bo-text="itemModel.description"></p>
   <div class="buyingOption">
-    <div ng-class="getBuyClass(itemModel.icon)" ng-click="handleBuyClick(itemModel)">
+    <div class="note" ng-class="getBuyClass(itemModel.icon)" ng-click="handleBuyClick(itemModel)">
       <div class="pricetag">
         <h3>
           <div class="sizeTag" bo-text="itemModel.info" bo-if="itemModel.info"></div>
@@ -12,7 +12,7 @@
         <div class="deposit" bo-if="itemModel.deposit > 0">+<span bo-text="itemModel.deposit * 100"></span> ct Pfand</div>
       </div>
     </div>
-    <div ng-repeat="chainedArticleModel in itemModel.chainedArticlesCollection" ng-class="getBuyClass(chainedArticleModel.icon)" ng-click="handleBuyClick(chainedArticleModel)">
+    <div class="note" ng-repeat="chainedArticleModel in itemModel.chainedArticlesCollection" ng-class="getBuyClass(chainedArticleModel.icon)" ng-click="handleBuyClick(chainedArticleModel)">
       <div class="pricetag">
         <h3>
           <div class="sizeTag" bo-text="chainedArticleModel.info"></div>

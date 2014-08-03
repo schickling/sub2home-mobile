@@ -1,18 +1,18 @@
 <div>
     <aside id="header">
-        <div id="getBack" ng-click="back()">
-            zurück
-        </div>
-        <div id="pageTitle">
-            <!--       <img src="images/articles/smallimages/bbqrib.png" alt="" /> -->
+      <div id="headerContent">
+        <div id="getBack"><p>Subs <!-- Article-Category from which the User got to selection --> </p></div> 
+        <div id="pageTitle" class="separate">
             <span>{{ articleModel.title }}<small> {{ articleModel.info }}</small></span>
         </div>
-        <div id="toTheInfo" class="icn iInfo"></div>
         <div id="toTheTray">
             <div class="icn iTray">
                 <span id="traySize">5</span>
             </div>
         </div>
+        <div id="toTheInfo" class="icn iInfo"></div>
+      </div>
+
     </aside>
 
     <div id="storeSelection" class="content" ng-swipe-left="next()" ng-swipe-right="prev()">

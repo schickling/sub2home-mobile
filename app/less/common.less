@@ -5,8 +5,8 @@
 
 // Header Item Widths
 
-@toTheInfoWidth:				46px;
-@toggleCategoriesWidth: 40px;
+@toTheInfoWidth:				48px;
+@toggleCategoriesWidth: 50px;
 @toTrayWidth: 					50px;
 
 
@@ -81,32 +81,9 @@ body > .ng-scope {
 	top: 0;
 	left: 0;
 	right: 0;
-
-	font-size: 18px;
-
-	overflow: visible;
-
-	color: @onHeaderColor;
-
-	min-width: 320px;
-
-	// Background
-
-	background: #e4c988; /* Old browsers */
-	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U0Yzk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwJSIgc3RvcC1jb2xvcj0iI2VjZDM5MyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjkwJSIgc3RvcC1jb2xvcj0iI2VjZDM5MyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNGM5ODgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-	background: -moz-linear-gradient(top,  #e4c988 0%, #ecd393 10%, #ecd393 90%, #e4c988 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4c988), color-stop(10%,#ecd393), color-stop(90%,#ecd393), color-stop(100%,#e4c988)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #e4c988 0%,#ecd393 10%,#ecd393 90%,#e4c988 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #e4c988 0%,#ecd393 10%,#ecd393 90%,#e4c988 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #e4c988 0%,#ecd393 10%,#ecd393 90%,#e4c988 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #e4c988 0%,#ecd393 10%,#ecd393 90%,#e4c988 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4c988', endColorstr='#e4c988',GradientType=0 ); /* IE6-8 */
 	height: @headerHeight;
+	overflow: visible;
 	z-index: 9000;
-
-
-	// Wooden Border
 
 	&:after {
 		content: " ";
@@ -129,34 +106,95 @@ body > .ng-scope {
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f4327', endColorstr='#2c150b',GradientType=0 ); /* IE6-8 */
 
 	}
+}
+
+#headerContent {
+
+	display: table;
+
+	font-size: 18px;
+
+	color: @onHeaderColor;
+
+	min-width: 320px;
+
+	// Background
+
+	background: #e4c988; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U0Yzk4OCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwJSIgc3RvcC1jb2xvcj0iI2VjZDM5MyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjkwJSIgc3RvcC1jb2xvcj0iI2VjZDM5MyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNGM5ODgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #e4c988 0%, #ecd393 10%, #ecd393 90%, #e4c988 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4c988), color-stop(10%,#ecd393), color-stop(90%,#ecd393), color-stop(100%,#e4c988)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #e4c988 0%,#ecd393 10%,#ecd393 90%,#e4c988 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #e4c988 0%,#ecd393 10%,#ecd393 90%,#e4c988 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #e4c988 0%,#ecd393 10%,#ecd393 90%,#e4c988 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #e4c988 0%,#ecd393 10%,#ecd393 90%,#e4c988 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4c988', endColorstr='#e4c988',GradientType=0 ); /* IE6-8 */
+	 height: @headerHeight;
+	 z-index: inherit;
+
+
+	// Wooden Border
+
+
+
+
+	// JUST A TRY: DARKBACKGROUND ------------------------------------------------
+
+
+	// background: @darkBackground;
+	// .box-shadow(inset 0 -1px 3px 0 rgba(0,0,0,0.7));
+
+
 
 	> div {
-		display: block;
-		float: left;
+		display: table-cell;
+		// float: left;
 		height: 100%;
 		.border-box;
 		padding: @headerTopPadding 0 0 10px;
 
 		&#pageTitle {
 
-
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
+			padding-left: 0;
 
 			.icn {
 				top: -2px;
 				margin-right: 5px;
 				font-size: 24px;
 			}
+			&.separate {
+				padding-left: 10px;
+				border-left: 1px solid @onHeaderColor50;
+			}
+
+			h3 {
+				font-size: 18px;
+				line-height: 0.8;
+			}
+
+			p {
+				font-size: 13px;
+				margin: 0;
+				padding: 0;
+				text-transform: uppercase;
+				color: @onHeaderColor50;
+			}
+
+			&.twoLine {
+				padding-top: 10px;
+			}
 		}
 
 		&#toTheInfo {
-			float: right;
-			padding: 14px 10px 0;
+			// float: right;
+			padding: 14px 0 0;
 
 			font-size: 22px;
-
+			text-align: center;
 			width: @toTheInfoWidth;
 
 			cursor: pointer;
@@ -165,12 +203,13 @@ body > .ng-scope {
 		}
 
 		&#toTheTray {
-			float: right;
+			// float: right;
 			position: relative;
 			background: @headerTrayBackground;
 			border-left: 1px solid @onHeaderColor50;
 			padding: 8px 10px 0;
-			min-width: 55px;
+			width: 55px;
+			vertical-align: top;
 			text-align: center;
 
 			cursor: pointer;
@@ -180,9 +219,10 @@ body > .ng-scope {
 			}
 
 			&.atTray {
-				position: absolute;
-				left: 60px;
-				right: 46px;
+				width: auto;
+				// position: absolute;
+				// left: 50px;
+				// right: 50px;
 			}
 
 			> div {
@@ -193,13 +233,17 @@ body > .ng-scope {
 		&#getBack {
 			position: relative;
 			font-size: 12px;
-			padding: 13px 5px 0;
-			width: 60px;
+			padding: 12px 5px 0;
+			vertical-align: top;
+			width: 50px;
 			text-align: center;
-
 			// border-right: 1px solid @onHeaderColor50;
 			.border-box;
 			cursor: pointer;
+			p {
+				padding: 0 5px;
+				margin: 0;
+			}
 
 			&:before {
 				content: "\e61d";
@@ -274,7 +318,10 @@ body > .ng-scope {
 
 
 #ownLogo {
-	top: -5px;
+	text-align: center;
+	font-size: 35px;
+	padding: 8px 10px 0 !important;
+	color: @onHeaderColor50;
 }
 
 // Content ---------------------------------------------------------------------

@@ -1,19 +1,19 @@
 <div>
     <aside id="header" class="noSelect">
-        <div id="getBack">
-            Sortiment
-        </div>
-        <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
+      <div id="headerContent">
+        <div id="getBack" ng-click="back()"><p>Aktionen <!-- Article-Category from which the User either got to selection or tray --></p></div>
         <div id="toTheTray" class="atTray">
             <div id="trayTitle">Tablett</div>
             <div class="icn iTray">
                 <span id="traySize">5</span>
             </div>
-            <div id="trayValue" class="sufficing">
+            <div id="trayValue" class="">
                 <div id="currentValue">16,50 €</div>
                 <div id="minValue">(min. 15,00€)</div>
             </div>
         </div>
+        <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
+      </div>
     </aside>
 
     <div id="storeTrayMainContent" class="content note">

@@ -1,14 +1,17 @@
 <div bindonce ng-class="{navToggled: navToggled, overlayed: chooseDeliveryArea}">
     <aside id="header">
-        <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
-        <div id="pageTitle" ng-click="toggleNav()">
-            <span bo-text="currentCategoryModel.title"></span>
-        </div>
-        <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
-        <div ng-click="navigate(':storeAlias/tablett')" id="toTheTray">
-            <div class="icn iTray">
-                <span id="traySize">5</span>
-            </div>
+        <div id="headerContent">
+          <div id="toggleCategories" class="icn iNav" ng-click="toggleNav()"></div>
+          <div id="pageTitle" ng-click="toggleNav()">
+              <span bo-text="currentCategoryModel.title"></span>
+          </div>
+
+          <div ng-click="navigate(':storeAlias/tablett')" id="toTheTray">
+              <div class="icn iTray">
+                  <span id="traySize">5</span>
+              </div>
+          </div>
+          <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
         </div>
     </aside>
 

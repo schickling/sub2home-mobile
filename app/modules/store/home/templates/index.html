@@ -24,9 +24,15 @@
     </nav>
 
     <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)" ng-swipe-right="toggleNav(true)">
-        <section class="note above" id="editLocation">
+        <section class="note above">
+          <div id="editLocation">
             <i class="editButton inSmallText before" ng-click="chooseDeliveryArea = true"></i>
             <p>in {{ selectedDeliveryAreaModel.minimumDuration }}min nach {{ selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city }}</p>
+          </div>
+          <div id="storeMessage">
+            <p class="warning">In Memmingen kann es während des Volksfestes Soundso zu verlängerten Lieferzeiten kommen. Sorry dafür.</p>
+            <p class="smallHint">Tippen, um die Mitteilung auszublenden.</p>
+          </div>
         </section>
         <section id="articles">
             <div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">

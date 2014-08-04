@@ -73,6 +73,8 @@
 #editLocation {
   padding: 20px @bodyPadding 13px;
   font-size: 18px;
+  z-index: 101;
+
   p {
     display: inline-block;
     margin: 0;
@@ -81,6 +83,20 @@
   .editButton {
     vertical-align: middle;
     margin: 0 10px 0 0;
+  }
+}
+
+#storeMessage {
+  border-top: 1px solid @onNoteColor50;
+  p {
+    margin: 10px 0 0;
+    padding: 10px 15px 0;
+    display: inline-block;
+  }
+  .smallHint {
+    margin: 0 0 10px;
+    padding: 0;
+    color: @onNoteColor50;
   }
 }
 

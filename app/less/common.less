@@ -425,7 +425,7 @@ p {
 	}
 }
 
-.highlighted {
+.highlighted, .announcement {
 	color: @greenLight;
 }
 
@@ -433,8 +433,21 @@ p {
 	color: @orange;
 }
 
+.danger {
+	color: @red;
+}
+
 .smallHint {
 	font-size: 13px;
+	.superscript {
+		font-size: 9px !important;
+	}
+}
+
+.tapToClose {
+	&:before {
+		content: "Tippen";
+	}
 }
 
 // Link-Buttons

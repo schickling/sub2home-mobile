@@ -290,12 +290,20 @@ body > .ng-scope {
 		}
 	}
 	&.sufficing {
-		margin-top: 8px;
-		> div {
-			font-size: 100%;
-			&#minValue {
-				display: none;
-			}
+		// margin-top: 8px;
+		// > div {
+		// 	font-size: 100%;
+		// 	&#minValue {
+		// 		display: none;
+		// 	}
+		// }
+		#currentValue:after {
+			content: "\e609";
+			font-size: 13px;
+			font-family: "Homicons";
+			display: inline-block;
+			margin-left: 5px;
+			color: @onHeaderColor50;
 		}
 	}
 }

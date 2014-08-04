@@ -114,6 +114,7 @@ body > .ng-scope {
 	font-size: 18px;
 	color: @onHeaderColor;
 	min-width: 320px;
+	width: 100%;
 
 	// Background
 
@@ -306,6 +307,7 @@ body > .ng-scope {
 	font-size: 35px;
 	padding: 8px 10px 0 !important;
 	color: @onHeaderColor50;
+	width: 65px;
 }
 
 // Content ---------------------------------------------------------------------
@@ -413,9 +415,6 @@ p {
 		.icn {
 			font-size: 20px;
 		}
-		&.highlighted {
-			color: @greenLight;
-		}
 	}
 
 	// Buttons on Notes
@@ -424,6 +423,14 @@ p {
 		background: @onNoteColor50;
 		color: @noteColor;
 	}
+}
+
+.highlighted {
+	color: @greenLight;
+}
+
+.warning {
+	color: @orange;
 }
 
 .smallHint {

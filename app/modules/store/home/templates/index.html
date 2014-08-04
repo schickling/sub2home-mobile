@@ -41,60 +41,150 @@
         </div>
     </div>
 </div>
-<div id="deliveryAreaOverlayContainer" ng-if="chooseDeliveryArea">
-    <div id="deliveryAreaOverlay" bindonce>
-        <header>
-            <div class="logo"></div>
-            <p>SUBWAY<span class="superscript">&reg;</span>  <span bo-text="storeModel.title"></span>
-                <br>kommt zu dir nach Hause.</p>
-            <p class="callToAction">Wohin dürfen wir liefern?</p>
-            <div ng-click="hideDeliveryArea()" class="close"></div>
-        </header>
-        <div id="storeDeliveryAreaSuggestion" ng-class="{ loading: checkingPostal }">
-            <compass id="suggestionLoader" rotate="checkingPostal"></compass>
-            <div class="storeMultipleDeliveryAreas" ng-if="suggestedDeliveryAreasCollection.length > 0">
-                <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea" ng-repeat="deliveryAreaModel in suggestedDeliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
-                    <div class="postal">{{ deliveryAreaModel.postal }}</div>
-                    <div class="storeDeliveryAreaDescription">
-                        <h3>{{ deliveryAreaModel.district || deliveryAreaModel.city }}</h3>
-                        <p>(in <span>30</span> min für min. <span>15</span>€)</p>
-                    </div>
+
+<div id="overlayContainer" ng-if="chooseDeliveryArea">
+
+<!-- choose delivery-area -->
+
+  <div class="overlay" id="storeDeliveryAreaSelection" bindonce>
+    <header>
+        <div class="logo"></div>
+        <p>SUBWAY<span class="superscript">&reg;</span>  <span bo-text="storeModel.title"></span>
+            <br>kommt zu dir nach Hause.</p>
+        <p class="callToAction">Wohin dürfen wir liefern?</p>
+        <div ng-click="hideDeliveryArea()" class="close"></div>
+    </header>
+    <div id="storeDeliveryAreaSuggestion" ng-class="{ loading: checkingPostal }">
+      <compass id="suggestionLoader" rotate="checkingPostal"></compass>
+      <div class="storeMultipleDeliveryAreas" ng-if="suggestedDeliveryAreasCollection.length > 0">
+          <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea" ng-repeat="deliveryAreaModel in suggestedDeliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
+              <div class="postal">{{ deliveryAreaModel.postal }}</div>
+              <div class="storeDeliveryAreaDescription">
+                  <h3>{{ deliveryAreaModel.district || deliveryAreaModel.city }}</h3>
+                  <p>(in <span>30</span> min für min. <span>15</span>€)</p>
+              </div>
+          </div>
+      </div>
+      <p class="smallHint" ng-if="suggestedDeliveryAreasCollection.length > 0">Außerdem liefern wir in folgende Gebiete:</p>
+
+    <!-- If Geo-Detection finds a postal out of the current store's range // This replaces .storeMultipleDeliveryAreas and .smallHint, .callToAction (Wohin dürfen wir liefern) is not Needed-->
+
+           <!-- <div class="backHome">
+                  <p class="smallHint">Unter Umständen befindest du dich außerhalb der Reichweite von SUBWAY<span class="superscript">&reg;</span> Memmingen. Über unsere Restaurant-Suche findest du zum Glück:</p>
+                  <div class="button">Zur Startseite</div>
+                  <p class="smallHint">SUBWAY<span class="superscript">&reg;</span> Memmingen liefert in folgende Gebiete:</p>
+                </div> -->
+
+    <!-- / -->
+
+    </div>
+    <div id="storeDeliveryAreas">
+        <div class="storeMultipleDeliveryAreas" ng-repeat="(postal, deliveryAreasCollection) in groupedDeliveryAreasCollection">
+            <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
+                <div class="postal" bo-text="postal"></div>
+                <div class="storeDeliveryAreaDescription">
+                    <h3 bo-text="deliveryAreaModel.district || deliveryAreaModel.city"></h3>
+                    <p>(in <span bo-text="deliveryAreaModel.minimumDuration"></span> min für min. <span bo-text="deliveryAreaModel.minimumValue"></span>€)</p>
                 </div>
             </div>
-            <p class="smallHint" ng-if="suggestedDeliveryAreasCollection.length > 0">Außerdem liefern wir in folgende Gebiete:</p>
-
-            <!-- If Geo-Detection finds a postal out of the current store's range // This replaces .storeMultipleDeliveryAreas and .smallHint, .callToAction (Wohin dürfen wir liefern) is not Needed-->
-
-            <!--           <div class="backHome">
-            <p class="smallHint">Unter Umständen befindest du dich außerhalb der Reichweite von SUBWAY<span class="superscript">&reg;</span> Memmingen. Über unsere Restaurant-Suche findest du zum Glück:</p>
-            <div class="button">Zur Startseite</div>
-            <p class="smallHint">SUBWAY<span class="superscript">&reg;</span> Memmingen liefert in folgende Gebiete:</p>
-          </div> -->
-
-            <!-- / -->
-
-
         </div>
-        <div id="storeDeliveryAreas">
-            <div class="storeMultipleDeliveryAreas" ng-repeat="(postal, deliveryAreasCollection) in groupedDeliveryAreasCollection">
-                <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
-                    <div class="postal" bo-text="postal"></div>
-                    <div class="storeDeliveryAreaDescription">
-                        <h3 bo-text="deliveryAreaModel.district || deliveryAreaModel.city"></h3>
-                        <p>(in <span bo-text="deliveryAreaModel.minimumDuration"></span> min für min. <span bo-text="deliveryAreaModel.minimumValue"></span>€)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
 
-        <!-- If Geo-Detection fails, or is blocked by user, or detected postal is within the store's delivery areas -->
+    <!-- If Geo-Detection fails, or is blocked by user, or detected postal is within the store's delivery areas -->
 
         <div class="backHome">
             <p class="smallHint">Dein Liefergebiet ist nicht dabei? Dann versuch es bei einem anderen SUBWAY<span class="superscript">&reg;</span>-Restaurant:</p>
             <div ng-click="navigate('/')" class="button">Zur Startseite</div>
         </div>
 
-        <!-- / -->
+    <!-- / -->
+  </div>
 
+<!-- / choose delivery-area -->
+
+<!-- store is closed -->
+
+  <div class="overlay" id="closedStore">
+    <header>
+        <div class="logo"></div>
+        <p class="warning">SUBWAY<span class="superscript">&reg;</span> Memmingen
+            <br>hat gerade geschlossen. <!-- Wenn der Store tatsächlich komplett geschlossen ist, fällt der Hinweis zur nächsten Lieferzeit weg, sowie der Bereich mit den Öffnungszeiten (#openedStore). Statt "gerade geschlossen", heißt es "zur Zeit leider geschlossen".-->
+        <p class="highlighted">
+          Ab Dienstag um 14:30 wird wieder geliefert.
+        </p>
+        <div class="close"></div>
+    </header>
+
+    <div id="openedStore">
+      <p class="smallHint">
+        Die SUBWAY<span class="superscript">&reg;</span> Memmingen-Onlinetheke hat folgende Öffnungszeiten:
+      </p>
+      <div id="storeOpeningHours"><div class="openingHoursContainer">
+          <div class="openingHoursContent">
+              <div class="openingDay">Mo</div>
+              <div class="openingHours">
+                  <h3>10:00-12:00</h3>
+                  <h3>14:00-22:00</h3>
+              </div>
+          </div>
+        </div><div class="openingHoursContainer">
+          <div class="openingHoursContent">
+              <div class="openingDay">Di</div>
+              <div class="openingHours">
+                  <h3>10:00-12:00</h3>
+                  <h3>14:00-22:00</h3>
+              </div>
+          </div>
+        </div><div class="openingHoursContainer">
+          <div class="openingHoursContent">
+              <div class="openingDay">Mi</div>
+              <div class="openingHours">
+                  <h3>10:00-12:00</h3>
+                  <h3>14:00-22:00</h3>
+              </div>
+          </div>
+        </div><div class="openingHoursContainer">
+          <div class="openingHoursContent">
+              <div class="openingDay">Do</div>
+              <div class="openingHours">
+                  <h3>10:00-12:00</h3>
+                  <h3>14:00-22:00</h3>
+              </div>
+          </div>
+        </div><div class="openingHoursContainer">
+          <div class="openingHoursContent">
+              <div class="openingDay">Fr</div>
+              <div class="openingHours">
+                  <h3>10:00-12:00</h3>
+                  <h3>14:00-22:00</h3>
+              </div>
+          </div>
+        </div><div class="openingHoursContainer">
+          <div class="openingHoursContent">
+              <div class="openingDay">Sa</div>
+              <div class="openingHours">
+                  <h3>10:00-12:00</h3>
+                  <h3>14:00-22:00</h3>
+              </div>
+          </div>
+        </div><div class="openingHoursContainer">
+          <div class="openingHoursContent">
+              <div class="openingDay">So</div>
+              <div class="openingHours">
+                  <h3>geschlossen</h3>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="backHome">
+      <p class="smallHint">Vielleicht hat ein anderes SUBWAY<span class="superscript">&reg;</span>-Restaurant in deiner Nähe geöffnet:</p>
+      <div class="button">Zur Startseite</div>
+    </div>
+  </div>
+
+<!-- / store is closed -->
+
+  </div>
 </div>

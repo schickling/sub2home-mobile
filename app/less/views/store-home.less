@@ -279,7 +279,7 @@
 
 // DELIVERYAREA-OVERLAY --------------------------------------------------------
 
-#deliveryAreaOverlayContainer {
+#overlayContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -289,9 +289,21 @@
 
   overflow: auto;
   z-index: 9500;
+
+  // Center .overlay, if height < 100%
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.28em;
+  }
 }
 
-#deliveryAreaOverlay {
+.overlay {
+  display: inline-block;
+  vertical-align: middle;
   margin: 15px;
   .note;
   border: 1px solid @onNoteColor30;
@@ -474,5 +486,68 @@
   .button {
     border-color: @onDarkNoteColor50;
   }
+}
 
+#closedStore {
+  header .highlighted {
+    padding-top: 0;
+  }
+}
+
+#openedStore {
+  background: @darkNote;
+  padding: 10px 0 20px;
+  color: @onDarkNoteColor;
+  .smallHint {
+  }
+  border-top: 1px solid @onNoteColor30;
+}
+
+#storeOpeningHours {
+  text-align: left;
+}
+
+.openingHoursContainer {
+  display: inline-block;
+  width: 50%;
+  vertical-align:top;
+  .border-box;
+  border-bottom: 1px solid @onNoteColor30;
+  &:nth-child(odd) {
+    border-right: 1px solid @onNoteColor30;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.openingHoursContent {
+  position: relative;
+  display: table;
+  table-layout: fixed;
+  .border-box;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+
+  .openingDay {
+    display: table-cell;
+    width: 22px;
+    padding-left: 10px;
+    font-size: 13px;
+    color: @greenLight;
+  }
+
+  .openingHours {
+    display: table-cell;
+    position: relative;
+    padding: 10px 10px 8px 5px;
+
+    h3 {
+      font-size: 18px;
+      overflow: hidden;
+      width: 100%;
+      line-height: 1.3;
+    }
+  }
 }

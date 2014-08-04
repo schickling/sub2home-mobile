@@ -130,6 +130,25 @@
 
 // Content
 
+#minimumOrderValue {
+  position: relative;
+  border-bottom: 1px solid @onNoteColor50;
+  z-index: 110;
+  .button {
+    border-color: @onDarkNoteColor50;
+  }
+}
+
+#minimumOrderValueContent {
+  background: @darkNote;
+  padding: 15px 0;
+  color: @onDarkNoteColor;
+
+}
+
+
+// Main Content
+
 #storeTrayMainContent {
   .border-box;
   padding-right: 36px;
@@ -625,6 +644,8 @@
 #sendOrder {
   width: 100%;
   text-align: center;
+  position: relative;
+  z-index: 110;
 
   .container {
     background: @darkNote;

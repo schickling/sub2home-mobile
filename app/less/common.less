@@ -68,6 +68,7 @@ body > .ng-scope {
 .dark {
 	.positioned;
 	background: @darkBackground;
+	color: @white;
 }
 
 // Header ----------------------------------------------------------------------
@@ -467,6 +468,11 @@ p {
 	display: inline-block;
 }
 
+.dark .button {
+	color: @white;
+	border-color: rgba(255,255,255,0.5);
+}
+
 
 // Items used on more than one page
 
@@ -543,4 +549,30 @@ textarea {
 	width: 100%;
 	.border-box;
 	line-height: 1.5;
+}
+
+// 404 -------------------------------------------------------------------------
+
+#notAvailable {
+	&:before {
+		content: '';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+		margin-right: -0.28em;
+	}
+	.i404 {
+		font-size: 100px;
+		color: @black;
+		text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+	}
+}
+
+#notAvailableContent {
+	display: inline-block;
+	vertical-align: middle;
+
+	p {
+		margin: 20px 0 20px;
+	}
 }

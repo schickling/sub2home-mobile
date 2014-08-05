@@ -65,6 +65,7 @@ angular.module('app').run(['ResourceService', '$location', '$rootScope',
 
     $rootScope.$on('$routeChangeSuccess', function() {
       $window.scrollTo(0, 0);
+      $window.analytics.page();
     });
 
     // convenient way to navigate in templates and controllers

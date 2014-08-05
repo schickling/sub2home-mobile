@@ -75,6 +75,28 @@
 
 // store.home ------------------------------------------------------------------
 
+// Item Buy-Links
+
+.buyingOption > div {
+  &:active {
+
+    background: @darkNote;
+
+    .pricetag {
+
+      &:active {
+        border-color: @onNoteColor;
+        &:before {
+          color: @onNoteColor;
+        }
+      }
+    }
+  }
+}
+
+
+
+
 // store.selection -------------------------------------------------------------
 
 // store.tray ------------------------------------------------------------------

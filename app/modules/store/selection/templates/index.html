@@ -32,6 +32,7 @@
             <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection"
             ng-click="selectIngredient(ingredientModel, false)">
                 <div class="imageContainer">
+                    <div class="ingredientPrice">+ 1.00€</div>
                     <img ng-src="{{ ingredientModel.largeImage }}" height="130" width="130" alt=""
                     />
                 </div>

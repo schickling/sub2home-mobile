@@ -66,9 +66,24 @@
     color: @grayLighter;
   }
 
+  .ingredientPrice {
+    position: absolute;
+    top: 7px;
+    right: 0px;
+    background: @white;
+    color: @grayLight;
+    font-size: 13px;
+    padding: 5px 0 2px 5px;
+    .border-radius(3px);
+  }
+
   &.selected {
     .imageContainer {
       border: 2px solid @greenLighter;
+
+      .ingredientPrice {
+        display: none;
+      }
 
       &:after {
         .opacity(100);

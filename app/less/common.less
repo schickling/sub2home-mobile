@@ -186,6 +186,7 @@ body > .ng-scope {
 			cursor: pointer;
 
 			border-left: 1px solid @onHeaderColor50;
+
 		}
 
 		&#toTheTray {
@@ -406,7 +407,7 @@ p {
 	position: absolute;
 	top: 15px;
 	right: 15px;
-	color: @onNoteColor50;
+	color: @grayLighter;
 	&:before {
 		content: "\e60a";
 		font-family: "Homicons";
@@ -428,9 +429,15 @@ p {
 
 	// Buttons on Notes
 
-	.infoButton, .closeButton {
+	.infoButton, .closeButton  {
 		background: @onNoteColor50;
 		color: @noteColor;
+	}
+
+	// Close on Note
+
+	.close {
+		color: @onNoteColor50;
 	}
 }
 
@@ -466,6 +473,8 @@ p {
 	.border-radius(3px);
 	border: 2px solid @onNoteColor50;
 	display: inline-block;
+	cursor: pointer;
+	.border-box;
 }
 
 .dark .button {

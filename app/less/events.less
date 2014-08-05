@@ -1,0 +1,82 @@
+// Feedback on Tap & Click-Events
+
+
+// Touch Feedback---------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+
+// Common ----------------------------------------------------------------------
+
+.button {
+  &:active {
+    background: @onNoteColor;
+    color: @noteColor;
+  }
+}
+
+.infoButton, .closeButton, .editButton {
+  &:active {
+    background: darken(@grayLighter, 10%);
+  }
+}
+
+.close {
+  &:active {
+    color: darken(@grayLighter, 10%);
+  }
+}
+
+// On Note
+
+.note {
+
+  .infoButton, .closeButton, .editButton {
+    &:active {
+      background: @onNoteColor;
+    }
+  }
+  .close {
+    &:active {
+      color: @onNoteColor;
+    }
+  }
+}
+
+// On Dark
+
+.dark {
+  .button {
+    &:active {
+      background: @white;
+      color: @darkColor;
+    }
+  }
+}
+
+
+// Header ----------------------------------------------------------------------
+
+#headerContent div {
+  &#toTheInfo, &#getBack, &#toggleCategories {
+    &:active {
+      color: darken(@onHeaderColor,10%);
+    }
+  }
+
+  &#toTheTray {
+    &:active {
+      color: darken(@onHeaderColor,10%);
+      background: darken(@headerTrayBackground, 10%);
+    }
+  }
+}
+
+// home.home -------------------------------------------------------------------
+
+// store.home ------------------------------------------------------------------
+
+// store.selection -------------------------------------------------------------
+
+// store.tray ------------------------------------------------------------------
+
+// store.checkout --------------------------------------------------------------

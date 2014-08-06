@@ -4,18 +4,7 @@
 
 @navWidth:   50px;
 
-#toggleCategories {
 
-  padding-right: 9px !important;
-  width: @toggleCategoriesWidth;
-  cursor: pointer;
-
-  &:before {
-    top: -5px;
-    .rotate(0deg);
-    .transformTransition(0.3s, ease);
-  }
-}
 
 
 #categoriesNavigation {
@@ -112,7 +101,7 @@
   #storeHome {
     .translate(@navWidth,0,0);
   }
-  #toggleCategories:before {
+  #toggleNav:before {
     .rotate(180deg);
   }
 }

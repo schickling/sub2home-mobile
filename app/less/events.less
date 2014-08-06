@@ -57,7 +57,7 @@
 // Header ----------------------------------------------------------------------
 
 #headerContent div {
-  &#toTheInfo, &#getBack, &#toggleCategories {
+  &#toTheInfo, &#getBack, &#toggleNav {
     &:active {
       color: darken(@onHeaderColor,10%);
     }
@@ -73,22 +73,39 @@
 
 // home.home -------------------------------------------------------------------
 
+// home.info -------------------------------------------------------------------
+
+.deliveringRestaurant {
+  &:active {
+    color: rgba(255,255,255,0.7);
+  }
+}
+
 // store.home ------------------------------------------------------------------
+
+// Categories Navigation
+
+#categoriesNavigation ul li {
+  &:active {
+    background: rgba(0,0,0,0.3);
+  }
+}
+
 
 // Item Buy-Links
 
 .buyingOption > div {
   &:active {
 
-    background: @darkNote;
+    // background: @darkNote;
 
     .pricetag {
+      // .transition(border-color .05s linear); --> Move to base template
+      border-color: @onNoteColor70;
 
-      &:active {
-        border-color: @onNoteColor;
-        &:before {
-          color: @onNoteColor;
-        }
+      &:before {
+        // .transition(color .05s linear); --> Move to base template
+        color: @onNoteColor;
       }
     }
   }

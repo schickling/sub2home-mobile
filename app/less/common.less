@@ -6,7 +6,7 @@
 // Header Item Widths
 
 @toTheInfoWidth:				48px;
-@toggleCategoriesWidth: 50px;
+@toggleNavWidth: 50px;
 @toTrayWidth: 					50px;
 
 
@@ -19,6 +19,7 @@ html, body {
 
 	min-width: 320px;
 	height: 100%;
+	.noSelect;
 }
 
 body > .ng-scope {
@@ -322,6 +323,21 @@ body > .ng-scope {
 	width: 65px;
 }
 
+// Toggle Navigation
+
+#toggleNav {
+
+	padding-right: 9px !important;
+	width: @toggleNavWidth;
+	cursor: pointer;
+
+	&:before {
+		top: -5px;
+		.rotate(0deg);
+		.transformTransition(0.3s, ease);
+	}
+}
+
 // Content ---------------------------------------------------------------------
 
 .content {
@@ -407,8 +423,9 @@ p {
 
 .close {
 	position: absolute;
-	top: 15px;
-	right: 15px;
+	top: 0;
+	right: 0;
+	padding: 15px;
 	color: @grayLighter;
 	&:before {
 		content: "\e60a";

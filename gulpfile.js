@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var rimraf = require('rimraf');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var less = require('gulp-less');
@@ -13,6 +14,10 @@ var rev = require('gulp-rev');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
 var minifyHtml = require('gulp-minify-html');
+
+gulp.task('clean', function(cb) {
+  rimraf('./dist', cb);
+});
 
 gulp.task('less', function() {
   return gulp.src('app/less/main.less')
@@ -84,7 +89,7 @@ gulp.task('webserver', function() {
     }));
 });
 
-gulp.task('minify', ['browserify', 'less'], function() {
+gulp.task('minify', ['clean', 'browserify', 'less'], function() {
   return gulp.src('app/index.html')
     .pipe(usemin({
       css: [minifyCss(), rev()],
@@ -96,12 +101,12 @@ gulp.task('minify', ['browserify', 'less'], function() {
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('copy.fonts', function() {
+gulp.task('copy.fonts', ['clean'], function() {
   return gulp.src('app/fonts/*')
     .pipe(gulp.dest('dist/fonts'));
 });
 
-gulp.task('copy.images', function() {
+gulp.task('copy.images', ['clean'], function() {
   return gulp.src('app/images/*')
     .pipe(gulp.dest('dist/images'));
 });
@@ -142,6 +147,7 @@ gulp.task('server', [
 ]);
 
 gulp.task('build', [
+  'clean',
   'test',
   'minify',
   'copy.fonts',

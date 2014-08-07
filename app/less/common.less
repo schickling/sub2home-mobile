@@ -22,14 +22,18 @@ html, body {
 	.noSelect;
 }
 
-body > .ng-scope {
-	overflow-x: hidden;
+body {
 
-	// Still need the following ?
+	// &.tableFix {
 
-	// height: 100%;
-	// > .ng-scope {
-	// 	height: 100%;
+		> .ng-scope {
+		overflow-x: hidden;
+		height: 100%;
+
+			> .ng-scope {
+				height: 100%;
+			}
+		}
 	// }
 }
 

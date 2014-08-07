@@ -33,7 +33,7 @@
 
               <!-- Subs -->
 
-              <div class="item article sub edit">
+              <div class="item article sub edit editAmount">
                   <div class="itemContent">
                       <div class="itemDescription">
                           <h4>Roasted Chicken Breast<span class="itemInfo"> (6inch)</span></h4>
@@ -53,6 +53,18 @@
                   <div class="itemOptions">
                       <div class="editItem"></div>
                       <div class="removeItem"></div>
+                      <div class="removeItemContainer">
+                        <div class="submitRemoveItem"></div>
+                        <div class="discardRemoveItem"></div>
+                      </div>
+
+                      <!--
+
+                      - .item bekommt die klasse .remove, wenn .removeItem geklickt wird (removeItemContainer erscheint)
+                      - .wenn .discardRemoveItem geklickt wird, bekommt .item die klasse .discarded dazu. .remove und .discarded wird nach der Animation (400ms entfernt)
+
+                      -->
+
                   </div>
                   <div class="toggleOptions"></div>
               </div>
@@ -167,6 +179,9 @@
                   </div>
                   <div class="inputGroup additionalFields">
                       <div class="addField"></div>
+                      <div class="inputContainer">
+                          <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
+                      </div>
                       <div class="inputContainer">
                           <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
                       </div>

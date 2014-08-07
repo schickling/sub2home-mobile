@@ -262,8 +262,6 @@
   }
 }
 
-
-
 // store.selection -------------------------------------------------------------
 
 // store.tray ------------------------------------------------------------------
@@ -284,9 +282,25 @@
 
 // Item Options
 
-#traySummary .itemOptions > div {
+#traySummary .itemOptions {
 
-  &:active { background: @onNoteColor; }
+  .editItem, .removeItem {
+    &:active { background: @onNoteColor; }
+  }
+  .submitRemoveItem {
+    &:active { background: @greenLight; }
+  }
+  .discardRemoveItem {
+    &:active { background: @red; }
+  }
+}
+
+.item.remove {
+  .removeItem {
+    &:active {
+      background: @onNoteColor50;
+    }
+  }
 }
 
 // Delivery Time Clock

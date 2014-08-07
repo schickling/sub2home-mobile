@@ -2,57 +2,23 @@
 
 // Variables
 
-@navWidth:   50px;
-
-
-
+@categoriesNavigationWidth:   50px;
 
 #categoriesNavigation {
-  position: fixed;
-  padding-top: 53px;
-  .border-box;
 
-  width: @navWidth;
-  overflow: hidden;
-  height: 100%;
-
-  .translate(-@navWidth,0,0);
-  .transformTransition(.3s,ease);
+  width: @categoriesNavigationWidth;
+  .translate(-@categoriesNavigationWidth,0,0);
 
   ul {
     li {
-      display: block;
-      position: relative;
       height: 50px;
-      .border-box;
       padding: 10px;
-      color: @white;
       text-shadow: 0 0 5px rgba(0,0,0,0.5);
-      border-bottom: 1px solid rgba(0,0,0,0.3);
-      overflow: visible;
-
-      cursor: pointer;
-
-      &.active:before {
-        content: " ";
-        position: absolute;
-        left: -1px;
-        .border-radius(1px);
-        top: -1px;
-        height: 51px;
-        width: 5px;
-        background: @greenLight;
-        .box-shadow(0 0 5px 0 rgba(0,0,0,0.5));
-      }
     }
   }
 }
 
-#storeHome {
-  .translate(0,0,0);
-  .transformTransition(.3s,ease);
-  .box-shadow(0 0 5px 0 rgba(0,0,0,0.5));
-}
+
 
 
 
@@ -89,23 +55,6 @@
 #toNextCategory {
   border-top: 1px solid @darkerWhite;
 }
-
-
-// Toggle States
-
-.navToggled {
-
-  #categoriesNavigation {
-    .translate(0,0,0);
-  }
-  #storeHome {
-    .translate(@navWidth,0,0);
-  }
-  #toggleNav:before {
-    .rotate(180deg);
-  }
-}
-
 
 // DELIVERYAREA-OVERLAY --------------------------------------------------------
 

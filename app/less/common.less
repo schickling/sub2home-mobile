@@ -6,7 +6,7 @@
 // Header Item Widths
 
 @toTheInfoWidth:				48px;
-@toggleNavWidth: 50px;
+@toggleNavWidth: 			 50px;
 @toTrayWidth: 					50px;
 
 
@@ -330,11 +330,11 @@ body > .ng-scope {
 	padding-right: 9px !important;
 	width: @toggleNavWidth;
 	cursor: pointer;
+	.rotate(0deg);
+	.transformTransition(0.3s, ease);
 
 	&:before {
 		top: -5px;
-		.rotate(0deg);
-		.transformTransition(0.3s, ease);
 	}
 }
 
@@ -503,6 +503,52 @@ p {
 
 
 // Items used on more than one page --------------------------------------------
+
+
+// Navigation
+
+
+#categoriesNavigation, #infoNavigation {
+	position: fixed;
+	padding-top: 53px;
+	.border-box;
+	overflow: hidden;
+	height: 100%;
+	.transformTransition(.3s,ease);
+
+	ul {
+		li {
+			display: block;
+			position: relative;
+			.border-box;
+			color: @white;
+			border-bottom: 1px solid rgba(0,0,0,0.2);
+			overflow: visible;
+			cursor: pointer;
+
+			&.active:before {
+				content: " ";
+				position: absolute;
+				left: -1px;
+				.border-radius(1px);
+				top: -1px;
+				height: 100%;
+				width: 5px;
+				padding: 1px 0;
+				background: @greenLight;
+				.box-shadow(0 0 5px 0 rgba(0,0,0,0.5));
+			}
+		}
+	}
+}
+
+#storeHome, #homeInfo, #storeInfo {
+	.translate(0,0,0);
+	.transformTransition(.3s,ease);
+	.box-shadow(0 0 5px 0 rgba(0,0,0,0.5));
+}
+
+// Next Items
 
 #toNextCategory, #toNextStep, #skipThisStep {
 

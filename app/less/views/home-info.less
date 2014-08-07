@@ -1,7 +1,24 @@
 // ---------------------------------------------- INFO SECTION -------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------
 
+// Variables
 
+@infoNavigationWidth:     200px;
+
+#infoNavigation {
+  width: @infoNavigationWidth;
+  .translate(-@infoNavigationWidth,0,0);
+
+  ul {
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+
+    li {
+      padding: 25px 25px 21px;
+    }
+  }
+
+}
 #homeInfo {
   text-align: left;
   height: auto !important;
@@ -35,6 +52,9 @@
     }
   }
 }
+
+
+
 
 #restaurantsOverview {
   // padding: 10px;

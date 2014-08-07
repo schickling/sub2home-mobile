@@ -1,8 +1,39 @@
-// Feedback on Tap & Click-Events
+// Navigation States
 
 
-// Touch Feedback---------------------------------------------------------------
+.navToggled {
+
+  #toggleNav {
+    .rotate(90deg);
+  }
+
+  // InfoNavigation
+
+  #infoNavigation {
+    .translate(0,0,0);
+  }
+  #homeInfo, #storeInfo {
+    .translate(@infoNavigationWidth,0,0);
+  }
+
+  // store.home
+
+  #categoriesNavigation {
+    .translate(0,0,0);
+  }
+  #storeHome {
+    .translate(@categoriesNavigationWidth,0,0);
+  }
+}
+
+
+
+
+// Feedback on Tap & Click-Events ----------------------------------------------
 // -----------------------------------------------------------------------------
+
+// Touch Feedback
+// --------------
 
 
 // Common ----------------------------------------------------------------------
@@ -71,15 +102,45 @@
   }
 }
 
+// Navigation
+
+#categoriesNavigation, #infoNavigation {
+  ul li {
+    &:active {
+      background: rgba(0,0,0,0.1);
+    }
+  }
+}
+
 // home.home -------------------------------------------------------------------
 
-// home.info -------------------------------------------------------------------
+// home.info / store.info ------------------------------------------------------
 
 .deliveringRestaurant {
   &:active {
     color: rgba(255,255,255,0.7);
+    
+    // &:after {
+    //   .transformTransition(.3s, ease);
+    //   .translate(-3px,0,0);
+    // }
   }
 }
+
+.nutritionIcon {
+  &:active {
+    background: rgba(0,0,0,0.3);
+  }
+}
+
+.waysToContact{
+  a,p {
+    &:active {
+      color: rgba(255,255,255,0.7);
+    }
+  }
+}
+
 
 // store.home ------------------------------------------------------------------
 

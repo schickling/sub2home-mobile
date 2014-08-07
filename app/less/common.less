@@ -24,10 +24,13 @@ html, body {
 
 body > .ng-scope {
 	overflow-x: hidden;
-	height: 100%;
-	> .ng-scope {
-		height: 100%;
-	}
+
+	// Still need the following ?
+	
+	// height: 100%;
+	// > .ng-scope {
+	// 	height: 100%;
+	// }
 }
 
 // Global
@@ -210,9 +213,6 @@ body > .ng-scope {
 
 			&.atTray {
 				width: auto;
-				// position: absolute;
-				// left: 50px;
-				// right: 50px;
 			}
 
 			> div {
@@ -225,13 +225,14 @@ body > .ng-scope {
 			font-size: 12px;
 			padding: 12px 5px 0;
 			vertical-align: top;
-			width: 50px;
+			width: 55px;
 			text-align: center;
-			// border-right: 1px solid @onHeaderColor50;
 			.border-box;
 			cursor: pointer;
+			overflow: hidden;
+
 			p {
-				padding: 0 5px;
+				padding: 0;
 				margin: 0;
 			}
 

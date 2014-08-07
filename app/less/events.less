@@ -119,11 +119,10 @@
 .deliveringRestaurant {
   &:active {
     color: rgba(255,255,255,0.7);
-    
-    // &:after {
-    //   .transformTransition(.3s, ease);
-    //   .translate(-3px,0,0);
-    // }
+
+    &:after {
+      color: rgba(0,0,0,0.4);
+    }
   }
 }
 
@@ -178,5 +177,57 @@
 // store.selection -------------------------------------------------------------
 
 // store.tray ------------------------------------------------------------------
+
+#minimumOrderValue .button {
+
+  &:active { background: @onDarkNoteColor; }
+}
+
+// Main Content
+
+// Toggle Options & Questions
+
+.toggleOptions, .triggerQuestion {
+
+  &:active { color: @onNoteColor; }
+}
+
+// Item Options
+
+#traySummary .itemOptions > div {
+
+  &:active { background: @onNoteColor; }
+}
+
+// Delivery Time Clock
+
+#hours {
+
+  &:active:before { color: @onNoteColor; }
+}
+
+#minutes {
+
+  &:active:after { color: @onNoteColor; }
+}
+
+// Add Input Field
+
+.inputGroup.additionalFields .addField {
+
+  &:active { background: @onNoteColor; }
+}
+
+// Change Payment Method
+
+.paymentMethod {
+
+  // Attention on adapting behaviour to :hover
+
+  &:active {
+    background: @onNoteColor;
+    color: @noteColor;
+  }
+}
 
 // store.checkout --------------------------------------------------------------

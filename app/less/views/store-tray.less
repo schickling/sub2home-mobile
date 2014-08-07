@@ -246,9 +246,10 @@
 
 .toggleOptions, .triggerQuestion {
   position:absolute;
-  right: 6px;
+  right: 0;
+  padding: 10px;
   top: 50%;
-  margin-top: -12px;
+  margin-top: -22px;
   height: 25px;
   font-size: 24px;
   color: @onNoteColor50;
@@ -276,7 +277,7 @@
 
   .itemOptions {
     position: absolute;
-    right: 45px;
+    right: 55px;
     top: 50%;
     margin-top: -25px;
 
@@ -428,7 +429,7 @@
 
     &.edit {
       .itemContent {
-        .translate(-140px,0,0);
+        .translate(-160px,0,0);
         .opacity(50);
       }
       .itemOptions {
@@ -476,12 +477,12 @@
 
   &.notEarlier {
     #hours:before {
-      color: @onNoteColor30;
+      color: @onNoteColor10;
     }
   }
   &.notLater {
     #minutes:after {
-      color: @onNoteColor30;
+      color: @onNoteColor10;
     }
   }
 }
@@ -493,6 +494,7 @@
   vertical-align: top;
   position: relative;
   top: 21px;
+  color: @onNoteColor50;
 }
 
 #hours:before {

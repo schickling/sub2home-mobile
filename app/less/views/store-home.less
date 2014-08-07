@@ -121,6 +121,7 @@
 
   .storeDeliveryArea {
     padding: 0 10px;
+
     &.selected {
       .storeDeliveryAreaDescription{
         &:after {
@@ -157,92 +158,33 @@
   }
 }
 
-.storeDeliveryArea {
-  position: relative;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-  .border-box;
-  padding: 0;
-  text-align: left;
-  border-bottom: 1px solid @onNoteColor30;
+#storeDeliveryAreaSelection {
 
-  .postal {
-    // position: absolute;
-    display: table-cell;
-    width: 40px;
-    padding-left: 10px;
-    font-size: 13px;
-    color: @greenLight;
-    visibility: hidden;
-    // vertical-align: baseline;
-    // left: 0;
-    // top: 0;
+  .storeDeliveryArea {
+    .postal {
+      color: @greenLight;
+    }
   }
 
   .storeDeliveryAreaDescription {
-    display: table-cell;
-    position: relative;
-    padding: 10px 30px 8px 5px;
-
-    h3 {
-      font-size: 18px;
-      width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    p {
-      font-size: 13px;
-      padding: 5px 0 0;
-      margin: 0;
-      color: @onNoteColor50;
-    }
-    &:after {
-      content: "\e604";
-      font-family: "Homicons";
-      position: absolute;
-      right: 5px;
-      top: 50%;
-      font-size: 16px;
-      margin-top: -8px;
+    p, &:after {
       color: @onNoteColor50;
     }
   }
-}
 
-.storeMultipleDeliveryAreas {
-  border-bottom: 1px solid @onNoteColor30;
-  .storeDeliveryArea {
-    border-bottom: none;
+  .storeMultipleDeliveryAreas {
+    border-bottom: 1px solid @onNoteColor30;
 
     .storeDeliveryAreaDescription {
       border-bottom: 1px solid @onNoteColor30;
-    }
-    &:last-child {
-      .storeDeliveryAreaDescription {
-        border-bottom: none;
-      }
-    }
-
-    &:first-child {
-      .postal {
-        visibility: visible;
-      }
     }
   }
 }
 
 #storeDeliveryAreas {
-
   padding: 0 10px;
-
-  > .storeDeliveryArea, .storeMultipleDeliveryAreas {
-    &:last-child {
-      border-bottom: none;
-    }
-  }
 }
+
 
 .backHome {
   border-top: 1px solid @onNoteColor50;
@@ -266,11 +208,6 @@
   }
 }
 
-#closedStore {
-  header .highlighted {
-    padding-top: 0;
-  }
-}
 
 #openedStore {
   background: @darkNote;
@@ -281,51 +218,21 @@
   border-top: 1px solid @onNoteColor30;
 }
 
-#storeOpeningHours {
-  text-align: left;
-}
-
-.openingHoursContainer {
-  display: inline-block;
-  width: 50%;
-  vertical-align:top;
-  .border-box;
-  border-bottom: 1px solid @onNoteColor30;
-  &:nth-child(odd) {
-    border-right: 1px solid @onNoteColor30;
-  }
-  &:last-child {
-    border-bottom: none;
-  }
-}
-
-.openingHoursContent {
-  position: relative;
-  display: table;
-  table-layout: fixed;
-  .border-box;
-  padding: 0;
-  text-align: left;
-  width: 100%;
-
-  .openingDay {
-    display: table-cell;
-    width: 22px;
-    padding-left: 10px;
-    font-size: 13px;
-    color: @greenLight;
+#closedStore {
+  header .highlighted {
+    padding-top: 0;
   }
 
-  .openingHours {
-    display: table-cell;
-    position: relative;
-    padding: 10px 10px 8px 5px;
+  .openingHoursContainer {
+    border-bottom: 1px solid @onNoteColor30;
+    &:nth-child(odd) {
+      border-right: 1px solid @onNoteColor30;
+    }
+  }
 
-    h3 {
-      font-size: 18px;
-      overflow: hidden;
-      width: 100%;
-      line-height: 1.3;
+  .openingHoursContent {
+    .openingDay {
+      color: @greenLight;
     }
   }
 }

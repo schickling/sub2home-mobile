@@ -5,12 +5,15 @@
 
 @infoNavigationWidth:     200px;
 
+
+// navigation ------------------------------------------------------------------
+
 #infoNavigation {
   width: @infoNavigationWidth;
   .translate(-@infoNavigationWidth,0,0);
 
   ul {
-    height: 100%;
+    min-height: 100%;
     background: rgba(0,0,0,0.2);
 
     li {
@@ -19,7 +22,10 @@
   }
 
 }
-#homeInfo {
+
+// common used elements --------------------------------------------------------
+
+#homeInfo, #storeInfo {
   text-align: left;
   height: auto !important;
 
@@ -50,60 +56,6 @@
         margin: 15px 0 0;
       }
     }
-  }
-}
-
-
-
-
-#restaurantsOverview {
-  // padding: 10px;
-}
-
-.deliveringRestaurant {
-  position: relative;
-  margin: 0 10px;
-  padding: 14px 10px 10px;
-  color: @white;
-  // text-shadow: 0 1px 1px rgba(255,255,255,0.15);
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  &:last-child {
-    border-bottom: none;
-  }
-  h4 {
-    // color: @white;
-  }
-
-  &:after {
-    content: "\e604";
-    font-family: "Homicons";
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    font-size: 16px;
-    margin-top: -8px;
-    // color: @white;
-    // text-shadow: 0 1px 1px rgba(255,255,255,0.15);
-  }
-
-  .deliveryStatus {
-    margin: 0;
-    padding: 5px 0 0 !important;
-    font-size: 13px;
-    color: inherit;
-    &.delivering .deliveryIndicator { background: @greenLight; }
-    &.notDelivering .deliveryIndicator { background: @orange; }
-    &.closed .deliveryIndicator { background: @red; }
-  }
-
-  .deliveryIndicator {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin-right: 5px;
-    .img-circle;
-    // background: @greenLight;
-
   }
 }
 
@@ -196,5 +148,127 @@
 
   h4 {
     margin: 20px 20px 10px;
+  }
+}
+
+
+// home.info -------------------------------------------------------------------
+
+#restaurantsOverview {
+  // padding: 10px;
+}
+
+.deliveringRestaurant {
+  position: relative;
+  margin: 0 10px;
+  padding: 14px 10px 10px;
+  color: @white;
+  // text-shadow: 0 1px 1px rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  &:last-child {
+    border-bottom: none;
+  }
+  h4 {
+    // color: @white;
+  }
+
+  &:after {
+    content: "\e604";
+    font-family: "Homicons";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    font-size: 16px;
+    margin-top: -8px;
+    // color: @white;
+    // text-shadow: 0 1px 1px rgba(255,255,255,0.15);
+  }
+
+  .deliveryStatus {
+    margin: 0;
+    padding: 5px 0 0 !important;
+    font-size: 13px;
+    color: inherit;
+    &.delivering .deliveryIndicator { background: @greenLight; }
+    &.notDelivering .deliveryIndicator { background: @orange; }
+    &.closed .deliveryIndicator { background: @red; }
+  }
+
+  .deliveryIndicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    .img-circle;
+    // background: @greenLight;
+
+  }
+}
+
+// store.info ------------------------------------------------------------------
+
+// Opening Hours
+
+#infoOpeningHoursContent {
+  padding: 20px 10px;
+
+  .openingHoursContainer {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    &:nth-child(odd) {
+      border-right: 1px solid rgba(0,0,0,0.2);
+    }
+  }
+
+  .openingHoursContent {
+    .openingDay {
+      color: @greenLighter;
+    }
+  }
+}
+
+// Delivery Areas
+
+#infoDeliveryAreas {
+
+}
+
+#infoDeliveryAreasContent {
+  padding: 20px 10px;
+
+  .storeDeliveryArea {
+
+    .postal {
+      color: @greenLighter;
+    }
+
+    &.selected {
+      .storeDeliveryAreaDescription{
+        &:after {
+          content: "\e609";
+          font-size: 14px;
+          right: 7px;
+          margin-top: -7px;
+          color: @greenLighter !important;
+        }
+      }
+    }
+  }
+
+  .storeDeliveryAreaDescription {
+    p {
+      color: rgba(255,255,255,0.5);
+    }
+    &:after {
+      color: rgba(0,0,0,0.3);
+    }
+  }
+
+  .storeMultipleDeliveryAreas {
+
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+
+    .storeDeliveryAreaDescription {
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
   }
 }

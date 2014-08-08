@@ -33,8 +33,6 @@ module.exports = angular.module('store.home', [])
                 $location.replace();
               });
 
-              return promise;
-
             }
           ]
         }
@@ -48,32 +46,29 @@ module.exports = angular.module('store.home', [])
             function(StoreModelFactory, $route) {
               return StoreModelFactory.get({
                 storeAlias: $route.current.params.storeAlias
-              });
+              }).$promise;
             }
           ],
           categoriesCollection: ['CategoryModelFactory', '$route', '$q', '$location', '_',
             function(CategoryModelFactory, $route, $q, $location, _) {
 
-              var defer = $q.defer();
               var categoryId = parseInt($route.current.params.categoryId, 10);
-              var resourcePromise = CategoryModelFactory.query({
+              var promise = CategoryModelFactory.query({
                 storeAlias: $route.current.params.storeAlias
               }).$promise;
 
-              resourcePromise.then(function(categoriesCollection) {
+              return promise.then(function(categoriesCollection) {
                 var categoryModel = _.findWhere(categoriesCollection, {
                   id: categoryId
                 });
                 if (categoryModel) {
                   categoriesCollection.current = categoryModel;
-                  defer.resolve(categoriesCollection);
+                  return categoriesCollection;
                 } else {
                   $location.path('/404');
                   $location.replace();
                 }
               });
-
-              return defer.promise;
 
             }
           ],

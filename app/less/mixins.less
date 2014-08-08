@@ -1,9 +1,9 @@
-.user-select ( @selection ) {
-	-webkit-user-select: @selection;
-	-moz-user-select: @selection;
-	-ms-user-select: @selection;
-	user-select: @selection;
-}
+// .user-select ( @selection ) {
+// 	-webkit-user-select: @selection;
+// 	-moz-user-select: @selection;
+// 	-ms-user-select: @selection;
+// 	user-select: @selection;
+// }
 
 .transition( @duration; @property: all; @timing: ease; @delay: 0, ... ) {
 	-webkit-transition: @arguments;
@@ -496,6 +496,17 @@ input, textarea {
   outline-offset: -2px;
 }
 
+// Filter
+
+.blur(@value) {
+	-webkit-filter: blur(@value);
+	-moz-filter: blur(@value);
+	-o-filter: blur(@value);
+	-ms-filter: blur(@value);
+}
+
+
+
 
 // Center-align a block level element
 // ----------------------------------
@@ -558,6 +569,10 @@ input, textarea {
   color: inherit !important;
   cursor: inherit !important;
   text-shadow: inherit;
+	top: 2px;
+	position: relative;
+	line-height: 0.6;
+
   &:before, &:after {
     content: "" !important;
   }
@@ -567,6 +582,9 @@ input, textarea {
   }
 }
 
+.overlayed {
+	.blur(2px);
+}
 
 // OPACITY DELAY
 

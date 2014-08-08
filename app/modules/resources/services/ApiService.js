@@ -1,14 +1,25 @@
 'use strict';
 
-module.exports = function() {
+module.exports = ['$window',
+  function($window) {
 
-  return {
+    return {
 
-    buildUrl: function(fragment) {
-      fragment = fragment || '';
-      return 'http://' + window.location.hostname + ':1071/' + fragment;
-    },
+      buildUrl: function(fragment) {
 
-  };
+        fragment = fragment || '';
 
-};
+        var hostname = $window.location.hostname;
+
+        if (hostname.indexOf('sub2home.com') !== -1) {
+          return 'https://api.sub2home.com/' + fragment;
+        } else {
+          return 'http://' + hostname + ':1071/' + fragment;
+        }
+
+      },
+
+    };
+
+  }
+];

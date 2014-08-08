@@ -20,8 +20,9 @@
   right: 0;
   bottom: 0;
   width: 36px;
-  height: 568px;
+  height: 100%; // HAS TO BE REMOVED
   z-index: 101;
+  // .transition(height .1s linear);
 
   ul {
     list-style-type: none;
@@ -130,6 +131,25 @@
 
 // Content
 
+#minimumOrderValue {
+  position: relative;
+  border-bottom: 1px solid @onNoteColor50;
+  z-index: 110;
+  .button {
+    border-color: @onDarkNoteColor50;
+  }
+}
+
+#minimumOrderValueContent {
+  background: @darkNote;
+  padding: 15px 0;
+  color: @onDarkNoteColor;
+
+}
+
+
+// Main Content
+
 #storeTrayMainContent {
   .border-box;
   padding-right: 36px;
@@ -227,12 +247,14 @@
 
 .toggleOptions, .triggerQuestion {
   position:absolute;
-  right: 6px;
+  right: 0;
+  padding: 10px;
   top: 50%;
-  margin-top: -12px;
+  margin-top: -22px;
   height: 25px;
   font-size: 24px;
   color: @onNoteColor50;
+  cursor: pointer;
   .transformTransition(.2s, linear);
   &:before {
     content: "\e604";
@@ -257,26 +279,33 @@
 
   .itemOptions {
     position: absolute;
-    right: 45px;
+    right: 55px;
     top: 50%;
     margin-top: -25px;
+    white-space: nowrap;
 
-    > div {
+    div {
+      display: inline-block;
+    }
+
+    .editItem, .removeItem, .submitRemoveItem, .discardRemoveItem {
       height: 50px;
       width: 50px;
       .img-circle;
       background: @onNoteColor50;
-      display: inline-block;
-      margin-left: 10px;
+      margin-left: 7px;
       text-align: center;
       .border-box;
       padding-top: 12px;
       font-size: 24px;
       color: @noteColor;
+      cursor: pointer;
+      .transition(opacity .1s linear);
       &:before {
         font-family: "Homicons";
       }
     }
+
     .editItem:before {
       content: "\e61e";
     }
@@ -284,9 +313,29 @@
       content: "\e61f";
     }
 
+    .submitRemoveItem {
+      background: @greenLight70;
+      &:before {
+        content: "\e609";
+      }
+    }
+    .discardRemoveItem {
+      background: @red70;
+      &:before {
+        content: "\e60a";
+      }
+    }
+
     .opacity(0);
     .transition(opacity .1s .1s linear);
   }
+
+  .removeItemContainer {
+    .opacity(0);
+    width: 0;
+    .transition(e('width .3s ease, opacity .1s .3s linear'));
+  }
+
 
   .itemDescription {
     margin-right: 120px;
@@ -317,9 +366,9 @@
   }
 
   p {
-    padding: 6px 0 0;
+    padding: 6px 0 0 !important;
     margin: 0;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .staticColumn {
@@ -409,7 +458,7 @@
 
     &.edit {
       .itemContent {
-        .translate(-140px,0,0);
+        .translate(-150px,0,0);
         .opacity(50);
       }
       .itemOptions {
@@ -417,6 +466,48 @@
       }
       .toggleOptions {
         .rotate(180deg);
+      }
+    }
+    &.editBwd {
+      .itemContent {
+        .translate(0,0,0);
+        .opacity(100);
+        .transformTransition(.2s .2s,ease);
+      }
+
+      .itemOptions {
+        .opacity(0);
+      }
+
+      .toggleOptions {
+        .rotate(0deg);
+      }
+    }
+
+    &.remove {
+      .editItem {
+        .opacity(0);
+      }
+      .removeItemContainer {
+        .opacity(100);
+        width: 120px;
+      }
+      .itemContent {
+        .translate(-210px,0,0);
+      }
+    }
+    &.removeBwd {
+      .removeItemContainer {
+        .opacity(0);
+        width: 0px;
+        .transition(e('width .3s .1s ease, opacity .1s linear'));
+      }
+      .itemContent {
+        .translate(-150px,0,0);
+        .transformTransition(.2s .2s,ease);
+      }
+      .editItem {
+        .opacity(100);
       }
     }
   }
@@ -450,41 +541,59 @@
   > div {
     position: relative;
     display: inline-block;
-    font-size: 65px;
+    font-size: 75px;
     vertical-align: top;
-    padding: 30px 0 20px;
+    padding: 40px 5px 30px;
   }
 
-  &.notEarlier {
-    #hours:before {
-      color: @onNoteColor30;
-    }
-  }
-  &.notLater {
-    #minutes:after {
-      color: @onNoteColor30;
-    }
-  }
+  // &.notEarlier {
+  //   #hours:before {
+  //     color: @onNoteColor10;
+  //   }
+  // }
+  // &.notLater {
+  //   #minutes:after {
+  //     color: @onNoteColor10;
+  //   }
+  // }
 }
 
-#hours:before, #minutes:after {
+.clockControls {
   font-family: "Homicons";
   font-size: 30px;
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-  top: 21px;
+  display: block;
+  position: absolute;
+  left: 0;
+  color: @onNoteColor50;
+  width: 100%;
+  padding: 17px 0;
+  cursor: pointer;
+
+  &.up {
+    top: 0;
+    padding-bottom: 23px;
+    &:before {
+      content: "\e620"
+    }
+  }
+  &.down {
+    bottom: 0;
+    padding-top: 23px;
+    &:before {
+      content: "\e621"
+    }
+  }
 }
 
-#hours:before {
-  content: "\e620";
-  margin-right: 7px;
-}
-
-#minutes:after {
-  content: "\e621";
-  margin-left: 7px;
-}
+// #hours:before {
+//   content: "\e620";
+//   margin-right: 7px;
+// }
+//
+// #minutes:after {
+//   content: "\e621";
+//   margin-left: 7px;
+// }
 
 #dividingDots {
   top: -8px;
@@ -549,6 +658,8 @@
       background: @onNoteColor50;
       .border-radius(3px);
       text-align: center;
+      cursor: pointer;
+
       &:before {
         content: "\e622";
         font-family: "Homicons";
@@ -562,9 +673,16 @@
 }
 
 #trayDeliveryArea {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   color: @onNoteColor;
 }
+
+#trayAdditionalInfo {
+  padding: 0 0 0 20px !important;
+  margin-bottom: 20px;
+}
+
+
 
 // Payment Method -----------------------------------
 
@@ -588,6 +706,7 @@
   padding: 10px 10px 7px;
   margin-left: 9px;
   .border-box;
+  cursor: pointer;
 
   &:first-child {
     margin-left: 0;
@@ -625,7 +744,8 @@
 #sendOrder {
   width: 100%;
   text-align: center;
-  background: @noteBackground;
+  position: relative;
+  z-index: 110;
 
   .container {
     background: @darkNote;
@@ -650,6 +770,7 @@
   border: 2px solid @greenLight;
 
   &:active {
-    background: @greenLighter30;
+    background: @greenLight;
+    color: @noteColor;
   }
 }

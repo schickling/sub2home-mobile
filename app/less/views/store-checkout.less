@@ -1,0 +1,80 @@
+// store.checkout
+
+#storeCheckout {
+  display: table;
+}
+
+#checkoutCopyContainer {
+  display: table-row;
+}
+
+#checkoutCopy {
+  // margin-top:-30px;
+  padding-top: 30px;
+  p {
+    margin-bottom: 5px;
+  }
+  .smallHint {
+    font-size: 13px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+
+  }
+}
+
+#checkoutHours, #checkoutMinutes {
+
+  color: @greenLight;
+  display: inline-block;
+  font-size: 60px;
+
+  &:after {
+
+    color: @greenLight50;
+    display: inline-block;
+    vertical-align: baseline;
+    font-size: 18px;
+  }
+}
+
+#checkoutHours:after {
+  content: "h";
+  margin-right: 10px;
+}
+
+#checkoutMinutes:after {
+  content: "min";
+}
+
+#checkoutLogoContainer {
+  display: table-row;
+  height: 100%;
+}
+
+#checkoutLogo {
+  position: relative;
+  display: block;
+  height: 100%;
+  &:before {
+    content: "\e60d";
+    font-family: "Homicons";
+    font-size: 70px;
+    color: @onNoteColor30;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 -35px;
+  }
+}
+
+
+#checkoutFacebookLink {
+  height: 70px;
+  width: 100%;
+
+  background: @facebookWave;
+  .background-size(100% auto);
+
+}

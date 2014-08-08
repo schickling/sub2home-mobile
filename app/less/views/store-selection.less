@@ -5,14 +5,21 @@
 @timelineHeight: 65px;
 
 
+#storeSelection {
+  display: table;
+  height: 100%;
+}
+
 #ingredients {
   text-align: left;
+  display: table-row;
+  height: 100%;
 }
 
 .ingredient {
   display: inline-block;
   position: relative;
-  width: 50%;
+  width: 33%;
   margin: 15px 0;
   text-align: center;
   vertical-align: top;
@@ -24,8 +31,9 @@
     border: 2px dashed @grayLighter;
     padding: 0px;
     margin-bottom: 10px;
-    height: 130px;
-    width: 130px;
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
 
     img {
       .img-circle;
@@ -57,11 +65,34 @@
 
   h3 {
     color: @grayLighter;
+    font-size: 18px;
+  }
+
+  .ingredientPriceContainer {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    // display: none;
+  }
+
+  .ingredientPrice {
+    display: inline-block;
+    background: @white;
+    color: @grayLight;
+    font-size: 13px;
+    padding: 5px 5px 2px;
+    .border-radius(3px);
   }
 
   &.selected {
     .imageContainer {
       border: 2px solid @greenLighter;
+
+      .ingredientPrice {
+        color: @greenLighter;
+      }
 
       &:after {
         .opacity(100);
@@ -121,7 +152,8 @@
 // MenuUpgrade
 
 #menuUpgrades {
-
+  display: table-row;
+  height: 100%;
 }
 
 .menuUpgrade {
@@ -244,7 +276,7 @@
       position: absolute;
       left: -7px;
       top: -7px;
-      background: @magnifierImage;
+      background: @magnifier;
       background-size: 55px;
       width: 55px;
       height: 55px;
@@ -275,6 +307,11 @@
     background: @onNoteColor;
     padding-top: 8px;
 
+    &:before {
+      top: -5px;
+      left: -5px;
+    }
+
     &:after {
       color: @onNoteColor;
       left: -26px;
@@ -291,7 +328,7 @@
 
   // Last Timeline-Step: Link to tray
 
-  &.iTray {
+  &.tray {
 
     background: @onNoteColor50;
 

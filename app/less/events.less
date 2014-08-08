@@ -1,0 +1,342 @@
+// Navigation States
+
+
+.navToggled {
+
+  #toggleNav {
+    .rotate(90deg);
+  }
+
+  // InfoNavigation
+
+  #infoNavigation {
+    .translate(0,0,0);
+  }
+  #homeInfo, #storeInfo {
+    .translate(@infoNavigationWidth,0,0);
+  }
+
+  // store.home
+
+  #categoriesNavigation {
+    .translate(0,0,0);
+  }
+  #storeHome {
+    .translate(@categoriesNavigationWidth,0,0);
+  }
+}
+
+
+
+
+// Feedback on Tap & Click-Events ----------------------------------------------
+// -----------------------------------------------------------------------------
+
+// Touch Feedback
+// --------------
+
+
+// Common ----------------------------------------------------------------------
+
+.button {
+  &:active {
+    background: @onNoteColor;
+    color: @noteColor;
+  }
+}
+
+.infoButton, .closeButton, .editButton {
+  &:active {
+    background: darken(@grayLighter, 10%);
+  }
+}
+
+.close {
+  &:active {
+    color: darken(@grayLighter, 10%);
+  }
+}
+
+// On Note
+
+.note {
+
+  .infoButton, .closeButton, .editButton {
+    &:active {
+      background: @onNoteColor;
+    }
+  }
+  .close {
+    &:active {
+      color: @onNoteColor;
+    }
+  }
+}
+
+// On Dark
+
+.dark {
+  .button {
+    &:active {
+      background: @white;
+      color: @darkColor;
+    }
+  }
+}
+
+// Next-Category, Next-Step, Skip-Step
+
+#toNextCategory, #toNextStep, #skipThisStep {
+  &:active {
+    background: darken(@darkWhite, 3%);
+    border-color: darken(@darkerWhite, 3%);
+
+    &:before {
+      color: darken(@grayLighter, 3%);
+    }
+
+    p {
+      color: darken(@grayLight, 3%);
+    }
+  }
+}
+
+// Header ----------------------------------------------------------------------
+
+#headerContent div {
+  &#toTheInfo, &#getBack, &#toggleNav {
+    &:active {
+      color: darken(@onHeaderColor,10%);
+    }
+  }
+
+  &#toTheTray {
+    &:active {
+      color: darken(@onHeaderColor, 10%);
+      background: darken(@headerTrayBackground, 10%);
+    }
+
+    &.atTray:active {
+      color: @onHeaderColor;
+      background: @headerTrayBackground;
+    }
+  }
+}
+
+// Navigation
+
+#categoriesNavigation, #infoNavigation {
+  ul li {
+    &:active {
+      background: rgba(0,0,0,0.1);
+    }
+  }
+}
+
+// home.home -------------------------------------------------------------------
+
+#selectableDeliveryAreas .deliveryArea {
+  &:active {
+    background: @darkNote50;
+  }
+}
+
+#selectableStores .store {
+  &:active {
+    background: @darkNote50;
+  }
+}
+
+// home.info / store.info ------------------------------------------------------
+
+.deliveringRestaurant {
+  &:active {
+    color: rgba(255,255,255,0.5);
+
+    &:after {
+      color: rgba(0,0,0,0.4);
+      color: @white;
+    }
+    .deliveryIndicator {
+      .opacity(50)!important;
+    }
+  }
+}
+
+.nutritionIcon {
+  &:active {
+    background: rgba(0,0,0,0.3);
+  }
+}
+
+.waysToContact{
+  a,p {
+    &:active {
+      color: rgba(255,255,255,0.5);
+      // text-shadow: 0 0 20px @black;
+    }
+  }
+}
+
+
+// DeliveryAreas
+
+#infoDeliveryAreasContent .storeDeliveryArea {
+  &:active {
+    color: rgba(255,255,255,0.7);
+
+    .storeDeliveryAreaDescription:after {
+      color: @white !important;
+    }
+  }
+}
+
+#infoDeliveryAreasContent .storeDeliveryArea.selected {
+  &:active {
+
+    .storeDeliveryAreaDescription:after {
+      color: @greenLighter !important;
+      border-color: @greenLighter !important;
+    }
+  }
+}
+
+
+// store.home ------------------------------------------------------------------
+
+
+// Categories Navigation
+
+#categoriesNavigation ul li {
+  &:active {
+    background: rgba(0,0,0,0.3);
+  }
+}
+
+// Store Message
+
+#storeMessage {
+  &:active {
+    .tapToClose {
+      color: @onNoteColor;
+    }
+  }
+}
+
+// Item Buy-Links
+
+.buyingOption > div {
+  &:active {
+
+    // background: @darkNote;
+
+    .pricetag {
+      // .transition(border-color .05s linear); --> Move to base template
+      border-color: @onNoteColor70;
+
+      &:before {
+        // .transition(color .05s linear); --> Move to base template
+        color: @onNoteColor;
+      }
+    }
+  }
+}
+
+// DeliveryAreaSelection
+
+
+.storeDeliveryArea {
+  &:active {
+    color: @onNoteColor70;
+
+    .storeDeliveryAreaDescription:after {
+      // border-color: @greenLight !important;
+      // content: "\e609";
+      color: @onNoteColor !important;
+    }
+  }
+}
+
+#storeDeliveryAreaSuggestion .storeDeliveryArea.selected {
+  &:active {
+    color: @onDarkNoteColor70;
+    .storeDeliveryAreaDescription:after {
+      border-color: @greenLight !important;
+    }
+  }
+}
+
+// store.selection -------------------------------------------------------------
+
+// store.tray ------------------------------------------------------------------
+
+#minimumOrderValue .button {
+
+  &:active { background: @onDarkNoteColor; }
+}
+
+// Main Content
+
+// Toggle Options & Questions
+
+.toggleOptions, .triggerQuestion {
+
+  &:active { color: @onNoteColor; }
+}
+
+// Item Options
+
+#traySummary .itemOptions {
+
+  .editItem, .removeItem {
+    &:active { background: @onNoteColor; }
+  }
+  .submitRemoveItem {
+    &:active { background: @greenLight; }
+  }
+  .discardRemoveItem {
+    &:active { background: @red; }
+  }
+}
+
+.item.remove {
+  .removeItem {
+    &:active {
+      background: @onNoteColor50;
+    }
+  }
+}
+
+// Delivery Time Clock
+
+.clockControls {
+  &:active {
+    color: @onNoteColor;
+  }
+}
+
+#minutes {
+
+  &:active:after { color: @onNoteColor; }
+}
+
+// Add Input Field
+
+.inputGroup.additionalFields .addField {
+
+  &:active { background: @onNoteColor; }
+}
+
+// Change Payment Method
+
+.paymentMethod {
+
+  // Attention on adapting behaviour to :hover
+
+  &:active {
+    background: @onNoteColor;
+    color: @noteColor;
+  }
+}
+
+// store.checkout --------------------------------------------------------------

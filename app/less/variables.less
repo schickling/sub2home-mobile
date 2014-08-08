@@ -1,4 +1,4 @@
-// HEADINGS FONT
+// FONTS
 
 /* @license
  * MyFonts Webfont Build ID 2512043, 2013-03-22T12:25:39-0400
@@ -21,9 +21,22 @@
 
 // @import url("http://hello.myfonts.net/count/2654ab");
 
-@font-face {font-family: 'VAGRoundedStd-Thin';src: url('../fonts/2654AB_0_0.eot');src: url('../fonts/2654AB_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/2654AB_0_0.woff') format('woff'),url('../fonts/2654AB_0_0.ttf') format('truetype');}
+// Headline-Font
 
+@font-face {font-family: 'VAGRoundedStd-Thin';src: url('/fonts/2654AB_0_0.eot');src: url('/fonts/2654AB_0_0.eot?#iefix') format('embedded-opentype'),url('/fonts/2654AB_0_0.woff') format('woff'),url('/fonts/2654AB_0_0.ttf') format('truetype');}
 
+// Icon-Font
+
+@font-face {
+  font-family: 'Homicons';
+  src:url('/fonts/homicons.eot?2zfjmd');
+  src:url('/fonts/homicons.eot?#iefix2zfjmd') format('embedded-opentype'),
+    url('/fonts/homicons.woff?2zfjmd') format('woff'),
+    url('/fonts/homicons.ttf?2zfjmd') format('truetype'),
+    url('/fonts/homicons.svg?2zfjmd#homicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
 // HAND FONT
 
@@ -31,8 +44,8 @@
 //
 // @font-face {
 //   font-family: "Homicons";
-//   src: url("../fonts/Homicons-2.eot");
-//   src: url("../fonts/Homicons-2.eot?#iefix") format("embedded-opentype"), url("../fonts/Homicons-2.ttf") format("truetype"), url("../fonts/Homicons-2.svg#Homicons-2") format("svg");
+//   src: url("/fonts/Homicons-2.eot");
+//   src: url("/fonts/Homicons-2.eot?#iefix") format("embedded-opentype"), url("/fonts/Homicons-2.ttf") format("truetype"), url("/fonts/Homicons-2.svg#Homicons-2") format("svg");
 //   font-weight: normal;
 //   font-style: normal;
 // }
@@ -41,7 +54,7 @@
 //   .win {
 //     @font-face {
 //         font-family: "Homicons";
-//         src: url("../fonts/Homicons-2.svg#Homicons-2") format("svg");
+//         src: url("/fonts/Homicons-2.svg#Homicons-2") format("svg");
 //     }
 //   }
 // }
@@ -70,6 +83,8 @@
 
 
 @onNoteColor:           rgba(203,172,94,1);
+@onNoteColor10:         rgba(203,172,94,0.1);
+@onNoteColor20:         rgba(203,172,94,0.2);
 @onNoteColor30:         rgba(203,172,94,0.3);
 @onNoteColor50:         rgba(203,172,94,0.5);
 @onNoteColor60:         rgba(203,172,94,0.6);
@@ -84,20 +99,29 @@
 @darkNoteColor:         #f4e3b7;
 @noteBorderColor:       #ddbe84;
 
+@darkColor:             #454545;
+
 @darkNote:              rgba(224,166,54,0.2);
+@darkNote50:            rgba(225,166,54,0.1);
 
 @onInfoColor:           @black;
 
 @headerTrayBackground:  rgba(196,144,18,0.25);
 
-@onHeaderColor:         #ac872d;
+@onHeaderColor:         #ac872d; // Old
+
+@onHeaderColor:         #a17426;
 @onHeaderColor50:       rgba(172,135,45,0.5);
+@onHeaderColor50:       rgba(161,116,38,0.5);
+
+@headerColor:           #e4c988;
 
 // Accent colors
 // -------------------------
 
 @red:               #9d261d;
 @red50:             rgba(157,38,29,0.5);
+@red70:             rgba(157,38,29,0.7);
 
 @orange:            #dc952b;
 @orange40:          rgba(220,149,43,0.4);
@@ -128,10 +152,11 @@
 @bodyBackground:               @white;
 @textColor:                    @grayDark;
 
-@noteBackground:               url("../images/notebackground.jpg") repeat #fbf4d7;
-@darkBackground:               url("../images/darkbackground.jpg") repeat #454545;
-@magnifierImage:               url("../images/magnifier.png") no-repeat;
+@noteBackground:               url("/images/notebackground.jpg") repeat #fbf4d7;
+@darkBackground:               url("/images/darkbackground.jpg") repeat #454545;
+@magnifier:                    url("/images/magnifier.png") no-repeat;
 
+@facebookWave:                 url("../images/facebookwave.svg") center top no-repeat;
 
 // @placeholderImage:             url("https://d3uu6huyzvecb1.cloudfront.net/images/common/placeholderimage.gif") no-repeat center;
 
@@ -150,7 +175,7 @@
 @baseFontFamily:    "VAGRoundedStd-Thin", Helvetica, Arial, sans-serif;
 
 @mobileBaseFontSize:      18px;
-@tabletBaseFontSize:      27px;
+@tabletBaseFontSize:      24px;
 
 @mobileSmallFontSize:      13px;
 @tabletSmallFontSize:      18px;
@@ -223,6 +248,6 @@
 // REATINA IMAGES
 // -------------------------
 
-  @noteBackground-2x:               url("../images/notebackground-2x.jpg") repeat #fbf4d7;
-  @darkBackground-2x:               url("../images/darkbackground-2x.jpg") repeat #454545;
-  @magnifierImage-2x:               url("../images/magnifier-2x.png") no-repeat;
+  @noteBackground-2x:               url("/images/notebackground-2x.jpg") repeat #fbf4d7;
+  @darkBackground-2x:               url("/images/darkbackground-2x.jpg") repeat #454545;
+  @magnifier-2x:                    url("/images/magnifier-2x.png") no-repeat;

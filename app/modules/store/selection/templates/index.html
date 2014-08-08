@@ -1,40 +1,43 @@
 <div>
     <aside id="header">
-        <div id="getBack" ng-click="back()">
-            zurück
-        </div>
-        <div id="pageTitle">
-            <!--       <img src="images/articles/smallimages/bbqrib.png" alt="" /> -->
-            <span>{{ articleModel.title }}<small> {{ articleModel.info }}</small></span>
-        </div>
-        <div id="toTheInfo" class="icn iInfo"></div>
-        <div id="toTheTray">
-            <div class="icn iTray">
-                <span id="traySize">5</span>
+        <div id="headerContent">
+            <div id="getBack">
+                <p>Subs
+                    <!-- Article-Category from which the User got to selection -->
+                </p>
             </div>
+            <div id="pageTitle" class="separate">
+                <span>{{ articleModel.title }}<small> {{ articleModel.info }}</small></span>
+            </div>
+            <div id="toTheTray">
+                <div class="icn iTray">
+                    <span id="traySize">5</span>
+                </div>
+            </div>
+            <div id="toTheInfo" class="icn iInfo"></div>
         </div>
+
     </aside>
 
     <div id="storeSelection" class="content" ng-swipe-left="next()" ng-swipe-right="prev()">
-
-        <section class="note above hint highlighted">
+        <!--         <section class="note above hint highlighted">
             Wähle deine Zutaten
-        </section>
+        </section> -->
 
 
-        <div id="skipThisStep" class="iFast" ng-if="type === 'ingredient' && entity.defaultIngredientModel"
-        ng-click="selectIngredient(entity.defaultIngredientModel, true)">
+        <div id="skipThisStep" class="iFast" ng-if="type === 'ingredient'" ng-click="selectIngredient(entity.defaultIngredientModel, true)">
             <p>Oder einfach nur schnell bestellen?
                 <br>Verlass dich auf unsere Empfehlung.</p>
             <h3>Schritt überspringen</h3>
         </div>
 
         <section id="ingredients">
-            <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection"
-            ng-click="selectIngredient(ingredientModel, false)">
+            <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel, false)">
                 <div class="imageContainer">
-                    <img ng-src="{{ ingredientModel.largeImage }}" height="130" width="130" alt=""
-                    />
+                    <div class="ingredientPriceContainer">
+                        <div class="ingredientPrice">+ 1.00€</div>
+                    </div>
+                    <img ng-src="{{ ingredientModel.largeImage }}" height="80" width="80" alt="" />
                 </div>
                 <h3>{{ ingredientModel.title }}</h3>
             </div>
@@ -42,9 +45,9 @@
 
 
         <section id="articles" ng-if="type === 'menuUpgradeArticle' || type === 'Article'">
-          <div id="tableRow" col-repeat app-items-collection="entity" app-col="col" watch="true">
-            <article ng-repeat="itemModel in col" item-model="itemModel"></article>
-          </div>
+            <div id="tableRow" col-repeat app-items-collection="entity" app-col="col" watch="true">
+                <article ng-repeat="itemModel in col" item-model="itemModel"></article>
+            </div>
         </section>
 
         <section id="menuUpgrades" ng-if="type === 'menuUpgrade'">
@@ -56,10 +59,10 @@
                 </div>
 
 
-            <h2>Sparmenü</h2>
+                <h2>Sparmenü</h2>
                 <p class="itemDescription" bo-text="menu.description"></p>
                 <div ng-click="upgrade(menu)" class="buyingOption">
-                    <div class="buy">
+                    <div class="buy note">
                         <div class="pricetag">
                             <h3>
 
@@ -81,42 +84,42 @@
                 <br/>und gleich weiter</p>
             <h3>zum Tablett</h3>
         </div>
-  </div>
+    </div>
 
-  <aside id="timeline" class="note below">
-    <div id="timelineStage">
+    <aside id="timeline" class="note below">
+        <div id="timelineStage">
 
-      <!-- Ordered Item -->
-      <div class="timelineGroup" ng-repeat="orderedArticleModel in orderedArticlesCollection" >
-        <!-- All Articles -->
-        <div >
-          <!-- Article -->
-          <div class="timelineStep article">
-            <div class="icn {{orderedArticleModel.menuComponentBlockMediaModel.icon}}"></div>
-          </div>
+            <!-- Ordered Item -->
+            <div class="timelineGroup" ng-repeat="orderedArticleModel in orderedArticlesCollection">
+                <!-- All Articles -->
+                <div>
+                    <!-- Article -->
+                    <div class="timelineStep article">
+                        <div class="icn {{orderedArticleModel.menuComponentBlockMediaModel.icon}}"></div>
+                    </div>
 
-          <!-- Ingredients -->
-          <div class="timelineStep" ng-class="{active: ingredientCategoryModel === entity}" ng-repeat="ingredientCategoryModel in orderedArticleModel.articleModel.ingredientCategoriesCollection">
-            <div class="icn {{ ingredientCategoryModel.icon }}"></div>
-          </div>
+                    <!-- Ingredients -->
+                    <div class="timelineStep" ng-class="{active: ingredientCategoryModel === entity}" ng-repeat="ingredientCategoryModel in orderedArticleModel.articleModel.ingredientCategoriesCollection">
+                        <div class="icn {{ ingredientCategoryModel.icon }}"></div>
+                    </div>
 
-          <!-- MenuUpgrade -->
-          <div ng-if="orderedArticleModel.articleModel.menuUpgradesCollection" class="timelineStep menuUpgrade" ng-class="{active: orderedArticleModel.articleModel.menuUpgradesCollection === entity}">
-            <div class="icn iMenuUpgrade"></div>
-          </div>
+                    <!-- MenuUpgrade -->
+                    <div ng-if="orderedArticleModel.articleModel.menuUpgradesCollection" class="timelineStep menuUpgrade" ng-class="{active: orderedArticleModel.articleModel.menuUpgradesCollection === entity}">
+                        <div class="icn iMenuUpgrade"></div>
+                    </div>
 
-          <div class="timelineStep article" ng-repeat="article in menuUpgrade">
-            <div ng-class="{active: article === entity}" class="icn {{ article.menuComponentBlockMediaModel.icon }}"></div>
-          </div>
-        </div>
+                    <div class="timelineStep article" ng-repeat="article in menuUpgrade">
+                        <div ng-class="{active: article === entity}" class="icn {{ article.menuComponentBlockMediaModel.icon }}"></div>
+                    </div>
+                </div>
 
             </div>
-        <div class="timelineStep tray">
-          <div class="icn iTray"></div>
+            <div class="timelineStep tray">
+                <div class="icn iTray"></div>
+            </div>
+
+
         </div>
-
-
-</div>
-</aside>
+    </aside>
 
 </div>

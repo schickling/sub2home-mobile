@@ -18,8 +18,12 @@ module.exports = ['localStorageService', '$q',
           defer.resolve(postal);
         } else {
           zipcoder.location(function(result) {
-            self.set(result.zipcode);
-            defer.resolve(result.zipcode);
+            if (result) {
+              self.set(result.zipcode);
+              defer.resolve(result.zipcode);
+            } else {
+              defer.reject();
+            }
           });
         }
 

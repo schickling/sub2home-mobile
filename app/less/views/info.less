@@ -1,0 +1,293 @@
+// ---------------------------------------------- INFO SECTION -------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------------
+
+// Variables
+
+@infoNavigationWidth:     200px;
+
+
+// navigation ------------------------------------------------------------------
+
+#infoNavigation {
+  width: @infoNavigationWidth;
+  .translate(-@infoNavigationWidth,0,0);
+
+  ul {
+    min-height: 100%;
+    background: rgba(0,0,0,0.2);
+
+    li {
+      padding: 25px 25px 21px;
+    }
+  }
+
+}
+
+// common used elements --------------------------------------------------------
+
+#homeInfo, #storeInfo {
+  text-align: left;
+  height: auto !important;
+
+  section {
+    margin: 20px 0 0;
+    header {
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      border-top: 1px solid rgba(0,0,0,0.2);
+      padding: 20px 20px 17px;
+      background: rgba(0,0,0,0.1);
+      // margin: 0 0 10px;
+      // color: @black;
+      // text-shadow: 0 1px 1px rgba(255,255,255,0.1);
+    }
+    &:first-child {
+      margin: 0;
+      header { border-top: none; }
+    }
+
+    p {
+      margin: 0;
+      // color: @black;
+      // color: @white;
+      // text-shadow: 0 1px 1px rgba(255,255,255,0.15);
+      padding: 5px 20px;
+
+      &:first-child {
+        margin: 15px 0 0;
+      }
+    }
+  }
+}
+
+#nutritionIcons {
+  padding: 15px;
+}
+
+.nutritionIcon {
+  display: inline-block;
+  position: relative;
+  background: @white;
+  background: rgba(0,0,0,0.1);
+  // background: rgba(255,255,255,0.5);
+  .img-circle;
+  padding: 15px;
+  margin: 5px;
+  font-size: 40px;
+
+  &:before {
+    color: @darkColor;
+    color: @white;
+  }
+
+  &.iIngredients {
+    &:before {
+      top: -3px;
+    }
+  }
+}
+
+#sub2homeContact {
+  background: rgba(0,0,0,0.1);
+
+  header {
+    background: none !important;
+    border-bottom: none !important;
+  }
+  .subheadline {
+    display: block;
+    font-size: 19px;
+    // color: @black;
+    // text-shadow: 0 1px 1px rgba(255,255,255,0.15);
+  }
+}
+
+.addressInfo {
+  padding: 20px 20px 10px;
+}
+
+.waysToContact {
+  padding: 0 20px 10px;
+
+  .icn {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+
+  a, p {
+    margin: 0 !important;
+    padding: 10px 0 8px !important;
+    display: block;
+  }
+}
+
+#impressum {
+
+  margin: 0 !important;
+  padding: 20px 0 50px;
+  background: rgba(0,0,0,0.1);
+  color: rgba(255,255,255,0.5);
+
+  header {
+    background: none !important;
+    border: none !important;
+  }
+  &:after {
+    content: "\e60d";
+    font-family: "Homicons";
+    font-size: 70px;
+    margin: 30px 0 0;
+    text-align: center;
+    display: block;
+    color: rgba(0,0,0,0.3);
+    // text-shadow: 0 1px 1px rgba(255,255,255,0.15);
+  }
+}
+
+#impressumContent {
+  font-size: 13px;
+
+  h4 {
+    margin: 20px 20px 10px;
+  }
+}
+
+
+// home.info -------------------------------------------------------------------
+
+#restaurantsOverview {
+  // padding: 10px;
+}
+
+.deliveringRestaurant {
+  position: relative;
+  margin: 0 10px;
+  padding: 14px 10px 10px;
+  color: @white;
+  // text-shadow: 0 1px 1px rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  cursor: pointer;
+  &:last-child {
+    border-bottom: none;
+  }
+  h4 {
+    // color: @white;
+  }
+
+  &:after {
+    content: "\e604";
+    font-family: "Homicons";
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    font-size: 16px;
+    margin-top: -8px;
+    color: rgba(0,0,0,0.3);
+    // color: @white;
+    // text-shadow: 0 1px 1px rgba(255,255,255,0.15);
+  }
+
+  .deliveryStatus {
+    margin: 0;
+    padding: 5px 0 0 !important;
+    font-size: 13px;
+    color: inherit;
+    &.delivering .deliveryIndicator { background: @greenLight; }
+    &.notDelivering .deliveryIndicator { background: @orange; }
+    &.closed .deliveryIndicator { background: @red; }
+  }
+
+  .deliveryIndicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    .img-circle;
+    // background: @greenLight;
+
+  }
+}
+
+// store.info ------------------------------------------------------------------
+
+// Opening Hours
+
+#infoOpeningHoursContent {
+  padding: 20px 10px;
+
+  .openingHoursContainer {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    &:nth-child(odd) {
+      border-right: 1px solid rgba(0,0,0,0.2);
+    }
+  }
+
+  .openingHoursContent {
+    .openingDay {
+      color: @greenLighter;
+    }
+  }
+}
+
+// Delivery Areas
+
+#infoDeliveryAreas {
+
+}
+
+#infoDeliveryAreasContent {
+  padding: 20px 10px;
+
+  .storeDeliveryArea {
+
+    .postal {
+      color: @greenLighter;
+    }
+
+    &.selected {
+      .storeDeliveryAreaDescription{
+        &:after {
+          content: "\e609";
+          padding: 7px;
+          font-size: 14px;
+          margin-top: -16px;
+          color: @greenLighter !important;
+        }
+      }
+    }
+  }
+
+  .storeDeliveryAreaDescription {
+    p {
+      color: rgba(255,255,255,0.5);
+    }
+    &:after {
+      color: rgba(0,0,0,0.3);
+    }
+  }
+
+  .storeMultipleDeliveryAreas {
+
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+
+    .storeDeliveryAreaDescription {
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+  }
+}
+
+// PaymentMethods
+
+#infoPaymentMethods {
+  padding: 0 0 20px;
+}
+
+.infoPaymentMethod {
+
+  h3 {
+    padding: 30px 20px 10px;
+  }
+
+  &.notProvided {
+    display: none;
+  }
+}

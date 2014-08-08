@@ -2,265 +2,238 @@
 
 // Variables
 
-@navWidth:   50px;
-
-#toggleCategories {
-
-  // Right Border Test
-  padding-right: 9px !important;
-  border-right: 1px solid @onHeaderColor50;
-  width: @toggleCategoriesWidth;
-
-  cursor: pointer;
-
-  &:before {
-    top: -5px;
-    .rotate(0deg);
-    .transformTransition(0.3s, ease);
-  }
-}
-
+@categoriesNavigationWidth:   50px;
 
 #categoriesNavigation {
-  position: fixed;
-  padding-top: 53px;
-  .border-box;
 
-  width: @navWidth;
-  overflow: hidden;
-  height: 100%;
-  background: @darkBackground;
-
-  .translate(-@navWidth,0,0);
-  .transformTransition(.3s,ease);
+  width: @categoriesNavigationWidth;
+  .translate(-@categoriesNavigationWidth,0,0);
 
   ul {
     li {
-      display: block;
-      position: relative;
       height: 50px;
-      .border-box;
       padding: 10px;
-      color: @white;
       text-shadow: 0 0 5px rgba(0,0,0,0.5);
-      border-bottom: 1px solid rgba(0,0,0,0.3);
-      overflow: visible;
-      &.active:before {
-        content: " ";
-        position: absolute;
-        left: -1px;
-        .border-radius(1px);
-        top: -1px;
-        height: 51px;
-        width: 5px;
-        background: @greenLight;
-        .box-shadow(0 0 5px 0 rgba(0,0,0,0.5));
-      }
     }
   }
 }
 
-#storeHome {
-  .translate(0,0,0);
-  .transformTransition(.3s,ease);
-  .box-shadow(0 0 5px 0 rgba(0,0,0,0.5));
-}
+
 
 
 
 #editLocation {
   padding: 20px @bodyPadding 13px;
-  font-size: 24px;
-  .icn {
-    font-size: 20px;
-  }
-}
+  font-size: 18px;
+  z-index: 101;
 
-#articles {
-
-  .item {
-    padding: 30px @bodyPadding;
-    border-bottom: 1px solid @darkerWhite;
-  }
-
-  item:last-child .item {
-    border-bottom: none;
-  }
-
-  // Columns
-
-  display: table;
-
-  .tableRow {
-    display: table-row;
-    table-layout: fixed;
-  }
-  .col {
-    width: 3000px;
-    display: table-cell;
-    border-left: 1px solid @darkerWhite;
-    vertical-align: top;
-
-    &:first-child {
-      border-left: none;
-    }
-  }
-
-
-
-  // -------
-
-  h2 {
-    color: @greenDark;
-  }
-
-  .itemDescription {
-    // height: auto;
-    // .transition(e('height .3s ease, padding .3s ease'));
-    // overflow: hidden;
-    &.hidden {
-      display: none;
-      // height: 0;
-      // padding: 0 15px;
-    }
-  }
-}
-
-.buyingOption {
-
-  margin-top: 15px;
-
-  > div {
+  p {
     display: inline-block;
-    background: @noteBackground;
-    padding: 3px;
-    border-radius: 3px;
-    border: 1px solid @noteBorderColor;
-    .box-shadow(0 1px 3px 0 @globalShadowColor15);
-
-    &:last-child {
-      margin-left: 5px;
-    }
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    .pricetag {
-      border-radius: 2px;
-      border: 3px dashed @onNoteColor50;
-      padding: 2px 7px;
-
-      h3 {
-
-        // SIZE ADJUST
-
-        font-size: 19px;
-
-        color: @greenDark;
-        display: inline-block;
-        line-height: 1;
-        text-align: left;
-
-        vertical-align: top;
-
-      }
-
-      // .sizeTag, .price {
-      //   display: block;
-      // }
-
-      .sizeTag {
-        font-size: 16px;
-        color: @onNoteColor;
-
-        // SIZE ADJUST
-
-        font-size: 13px;
-      }
-    }
+    margin: 0;
+    padding: 0;
   }
-
-  .buy {
-    .pricetag {
-      &:before {
-        content: "\e613";
-        font-family: "Homicons";
-        display: inline-block;
-        color: @onNoteColor50;
-        font-size: 20px;
-        margin-top: 6px;
-      }
-      h3 {
-        margin: 8px 0 0 3px;
-      }
-    }
-  }
-
-  .buy6inch, .buyFootlong {
-    .pricetag:before {
-      content: "\e614";
-      font-family: "Homicons";
-      display: inline-block;
-      color: @onNoteColor50;
-      font-size: 30px;
-      margin-top: 7px;
-    }
-    h3 {
-      margin: 6px 0 0;
-    }
-  }
-  .buyFootlong {
-    .pricetag:before {
-      content: "\e615";
-    }
-  }
-
-  .buyBeverage {
-    .pricetag:before {
-      display: inline-block;
-      color: @onNoteColor50;
-      content: "\e613";
-      font-family: "Homicons";
-      font-size: 30px;
-      margin: 7px 5px 0 0;
-    }
-
-    h3 {
-      margin: 7px 0 0;
-    }
-
-    .deposit {
-      display: inline-block;
-      color: @onNoteColor50;
-      font-size: 13px;
-      margin: 5px 0 0 5px;
-      width: 40px;
-      height: 30px;
-      padding: 1px 0 1px 5px;
-      vertical-align: top;
-      border-left: 1px solid @onNoteColor50;
-    }
+  .editButton {
+    vertical-align: middle;
+    margin: 0 10px 0 0;
   }
 }
 
+#storeMessage {
+  border-top: 1px solid @onNoteColor50;
+  cursor: pointer;
+  p {
+    margin: 10px 0 0;
+    padding: 10px 15px 0;
+    display: inline-block;
+  }
+  .smallHint {
+    margin: 0 0 10px;
+    padding: 0;
+    color: @onNoteColor50;
+  }
+}
 
 #toNextCategory {
   border-top: 1px solid @darkerWhite;
 }
 
+// DELIVERYAREA-OVERLAY --------------------------------------------------------
 
-// Toggle States
+#overlayContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.8);
 
-.navToggled {
+  overflow: auto;
+  z-index: 9500;
 
-  #categoriesNavigation {
-    .translate(0,0,0);
+  // Center .overlay, if height < 100%
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.28em;
   }
-  #storeHome {
-    .translate(@navWidth,0,0);
+}
+
+.overlay {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 15px;
+  border: 1px solid @onNoteColor30;
+  .box-shadow(0 1px 3px 0 @globalShadowColor15);
+  .border-radius(3px);
+  padding: 30px 0 15px;
+  text-align: center;
+
+  .logo {
+    font-size: 40px;
+    color: @onNoteColor50;
   }
-  #toggleCategories:before {
-    .rotate(180deg);
+
+  .callToAction {
+    padding-top: 0;
+  }
+}
+
+#storeDeliveryAreaSuggestion {
+
+  #suggestionLoader {
+    display: none;
+    margin: 15px 0 20px;
+
+    .iCompass {
+      font-size: 50px;
+      color: @onNoteColor50;
+    }
+  }
+
+  .storeMultipleDeliveryAreas {
+    border-top: 1px solid @onNoteColor30;
+    // border-bottom: none;
+    background: @darkNote;
+    color: @onDarkNoteColor;
+  }
+
+  .storeDeliveryArea {
+    padding: 0 10px;
+
+    &.selected {
+      .storeDeliveryAreaDescription{
+        &:after {
+          content: "\e609";
+          padding: 7px;
+          font-size: 14px;
+          margin-top: -16px;
+          color: @greenLight !important;
+        }
+      }
+    }
+  }
+
+  .storeDeliveryAreaDescription {
+    p, &:after {
+      color: @onDarkNoteColor50;
+    }
+  }
+
+  .smallHint {
+    margin: 20px 0 10px;
+    padding: 0 10px;
+    color: @onNoteColor50;
+  }
+
+  &.loading {
+    #suggestionLoader {
+      display: block;
+    }
+
+    .storeMultipleDeliveryAreas, > p {
+      display: none;
+    }
+  }
+}
+
+#storeDeliveryAreaSelection {
+
+  .storeDeliveryArea {
+    .postal {
+      color: @greenLight;
+    }
+  }
+
+  .storeDeliveryAreaDescription {
+    p, &:after {
+      color: @onNoteColor50;
+    }
+  }
+
+  .storeMultipleDeliveryAreas {
+    border-bottom: 1px solid @onNoteColor30;
+
+    .storeDeliveryAreaDescription {
+      border-bottom: 1px solid @onNoteColor30;
+    }
+  }
+}
+
+#storeDeliveryAreas {
+  padding: 0 10px;
+}
+
+
+.backHome {
+  border-top: 1px solid @onNoteColor50;
+  padding: 10px 0;
+}
+
+#storeDeliveryAreaSuggestion .backHome {
+  border-bottom: 1px solid @onNoteColor50;
+  background: @darkNote;
+  color: @onDarkNoteColor;
+  padding: 20px 0;
+
+  .smallHint {
+    margin: 0 0 10px;
+    padding: 0 15px 10px;
+    color: @onDarkNoteColor50;
+  }
+
+  .button {
+    border-color: @onDarkNoteColor50;
+  }
+}
+
+
+#openedStore {
+  background: @darkNote;
+  padding: 10px 0 20px;
+  color: @onDarkNoteColor;
+  .smallHint {
+  }
+  border-top: 1px solid @onNoteColor30;
+}
+
+#closedStore {
+  header .highlighted {
+    padding-top: 0;
+  }
+
+  .openingHoursContainer {
+    border-bottom: 1px solid @onNoteColor30;
+    &:nth-child(odd) {
+      border-right: 1px solid @onNoteColor30;
+    }
+  }
+
+  .openingHoursContent {
+    .openingDay {
+      color: @greenLight;
+    }
   }
 }

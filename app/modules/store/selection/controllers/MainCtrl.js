@@ -33,14 +33,16 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       if (showNext) {
         $scope.next();
       } else if ($scope.entity.isSingle) {
-        $timeout($scope.next, 600);
+        //$timeout($scope.next, 600);
+        $timeout($scope.next, 1);
       }
 
     };
 
     $scope.next = function() {
-      EntityIteratorService.next();
-      updateScope();
+      EntityIteratorService.next().then(function() {
+        updateScope();
+      });
     };
 
     $scope.prev = function() {
@@ -68,22 +70,15 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       $scope.next();
     };
 
-    $scope.$on('nextEntity', function(event, data) { $scope.next();  });
+    $scope.$on('nextEntity', function(event, data) {
+      $scope.next();
+    });
 
     var updateScope = function() {
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
 
       $scope.articleModel = EntityIteratorService.getArticle();
-
-//      entityiteratorservice.getentity().then(function(entity) {
-//        $scope.entity = entity;
-//      });
-      EntityIteratorService.getEntity().then(function(entity){
-        $scope.entity = entity;
-      });
-
-      $scope.type = EntityIteratorService.getType();
 
       EntityIteratorService.getNextEntity().then(function(nextEntity) {
         // checks whether the next step is the tray or not
@@ -96,6 +91,18 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
           $scope.toTray = false;
           $scope.nextStep = nextEntity;
         }
+      });
+
+      //      entityiteratorservice.getentity().then(function(entity) {
+      //        $scope.entity = entity;
+      //      });
+
+      EntityIteratorService.getEntity().then(function(entity) {
+        $scope.entity = entity;
+      });
+
+      EntityIteratorService.getType().then(function(type) {
+        $scope.type = type;
       });
 
     };

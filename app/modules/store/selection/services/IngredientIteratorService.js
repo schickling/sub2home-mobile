@@ -7,11 +7,11 @@ module.exports = ['$q',
     return {
 
       _ingredientCategories: null,
-      _currentIngredientCategoryIndex: 0,
+      _currentIngredientCategoryIndex: null,
 
       init: function(ingredientCategories) {
         this._ingredientCategories = ingredientCategories;
-
+        this._currentIngredientCategoryIndex = 0;
         return this;
       },
 
@@ -40,7 +40,7 @@ module.exports = ['$q',
       },
 
       hasNextEntity: function() {
-        return this._currentIngredientCategoryIndex + 1  < this._ingredientCategories.length;
+        return this._currentIngredientCategoryIndex + 1 < this._ingredientCategories.length;
       },
 
       getEntity: function() {
@@ -64,7 +64,9 @@ module.exports = ['$q',
       },
 
       getType: function() {
-        return 'ingredient';
+        var defer = $q.defer();
+        defer.resolve('ingredient');
+        return defer.promise;
       },
 
       _adjust: function() {

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = [ '_', 'ArticleIteratorService', 'ArticleModelFactory', '$route', '$q',
+module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route', '$q',
 
 
   function(_, ArticleIteratorService, ArticleModelFactory, $route, $q) {
@@ -19,15 +19,28 @@ module.exports = [ '_', 'ArticleIteratorService', 'ArticleModelFactory', '$route
       return result;
     };
 
-    var fetchArticle =  function(article) {
-        var articleModel = ArticleModelFactory.get({
-          storeAlias: $route.current.params.storeAlias,
-          articleId: article.id
-        });
+    var fetchArticle = function(article, self) {
+      var articleModel = ArticleModelFactory.get({
+        storeAlias: $route.current.params.storeAlias,
+        articleId: article.id
+      });
 
-        return articleModel.$promise.then(function() {
-          return ArticleIteratorService.init(articleModel);
-        });
+      self._hasIngrediants = true;
+      self._isFetching = true;
+
+      var defer = $q.defer();
+      self._articleIterator = defer.promise;
+
+      return articleModel.$promise.then(function() {
+
+        self._isFetching = false;
+        articleModel.allowsMenuUpgrades = 0;
+
+        var iterator = ArticleIteratorService.init(articleModel);
+        article.savedArticle = articleModel;
+        defer.resolve(iterator);
+        return iterator.getEntity();
+      });
     };
 
 
@@ -37,81 +50,119 @@ module.exports = [ '_', 'ArticleIteratorService', 'ArticleModelFactory', '$route
       _menuComponentCollection: null,
       _currentArticleIndex: null,
       _articleIterator: null,
+      _hasIngrediants: null,
+      _currentEntity: null,
+      _isFetching: null,
 
       init: function(menu) {
         this._menu = menu;
         this._currentArticleIndex = 0;
         this._menuComponentCollection = menu.menuBundleModel.menuComponentBlocksCollection;
-
-       return this;
+        this._currentEntity = this._menuComponentCollection[0].menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection;
+        return this;
       },
 
       next: function() {
-        var nextEntity = this.getNextEntity();
-
-        if (nextEntity) {
-          this._currentArticleIndex++;
-        }
-        return nextEntity;
-      },
-
-      
-      getNextEntity: function() {
-
+        var self = this;
         var defer = $q.defer();
 
-        if (!this._articleIterator) {
+        if (this._hasIngrediants) {
+          return this._articleIterator.then(function(iterator) {
+            var defer = $q.defer();
+            if (iterator.hasNextEntity()) {
+              var result = iterator.next();
 
-          var article = getSelectedArticle(this.getEntity());
+              return result;
+            } else {
+              self._hasIngrediants = false;
+              self._currentArticleIndex++;
+              if (self._currentArticleIndex < self._menuComponentCollection.length) {
+                self._currentEntity = self._menuComponentCollection[self._currentArticleIndex].menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection;
+              } else {
+                self._currentEntity = null;
+              }
+              defer.resolve(self._currentEntity);
 
-
-          if (article && article.allowsIngredients) {
-            // fetch from server
-
-
-            // defer.promise = this.fetchArtile(article);
-            //this._articleIterator = fetchArticle(article);
-            var self = this;
-            fetchArticle(article).then(function(iterator) {
-              self._articleIterator = iterator;
-              return iterator.getEntity();
-            });
-
-          } else {
-
-            if (this._currentArticleIndex + 1 < this._menuComponentCollection.length) {
-              var entity = this._menuComponentCollection[this._currentArticleIndex + 1];
-              defer.resolve(entity.menuComponentOptionsCollection[0]);
               return defer.promise;
             }
-          }
+          });
         } else {
-          defer.resolve(this._articleIterator.getNextEntity());
-          // TODO when getNextEntity is Null
-        }
+          var selectedArticle = getSelectedArticle(this._currentEntity);
 
+          if (selectedArticle && selectedArticle.allowsIngredients && !selectedArticle.savedArticle) {
+            return fetchArticle(selectedArticle, this);
+          } else {
+            this._hasIngrediants = false;
+            this._currentArticleIndex++;
+
+            if (this._currentArticleIndex < this._menuComponentCollection.length) {
+              this._currentEntity = this._menuComponentCollection[this._currentArticleIndex].menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection;
+            } else {
+              this._currentEntity = null;
+            }
+
+            defer.resolve(this._currentEntity);
+
+            return defer.promise;
+          }
+        }
       },
 
-      getEntity: function() {
+
+      getNextEntity: function() {
         var defer = $q.defer();
+        var self = this;
 
-        var entity = this._menuComponentCollection[this._currentArticleIndex];
-
-          if (!this._articleIterator) {
-            // if getSelected annd has ingrediants fetch from server
-            defer.resolve(entity.menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection);
-
-            //this._articleIterator = ArticleIteratorService.init();
-            //result = this._articleIterator();
+        if (this._articleIterator) {
+          return this._articleIterator.then(function(iterator) {
+            if (iterator.hasNextEntity()) {
+              return iterator.getNextEntity();
+            } else {
+              var d = $q.defer();
+              if (self._currentArticleIndex + 1 < self._menuComponentCollection.length) {
+                d.resolve(self._menuComponentCollection[self._currentArticleIndex + 1].menuComponentOptionsCollection[0]);
+              } else {
+                d.resolve(null);
+              }
+              return d.promise;
+            }
+          });
+        } else {
+          if (this._currentArticleIndex + 1 < this._menuComponentCollection.length) {
+            defer.resolve(this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentOptionsCollection[0]);
           } else {
-            defer.resolve(this._articleIterator);
+            defer.resolve(null);
           }
+        }
 
         return defer.promise;
       },
 
+      getEntity: function() {
+        var defer = $q.defer();
+        var self = this;
+
+        if (this._hasIngrediants) {
+          return this._articleIterator.then(function(iterator) {
+            if (iterator.hasEntity()) {
+              return iterator.getEntity();
+            } else {
+              var d = $q.defer();
+              d.resolve(self._currentEntity);
+
+              return d.promise;
+            }
+          });
+        } else {
+          defer.resolve(this._currentEntity);
+        }
+
+        return defer.promise;
+
+      },
+
       getArticle: function() {
-        return this._menu.menuBundleModel;
+
       },
 
       jumpToEntity: function(entity) {
@@ -119,8 +170,20 @@ module.exports = [ '_', 'ArticleIteratorService', 'ArticleModelFactory', '$route
       },
 
       getType: function() {
-        return 'Article';
+        var defer = $q.defer();
+
+        if (this._hasIngrediants) {
+          return this._articleIterator.then(function(iterator) {
+            return iterator.getEntity();
+          });
+        } else {
+          defer.resolve('Article');
+        }
+
+        return defer.promise;
+
       }
+
     };
 
   }

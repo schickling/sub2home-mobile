@@ -24,9 +24,14 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
         this._adjust();
       },
       next: function() {
-        if (!this._currentIterator.next()) {
-          console.log('Done!');
-        }
+        //        if (!this._currentIterator.next()) {
+        //          console.log('Done!');
+        //        }
+        return this._currentIterator.next();
+      },
+
+      getIsFetching: function() {
+        return this._currentIterator.getIsFetching();
       },
 
       getNextEntity: function() {
@@ -35,6 +40,10 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
 
       getEntity: function() {
         return this._currentIterator.getEntity();
+      },
+
+      hasEntity: function() {
+        return this._currentIterator.hasEntity();
       },
 
       getType: function() {
@@ -70,10 +79,10 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
 
       _adjust: function() {
 
-//        var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex];
+        //        var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex];
 
-//        this._currentEntity = orderedArticleModel.articleModel.ingredientCategoriesCollection[this._currentIngredientCategoryModelIndex];
-//        this._currentType = 'ingredient';
+        //        this._currentEntity = orderedArticleModel.articleModel.ingredientCategoriesCollection[this._currentIngredientCategoryModelIndex];
+        //        this._currentType = 'ingredient';
 
       },
 

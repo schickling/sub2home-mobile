@@ -254,6 +254,7 @@
   height: 25px;
   font-size: 24px;
   color: @onNoteColor50;
+  cursor: pointer;
   .transformTransition(.2s, linear);
   &:before {
     content: "\e604";
@@ -298,6 +299,7 @@
       padding-top: 12px;
       font-size: 24px;
       color: @noteColor;
+      cursor: pointer;
       .transition(opacity .1s linear);
       &:before {
         font-family: "Homicons";
@@ -364,9 +366,9 @@
   }
 
   p {
-    padding: 6px 0 0;
+    padding: 6px 0 0 !important;
     margin: 0;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .staticColumn {
@@ -557,16 +559,16 @@
 }
 
 .clockControls {
-  &.up, &.down {
-    font-family: "Homicons";
-    font-size: 30px;
-    display: block;
-    position: absolute;
-    left: 0;
-    color: @onNoteColor50;
-    width: 100%;
-    padding: 17px 0;
-  }
+  font-family: "Homicons";
+  font-size: 30px;
+  display: block;
+  position: absolute;
+  left: 0;
+  color: @onNoteColor50;
+  width: 100%;
+  padding: 17px 0;
+  cursor: pointer;
+
   &.up {
     top: 0;
     padding-bottom: 23px;
@@ -656,6 +658,8 @@
       background: @onNoteColor50;
       .border-radius(3px);
       text-align: center;
+      cursor: pointer;
+
       &:before {
         content: "\e622";
         font-family: "Homicons";
@@ -702,6 +706,7 @@
   padding: 10px 10px 7px;
   margin-left: 9px;
   .border-box;
+  cursor: pointer;
 
   &:first-child {
     margin-left: 0;

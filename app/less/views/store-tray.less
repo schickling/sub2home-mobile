@@ -538,42 +538,59 @@
   > div {
     position: relative;
     display: inline-block;
-    font-size: 65px;
+    font-size: 75px;
     vertical-align: top;
-    padding: 30px 0 20px;
+    padding: 40px 5px 30px;
   }
 
-  &.notEarlier {
-    #hours:before {
-      color: @onNoteColor10;
+  // &.notEarlier {
+  //   #hours:before {
+  //     color: @onNoteColor10;
+  //   }
+  // }
+  // &.notLater {
+  //   #minutes:after {
+  //     color: @onNoteColor10;
+  //   }
+  // }
+}
+
+.clockControls {
+  &.up, &.down {
+    font-family: "Homicons";
+    font-size: 30px;
+    display: block;
+    position: absolute;
+    left: 0;
+    color: @onNoteColor50;
+    width: 100%;
+    padding: 17px 0;
+  }
+  &.up {
+    top: 0;
+    padding-bottom: 23px;
+    &:before {
+      content: "\e620"
     }
   }
-  &.notLater {
-    #minutes:after {
-      color: @onNoteColor10;
+  &.down {
+    bottom: 0;
+    padding-top: 23px;
+    &:before {
+      content: "\e621"
     }
   }
 }
 
-#hours:before, #minutes:after {
-  font-family: "Homicons";
-  font-size: 30px;
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-  top: 21px;
-  color: @onNoteColor50;
-}
-
-#hours:before {
-  content: "\e620";
-  margin-right: 7px;
-}
-
-#minutes:after {
-  content: "\e621";
-  margin-left: 7px;
-}
+// #hours:before {
+//   content: "\e620";
+//   margin-right: 7px;
+// }
+//
+// #minutes:after {
+//   content: "\e621";
+//   margin-left: 7px;
+// }
 
 #dividingDots {
   top: -8px;
@@ -651,9 +668,16 @@
 }
 
 #trayDeliveryArea {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   color: @onNoteColor;
 }
+
+#trayAdditionalInfo {
+  padding: 0 0 0 20px !important;
+  margin-bottom: 20px;
+}
+
+
 
 // Payment Method -----------------------------------
 

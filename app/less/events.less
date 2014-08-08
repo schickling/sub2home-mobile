@@ -151,11 +151,14 @@
 
 .deliveringRestaurant {
   &:active {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.5);
 
     &:after {
       color: rgba(0,0,0,0.4);
       color: @white;
+    }
+    .deliveryIndicator {
+      .opacity(50)!important;
     }
   }
 }
@@ -169,7 +172,8 @@
 .waysToContact{
   a,p {
     &:active {
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.5);
+      // text-shadow: 0 0 20px @black;
     }
   }
 }
@@ -305,9 +309,10 @@
 
 // Delivery Time Clock
 
-#hours {
-
-  &:active:before { color: @onNoteColor; }
+.clockControls {
+  &:active {
+    color: @onNoteColor;
+  }
 }
 
 #minutes {

@@ -311,13 +311,13 @@
     }
 
     .submitRemoveItem {
-      background: @greenLight50;
+      background: @greenLight70;
       &:before {
         content: "\e609";
       }
     }
     .discardRemoveItem {
-      background: @red50;
+      background: @red70;
       &:before {
         content: "\e60a";
       }
@@ -465,6 +465,21 @@
         .rotate(180deg);
       }
     }
+    &.editBwd {
+      .itemContent {
+        .translate(0,0,0);
+        .opacity(100);
+        .transformTransition(.2s .2s,ease);
+      }
+
+      .itemOptions {
+        .opacity(0);
+      }
+
+      .toggleOptions {
+        .rotate(0deg);
+      }
+    }
 
     &.remove {
       .editItem {
@@ -478,7 +493,7 @@
         .translate(-210px,0,0);
       }
     }
-    &.discarded {
+    &.removeBwd {
       .removeItemContainer {
         .opacity(0);
         width: 0px;

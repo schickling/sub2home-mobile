@@ -33,7 +33,7 @@
 
               <!-- Subs -->
 
-              <div class="item article sub edit editAmount">
+              <div class="item article sub edit">
                   <div class="itemContent">
                       <div class="itemDescription">
                           <h4>Roasted Chicken Breast<span class="itemInfo"> (6inch)</span></h4>
@@ -57,17 +57,22 @@
                         <div class="submitRemoveItem"></div>
                         <div class="discardRemoveItem"></div>
                       </div>
-
-                      <!--
-
-                      - .item bekommt die klasse .remove, wenn .removeItem geklickt wird (removeItemContainer erscheint)
-                      - .wenn .discardRemoveItem geklickt wird, bekommt .item die klasse .discarded dazu. .remove und .discarded wird nach der Animation (400ms entfernt)
-
-                      -->
-
                   </div>
                   <div class="toggleOptions"></div>
               </div>
+
+              <!--
+
+              ## ANIMATIONS
+
+              - .item gets class .edit, when .toggleOptions is clicked (.itemOptions animation in)
+              - .item gets class .editBwd (Bwd = Backwards) when toggle Options is clicked again (.itemOptions animation out). Both .edit and .editBwd have to be removed after the animation is over (400ms)
+
+              - .item gets class .remove, when .removeItem is clicked (.removeItemContainer animation in)
+              - .item gets class .removeBwd, when .discardRemoveItem is clicked. Both .remove und .removeBwdd have to be removed after the animation is over (400ms);
+
+              -->
+
 
               <!-- articles other than subs -->
 
@@ -85,6 +90,10 @@
                   <div class="itemOptions">
                       <div class="editItem"></div>
                       <div class="removeItem"></div>
+                      <div class="removeItemContainer">
+                        <div class="submitRemoveItem"></div>
+                        <div class="discardRemoveItem"></div>
+                      </div>
                   </div>
                   <div class="toggleOptions"></div>
               </div>
@@ -102,6 +111,10 @@
                   <div class="itemOptions">
                       <div class="editItem"></div>
                       <div class="removeItem"></div>
+                      <div class="removeItemContainer">
+                        <div class="submitRemoveItem"></div>
+                        <div class="discardRemoveItem"></div>
+                      </div>
                   </div>
                   <div class="toggleOptions"></div>
               </div>
@@ -125,6 +138,10 @@
                       <div class="itemOptions">
                           <div class="editItem"></div>
                           <div class="removeItem"></div>
+                          <div class="removeItemContainer">
+                            <div class="submitRemoveItem"></div>
+                            <div class="discardRemoveItem"></div>
+                          </div>
                       </div>
                       <div class="toggleOptions"></div>
                   </div>

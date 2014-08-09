@@ -58,7 +58,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
         this._menu = menu;
         this._currentArticleIndex = 0;
         this._menuComponentCollection = menu.menuBundleModel.menuComponentBlocksCollection;
-        this._currentEntity = this._menuComponentCollection[0].menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection;
+        this._currentEntity = this._menuComponentCollection[0].menuComponentOptionsCollection[0];
         return this;
       },
 
@@ -77,7 +77,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
               self._hasIngrediants = false;
               self._currentArticleIndex++;
               if (self._currentArticleIndex < self._menuComponentCollection.length) {
-                self._currentEntity = self._menuComponentCollection[self._currentArticleIndex].menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection;
+                self._currentEntity = self._menuComponentCollection[self._currentArticleIndex].menuComponentOptionsCollection[0];
               } else {
                 self._currentEntity = null;
               }
@@ -87,7 +87,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
             }
           });
         } else {
-          var selectedArticle = getSelectedArticle(this._currentEntity);
+          var selectedArticle = getSelectedArticle(this._currentEntity.menuComponentOptionArticlesCollection);
 
           if (selectedArticle && selectedArticle.allowsIngredients && !selectedArticle.savedArticle) {
             return fetchArticle(selectedArticle, this);
@@ -96,7 +96,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
             this._currentArticleIndex++;
 
             if (this._currentArticleIndex < this._menuComponentCollection.length) {
-              this._currentEntity = this._menuComponentCollection[this._currentArticleIndex].menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection;
+              this._currentEntity = this._menuComponentCollection[this._currentArticleIndex].menuComponentOptionsCollection[0];
             } else {
               this._currentEntity = null;
             }
@@ -167,6 +167,22 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
 
       jumpToEntity: function(entity) {
 
+      },
+
+
+      getEntityCollection: function() {
+        var result = [];
+        _.each(this._menuComponentCollection, function(article) {
+          var selected = getSelectedArticle(article.menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection);
+          if (selected && selected.savedArticle) {
+            selected.savedArticle.menuComponentBlockMediaModel = article.menuComponentBlockMediaModel;
+            result.push(selected.savedArticle);
+          } else {
+            result.push(article);
+          }
+        });
+
+        return result;
       },
 
       getType: function() {

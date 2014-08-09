@@ -73,6 +73,9 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     $scope.$on('nextEntity', function(event, data) {
       $scope.next();
     });
+    var updateTimeline = function() {
+      $scope.timelineArticleCollection = EntityIteratorService.getEntityCollection();
+    };
 
     var updateScope = function() {
 
@@ -105,9 +108,12 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
         $scope.type = type;
       });
 
+      updateTimeline();
+
     };
 
     updateScope();
+
 
   }
 ];

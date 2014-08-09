@@ -110,6 +110,10 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
         return defer;
       },
 
+      getEntityCollection: function() {
+        return [this._orderedArticleModel];
+      },
+
       getArticle: function() {
         return this._orderedArticleModel;
       },

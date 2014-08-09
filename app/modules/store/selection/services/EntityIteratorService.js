@@ -30,10 +30,6 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
         return this._currentIterator.next();
       },
 
-      getIsFetching: function() {
-        return this._currentIterator.getIsFetching();
-      },
-
       getNextEntity: function() {
         return this._currentIterator.getNextEntity();
       },
@@ -75,6 +71,10 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
 
         this._adjust();
 
+      },
+
+      getEntityCollection: function() {
+        return this._currentIterator.getEntityCollection();
       },
 
       _adjust: function() {

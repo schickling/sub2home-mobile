@@ -52,6 +52,9 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
             return this._ingredientIterator.getNextEntity();
           } else if (this._menuUpgradeIterator) {
             return this._menuUpgradeIterator.getNextEntity();
+          } else {
+            defer.resolve(null);
+            return defer.promise;
           }
         } else {
           defer.resolve(null);

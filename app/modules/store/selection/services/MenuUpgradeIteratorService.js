@@ -35,9 +35,7 @@ module.exports = ['_', '$q',
         var next = this.getNextEntity();
 
         this._menuUpgradeIndex++;
-        if (Object.prototype.toString.call(next) === '[object Array]') {
-          //  this._menuUpgradeIndex++;
-        } else if (next) {
+        if (next) {
           this._menuUpgradeArticleIndex++;
         }
 

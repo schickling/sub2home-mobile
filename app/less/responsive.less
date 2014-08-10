@@ -1,6 +1,6 @@
 // Classes: .noMobile / .noTablet
 
-// Common Styles
+// Common Styles ---------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 // Larger-Than-Mobile
@@ -23,9 +23,9 @@
       }
     }
   }
-}
 
-@media only screen and (min-width : 450px) {
+  // REORDER
+
   #categoriesNavigation {
     .translate(0,0,0);
   }
@@ -33,9 +33,19 @@
     margin-left: 50px;
     width: auto;
   }
+
+  // Columns
+
+  .column {
+    width: 50%;
+  }
+
 }
 
-// header
+
+
+
+// header ----------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 // header for larger-than-mobile
@@ -74,7 +84,7 @@
 }
 
 
-// home.home
+// home.home -------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 
@@ -263,20 +273,64 @@
 }
 
 
-// store.home
+// store.home ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 @media only screen and (min-width : 450px) {
 
-    #articles {
-      .item {
-        // width: 290px;
-        h2 {
-          font-size: 36px;
-        }
-        p {
-          font-size: 18px;
-        }
+  #articles {
+    .item {
+      // width: 290px;
+      h2 {
+        font-size: 36px;
+      }
+      p {
+        font-size: 18px;
       }
     }
+  }
+}
+
+// 404 -------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+@media only screen and (min-width : 450px) {
+
+  #notAvailableContent {
+
+    p {
+      width: 580px;
+    }
+
+    .i404 {
+      font-size: 250px;
+    }
+  }
+
+}
+
+// Info ------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+@media only screen and (min-width : 450px) {
+
+  #homeInfo, #storeInfo {
+    section {
+      p, a {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .nutritionIcon {
+    font-size: 80px !important;
+    padding: 30px;
+  }
+
+  #impressum:after {
+    font-size: 140px;
+    margin: 60px;
+  }
+
+
 }

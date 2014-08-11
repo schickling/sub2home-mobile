@@ -363,6 +363,18 @@ p {
 	}
 }
 
+.column {
+	display: inline-block;
+	width: 100%;
+	vertical-align: top;
+	padding: 0 20px;
+	.border-box;
+
+	p {
+		padding: 5px 0 !important;
+	}
+}
+
 .callToAction {
 	color: @greenLight;
 
@@ -375,7 +387,7 @@ p {
 	height: 30px;
 	width: 30px;
 	margin: 0 0 10px 10px;
-
+	vertical-align: middle !important;
 	background: @grayLighter;
 	.img-circle;
 	.icn;
@@ -880,8 +892,8 @@ p {
 	vertical-align:top;
 	.border-box;
 
-	&:last-child {
-		border-bottom: none !important;
+	&:first-child, &:nth-child(2) {
+		border-top: none !important;
 	}
 }
 

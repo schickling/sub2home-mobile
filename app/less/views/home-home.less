@@ -1,40 +1,28 @@
 // home.home
 
 #homeHome {
-
-  display: table;
-
-  section {
-    display: table-row;
-  }
+  text-align: center;
+  overflow: hidden;
+  height: 100%;
+  padding-top: @headerHeight;
+  .border-box;
 }
 
 #introduction {
 
   height: 100%;
-  .slide(.3s);
+  position: relative;
 
   .callToAction {
-    margin: 0 0 60px;
+    margin: 0 0 20px;
     padding: 0 @bodyPadding;
-    .transition(margin .2s ease);
-  }
-
-  &.translated {
-    .translate(0,-400px,0);
-  }
-
-  &:after {
-    content: "";
-    display: block;
-    height: 0px;
-    .transition(height .3s ease);
-    margin-bottom: -220px;
   }
 }
 
 #introducingText {
-  margin-top: 20px;
+  padding: 20px 15px 10px;
+  position: absolute;
+  bottom: 0;
 }
 
 #postalInputContainer {
@@ -53,12 +41,6 @@
     margin-right: 10px;
     top: -1px;
     cursor: pointer;
-    // .transformTransition(1s,linear);
-    // animation-iteration-count: infinite;
-    // -webkit-animation-iteration-count: infinite;
-    // &.rotate {
-    //   .rotate(360deg);
-    // }
   }
 
 
@@ -69,8 +51,6 @@
   }
 
   &.postalOnly, &.focus {
-
-    // .focus = after first character is typed; stays as long as at least one character is set
 
     #postalInput {
       width: 110px;
@@ -100,20 +80,17 @@
 #chooseDeliveryArea {
   padding: 0;
   overflow: hidden;
-  display: block !important;
-  .opacity(0);
-  height: 0;
 
   header {
-    margin: 25px 10px 20px;
+    margin: 15px 10px 20px;
   }
 }
-
-#editDeliveryArea {
-  color: @onNoteColor50;
-  cursor: pointer;
-}
-
+//
+// #editDeliveryArea {
+//   color: @onNoteColor50;
+//   cursor: pointer;
+// }
+//
 #selectableDeliveryAreas {
 
   .deliveryArea {
@@ -135,14 +112,11 @@
 }
 
 #chooseStore {
-  display: block !important;
   padding: 0;
   overflow: hidden;
-  .opacity(0);
-  height: 0;
 
   header {
-    margin: 25px 10px 20px;
+    margin: 15px 10px 20px;
   }
 }
 
@@ -204,72 +178,85 @@
   }
 }
 
+#container {
+  height: 100%;
+  position: relative;
+}
 
+#step1, #step2 {
+  .transformTransition(.5s, ease);
+}
 
-// STEPS
+#step1 {
+  height: 50%;
+}
 
-.step1 {
-
-  #introduction {
-    .translate(0,0,0);
+#step2 {
+  height: 100%;
+  width: 100%;
+  .container {
+    display: table;
+    width: 100%;
+    min-height: 100%;
   }
 }
 
-.step2 {
+#centralInput {
+  height: 50%;
+  // background: rgba(0,0,0,0.2);
+  display: table-row;
 
-  overflow: hidden;
-  &.fillPage {
-    position: fixed;
+  .callToAction {
+    padding-top: 0;
+    .transition(padding .1s linear);
   }
-  bottom: 0;
-
-  #introduction {
-
-    // .translate(0,-195px,0);
-
-    // &:after {
-    //   height: 500px;
-    // }
-    // .callToAction {
-    //   margin: 50px 0 10px;
-    // }
+  .callToActionContainer {
+    .transition(margin .1s linear);
   }
 }
 
-.step3 {
+#chooseDeliveryArea, #chooseStore {
+  display: table-row;
+}
 
 
-  #introduction {
+#homeHome {
 
-    .translate(0,-220px,0);
+  // Remove Introduction, potentially show deliveryAreas / Stores
 
-    .callToAction {
-      margin: 50px 0 10px;
+  &.step2 {
+    #container {
+      // .translate(0,-50%,0);
+
+      #step1 {
+        .translate(0,-100%,0);
+      }
+
+      #step2 {
+        .translate(0,-50%,0);
+        overflow: auto;
+      }
+      #centralInput {
+        height: 100%;
+
+        .callToAction {
+          padding-top: 30px;
+        }
+      }
     }
   }
 
-  #chooseDeliveryArea {
-    .opacity(100);
-    height: auto;
-    display: block;
-    .fadeIn;
-  }
-}
+  // Remove Postal Input CalltoAction
 
-.step4 {
-
-  #introduction {
-    .translate(0,-220px,0);
-
-    .callToAction {
-      margin: 50px 0 10px;
+  &.step3 {
+    #centralInput {
+      .callToAction {
+        .transformTransition(.1s, ease);
+        .translate(0,-60px,0);
+      }
+      .callToActionContainer {
+        margin-bottom: -50px;
+      }
     }
-  }
-
-  #chooseStore {
-    .opacity(100);
-    display: block;
-    height: auto;
-    .fadeIn;
   }
 }

@@ -1,15 +1,32 @@
 // Classes: .noMobile / .noTablet
 
-// Common Styles
+// Common Styles ---------------------------------------------------------------
 // -----------------------------------------------------------------------------
+
+// Mobile
+
+@media only screen and (max-width : 449px) {
+
+  .mobile-hidden {
+    display: none;
+  }
+}
 
 // Larger-Than-Mobile
 
 @media only screen and (min-width : 450px) {
 
+  // Set bigger Font-size
+
   body {
     font-size: @tabletBaseFontSize;
   }
+
+  .smallHint {
+    font-size: 14px;
+  }
+
+  // Resize Icons
 
   .icn {
     &.inSmallText {
@@ -23,58 +40,93 @@
       }
     }
   }
-}
 
-@media only screen and (min-width : 450px) {
-  #categoriesNavigation {
+  // Show Navigation on larger Screens
+
+
+  #categoriesNavigation, #infoNavigation {
     .translate(0,0,0);
   }
+
+  #infoNavigation {
+    width: 220px; // Due to larger Font-size
+  }
+
   #storeHome {
     margin-left: 50px;
     width: auto;
   }
+
+  #homeInfo, #storeInfo {
+    margin-left: 220px;
+    width: auto
+  }
+
+  // Disable .toggleNav event on those
+
+  #toggleNav {
+    .rotate(90deg);
+    cursor: default;
+    &:active {
+      color: @onHeaderColor !important;
+    }
+  }
+
+  .navToggled {
+    #storeHome, #homeInfo, #storeInfo {
+      .translate(0,0,0);
+    }
+  }
+
+
+  // 2 Columns at larger screens
+
+  .column {
+    width: 50%;
+  }
+
+  // Smaller Overlays
+
+  .overlay {
+    margin: 30px 15%;
+    width: 70%;
+    .border-box;
+  }
+
+  // OpeningHours
+
+  #storeOpeningHours {
+    width: 500px;
+    margin: 0 auto;
+  }
+
+  .openingHoursContainer {
+    width: 33.3%;
+    border-right: 1px solid rgba(0,0,0,0.2);
+    &:nth-child(3n) {
+      border-right: none !important;
+    }
+    &:nth-child(3) {
+      border-top: none !important;
+    }
+  }
+
 }
 
-// header
+
+// header ----------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 // header for larger-than-mobile
 
 @media only screen and (min-width : 450px) {
-  #header {
 
-    > div {
-      //
+  // Currently the same as for mobile
 
-      // &#pageTitle {
-      //   padding-left: 10px;
-      //   padding: 10px 0 0 15px;
-      //   font-size: 27px;
-      //   .icn {
-      //     font-size: 30px;
-      //     top: -1px;
-      //     margin-right: 15px;
-      //   }
-      // }
-
-      &#toggleNav {
-        display: none;
-      }
-
-      &#toTheInfo {
-        // font-size: 26px;
-        // padding-left: 9px;
-        // top: -1px;
-      }
-    }
-    // #ownLogo {
-    //   font-size: 40px;
-    // }
-  }
 }
 
 
-// home.home
+// home.home -------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 
@@ -136,36 +188,9 @@
       }
     }
   }
-
-
-  // STEPS
-
-  @stepTranslation450:  -360px;
-
-  #introduction:after {
-    margin-bottom: @stepTranslation450;
-  }
-
-  .step3 {
-    #introduction {
-      .translate(0,@stepTranslation450,0);
-      .callToAction {
-        margin: 50px 0 50px;
-      }
-    }
-  }
-
-  .step4 {
-    #introduction {
-      .translate(0,@stepTranslation450,0);
-      .callToAction {
-        margin: 50px 0 50px;
-      }
-    }
-  }
 }
 
-// -----------------------------------------------------------------------------
+// ---------------------------------------
 
 @media only screen and (min-width : 470px) {
 
@@ -173,61 +198,9 @@
   #postalInputContainer {
     padding: 25px 40px 18px;
   }
-
-
-  // STEPS
-
-  @stepTranslation470:  -340px;
-
-  .step3 {
-    #introduction {
-      .translate(0,@stepTranslation470,0);
-      .callToAction {
-        margin: 50px 0 50px;
-      }
-    }
-  }
-
-  .step4 {
-    #introduction {
-      .translate(0,@stepTranslation470,0);
-      .callToAction {
-        margin: 50px 0 50px;
-      }
-    }
-  }
-
 }
 
-
-// -----------------------------------------------------------------------------
-
-@media only screen and (min-width : 625px) {
-
-  // STEPS
-
-  @stepTranslation625:  -300px;
-
-  .step3 {
-    #introduction {
-      .translate(0,@stepTranslation625,0);
-      .callToAction {
-        margin: 50px 0 50px;
-      }
-    }
-  }
-
-  .step4 {
-    #introduction {
-      .translate(0,@stepTranslation625,0);
-      .callToAction {
-        margin: 50px 0 50px;
-      }
-    }
-  }
-}
-
-// -----------------------------------------------------------------------------
+// ---------------------------------------
 
 @media only screen and (min-width : 650px) {
   #chooseStore header {
@@ -235,7 +208,7 @@
   }
 }
 
-// -----------------------------------------------------------------------------
+// ---------------------------------------
 
 @media only screen and (min-width : 750px) {
 
@@ -244,7 +217,7 @@
   }
 }
 
-// -----------------------------------------------------------------------------
+// ---------------------------------------
 
 @media only screen and (min-width : 850px) {
 
@@ -253,7 +226,7 @@
   }
 }
 
-// -----------------------------------------------------------------------------
+// ---------------------------------------
 
 @media only screen and (min-width : 1020px) {
 
@@ -263,20 +236,388 @@
 }
 
 
-// store.home
+// store.home ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 @media only screen and (min-width : 450px) {
 
-    #articles {
-      .item {
-        // width: 290px;
-        h2 {
-          font-size: 36px;
+  // Delivery Area Overlay
+
+  #storeDeliveryAreaSuggestion .storeDeliveryArea {
+    padding: 0 20px;
+  }
+
+  #storeDeliveryAreas {
+    padding: 0 20px;
+  }
+
+  .storeDeliveryArea .postal {
+    font-size: 14px;
+  }
+
+  .storeDeliveryAreaDescription {
+
+    padding: 13px 30px 11px 8px;
+
+    h3 {
+      font-size: 24px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .backHome {
+    padding: 20px 0;
+  }
+
+  .overlay {
+    .callToAction {
+      padding-bottom: 20px;
+    }
+    .logo {
+      font-size: 60px;
+    }
+  }
+
+  // Opening Hours Overlay
+
+  #closedStore {
+
+    #storeOpeningHours {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    .openingHoursContainer {
+      width: 33.3%;
+      border-right: 1px solid @onNoteColor30;
+      &:nth-child(3n) {
+        border-right: none !important;
+      }
+      &:nth-child(3) {
+        border-top: none !important;
+      }
+    }
+  }
+
+
+  #articles {
+    .item {
+      // width: 290px;
+      h2 {
+        font-size: 32px;
+      }
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+// store.tray ------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+@media only screen and (min-width : 450px) {
+
+
+  // TrayHeader
+
+  #headerContent > div#toTheTray > div {
+    vertical-align: middle;
+  }
+
+  #trayValue {
+    > div {
+      display: inline-block;
+      font-size: 100%;
+      &.minValue {
+        margin-left: 8px;
+      }
+    }
+  }
+
+
+  // no more Full-width
+
+  #storeTrayMainContent {
+    padding: 0 10%;
+  }
+
+  // Tray summary
+
+  #traySummary {
+    h4 {
+      font-size: 24px;
+    }
+    .toggleOptions {
+      display: none;
+    }
+    .staticColumn {
+      padding-right: 20px;
+      width: 106-25px; // due to border-box (original padding-right 45px)
+      margin-right: 150px;
+    }
+    .itemOptions {
+      right: 20px;
+      .opacity(100);
+    }
+
+    .itemDescription, .itemPreviewTitle {
+      margin-right: 250px;
+    }
+
+    // Adjust Remove Transition
+
+    .item {
+
+      &.remove {
+
+        .itemContent {
+          .translate(0,0,0);
         }
-        p {
-          font-size: 18px;
+
+        .staticColumn {
+          .transformTransition(.2s, ease);
+          .translate(-50px,0,0);
+        }
+
+        .itemDescription, .itemPreviewTitle {
+          .transition(margin .2s ease);
+          margin-right: 300px;
+        }
+      }
+
+      &.removeBwd {
+        .staticColumn {
+          .transformTransition(.2s .2s, ease);
+          .translate(0,0,0);
+        }
+        .itemDescription, .itemPreviewTitle {
+          margin-right: 250px;
         }
       }
     }
+  }
+
+
+  #totalValue {
+    right: 170px;
+  }
+
+  // Delivery Time Clock
+
+  #deliveryTimeClock {
+    margin: 40px auto;
+    width: 320px;
+  }
+
+
+
+  // Adjust Margins due to missing full-width (add 20px right-padding/margin)
+
+  .inputGroup {
+    margin: 10px 20px 0 20px;
+  }
+
+  #paymentMethods {
+    margin-right: 20px;
+  }
+
+  #storeTrayMainContent section p {
+    padding: 20px 20px 0 20px;
+  }
+
+  #trayAdditionalInfo {
+    padding: 0 20px !important;
+  }
+
+  // Inputs
+
+  .inputGroup .inputContainer:after {
+    font-size: 15px;
+    right: 13px;
+    top: 26px;
+  }
+
+  // Add Input Field Button
+
+  .inputGroup.additionalFields {
+
+    .addField {
+      height: 49px;
+      width: 49px;
+      &:before {
+        font-size: 28px;
+        top: 11px;
+      }
+    }
+
+    .inputContainer:last-child {
+      margin-right: 59px;
+    }
+  }
+
+  // Bonusoptions
+
+  #storeTrayMainContent section .trayQuestionContent.subcardContent {
+
+    .icn {
+      right: 15px;
+    }
+
+    p {
+      margin-right: 120px;
+    }
+  }
+
+  #storeTrayMainContent section .trayQuestionContent.inputContent {
+    margin: 20px;
+    p {
+      padding: 20px 0 0;
+    }
+  }
+
+
+
+  // Adjust spacings due to larger font-size
+
+  #storeTrayMainContent section .trayQuestionContent.textareaContent {
+
+    &:before, &:after {
+      height: 35px;
+      margin: 0 20px;
+    }
+
+    &:before {
+      top: 50px;
+    }
+    &:after {
+      top: 122px;
+    }
+  }
+
+  textarea {
+    padding: 20px 20px 18px;
+  }
+
+  // Other Spacing-Adjust
+
+  #storeTrayMainContent #setPaymentMethod {
+    padding-bottom: 20px;
+
+    p {
+      padding: 0 20px 15px 20px
+    }
+  }
+
+  #sendOrderButton {
+    margin: 30px 10%;
+  }
+
+}
+
+// Checkout --------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+#checkoutCopy {
+  padding-top: 100px;
+}
+
+#checkoutLogo:before {
+  font-size: 100px;
+  margin: -50px 0 0 -50px;
+}
+
+#checkoutHours, #checkoutMinutes {
+  font-size: 100px;
+  &:after {
+    font-size: 24px;
+  }
+}
+
+
+// 404 -------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+@media only screen and (min-width : 450px) {
+
+  #notAvailableContent {
+
+    p {
+      width: 580px;
+    }
+
+    .i404 {
+      font-size: 250px;
+    }
+  }
+
+}
+
+// Info ------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+@media only screen and (min-width : 450px) {
+
+  // Nav
+
+  #infoNavigation ul li {
+    padding: 29px 25px 25px;
+  }
+
+  // General
+
+  #homeInfo, #storeInfo {
+    section {
+      p, a {
+        font-size: 18px;
+      }
+      p:first-child {
+        margin: 30px 0 0;
+      }
+    }
+  }
+
+  // Restaurants
+
+  .deliveringRestaurant .deliveryStatus {
+    font-size: 14px !important;
+  }
+
+  // DeliveryAreas
+
+  #infoDeliveryAreasContent {
+    padding: 20px;
+  }
+
+  #infoDeliveryAreasContent .storeDeliveryAreaDescription p {
+    font-size: 14px;
+  }
+
+  // OpeningHours
+
+  #infoOpeningHoursContent {
+    padding: 20px;
+  }
+
+  // Nutrition Info
+
+  .nutritionIcon {
+    font-size: 80px !important;
+    padding: 30px;
+  }
+
+  // Contact
+
+  .waysToContact {
+    margin-top: 20px;
+  }
+
+  // Impressum
+
+  #impressum:after {
+    font-size: 140px;
+    margin: 60px;
+  }
 }

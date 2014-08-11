@@ -399,121 +399,143 @@
       }
     }
   }
-}
-
-#totalValue {
-  right: 170px;
-}
-
-// Delivery Time Clock
-
-#deliveryTimeClock {
-  margin: 40px auto;
-  width: 320px;
-}
 
 
+  #totalValue {
+    right: 170px;
+  }
 
-// Adjust Margins due to missing full-width (add 20px right-padding/margin)
+  // Delivery Time Clock
 
-.inputGroup {
-  margin: 10px 20px 0 20px;
-}
+  #deliveryTimeClock {
+    margin: 40px auto;
+    width: 320px;
+  }
 
-#paymentMethods {
-  margin-right: 20px;
-}
 
-#storeTrayMainContent section p {
-  padding: 20px 20px 0 20px;
-}
 
-#trayAdditionalInfo {
-  padding: 0 20px !important;
-}
+  // Adjust Margins due to missing full-width (add 20px right-padding/margin)
 
-// Inputs
+  .inputGroup {
+    margin: 10px 20px 0 20px;
+  }
 
-.inputGroup .inputContainer:after {
-  font-size: 15px;
-  right: 13px;
-  top: 26px;
-}
+  #paymentMethods {
+    margin-right: 20px;
+  }
 
-// Add Input Field Button
+  #storeTrayMainContent section p {
+    padding: 20px 20px 0 20px;
+  }
 
-.inputGroup.additionalFields {
+  #trayAdditionalInfo {
+    padding: 0 20px !important;
+  }
 
-  .addField {
-    height: 49px;
-    width: 49px;
-    &:before {
-      font-size: 28px;
-      top: 11px;
+  // Inputs
+
+  .inputGroup .inputContainer:after {
+    font-size: 15px;
+    right: 13px;
+    top: 26px;
+  }
+
+  // Add Input Field Button
+
+  .inputGroup.additionalFields {
+
+    .addField {
+      height: 49px;
+      width: 49px;
+      &:before {
+        font-size: 28px;
+        top: 11px;
+      }
+    }
+
+    .inputContainer:last-child {
+      margin-right: 59px;
     }
   }
 
-  .inputContainer:last-child {
-    margin-right: 59px;
+  // Bonusoptions
+
+  #storeTrayMainContent section .trayQuestionContent.subcardContent {
+
+    .icn {
+      right: 15px;
+    }
+
+    p {
+      margin-right: 120px;
+    }
   }
+
+  #storeTrayMainContent section .trayQuestionContent.inputContent {
+    margin: 20px;
+    p {
+      padding: 20px 0 0;
+    }
+  }
+
+
+
+  // Adjust spacings due to larger font-size
+
+  #storeTrayMainContent section .trayQuestionContent.textareaContent {
+
+    &:before, &:after {
+      height: 35px;
+      margin: 0 20px;
+    }
+
+    &:before {
+      top: 50px;
+    }
+    &:after {
+      top: 122px;
+    }
+  }
+
+  textarea {
+    padding: 20px 20px 18px;
+  }
+
+  // Other Spacing-Adjust
+
+  #storeTrayMainContent #setPaymentMethod {
+    padding-bottom: 20px;
+
+    p {
+      padding: 0 20px 15px 20px
+    }
+  }
+
+  #sendOrderButton {
+    margin: 30px 10%;
+  }
+
 }
 
-// Bonusoptions
+// Checkout --------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
-#storeTrayMainContent section .trayQuestionContent.subcardContent {
-
-  .icn {
-    right: 15px;
-  }
-
-  p {
-    margin-right: 120px;
-  }
+#checkoutCopy {
+  padding-top: 100px;
 }
 
-#storeTrayMainContent section .trayQuestionContent.inputContent {
-  margin: 20px;
-  p {
-    padding: 20px 0 0;
-  }
+#checkoutLogo:before {
+  font-size: 100px;
+  margin: -50px 0 0 -50px;
 }
 
-
-
-// Adjust spacings due to larger font-size
-
-#storeTrayMainContent section .trayQuestionContent.textareaContent {
-
-  &:before, &:after {
-    height: 35px;
-    margin: 0 20px;
-  }
-
-  &:before {
-    top: 50px;
-  }
+#checkoutHours, #checkoutMinutes {
+  font-size: 100px;
   &:after {
-    top: 122px;
+    font-size: 24px;
   }
 }
 
-textarea {
-  padding: 20px 20px 18px;
-}
-
-// Other Spacing-Adjust
-
-#storeTrayMainContent #setPaymentMethod {
-  padding-bottom: 20px;
-
-  p {
-    padding: 0 20px 15px 20px
-  }
-}
-
-#sendOrderButton {
-  margin: 30px 10%;
-}
 
 // 404 -------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
@@ -598,6 +620,4 @@ textarea {
     font-size: 140px;
     margin: 60px;
   }
-
-
 }

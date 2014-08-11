@@ -93,6 +93,24 @@
     .border-box;
   }
 
+  // OpeningHours
+
+  #storeOpeningHours {
+    width: 500px;
+    margin: 0 auto;
+  }
+
+  .openingHoursContainer {
+    width: 33.3%;
+    border-right: 1px solid rgba(0,0,0,0.2);
+    &:nth-child(3n) {
+      border-right: none !important;
+    }
+    &:nth-child(3) {
+      border-top: none !important;
+    }
+  }
+
 }
 
 
@@ -520,18 +538,61 @@ textarea {
 
 @media only screen and (min-width : 450px) {
 
+  // Nav
+
+  #infoNavigation ul li {
+    padding: 29px 25px 25px;
+  }
+
+  // General
+
   #homeInfo, #storeInfo {
     section {
       p, a {
         font-size: 18px;
       }
+      p:first-child {
+        margin: 30px 0 0;
+      }
     }
   }
+
+  // Restaurants
+
+  .deliveringRestaurant .deliveryStatus {
+    font-size: 14px !important;
+  }
+
+  // DeliveryAreas
+
+  #infoDeliveryAreasContent {
+    padding: 20px;
+  }
+
+  #infoDeliveryAreasContent .storeDeliveryAreaDescription p {
+    font-size: 14px;
+  }
+
+  // OpeningHours
+
+  #infoOpeningHoursContent {
+    padding: 20px;
+  }
+
+  // Nutrition Info
 
   .nutritionIcon {
     font-size: 80px !important;
     padding: 30px;
   }
+
+  // Contact
+
+  .waysToContact {
+    margin-top: 20px;
+  }
+
+  // Impressum
 
   #impressum:after {
     font-size: 140px;

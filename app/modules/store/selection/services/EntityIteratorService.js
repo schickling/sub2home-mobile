@@ -77,6 +77,10 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
         return this._currentIterator.getEntityCollection();
       },
 
+      getMenuUpgradeArticle: function() {
+        return this._currentIterator.getMenuUpgradeArticle();
+      },
+
       _adjust: function() {
 
         //        var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[this._currentOrderedArticleModelIndex];

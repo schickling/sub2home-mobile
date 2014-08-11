@@ -74,9 +74,11 @@ module.exports = ['_', '$q',
           // returns all the articles of the current menuComponentBlocks as one collection
           var selectedUpgradeMenu = this._getSelected();
           if (selectedUpgradeMenu && this._menuUpgradeArticleIndex < selectedUpgradeMenu.menuComponentBlocksCollection.length) {
-            var tmp = [];
+            var tmp = {};
+            tmp.menuComponentBlockMediaModel = selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex].menuComponentBlockMediaModel;
+            tmp.menuComponentOptionArticlesCollection = [];
             angular.forEach(selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex].menuComponentOptionsCollection, function(collection) {
-              tmp = _.union(tmp, collection.menuComponentOptionArticlesCollection);
+              tmp.menuComponentOptionArticlesCollection = _.union(tmp.menuComponentOptionArticlesCollection, collection.menuComponentOptionArticlesCollection);
             });
             defer.resolve(tmp);
           } else {
@@ -105,6 +107,19 @@ module.exports = ['_', '$q',
         }
 
         return defer.promise;
+      },
+
+      getMenuUpgradeArticle: function() {
+        var result = [];
+        var selectedMenu = this._getSelected();
+
+        if (selectedMenu) {
+          _.forEach(selectedMenu.menuComponentBlocksCollection, function(article) {
+            result.push(article);
+          });
+        }
+
+        return result;
       }
     };
 

@@ -66,7 +66,7 @@
                         <div class="pricetag">
                             <h3>
 
-                <div bo-text="menu.price" class="price"></div>
+                <div bo-text="menu.price | number:2" class="price"></div>
               </h3>
                         </div>
                     </div>
@@ -89,16 +89,31 @@
     <aside id="timeline" class="note below">
         <div id="timelineStage">
             <div ng-repeat="article in timelineArticleCollection" class="timelineGroup">
+                <!-- Icon for the article -->
                 <div ng-if="timelineArticleCollection.length > 1" ng-class="{active: article.menuComponentOptionsCollection[0] === entity}" class="timelineStep article">
                     <div class="icn {{article.menuComponentBlockMediaModel.icon}}"></div>
                 </div>
 
+                <!-- Icons for the ingrediants -->
                 <div ng-class="{active: ingredient === entity}" ng-repeat="ingredient in article.ingredientCategoriesCollection" class="timelineStep">
                     <div class="icn {{ ingredient.icon }}"></div>
                 </div>
 
+                <!-- Icon for menuUpgrades-->
+                <div ng-if="article.allowsMenuUpgrades" class="timelineStep menuUpgrade" ng-class="{active: article.menuUpgradesCollection === entity}">
+                    <div class="icn iMenuUpgrade"></div>
+                </div>
+
+                <div ng-repeat="upgradeArticle in article.menuUpgradeArticles" ng-class="{active: upgradeArticle.menuComponentBlockMediaModel === entity.menuComponentBlockMediaModel}" class="timelineStep article">
+                    <div class="icn {{ upgradeArticle.menuComponentBlockMediaModel.icon }}">
+                    </div>
+                </div>
+
             </div>
 
+            <div class="timelineStep tray">
+                <div class="icn iTray"></div>
+            </div>
 
             <!--
             <div class="timelineGroup" ng-repeat="orderedArticleModel in orderedArticlesCollection">

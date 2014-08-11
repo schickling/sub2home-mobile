@@ -169,7 +169,6 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
 
       },
 
-
       getEntityCollection: function() {
         var result = [];
         _.each(this._menuComponentCollection, function(article) {

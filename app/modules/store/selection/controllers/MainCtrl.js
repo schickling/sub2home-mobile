@@ -96,10 +96,6 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
         }
       });
 
-      //      entityiteratorservice.getentity().then(function(entity) {
-      //        $scope.entity = entity;
-      //      });
-
       EntityIteratorService.getEntity().then(function(entity) {
         $scope.entity = entity;
       });
@@ -113,7 +109,6 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     };
 
     updateScope();
-
 
   }
 ];

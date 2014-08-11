@@ -54,8 +54,7 @@
             <div bindonce ng-repeat="menu in articleModel.menuUpgradesCollection" class="menuUpgrade">
                 <div class="menuUpgradePreview">
                     <img class="menuUpgradeBase" bo-alt="articleModel.title" bo-src="articleModel.smallImage">
-                    <div class="menuUpgradeComponent icn iBeverage"></div>
-                    <div class="menuUpgradeComponent icn iSnacks"></div>
+                    <div ng-repeat="upgradeArticle in menu.menuComponentBlocksCollection" class="menuUpgradeComponent icn {{upgradeArticle.menuComponentBlockMediaModel.icon}}"></div>
                 </div>
 
 

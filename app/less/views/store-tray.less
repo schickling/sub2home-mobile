@@ -507,6 +507,7 @@
         .transformTransition(.2s .2s,ease);
       }
       .editItem {
+        .transition(opacity .1s .2s linear);
         .opacity(100);
       }
     }
@@ -519,13 +520,13 @@
   padding: 22px 0 0 20px;
   border-top: 1px solid @onNoteColor50;
   color: @onNoteColor50;
+}
 
-  #totalValue {
-    position: absolute;
-    right: 45px;
-    top: 20px;
-    color: @onNoteColor;
-  }
+#totalValue {
+  position: absolute;
+  right: 45px;
+  top: 20px;
+  color: @onNoteColor;
 }
 
 // Delivery Time -----------------------------------
@@ -768,6 +769,7 @@
   line-height: 1;
   .border-radius(3px);
   border: 2px solid @greenLight;
+  cursor: pointer;
 
   &:active {
     background: @greenLight;

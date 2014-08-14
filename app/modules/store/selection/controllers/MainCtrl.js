@@ -51,8 +51,9 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     };
 
     $scope.jumpToEntity = function(entity) {
-      EntityIteratorService.jumpToEntity(entity);
-      updateScope();
+      EntityIteratorService.jumpToEntity(entity).then(function() {
+        updateScope();
+      });
     };
 
     $scope.goToTray = function() {
@@ -93,6 +94,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     $scope.$on('nextEntity', function(event, data) {
       $scope.next();
     });
+
     var updateTimeline = function() {
       $scope.timelineArticleCollection = EntityIteratorService.getEntityCollection();
     };

@@ -51,58 +51,27 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
       },
 
       jumpToEntity: function(entity) {
-        //TODO
-        //if (!EntityCheckerService.isCompled(this._currentEntity)) {
-        //return;
-        //}
-        //
-
-
         this.init(this._orderedItemModel);
 
         var defer = $q.defer();
         var self = this;
-
-        //this.getEntity().then(function(e) {
-        //if (e === entity) {
-        //defer.resolve(true);
-        //} else {
-        //loop();
-        //}
-        //});
-
-        //loop();
+        var entity = entity;
 
         var loop = function() {
-          self.next().then(function(next) {
-            if (next === entity || next === entity.menuComponentOptionsCollection[0]) {
+          self.getEntity().then(function(currentEntity) {
+            if (entity === currentEntity) {
               defer.resolve(true);
               return true;
             } else {
-              loop();
+              self.next().then(function() {
+                loop();
+              });
             }
           });
-
-
         };
+
         loop();
-        return defer.resolve;
-
-        //for (var orderedArticleModelIndex = 0; orderedArticleModelIndex < this._orderedItemModel.orderedArticlesCollection.length; ++orderedArticleModelIndex) {
-
-        //var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[orderedArticleModelIndex];
-        //var ingredientCategoriesCollection = orderedArticleModel.articleModel.ingredientCategoriesCollection;
-
-        //for (var ingredientCategoryModelIndex = 0; ingredientCategoryModelIndex < ingredientCategoriesCollection.length; ++ingredientCategoryModelIndex) {
-        //if (entity === ingredientCategoriesCollection[ingredientCategoryModelIndex]) {
-        //this._currentOrderedArticleModelIndex = orderedArticleModelIndex;
-        //this._currentIngredientCategoryModelIndex = ingredientCategoryModelIndex;
-        //}
-        //}
-        //}
-
-        //this._adjust();
-
+        return defer.promise;
       },
 
       getEntityCollection: function() {

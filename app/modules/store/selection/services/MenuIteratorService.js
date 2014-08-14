@@ -19,7 +19,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
       return result;
     };
 
-    var fetchArticle = function(article, self) {
+    var fetchArticle = function(article, self, artlicleList) {
       var articleModel = ArticleModelFactory.get({
         storeAlias: $route.current.params.storeAlias,
         articleId: article.id
@@ -37,7 +37,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
         articleModel.allowsMenuUpgrades = 0;
 
         var iterator = ArticleIteratorService.init(articleModel);
-        article.savedArticle = articleModel;
+        artlicleList.savedArticle = articleModel;
         defer.resolve(iterator);
         return iterator.getEntity();
       });
@@ -91,8 +91,19 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
         } else {
           var selectedArticle = getSelectedArticle(this._currentEntity.menuComponentOptionArticlesCollection);
 
-          if (selectedArticle && selectedArticle.allowsIngredients && !selectedArticle.savedArticle) {
-            return fetchArticle(selectedArticle, this);
+          if (selectedArticle && selectedArticle.allowsIngredients) {
+            if (!this._currentEntity.savedArticle) {
+              return fetchArticle(selectedArticle, this, this._currentEntity);
+            } else {
+              var defer = $q.defer();
+              this._articleIterator = defer.promise;
+
+              var iterator = ArticleIteratorService.init(this._currentEntity.savedArticle);
+              defer.resolve(iterator);
+              this._hasIngrediants = true;
+
+              return iterator.getEntity();
+            }
           } else {
             this._hasIngrediants = false;
             this._currentArticleIndex++;
@@ -171,10 +182,12 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
       getEntityCollection: function() {
         var result = [];
         _.each(this._menuComponentCollection, function(article) {
-          var selected = getSelectedArticle(article.menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection);
-          if (selected && selected.savedArticle) {
-            selected.savedArticle.menuComponentBlockMediaModel = article.menuComponentBlockMediaModel;
-            result.push(selected.savedArticle);
+          if (article.menuComponentOptionsCollection[0].savedArticle) {
+            var selected = {};
+            selected = article.menuComponentOptionsCollection[0].savedArticle;
+            selected.menuComponentOptionsCollection = article.menuComponentOptionsCollection;
+            selected.menuComponentBlockMediaModel = article.menuComponentBlockMediaModel;
+            result.push(selected);
           } else {
             result.push(article);
           }

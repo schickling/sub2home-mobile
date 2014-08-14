@@ -89,20 +89,21 @@
         <div id="timelineStage">
             <div ng-repeat="article in timelineArticleCollection" class="timelineGroup">
                 <!-- Icon for the article -->
-                <div ng-if="timelineArticleCollection.length > 1" ng-click="jumpToEntity(article)" ng-class="{active: article.menuComponentOptionsCollection[0] === entity}" class="timelineStep article">
+                <div ng-if="timelineArticleCollection.length > 1" ng-click="jumpToEntity(article.menuComponentOptionsCollection.0)" ng-class="{active: article.menuComponentOptionsCollection[0] === entity}" class="timelineStep article">
                     <div class="icn {{article.menuComponentBlockMediaModel.icon}}"></div>
                 </div>
 
                 <!-- Icons for the ingrediants -->
-                <div ng-class="{active: ingredient === entity}" ng-repeat="ingredient in article.ingredientCategoriesCollection" class="timelineStep">
+                <div ng-class="{active: ingredient === entity}" ng-click="jumpToEntity(ingredient)" ng-repeat="ingredient in article.ingredientCategoriesCollection" class="timelineStep">
                     <div class="icn {{ ingredient.icon }}"></div>
                 </div>
 
                 <!-- Icon for menuUpgrades-->
-                <div ng-if="article.allowsMenuUpgrades" class="timelineStep menuUpgrade" ng-class="{active: article.menuUpgradesCollection === entity}">
+                <div ng-if="article.allowsMenuUpgrades" class="timelineStep menuUpgrade" ng-click="jumpToEntity(article.menuUpgradesCollection)" ng-class="{active: article.menuUpgradesCollection === entity}">
                     <div class="icn iMenuUpgrade"></div>
                 </div>
 
+                <!-- Icons for the upgradeArticles -->
                 <div ng-repeat="upgradeArticle in article.menuUpgradeArticles" ng-class="{active: upgradeArticle.menuComponentBlockMediaModel === entity.menuComponentBlockMediaModel}" class="timelineStep article">
                     <div class="icn {{ upgradeArticle.menuComponentBlockMediaModel.icon }}">
                     </div>
@@ -113,32 +114,6 @@
             <div class="timelineStep tray">
                 <div class="icn iTray"></div>
             </div>
-
-            <!--
-            <div class="timelineGroup" ng-repeat="orderedArticleModel in orderedArticlesCollection">
-                <div>
-                    <div class="timelineStep article">
-                        <div class="icn {{orderedArticleModel.menuComponentBlockMediaModel.icon}}"></div>
-                    </div>
-
-                    <div class="timelineStep" ng-class="{active: ingredientCategoryModel === entity}" ng-repeat="ingredientCategoryModel in orderedArticleModel.articleModel.ingredientCategoriesCollection">
-                        <div class="icn {{ ingredientCategoryModel.icon }}"></div>
-                    </div>
-
-                    <div ng-if="orderedArticleModel.articleModel.menuUpgradesCollection" class="timelineStep menuUpgrade" ng-class="{active: orderedArticleModel.articleModel.menuUpgradesCollection === entity}">
-                        <div class="icn iMenuUpgrade"></div>
-                    </div>
-
-                    <div class="timelineStep article" ng-repeat="article in menuUpgrade">
-                        <div ng-class="{active: article === entity}" class="icn {{ article.menuComponentBlockMediaModel.icon }}"></div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="timelineStep tray">
-                <div class="icn iTray"></div>
-            </div>
-            -->
 
         </div>
     </aside>

@@ -109,7 +109,15 @@
     &:nth-child(3) {
       border-top: none !important;
     }
+    &:last-child {
+      display: inline-block;
+    }
   }
+
+  // .openingHoursContent .openingHours h3 {
+  //   width: 100px;
+  //   display: inline-block;
+  // }
 
 }
 
@@ -581,8 +589,12 @@
 
   // Restaurants
 
-  .deliveringRestaurant .deliveryStatus {
-    font-size: 14px !important;
+  .deliveringRestaurant {
+    margin: 0 20px;
+
+    .deliveryStatus {
+      font-size: 14px !important;
+    }
   }
 
   // DeliveryAreas

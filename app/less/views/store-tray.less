@@ -229,13 +229,17 @@
           top: -5px;
           right: 0;
           font-size: 80px;
+          cursor: pointer;
         }
         &.success {
           p {
             &.preSuccess {display: none}
             &.postSuccess {display: block}
           }
-          .icn {color: @greenLighter}
+          .icn {
+            color: @greenLighter;
+            cursor: default;
+          }
         }
       }
     }

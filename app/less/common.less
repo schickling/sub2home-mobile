@@ -386,7 +386,7 @@ p {
 	text-align: center;
 	height: 30px;
 	width: 30px;
-	margin: 0 0 10px 10px;
+	margin: 0 0 0 10px;
 	vertical-align: middle !important;
 	background: @grayLighter;
 	.img-circle;
@@ -894,6 +894,9 @@ p {
 
 	&:first-child, &:nth-child(2) {
 		border-top: none !important;
+	}
+	&:last-child {
+		display: none;
 	}
 }
 

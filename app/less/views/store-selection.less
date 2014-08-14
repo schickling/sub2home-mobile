@@ -8,6 +8,9 @@
 #storeSelection {
   display: table;
   height: 100%;
+	.item {
+		cursor: pointer;
+	}	
 }
 
 #ingredients {
@@ -270,6 +273,9 @@
   // States
 
   &.active {
+		
+		color: @onNoteColor;
+		
     .icn {
       font-size: 36px;
       top: -3px;
@@ -314,12 +320,16 @@
   // Articles & their states
 
   &.article, &.tray, &.menuUpgrade {
-    color: @noteColor;
+    color: @noteColor !important;
 
     border: none;
     background: @onNoteColor50;
     padding-top: 8px;
-
+		
+		&.active {
+			background: @onNoteColor;
+		}
+		
     &:before {
       top: -5px;
       left: -5px;

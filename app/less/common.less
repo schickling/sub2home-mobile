@@ -671,8 +671,10 @@ p {
 		}
 	}
 
-	item:last-child .item {
-		border-bottom: none;
+	item, article {
+		&:last-child .item {
+			border-bottom: none;
+		}
 	}
 
 	// Columns

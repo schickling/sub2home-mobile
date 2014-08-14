@@ -441,6 +441,10 @@
     .itemDescription, .itemPreviewTitle {
       margin-right: 250px;
     }
+		
+		.item.menuBundle .menuContents {
+			margin-right: 170px;
+		}
 
     // Adjust Remove Transition
 
@@ -461,6 +465,12 @@
           .transition(margin .2s ease);
           margin-right: 300px;
         }
+				
+				&.menuBundle .menuContents {
+					.transition(margin .2s ease);
+					margin-right: 220px;
+				}
+				
       }
 
       &.removeBwd {
@@ -471,6 +481,11 @@
         .itemDescription, .itemPreviewTitle {
           margin-right: 250px;
         }
+				
+				&.menuBundle .menuContents {
+					.transition(margin .2s .2s ease);
+					margin-right: 170px;
+				}
       }
     }
   }

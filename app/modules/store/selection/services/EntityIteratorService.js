@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIteratorService',
+module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIteratorService', '$q',
 
-  function(EntityCheckerService, ArticleIteratorService, MenuIteratorService) {
+  function(EntityCheckerService, ArticleIteratorService, MenuIteratorService, $q) {
 
     return {
 
@@ -51,25 +51,57 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
       },
 
       jumpToEntity: function(entity) {
+        //TODO
+        //if (!EntityCheckerService.isCompled(this._currentEntity)) {
+        //return;
+        //}
+        //
 
-        if (!EntityCheckerService.isCompled(this._currentEntity)) {
-          return;
-        }
 
-        for (var orderedArticleModelIndex = 0; orderedArticleModelIndex < this._orderedItemModel.orderedArticlesCollection.length; ++orderedArticleModelIndex) {
+        this.init(this._orderedItemModel);
 
-          var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[orderedArticleModelIndex];
-          var ingredientCategoriesCollection = orderedArticleModel.articleModel.ingredientCategoriesCollection;
+        var defer = $q.defer();
+        var self = this;
 
-          for (var ingredientCategoryModelIndex = 0; ingredientCategoryModelIndex < ingredientCategoriesCollection.length; ++ingredientCategoryModelIndex) {
-            if (entity === ingredientCategoriesCollection[ingredientCategoryModelIndex]) {
-              this._currentOrderedArticleModelIndex = orderedArticleModelIndex;
-              this._currentIngredientCategoryModelIndex = ingredientCategoryModelIndex;
+        //this.getEntity().then(function(e) {
+        //if (e === entity) {
+        //defer.resolve(true);
+        //} else {
+        //loop();
+        //}
+        //});
+
+        //loop();
+
+        var loop = function() {
+          self.next().then(function(next) {
+            if (next === entity || next === entity.menuComponentOptionsCollection[0]) {
+              defer.resolve(true);
+              return true;
+            } else {
+              loop();
             }
-          }
-        }
+          });
 
-        this._adjust();
+
+        };
+        loop();
+        return defer.resolve;
+
+        //for (var orderedArticleModelIndex = 0; orderedArticleModelIndex < this._orderedItemModel.orderedArticlesCollection.length; ++orderedArticleModelIndex) {
+
+        //var orderedArticleModel = this._orderedItemModel.orderedArticlesCollection[orderedArticleModelIndex];
+        //var ingredientCategoriesCollection = orderedArticleModel.articleModel.ingredientCategoriesCollection;
+
+        //for (var ingredientCategoryModelIndex = 0; ingredientCategoryModelIndex < ingredientCategoriesCollection.length; ++ingredientCategoryModelIndex) {
+        //if (entity === ingredientCategoriesCollection[ingredientCategoryModelIndex]) {
+        //this._currentOrderedArticleModelIndex = orderedArticleModelIndex;
+        //this._currentIngredientCategoryModelIndex = ingredientCategoryModelIndex;
+        //}
+        //}
+        //}
+
+        //this._adjust();
 
       },
 
@@ -79,6 +111,10 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
 
       getMenuUpgradeArticle: function() {
         return this._currentIterator.getMenuUpgradeArticle();
+      },
+
+      getOrderedItemModel: function() {
+        return this._orderedItemModel;
       },
 
       _adjust: function() {

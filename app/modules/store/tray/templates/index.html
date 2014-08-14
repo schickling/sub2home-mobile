@@ -1,67 +1,75 @@
 <div>
     <aside id="header" class="noSelect">
-      <div id="headerContent">
-        <div id="getBack" ng-click="back()"><p>Aktionen <!-- Article-Category from which the User either got to selection or tray --></p></div>
-        <div id="toTheTray" class="atTray">
-            <div id="trayTitle">Tablett</div>
-            <div class="icn iTray">
-                <span id="traySize">5</span>
+        <div id="headerContent">
+            <div id="getBack" ng-click="back()">
+                <p>Aktionen
+                    <!-- Article-Category from which the User either got to selection or tray -->
+                </p>
             </div>
-            <div id="trayValue" class="sufficing">
-                <div id="currentValue">16,50 €</div>
-                <div id="minValue">(min. 15,00€)</div>
+            <div id="toTheTray" class="atTray">
+                <div id="trayTitle">Tablett</div>
+                <div class="icn iTray">
+                    <span id="traySize">5</span>
+                </div>
+                <div id="trayValue" class="sufficing">
+                    <div id="currentValue">16,50 €</div>
+                    <div id="minValue">(min. 15,00€)</div>
+                </div>
             </div>
+            <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
         </div>
-        <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
-      </div>
     </aside>
 
     <div class="content note">
-      <div id="minimumOrderValue" class="note">
-        <div id="minimumOrderValueContent">
-          <p>Leider hast du den Mindestbestellwert von 16.00€ noch nicht erreicht.</p>
-          <p class="button">Vielleicht noch ein Sub?</p>
+        <div id="minimumOrderValue" class="note">
+            <div id="minimumOrderValueContent">
+                <p>Leider hast du den Mindestbestellwert von 16.00€ noch nicht erreicht.</p>
+                <p class="button">Vielleicht noch ein Sub?</p>
+            </div>
         </div>
-      </div>
-      <div id="storeTrayMainContent">
+        <div id="storeTrayMainContent">
 
 
-          <section id="traySummary">
-              <header>
-                  <h3>1) Deine Bestellung</h3>
-              </header>
+            <section id="traySummary">
+                <header>
+                    <h3>1) Deine Bestellung</h3>
+                </header>
 
-              <!-- Subs -->
+                <!-- articles other than subs -->
+                <single-item ng-repeat="singleArticle in allArticles"></single-item>
 
-              <div class="item article sub">
-                  <div class="itemContent">
-                      <div class="itemDescription">
-                          <h4>Roasted Chicken Breast<span class="itemInfo"> (6inch)</span></h4>
-                          <p>
-                              6inch-Sub mit Vollkorn-Brot, Cheddar, Tomaten, Salat ...
-                          </p>
-                      </div>
-                      <div class="staticColumn">
-                          <div class="itemPreviewPrice">
-                              <img class="itemPreview" src="/images/articles/smallimages/bbqrib.png" alt="" />
-                              <div class="price itemPrice">
-                                  3,99
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="itemOptions">
-                      <div class="editItem"></div>
-                      <div class="removeItem"></div>
-                      <div class="removeItemContainer">
-                        <div class="submitRemoveItem"></div>
-                        <div class="discardRemoveItem"></div>
-                      </div>
-                  </div>
-                  <div class="toggleOptions"></div>
-              </div>
 
-              <!--
+                <!-- Subs -->
+
+                <div class="item article sub">
+                    <div class="itemContent">
+                        <div class="itemDescription">
+                            <h4>Roasted Chicken Breast<span class="itemInfo"> (6inch)</span></h4>
+                            <p>
+                                6inch-Sub mit Vollkorn-Brot, Cheddar, Tomaten, Salat ...
+                            </p>
+                        </div>
+                        <div class="staticColumn">
+                            <div class="itemPreviewPrice">
+                                <img class="itemPreview" src="/images/articles/smallimages/bbqrib.png" alt="" />
+                                <div class="price itemPrice">
+                                    3,99
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="itemOptions">
+                        <div class="editItem"></div>
+                        <div class="removeItem"></div>
+                        <div class="removeItemContainer">
+                            <div class="submitRemoveItem"></div>
+                            <div class="discardRemoveItem"></div>
+                        </div>
+                    </div>
+                    <div class="toggleOptions"></div>
+                </div>
+
+                <!--
 
               ## ANIMATIONS
 
@@ -74,232 +82,232 @@
               -->
 
 
-              <!-- articles other than subs -->
-
-              <div class="item article beverage">
-                  <div class="itemContent">
-                      <div class="itemPreviewTitle">
-                          <img class="itemPreview" src="/images/articles/smallimages/coke.png" alt="" />
-                          <h4 class="itemTitle">Coca Cola<span class="itemInfo"> (0,5l)</span></h4>
-                      </div>
-                      <div class="staticColumn">
-                          <div class="price">1,49</div>
-                          <div class="deposit">+25ct Pfand</div>
-                      </div>
-                  </div>
-                  <div class="itemOptions">
-                      <div class="editItem"></div>
-                      <div class="removeItem"></div>
-                      <div class="removeItemContainer">
-                        <div class="submitRemoveItem"></div>
-                        <div class="discardRemoveItem"></div>
-                      </div>
-                  </div>
-                  <div class="toggleOptions"></div>
-              </div>
-
-              <div class="item article snacks">
-                  <div class="itemContent">
-                      <div class="itemPreviewTitle">
-                          <img class="itemPreview" src="/images/articles/smallimages/raspberrycheesecake.png" alt="" />
-                          <h4 class="itemTitle">Raspberry Cheesecake Cookie</h4>
-                      </div>
-                      <div class="staticColumn">
-                          <div class="price">0,99</div>
-                      </div>
-                  </div>
-                  <div class="itemOptions">
-                      <div class="editItem"></div>
-                      <div class="removeItem"></div>
-                      <div class="removeItemContainer">
-                        <div class="submitRemoveItem"></div>
-                        <div class="discardRemoveItem"></div>
-                      </div>
-                  </div>
-                  <div class="toggleOptions"></div>
-              </div>
-
-              <!-- menu bundles -->
-
-              <div class="item menuBundle sub">
-                  <div class="menuHead">
-                      <div class="itemContent">
-                          <div class="itemDescription">
-                              <h4>Familienmenü</h4>
-                          </div>
-                          <div class="staticColumn">
-                              <div class="itemPreviewPrice">
-                                  <div class="price itemPrice">
-                                      15,99
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="itemOptions">
-                          <div class="editItem"></div>
-                          <div class="removeItem"></div>
-                          <div class="removeItemContainer">
+                <!-- articles other than subs -->
+                <div class="item article beverage">
+                    <div class="itemContent">
+                        <div class="itemPreviewTitle">
+                            <img class="itemPreview" src="/images/articles/smallimages/coke.png" alt="" />
+                            <h4 class="itemTitle">Coca Cola<span class="itemInfo"> (0,5l)</span></h4>
+                        </div>
+                        <div class="staticColumn">
+                            <div class="price">1,49</div>
+                            <div class="deposit">+25ct Pfand</div>
+                        </div>
+                    </div>
+                    <div class="itemOptions">
+                        <div class="editItem"></div>
+                        <div class="removeItem"></div>
+                        <div class="removeItemContainer">
                             <div class="submitRemoveItem"></div>
                             <div class="discardRemoveItem"></div>
-                          </div>
-                      </div>
-                      <div class="toggleOptions"></div>
-                  </div>
-                  <div class="menuContents">
+                        </div>
+                    </div>
+                    <div class="toggleOptions"></div>
+                </div>
 
-                  </div>
-              </div>
+                <div class="item article snacks">
+                    <div class="itemContent">
+                        <div class="itemPreviewTitle">
+                            <img class="itemPreview" src="/images/articles/smallimages/raspberrycheesecake.png" alt="" />
+                            <h4 class="itemTitle">Raspberry Cheesecake Cookie</h4>
+                        </div>
+                        <div class="staticColumn">
+                            <div class="price">0,99</div>
+                        </div>
+                    </div>
+                    <div class="itemOptions">
+                        <div class="editItem"></div>
+                        <div class="removeItem"></div>
+                        <div class="removeItemContainer">
+                            <div class="submitRemoveItem"></div>
+                            <div class="discardRemoveItem"></div>
+                        </div>
+                    </div>
+                    <div class="toggleOptions"></div>
+                </div>
+
+                <!-- menu bundles -->
+
+                <div class="item menuBundle sub">
+                    <div class="menuHead">
+                        <div class="itemContent">
+                            <div class="itemDescription">
+                                <h4>Familienmenü</h4>
+                            </div>
+                            <div class="staticColumn">
+                                <div class="itemPreviewPrice">
+                                    <div class="price itemPrice">
+                                        15,99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="itemOptions">
+                            <div class="editItem"></div>
+                            <div class="removeItem"></div>
+                            <div class="removeItemContainer">
+                                <div class="submitRemoveItem"></div>
+                                <div class="discardRemoveItem"></div>
+                            </div>
+                        </div>
+                        <div class="toggleOptions"></div>
+                    </div>
+                    <div class="menuContents">
+
+                    </div>
+                </div>
 
 
-              <div id="totalValueContainer">
-                  Gesamtbestellwert
-                  <div id="totalValue" class="price">75,39</div>
-              </div>
-          </section>
+                <div id="totalValueContainer">
+                    Gesamtbestellwert
+                    <div id="totalValue" class="price">75,39</div>
+                </div>
+            </section>
 
-          <section id="setDeliveryTime">
-              <header>
-                  <h3>2) Deine Wunsch-Lieferzeit</h3>
-              </header>
-              <div class="container">
-                  <p>
-                      Wir sind frühestens zur angezeigten Uhrzeit bei dir. Oder willst du erst später beliefert werden?
-                  </p>
-                  <div id="deliveryTimeClock" class="notEarlier">
-                      <div id="hours">
-                        00
-                        <div class="clockControls up"></div>
-                        <div class="clockControls down"></div>
-                      </div>
-                      <div id="dividingDots">:</div>
-                      <div id="minutes">
-                        00
-                        <div class="clockControls up"></div>
-                        <div class="clockControls down"></div>
-                      </div>
-                  </div>
-              </div>
-          </section>
+            <section id="setDeliveryTime">
+                <header>
+                    <h3>2) Deine Wunsch-Lieferzeit</h3>
+                </header>
+                <div class="container">
+                    <p>
+                        Wir sind frühestens zur angezeigten Uhrzeit bei dir. Oder willst du erst später beliefert werden?
+                    </p>
+                    <div id="deliveryTimeClock" class="notEarlier">
+                        <div id="hours">
+                            00
+                            <div class="clockControls up"></div>
+                            <div class="clockControls down"></div>
+                        </div>
+                        <div id="dividingDots">:</div>
+                        <div id="minutes">
+                            00
+                            <div class="clockControls up"></div>
+                            <div class="clockControls down"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-          <section id="setDeliveryAddress">
-              <header>
-                  <h3>3) Deine Lieferadresse</h3>
-              </header>
-              <div class="container ">
-                  <div class="inputGroup">
-                      <div class="inputContainer valid">
-                          <input type="text" name="firstName" value="" placeholder="Vorname">
-                      </div>
-                      <div class="inputContainer">
-                          <input type="text" name="lastName" value="" placeholder="Nachname">
-                      </div>
-                  </div>
-                  <div class="inputGroup">
-                      <div class="inputContainer invalid">
-                          <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
-                      </div>
-                      <div class="inputContainer">
-                          <input type="text" name="email" value="" placeholder="Email">
-                      </div>
-                  </div>
-                  <div class="inputGroup additionalFields">
-                      <div class="addField"></div>
-                      <div class="inputContainer">
-                          <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
-                      </div>
-                      <div class="inputContainer">
-                          <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
-                      </div>
-                  </div>
-                  <p id="trayDeliveryArea">in 87700 Memmingen<span class="infoButton inCopyText"></span>
-                  </p>
-                  <p class="ng-hide" id="trayAdditionalInfo">Postleitzahl und Stadt hast du bereits zu Beginn des Bestellvorganges ausgewählt.
-                    <br><br>Sie sind an dieser Stelle nicht mehr veränderbar, um eine reibungslose Lieferung sicherzustellen.
-                  </p>
-                  <div class="trayQuestion">
-                      <p class="questionText">Hast du noch einen Wunsch oder einen Hinweis?</p>
-                      <div class="triggerQuestion"></div>
-                      <div class="trayQuestionContent textareaContent ng-hide">
-                          <textarea class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung" name="additionalMessage" rows="4" cols="40"></textarea>
-                      </div>
-                  </div>
-              </div>
-          </section>
+            <section id="setDeliveryAddress">
+                <header>
+                    <h3>3) Deine Lieferadresse</h3>
+                </header>
+                <div class="container ">
+                    <div class="inputGroup">
+                        <div class="inputContainer valid">
+                            <input type="text" name="firstName" value="" placeholder="Vorname">
+                        </div>
+                        <div class="inputContainer">
+                            <input type="text" name="lastName" value="" placeholder="Nachname">
+                        </div>
+                    </div>
+                    <div class="inputGroup">
+                        <div class="inputContainer invalid">
+                            <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
+                        </div>
+                        <div class="inputContainer">
+                            <input type="text" name="email" value="" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="inputGroup additionalFields">
+                        <div class="addField"></div>
+                        <div class="inputContainer">
+                            <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
+                        </div>
+                        <div class="inputContainer">
+                            <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
+                        </div>
+                    </div>
+                    <p id="trayDeliveryArea">in 87700 Memmingen<span class="infoButton inCopyText"></span>
+                    </p>
+                    <p class="ng-hide" id="trayAdditionalInfo">Postleitzahl und Stadt hast du bereits zu Beginn des Bestellvorganges ausgewählt.
+                        <br>
+                        <br>Sie sind an dieser Stelle nicht mehr veränderbar, um eine reibungslose Lieferung sicherzustellen.
+                    </p>
+                    <div class="trayQuestion">
+                        <p class="questionText">Hast du noch einen Wunsch oder einen Hinweis?</p>
+                        <div class="triggerQuestion"></div>
+                        <div class="trayQuestionContent textareaContent ng-hide">
+                            <textarea class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung" name="additionalMessage" rows="4" cols="40"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-          <section id="setBonusOptions">
-              <header>
-                  <h3>4) Subcard & Gratiscookie</h3>
-              </header>
-              <div class="container ">
-                  <div class="trayQuestion">
-                      <p class="questionText ng-hide">Hast du eine Subcard?</p>
-                      <div class="triggerQuestion ng-hide"></div>
-                      <div class="trayQuestionContent subcardContent success">
-                          <p class="preSuccess">
-                              Fotografiere den QR-Code deiner Subcard und lade ihn hier hoch, um Punkte zu sammeln.
-                          </p>
-                          <p class="postSuccess">
-                              Glückwunsch! Dir werden für deine Bestellung 209 Pkt. gutgeschrieben.
-                          </p>
-                          <i class="icn iSubcard"></i>
-                      </div>
+            <section id="setBonusOptions">
+                <header>
+                    <h3>4) Subcard & Gratiscookie</h3>
+                </header>
+                <div class="container ">
+                    <div class="trayQuestion">
+                        <p class="questionText ng-hide">Hast du eine Subcard?</p>
+                        <div class="triggerQuestion ng-hide"></div>
+                        <div class="trayQuestionContent subcardContent success">
+                            <p class="preSuccess">
+                                Fotografiere den QR-Code deiner Subcard und lade ihn hier hoch, um Punkte zu sammeln.
+                            </p>
+                            <p class="postSuccess">
+                                Glückwunsch! Dir werden für deine Bestellung 209 Pkt. gutgeschrieben.
+                            </p>
+                            <i class="icn iSubcard"></i>
+                        </div>
 
-                  </div>
-                  <div class="trayQuestion">
-                      <p class="questionText ng-hide">Möchtest du einen Gratis-Cookie einlösen?</p>
-                      <div class="triggerQuestion ng-hide"></div>
-                      <div class="trayQuestionContent inputContent">
-                          <input type="text" name="gratiscookieInput" placeholder="XX-XX-XXXX-X" value="">
-                          <p>
-                            Den xx-stelligen Code findest du ... [hier muss ein passender Erklärungstext hin]
-                          </p>
-                      </div>
-                  </div>
-              </div>
-          </section>
+                    </div>
+                    <div class="trayQuestion">
+                        <p class="questionText ng-hide">Möchtest du einen Gratis-Cookie einlösen?</p>
+                        <div class="triggerQuestion ng-hide"></div>
+                        <div class="trayQuestionContent inputContent">
+                            <input type="text" name="gratiscookieInput" placeholder="XX-XX-XXXX-X" value="">
+                            <p>
+                                Den xx-stelligen Code findest du ... [hier muss ein passender Erklärungstext hin]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-          <section id="setPaymentMethod">
-              <header>
-                  <h3>5) Deine Zahlungsart</h3>
-              </header>
-              <div class="container">
-                  <div id="paymentMethods" class="noSelect">
-                      <div class="paymentMethod">Bar
-                      </div>
-                      <div class="paymentMethod active">Ec-Karte
-                      </div>
-                      <div class="paymentMethod">Kreditkarte</div>
-                  </div>
-                  <p>
-                      Die EC- und Kreditkartenzahlung erfolgt an der Haustür mit einem Kartenleser
-                  </p>
-              </div>
-          </section>
-          <section id="sendOrderHint">
-              <i class="icn iFlag"></i>
-              <h4>Wenn du alle Schritte durchlaufen hast, kannst du an dieser Stelle die Bestellung abschicken</h4>
-          </section>
+            <section id="setPaymentMethod">
+                <header>
+                    <h3>5) Deine Zahlungsart</h3>
+                </header>
+                <div class="container">
+                    <div id="paymentMethods" class="noSelect">
+                        <div class="paymentMethod">Bar
+                        </div>
+                        <div class="paymentMethod active">Ec-Karte
+                        </div>
+                        <div class="paymentMethod">Kreditkarte</div>
+                    </div>
+                    <p>
+                        Die EC- und Kreditkartenzahlung erfolgt an der Haustür mit einem Kartenleser
+                    </p>
+                </div>
+            </section>
+            <section id="sendOrderHint">
+                <i class="icn iFlag"></i>
+                <h4>Wenn du alle Schritte durchlaufen hast, kannst du an dieser Stelle die Bestellung abschicken</h4>
+            </section>
 
-          <aside id="storyline" class="">
-              <ul>
-                  <li class="passed"></li>
-                  <li class="forgotten"></li>
-                  <li class="passed previousNotPassed"></li>
-                  <li class="active"></li>
-                  <li></li>
-              </ul>
-          </aside>
+            <aside id="storyline" class="">
+                <ul>
+                    <li class="passed"></li>
+                    <li class="forgotten"></li>
+                    <li class="passed previousNotPassed"></li>
+                    <li class="active"></li>
+                    <li></li>
+                </ul>
+            </aside>
 
-      </div>
-      <div id="sendOrder" class="note">
-          <div class="container">
-              <p>
-                  Mit Klick auf "Bestellung abschicken" bestätigst du unsere <a href="#">AGB</a>
-              </p>
-              <div id="sendOrderButton" class="noSelect">
-                  Bestellung abschicken
-              </div>
-          </div>
-      </div>
+        </div>
+        <div id="sendOrder" class="note">
+            <div class="container">
+                <p>
+                    Mit Klick auf "Bestellung abschicken" bestätigst du unsere <a href="#">AGB</a>
+                </p>
+                <div id="sendOrderButton" class="noSelect">
+                    Bestellung abschicken
+                </div>
+            </div>
+        </div>
     </div>
 </div>

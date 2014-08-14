@@ -121,9 +121,6 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
         return this._orderedArticleModel;
       },
 
-      jumpToEntity: function(entity) {
-
-      },
 
       getMenuUpgradeArticle: function() {
         if (this._menuUpgradeIterator) {

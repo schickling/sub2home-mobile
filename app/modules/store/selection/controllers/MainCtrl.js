@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout',
+module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService',
 
-  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout) {
+  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout, TrayStorageService, RoutingService) {
 
     EntityIteratorService.init(orderedItemModel);
 
@@ -56,7 +56,27 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     };
 
     $scope.goToTray = function() {
-      console.log("I'm hungry. Hurry up!!");
+      var orderedItem = EntityIteratorService.getOrderedItemModel();
+
+      if (orderedItem.articlesCollection.length > 1) {
+        // menu
+        TrayStorageService.saveMenuItem(orderedItem);
+      } else {
+        orderedItem = orderedItem.articlesCollection[0];
+
+        if (orderedItem.menuUpgradeArticles.length > 0) {
+          //menuUpgrade
+          var tmp = orderedItem;
+          orderedItem = {};
+          orderedItem.articlesCollection = [tmp].concat(orderedItem.menuUpgradeArticles);
+          TrayStorageService.saveMenuItem(orderedItem);
+        } else {
+          // sub
+          TrayStorageService.saveSubItem(orderedItem);
+        }
+      }
+
+      RoutingService.navigate(':storeAlias');
     };
 
     $scope.upgrade = function(menu) {

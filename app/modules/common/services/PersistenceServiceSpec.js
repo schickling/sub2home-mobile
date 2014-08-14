@@ -5,11 +5,11 @@ describe('PersistenceService', function() {
   beforeEach(module('app'));
 
   var PersistenceService;
-  beforeEach(inject(function (_PersistenceService_) {
+  beforeEach(inject(function(_PersistenceService_) {
     PersistenceService = _PersistenceService_;
   }));
 
-  it('should save and return an object', function() {
+  it('should save and return and delete an object', function() {
 
     var object = {
       simpleKey: 'Hello',
@@ -18,10 +18,15 @@ describe('PersistenceService', function() {
       }
     };
 
-    PersistenceService.save('object', object);
+    var key = 'object';
 
-    expect(PersistenceService.load('object')).toEqual(object);
+    PersistenceService.save(key, object);
 
+    expect(PersistenceService.load(key)).toEqual(object);
+
+    PersistenceService.remove(key);
+
+    expect(PersistenceService.load(key)).toBeNull();
   });
 
 });

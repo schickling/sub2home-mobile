@@ -18,12 +18,6 @@ module.exports = ['_',
 
       buildWithMenuBundle: function(menuBundleModel) {
 
-        //        _.each(menuBundleModel.menuComponentBlocksCollection, function(article) {
-        //          _.each(article.menuComponentOptionsCollection[0].menuComponentOptionArticlesCollection, function(articleOption) {
-        //           articleOption.allowsMenuUpgrades = 0;
-        //          });
-        //        });
-
         var orderedItemModel = {
           articlesCollection: menuBundleModel.menuComponentBlocksCollection,
           menuBundleModel: menuBundleModel

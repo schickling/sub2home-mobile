@@ -13,9 +13,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '.tmp/libs.js',
-      '.tmp/template-cache.js',
-      '.tmp/app.js',
+      'app/.tmp/js/libs.js',
+      'app/.tmp/js/template-cache.js',
+      'app/.tmp/js/app.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'app/modules/**/*Spec.js',
     ],

@@ -17,7 +17,7 @@ var fastclick = require('fastclick');
 var _ = require('lodash');
 
 // modules
-require('./modules/vendor');
+//require('./modules/vendor');
 require('./modules/common');
 require('./modules/resources');
 require('./modules/404');
@@ -65,7 +65,7 @@ angular.module('app').run(['ResourceService', '$location', '$rootScope',
 
     $rootScope.$on('$routeChangeSuccess', function() {
       $window.scrollTo(0, 0);
-      $window.analytics.page();
+      //$window.analytics.page();
     });
 
     // convenient way to navigate in templates and controllers

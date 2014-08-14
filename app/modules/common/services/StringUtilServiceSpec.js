@@ -5,7 +5,7 @@ describe('StringUtilService', function() {
   beforeEach(module('app'));
 
   var StringUtilService;
-  beforeEach(inject(function (_StringUtilService_) {
+  beforeEach(inject(function(_StringUtilService_) {
     StringUtilService = _StringUtilService_;
   }));
 

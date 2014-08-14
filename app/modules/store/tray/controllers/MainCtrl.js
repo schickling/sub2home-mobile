@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = [
+module.exports = ['$scope', 'TrayService',
 
-  function() {
-
+  function($scope, TrayService) {
+    $scope.allArticles = TrayService.getAllSingeItems();
   }
 ];

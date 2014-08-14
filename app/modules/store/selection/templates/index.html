@@ -9,7 +9,7 @@
             <div id="pageTitle" class="separate">
                 <span>{{ articleModel.title }}<small> {{ articleModel.info }}</small></span>
             </div>
-            <div id="toTheTray">
+            <div ng-click="navigate(':storeAlias/tablett')" id="toTheTray">
                 <div class="icn iTray">
                     <span id="traySize">5</span>
                 </div>
@@ -25,7 +25,7 @@
         </section> -->
 
 
-        <div id="skipThisStep" class="iFast" ng-if="type === 'ingredient'" ng-click="selectIngredient(entity.defaultIngredientModel, true)">
+        <div id="skipThisStep" class="iFast" ng-if="false" ng-click="selectIngredient(entity.defaultIngredientModel, true)">
             <p>Oder einfach nur schnell bestellen?
                 <br>Verlass dich auf unsere Empfehlung.</p>
             <h3>Schritt überspringen</h3>
@@ -89,7 +89,7 @@
         <div id="timelineStage">
             <div ng-repeat="article in timelineArticleCollection" class="timelineGroup">
                 <!-- Icon for the article -->
-                <div ng-if="timelineArticleCollection.length > 1" ng-class="{active: article.menuComponentOptionsCollection[0] === entity}" class="timelineStep article">
+                <div ng-if="timelineArticleCollection.length > 1" ng-click="jumpToEntity(article)" ng-class="{active: article.menuComponentOptionsCollection[0] === entity}" class="timelineStep article">
                     <div class="icn {{article.menuComponentBlockMediaModel.icon}}"></div>
                 </div>
 

@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['RoutingService',
+module.exports = ['RoutingService', 'TrayService',
 
-  function(RoutingService) {
+  function(RoutingService, TrayService) {
     return {
       restrict: 'E',
       templateUrl: 'modules/store/home/directives/itemDirective.html',
@@ -20,7 +20,8 @@ module.exports = ['RoutingService',
             if (itemModel.allowsIngredients) {
               RoutingService.navigate(':storeAlias/theke/artikel/' + itemModel.id);
             } else {
-              alert('add to cart');
+              TrayService.saveArticle(itemModel);
+              // TODO notification for the user
             }
           } else {
             RoutingService.navigate(':storeAlias/theke/menu/' + itemModel.id);

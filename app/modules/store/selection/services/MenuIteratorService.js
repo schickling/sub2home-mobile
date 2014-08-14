@@ -57,6 +57,8 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
       init: function(menu) {
         this._menu = menu;
         this._currentArticleIndex = 0;
+        this._hasIngrediants = false;
+        this._articleIterator = null;
         this._menuComponentCollection = menu.menuBundleModel.menuComponentBlocksCollection;
         this._currentEntity = this._menuComponentCollection[0].menuComponentOptionsCollection[0];
         return this;
@@ -165,9 +167,6 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
 
       },
 
-      jumpToEntity: function(entity) {
-
-      },
 
       getEntityCollection: function() {
         var result = [];

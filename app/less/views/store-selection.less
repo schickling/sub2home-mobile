@@ -43,12 +43,12 @@
       content: "\e609";
       display: block;
       position: absolute;
-      top: 10px;
-      right: 6px;
+      top: 3px;
+      right: 2px;
       font-family: "Homicons";
       .opacity(0);
       color: @greenLighter;
-      font-size: 16px;
+      font-size: 13px;
 
       // Text-Border:
       text-shadow:
@@ -216,6 +216,7 @@
       margin-left: 0;
       .timelineStep:first-child {
         margin-left: 0;
+				&:after { display: none; }
       }
     }
   }
@@ -232,13 +233,15 @@
   padding-top: 5px;
   font-size: 28px;
   .img-circle;
-  border: 2px dashed @onNoteColor;
+  color: @onNoteColor50;
+  border: 2px dashed @onNoteColor50;
   font-family: "Homicons";
   cursor: pointer;
 
   .icn {
     top: 0;
-    left: -1px;
+    // left: -1px;
+    left: 0;
     .transition(e('font-size .1s linear, top .1s linear'));
   }
 
@@ -249,14 +252,15 @@
     bottom: 0px;
     left: -28px;
     font-size: 8px;
+		color: @onNoteColor50;
   }
 
   &:first-child {
     // margin-left: 8px;
 
-    &:after {
-      display: none;
-    }
+//    &:after {
+//      display: none;
+//    }
   }
 
   &:last-child {
@@ -282,21 +286,30 @@
       height: 55px;
       z-index: 50;
     }
+		
+		&:after {
+			color: @onNoteColor;
+		}
   }
 
   &.passed {
-    color: @onNoteColor50;
-    border: 2px solid @onNoteColor50;
+    color: @onNoteColor;
+    border: 2px solid @onNoteColor;
+		
+		&:after {
+			color: @onNoteColor;
+		}
 
-    &.successfully {
-      border: 2px solid @onNoteColor50;
-    }
+    // &.successfully {
+    //   color: @onNoteColor
+    //   border: 2px solid @onNoteColor;
+    // }
   }
 
-  &.missing {
-    color: @orange;
-    border: 2px dashed @orange;
-  }
+  // &.missing {
+  //   color: @orange;
+  //   border: 2px dashed @orange;
+  // }
 
   // Articles & their states
 
@@ -304,7 +317,7 @@
     color: @noteColor;
 
     border: none;
-    background: @onNoteColor;
+    background: @onNoteColor50;
     padding-top: 8px;
 
     &:before {
@@ -313,12 +326,12 @@
     }
 
     &:after {
-      color: @onNoteColor;
+//      color: @onNoteColor;
       left: -26px;
     }
 
     &.passed {
-      background: @onNoteColor50;
+      background: @onNoteColor;
     }
 
     &.missing {

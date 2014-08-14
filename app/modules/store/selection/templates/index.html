@@ -45,9 +45,12 @@
 
 
         <section id="articles" ng-if="type === 'menuUpgradeArticle' || type === 'Article'">
-            <div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection" app-col="col" watch="true">
+            <div id="articlesContent">
+            	<div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection" app-col="col" watch="true">
                 <article ng-repeat="itemModel in col" item-model="itemModel"></article>
+            	</div>
             </div>
+            
         </section>
 
         <section id="menuUpgrades" ng-if="type === 'menuUpgrade'">

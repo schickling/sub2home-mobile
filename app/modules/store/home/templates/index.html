@@ -1,5 +1,6 @@
-<div bindonce ng-class="{navToggled: navToggled, overlayed: chooseDeliveryArea}">
+<div bindonce ng-class="{navToggled: navToggled, overlayed: chooseDeliveryArea}" class="notificationShown">
     <aside id="header">
+        <div id="notification" class="trayNotification">Liegt nun auf deinem Tablett.</div>
         <div id="headerContent">
             <div id="toggleNav" class="icn iNav" ng-click="toggleNav()"></div>
             <div id="pageTitle" ng-click="toggleNav()">
@@ -37,9 +38,11 @@
             </div>
         </section>
         <section id="articles">
-            <div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">
-                <item ng-repeat="itemModel in col"></item>
-            </div>
+					<div id="articlesContent">
+						<div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">
+							<item ng-repeat="itemModel in col"></item>
+						</div>
+        	</div>
         </section>
         <div ng-click="selectCategory(nextCategoryModel)" bo-if="nextCategoryModel">
             <div id="toNextCategory" bo-class="nextCategoryModel.icon">

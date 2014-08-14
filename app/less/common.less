@@ -2,6 +2,7 @@
 
 @bodyPadding: 15px;
 @headerHeight: 50px;
+@notificationHeight: 25px;
 
 // Header Item Widths
 
@@ -343,6 +344,32 @@ body {
 	}
 }
 
+
+#notification {
+	position: relative;
+	height: 25px;
+	padding: 6px 0 0 7px;
+	.border-box;
+	font-size: 13px;
+	background: @greenLighter;
+	color: @white;
+	&.trayNotification {
+		&:after {
+			content: "";
+			position: absolute;
+			right: 75px;
+			bottom: -8px;
+//			height: 7px;
+//			width: 7px;
+			
+			border-style: solid;
+			border-width: 8px 4px 0 4px;
+			border-color: @greenLighter transparent transparent transparent;
+		}
+	}
+	
+}
+
 // Content ---------------------------------------------------------------------
 
 .content {
@@ -609,7 +636,16 @@ p {
 }
 
 #articles {
+	display: table-row;
+	height: 100%;
+}
 
+#articlesContent {
+	
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	
 	.item {
 		padding: 30px @bodyPadding;
 		border-bottom: 1px solid @darkerWhite;
@@ -638,11 +674,6 @@ p {
 	item:last-child .item {
 		border-bottom: none;
 	}
-
-
-	display: table;
-	table-layout: fixed;
-	width: 100%;
 
 	// Columns
 

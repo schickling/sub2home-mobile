@@ -59,6 +59,9 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
 
         var loop = function() {
           self.getEntity().then(function(currentEntity) {
+            if (currentEntity === null) {
+              throw 'Error! Entity not Found!';
+            }
             if (entity === currentEntity) {
               defer.resolve(true);
               return true;

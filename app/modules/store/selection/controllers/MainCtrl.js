@@ -10,7 +10,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       $window.history.back();
     };
 
-    $scope.selectIngredient = function(ingredientModel, showNext) {
+    $scope.selectIngredient = function(ingredientModel) {
 
       var newIsSelected = !ingredientModel.isSelected;
 
@@ -30,30 +30,31 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
       ingredientModel.isSelected = newIsSelected;
 
-      if (showNext) {
-        $scope.next();
-      } else if ($scope.entity.isSingle) {
-        //$timeout($scope.next, 600);
-        $timeout($scope.next, 1);
+      if ($scope.entity.isMandatory) {
+        $scope.hideNextButton = false;
       }
-
     };
 
+    $scope.hideNextButton = true;
+
     $scope.next = function() {
+
       EntityIteratorService.next().then(function() {
         updateScope();
       });
     };
 
-    $scope.prev = function() {
-      EntityIteratorService.prev();
-      updateScope();
-    };
+    //$scope.prev = function() {
+    //EntityIteratorService.prev();
+    //updateScope();
+    //};
 
     $scope.jumpToEntity = function(entity) {
-      EntityIteratorService.jumpToEntity(entity).then(function() {
-        updateScope();
-      });
+      if (entity.passed) {
+        EntityIteratorService.jumpToEntity(entity).then(function() {
+          updateScope();
+        });
+      }
     };
 
     $scope.goToTray = function() {
@@ -84,7 +85,6 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       angular.forEach($scope.articleModel.menuUpgradesCollection, function(upgrade) {
         if (menu === upgrade) {
           upgrade.isSelected = true;
-          $scope.menuUpgrade = upgrade.menuComponentBlocksCollection;
         }
       });
 
@@ -109,9 +109,9 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
         // checks whether the next step is the tray or not
         if (!nextEntity) {
           $scope.toTray = true;
-        } else if (nextEntity instanceof Array) {
-          $scope.toTray = false;
-          $scope.nextStep = nextEntity[0];
+          //} else if (nextEntity instanceof Array) {
+          //$scope.toTray = false;
+          //$scope.nextStep = nextEntity[0];
         } else {
           $scope.toTray = false;
           $scope.nextStep = nextEntity;
@@ -120,6 +120,14 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
       EntityIteratorService.getEntity().then(function(entity) {
         $scope.entity = entity;
+
+        $scope.entity.passed = true;
+        // shows or hides the next button
+        if (!$scope.entity.isMandatory) {
+          if ($scope.entity.savedArticle) {
+            $scope.hideNextButton = false;
+          }
+        }
       });
 
       EntityIteratorService.getType().then(function(type) {

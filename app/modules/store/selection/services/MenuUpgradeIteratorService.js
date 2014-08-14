@@ -25,8 +25,10 @@ module.exports = ['_', '$q',
 
       init: function(menuUpgrades) {
         this._menuUpgrades = menuUpgrades;
-        this._menuUpgradeIndex = 0;
+        this._menuUpgradeIndex = -1;
         this._menuUpgradeArticleIndex = -1;
+
+        this._menuUpgrades.title = this._menuUpgrades[0].title;
 
         return this;
       },
@@ -35,7 +37,9 @@ module.exports = ['_', '$q',
         var next = this.getNextEntity();
 
         this._menuUpgradeIndex++;
-        if (next) {
+
+        //if (this._getSelected()) {
+        if (this._menuUpgradeIndex > 0) {
           this._menuUpgradeArticleIndex++;
         }
 
@@ -45,7 +49,7 @@ module.exports = ['_', '$q',
       getNextEntity: function() {
         var defer = $q.defer();
 
-        if (this._menuUpgradeIndex === 0) {
+        if (this._menuUpgradeIndex + 1 < 1) {
           defer.resolve(this._menuUpgrades);
         } else {
           var selectedUpgradeMenu = this._getSelected();
@@ -61,26 +65,29 @@ module.exports = ['_', '$q',
       },
 
       hasNextEntity: function() {
-        return this._menuUpgradeIndex === 0 || this._getSelected();
+        return this._menuUpgradeIndex < 1 || this._getSelected();
       },
 
       getEntity: function() {
         var defer = $q.defer();
 
         // returns all menu upgrades of the article
-        if (this._menuUpgradeIndex === 0) {
+        if (this._menuUpgradeIndex < 1) {
           defer.resolve(this._menuUpgrades);
         } else {
           // returns all the articles of the current menuComponentBlocks as one collection
           var selectedUpgradeMenu = this._getSelected();
           if (selectedUpgradeMenu && this._menuUpgradeArticleIndex < selectedUpgradeMenu.menuComponentBlocksCollection.length) {
-            var tmp = {};
-            tmp.menuComponentBlockMediaModel = selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex].menuComponentBlockMediaModel;
-            tmp.menuComponentOptionArticlesCollection = [];
-            angular.forEach(selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex].menuComponentOptionsCollection, function(collection) {
-              tmp.menuComponentOptionArticlesCollection = _.union(tmp.menuComponentOptionArticlesCollection, collection.menuComponentOptionArticlesCollection);
-            });
-            defer.resolve(tmp);
+            defer.resolve(selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex]);
+
+            //if (selectedUpgradeMenu && this._menuUpgradeArticleIndex < selectedUpgradeMenu.menuComponentBlocksCollection.length) {
+            //var tmp = {};
+            //tmp.menuComponentBlockMediaModel = selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex].menuComponentBlockMediaModel;
+            //tmp.menuComponentOptionArticlesCollection = [];
+            //angular.forEach(selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex].menuComponentOptionsCollection, function(collection) {
+            //tmp.menuComponentOptionArticlesCollection = _.union(tmp.menuComponentOptionArticlesCollection, collection.menuComponentOptionArticlesCollection);
+            //});
+            //defer.resolve(tmp);
           } else {
             defer.resolve(null);
           }
@@ -90,7 +97,7 @@ module.exports = ['_', '$q',
       },
 
       hasEntity: function() {
-        return this._menuUpgradeIndex === 0 || this._getSelected();
+        return this._menuUpgradeIndex < 1 || this._getSelected();
       },
 
       jumpToEntity: function(entity) {

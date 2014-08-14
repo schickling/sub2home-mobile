@@ -27,12 +27,12 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
 
       next: function() {
         var entity = null;
-
-        if (this._ingredientIterator.hasEntity()) {
+        // TODO hier stimmt was nicht
+        if (this._ingredientIterator.hasNextEntity()) {
           entity = this._ingredientIterator.next();
         }
-
         if (this._menuUpgradeIterator && this._menuUpgradeIterator.hasEntity() && !entity) {
+          this._ingredientIterator.next();
           entity = this._menuUpgradeIterator.next();
         }
 
@@ -107,7 +107,7 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
         }
 
         defer.resolve(null);
-        return defer;
+        return defer.promise;
       },
 
       getEntityCollection: function() {

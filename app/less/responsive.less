@@ -130,7 +130,47 @@
 @media only screen and (min-width : 450px) {
 
   // Currently the same as for mobile
+}
 
+// Notifications 
+
+@media only screen and (min-width : 450px) {
+	#notification {
+		font-size: 16px;
+		height: @tabletNotificationHeight;
+		padding: 10px 15px 0;
+		text-align: right;
+	}
+	
+	#header {
+		height: @headerHeight+@tabletNotificationHeight;
+		top: -@tabletNotificationHeight;
+	}
+
+
+//.notificationShown State of other elements
+	
+	.notificationShown {
+
+		#notification{
+			&:after { .translate(0,0,0); }
+		}
+
+		#header {
+			.translate(0,@tabletNotificationHeight,0);
+		}
+		.content {
+			.translate(0,@tabletNotificationHeight,0) !important;
+		}
+
+		#categoriesNavigation {
+			.translate(0,@tabletNotificationHeight,0) !important;
+		}
+		#infoNavigation {
+			.translate(0,@tabletNotificationHeight,0) !important;
+		}
+	}
+	
 }
 
 
@@ -528,20 +568,22 @@
 // Checkout --------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-#checkoutCopy {
-  padding-top: 100px;
-}
+@media only screen and (min-width : 450px) {
+	#checkoutCopy {
+		padding-top: 100px;
+	}
 
-#checkoutLogo:before {
-  font-size: 100px;
-  margin: -50px 0 0 -50px;
-}
+	#checkoutLogo:before {
+		font-size: 100px;
+		margin: -50px 0 0 -50px;
+	}
 
-#checkoutHours, #checkoutMinutes {
-  font-size: 100px;
-  &:after {
-    font-size: 24px;
-  }
+	#checkoutHours, #checkoutMinutes {
+		font-size: 100px;
+		&:after {
+			font-size: 24px;
+		}
+	}
 }
 
 

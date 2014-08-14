@@ -86,12 +86,16 @@ body {
 
 #header {
 	position: fixed;
-	top: 0;
+	top: -25px;
 	left: 0;
 	right: 0;
-	height: @headerHeight;
+	height: @headerHeight+@notificationHeight;
 	overflow: visible;
 	z-index: 9000;
+	.translate(0,0,0);
+	
+	.transformTransition(.3s, ease);
+	
 
 	// Wooden Border
 
@@ -351,20 +355,25 @@ body {
 	padding: 6px 0 0 7px;
 	.border-box;
 	font-size: 13px;
-	background: @greenLighter;
+	background: @greenLight;
+	color: darken(@greenLight, 15%);
 	color: @white;
+	z-index: 9100;
+	
 	&.trayNotification {
 		&:after {
 			content: "";
 			position: absolute;
-			right: 75px;
-			bottom: -8px;
+			right: 70px;
+			bottom: -7px;
 //			height: 7px;
 //			width: 7px;
 			
 			border-style: solid;
-			border-width: 8px 4px 0 4px;
-			border-color: @greenLighter transparent transparent transparent;
+			border-width: 7px 5px 0 5px;
+			border-color: @greenLight transparent transparent transparent;
+			.translate(0,-7px,0);
+			.transformTransition(.1s, linear);
 		}
 	}
 	

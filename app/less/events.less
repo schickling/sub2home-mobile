@@ -27,11 +27,23 @@
 }
 
 .notificationShown {
+	
+	#notification{
+//		.translate(0,0,0);
+		&:after {
+			.translate(0,0,0);
+		}
+	}
+	
 	#header {
-		height: @headerHeight+@notificationHeight;
+		.translate(0,25px,0);
 	}
 	.content {
-		padding: @headerHeight+@notificationHeight+3px 0 0;	
+		.translate(0,@notificationHeight,0) !important;
+	}
+	
+	#categoriesNavigation {
+		padding-top: @headerHeight+@notificationHeight+3px;
 	}
 }
 

@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService',
+module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService', '$document',
 
-  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout, TrayStorageService, RoutingService) {
+  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout, TrayStorageService, RoutingService, $document) {
 
     EntityIteratorService.init(orderedItemModel);
 
@@ -39,8 +39,10 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
     $scope.next = function() {
 
-      EntityIteratorService.next().then(function() {
-        updateScope();
+      EntityIteratorService.next().then(function(next) {
+        if (next) {
+          updateScope();
+        }
       });
     };
 
@@ -81,6 +83,10 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       RoutingService.navigate(':storeAlias');
     };
 
+    $scope.goToTrayNoUpdate = function() {
+      // TODO remove MenuUpgrade
+    };
+
     $scope.upgrade = function(menu) {
       angular.forEach($scope.articleModel.menuUpgradesCollection, function(upgrade) {
         if (menu === upgrade) {
@@ -103,19 +109,25 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
 
-      $scope.articleModel = EntityIteratorService.getArticle();
+      EntityIteratorService.getArticle().then(function(article) {
+        $scope.articleModel = article;
+      });
+
+      $scope.menuModel = EntityIteratorService.getMenu();
 
       EntityIteratorService.getNextEntity().then(function(nextEntity) {
         // checks whether the next step is the tray or not
         if (!nextEntity) {
           $scope.toTray = true;
-          //} else if (nextEntity instanceof Array) {
-          //$scope.toTray = false;
-          //$scope.nextStep = nextEntity[0];
+          //var someElement = angular.element(document.getElementById('toNextStep'));
+          //window.scrollTo(0, someElement[0].offsetTop);
+          //$document.scrollToElement(someElement);
         } else {
           $scope.toTray = false;
           $scope.nextStep = nextEntity;
         }
+
+
       });
 
       EntityIteratorService.getEntity().then(function(entity) {
@@ -127,6 +139,13 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
           if ($scope.entity.savedArticle) {
             $scope.hideNextButton = false;
           }
+        }
+
+        // if the entity is the menu
+        if (entity instanceof Array) {
+          $scope.noUpgrade = true;
+        } else {
+          $scope.noUpgrade = false;
         }
       });
 

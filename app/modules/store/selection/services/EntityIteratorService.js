@@ -77,6 +77,10 @@ module.exports = ['EntityCheckerService', 'ArticleIteratorService', 'MenuIterato
         return defer.promise;
       },
 
+      getMenu: function() {
+        return this._currentIterator.getMenu();
+      },
+
       getEntityCollection: function() {
         return this._currentIterator.getEntityCollection();
       },

@@ -175,9 +175,21 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
       },
 
       getArticle: function() {
+        var defer = $q.defer();
 
+        if (this._articleIterator && this._hasIngrediants) {
+          return this._articleIterator.then(function(iterator) {
+            return iterator.getArticle();
+          });
+        } else {
+          defer.resolve(this._menu.menuBundleModel);
+          return defer.promise;
+        }
       },
 
+      getMenu: function() {
+        return this._menu.menuBundleModel.title;
+      },
 
       getEntityCollection: function() {
         var result = [];

@@ -118,7 +118,14 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
       },
 
       getArticle: function() {
-        return this._orderedArticleModel;
+        var defer = $q.defer();
+        defer.resolve(this._orderedArticleModel);
+
+        return defer.promise;
+      },
+
+      getMenu: function() {
+        return '';
       },
 
 

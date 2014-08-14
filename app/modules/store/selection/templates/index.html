@@ -6,8 +6,9 @@
                     <!-- Article-Category from which the User got to selection -->
                 </p>
             </div>
-            <div id="pageTitle" class="separate">
-                <span>{{ articleModel.title }}<small> {{ articleModel.info }}</small></span>
+            <div id="pageTitle" class="twoLine">
+                <p ng-if="menuModel !== articleModel.title">{{menuModel}}</p>
+                <h3>{{ articleModel.title }}<small> {{ articleModel.info }}</small></h3>
             </div>
             <div ng-click="navigate(':storeAlias/tablett')" id="toTheTray">
                 <div class="icn iTray">
@@ -88,9 +89,13 @@
             <h3>{{nextStep.title}}</h3>
         </div>
 
-        <div id="toNextStep" class="iTray" ng-show="toTray" ng-click="goToTray()">
-            <p>Oder nur ein BBQ-Rib
+        <div id="toNextStep" class="iTray" ng-show="toTray && noUpgrade" ng-click="goToTrayNoUpdate()">
+            <p>Oder nur ein {{ articleModel.title }}
                 <br/>und gleich weiter</p>
+            <h3>zum Tablett</h3>
+        </div>
+
+        <div id="toNextStep" class="iTray" ng-show="toTray && !noUpgrade" ng-click="goToTray()">
             <h3>zum Tablett</h3>
         </div>
     </div>

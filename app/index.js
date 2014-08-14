@@ -13,6 +13,7 @@ require('angular-touch/angular-touch');
 require('angular-resource/angular-resource');
 require('angular-local-storage/angular-local-storage');
 require('angular-bindonce');
+require('./modules/vendor/duScroll');
 var fastclick = require('fastclick');
 var _ = require('lodash');
 
@@ -33,6 +34,7 @@ angular.module('app', [
   // libs
   'LocalStorageModule',
   'pasvaz.bindonce',
+  'duScroll',
   // own code
   'common',
   'resources',

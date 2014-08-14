@@ -54,7 +54,9 @@ module.exports = ['_', '$q',
         } else {
           var selectedUpgradeMenu = this._getSelected();
           if (selectedUpgradeMenu && this._menuUpgradeArticleIndex + 1 < selectedUpgradeMenu.menuComponentBlocksCollection.length) {
-            defer.resolve(selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex + 1]);
+            var next = selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex + 1];
+            next.title = next.menuComponentOptionsCollection[0].title;
+            defer.resolve(next);
           } else {
             defer.resolve(null);
           }

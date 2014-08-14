@@ -3,6 +3,15 @@
 describe('ItemStorageService', function() {
 
   beforeEach(module('app'));
+  var item = {
+    simpleKey: 'Hello',
+    deepKey: {
+      world: 42
+    }
+  };
+
+  var itemKey = 'ItemStorageServiceTestKey';
+
 
   var ItemStorageService;
   beforeEach(inject(function(_ItemStorageService_) {
@@ -23,14 +32,5 @@ describe('ItemStorageService', function() {
 
     expect(ItemStorageService.getAllItems(itemKey)).toEqual([]);
   });
-
-  var item = {
-    simpleKey: 'Hello',
-    deepKey: {
-      world: 42
-    }
-  };
-
-  var itemKey = 'ItemStorageServiceTestKey';
 
 });

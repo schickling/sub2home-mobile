@@ -40,6 +40,8 @@
 
     img {
       .img-circle;
+			width: 80px;
+			height: 80px;
     }
 
     &:after {
@@ -73,7 +75,7 @@
 
   .ingredientPriceContainer {
     position: absolute;
-    top: -10px;
+    top: -15px;
     left: 0;
     right: 0;
     text-align: center;
@@ -193,8 +195,6 @@
     font-size: 24px;
   }
 }
-
-
 
 // Timeline
 
@@ -354,9 +354,11 @@
   &.tray {
 
     background: @onNoteColor50;
+		cursor: default;
 
     &.available {
       background: @greenLight70;
+			cursor: pointer;
     }
   }
 }

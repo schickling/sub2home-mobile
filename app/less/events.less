@@ -27,11 +27,23 @@
 }
 
 .notificationShown {
+
+	#notification{
+		&:after { .translate(0,0,0); }
+	}
+	
 	#header {
-		height: @headerHeight+@notificationHeight;
+		.translate(0,@notificationHeight,0);
 	}
 	.content {
-		padding: @headerHeight+@notificationHeight+3px 0 0;	
+		.translate(0,@notificationHeight,0) !important;
+	}
+	
+	#categoriesNavigation {
+		.translate(-@categoriesNavigationWidth,@notificationHeight,0) !important;
+	}
+	#infoNavigation {
+		.translate(-@infoNavigationWidth,@notificationHeight,0) !important;
 	}
 }
 

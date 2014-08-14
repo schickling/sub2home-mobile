@@ -1,5 +1,6 @@
 <div>
     <aside id="header" class="noSelect">
+        <div id="notification"></div>
         <div id="headerContent">
             <div id="getBack" ng-click="back()">
                 <p>Aktionen
@@ -20,7 +21,7 @@
         </div>
     </aside>
 
-    <div class="content note">
+    <div class="content note" id="storeTray">
         <div id="minimumOrderValue" class="note">
             <div id="minimumOrderValueContent">
                 <p>Leider hast du den Mindestbestellwert von 16.00€ noch nicht erreicht.</p>
@@ -128,11 +129,11 @@
 
                 <!-- menu bundles -->
 
-                <div class="item menuBundle sub">
+                <div class="item menuBundle">
                     <div class="menuHead">
                         <div class="itemContent">
-                            <div class="itemDescription">
-                                <h4>Familienmenü</h4>
+                            <div class="itemPreviewTitle">
+                                <h4 class="itemTitle">Familienmenü</h4>
                             </div>
                             <div class="staticColumn">
                                 <div class="itemPreviewPrice">
@@ -153,7 +154,29 @@
                         <div class="toggleOptions"></div>
                     </div>
                     <div class="menuContents">
-
+                    	<div class="item article sub">
+												<div class="itemPreviewTitle">
+													<img class="itemPreview" src="/images/articles/smallimages/bbqrib.png" alt="" />
+													<div class="menuItemInfo">
+														<h4 class="itemTitle">BBQ-Rib<span class="itemInfo"> (6-inch)</span></h4>
+														<p>
+															6inch-Sub mit Vollkorn-Brot, Cheddar-Cheese, Tomaten, Salat, ...
+														</p>
+													</div>
+												</div>
+											</div>
+											<div class="item article snacks">
+												<div class="itemPreviewTitle">
+													<img class="itemPreview" src="/images/articles/smallimages/raspberrycheesecake.png" alt="" />
+													<h4 class="itemTitle">Raspberry Cheesecake Cookie</h4>
+												</div>
+											</div>
+                    	<div class="item article beverage">
+												<div class="itemPreviewTitle">
+													<img class="itemPreview" src="/images/articles/smallimages/coke.png" alt="" />
+													<h4 class="itemTitle">Coca Cola<span class="itemInfo"> (0,5l)</span></h4>
+												</div>
+											</div>
                     </div>
                 </div>
 

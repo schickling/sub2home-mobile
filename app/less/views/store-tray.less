@@ -7,11 +7,17 @@
 // @subImageWidth:
 // @WrapImageWidth:
 // @SaladImageWidth:
-@snacksImageWidth:     35px;
+@snacksImageWidth:    35px;
 @beverageImageWidth:  22px;
 @cateringImageWidth:  35px;
 
+@smallSnacksImageWidth: 	25px;
+@smallBeverageImageWidth: 16px;
 
+
+#storeTray {
+	overflow-x: hidden;
+}
 
 // Tray-Storyline
 
@@ -363,7 +369,8 @@
   }
 
   h4 {
-    font-size: 20px;
+    font-size: 18px;
+		line-height: 1.1;
     .itemInfo {
       color: @onNoteColor50;
     }
@@ -407,11 +414,7 @@
       width: auto;
     }
 
-    &.sub, &.menuBundle {
-
-      // .itemContent {
-      //   min-height: 50px;
-      // }
+    &.sub {
 
       .itemPreview {
         width: 65px;
@@ -424,6 +427,69 @@
     }
 
     &.menuBundle {
+			
+			.menuHead {
+				position: relative;
+				margin-bottom: 10px;
+				.transition(margin .1s linear);
+				
+				.itemTitle {
+					margin-right: 5px;
+				}
+			}
+			
+			.menuContents {
+				
+				margin: 0 45px 0 0;
+				border-top: 1px solid @onNoteColor50;
+				
+				.itemPreviewTitle {
+					margin-right: 15px;
+				}
+				
+				.itemPreview {
+					height: 25px;
+					width: auto;
+				}
+				h4 {
+					font-size: 16px;
+//					margin-right: 0 !important;
+				}
+				
+				.sub {
+					.itemPreview {
+						height: auto;
+						width: 50px;
+					}
+				}
+				.menuItemInfo {
+					white-space: normal;
+					display: inline-block;
+					vertical-align: top;
+					margin-right: 50px;
+					p {
+						margin-left: 5px;
+						padding-top: 0 !important;
+					}
+				}
+				
+				.item {
+					padding: 10px 0 10px 10px;
+					
+					&.snacks {
+						.itemTitle { margin-right: @smallSnacksImageWidth + 5px; }
+					}
+					&.beverage {
+						.itemTitle { margin-right: @smallBeverageImageWidth + 5px; }
+					}
+					
+					&:last-child {
+						border-bottom: none;
+						padding-bottom: 0;
+					}
+				}
+				
+			}
 
       .staticColumn {
         margin-top: -11px;
@@ -437,6 +503,18 @@
           vertical-align: middle;
         }
       }
+			
+			&.edit {
+				.menuHead {
+					margin-bottom: 20px;
+				}
+			}
+			&.editBwd {
+				.menuHead {
+					.transition(margin .1s .2s linear);
+					margin-bottom: 10px;
+				}
+			}
 
     }
 

@@ -3,6 +3,7 @@
 @bodyPadding: 15px;
 @headerHeight: 50px;
 @notificationHeight: 25px;
+@tabletNotificationHeight: 35px;
 
 // Header Item Widths
 
@@ -86,12 +87,16 @@ body {
 
 #header {
 	position: fixed;
-	top: 0;
+	top: -@notificationHeight;
 	left: 0;
 	right: 0;
-	height: @headerHeight;
+	height: @headerHeight+@notificationHeight;
 	overflow: visible;
 	z-index: 9000;
+	.translate(0,0,0);
+	
+	.transformTransition(.3s, ease);
+	
 
 	// Wooden Border
 
@@ -347,24 +352,30 @@ body {
 
 #notification {
 	position: relative;
-	height: 25px;
-	padding: 6px 0 0 7px;
+	height: @notificationHeight;
+	padding: 6px 7px 0;
 	.border-box;
 	font-size: 13px;
-	background: @greenLighter;
+	text-align: center;
+	background: @greenLight;
+//	color: darken(@greenLight, 20%);
 	color: @white;
+	z-index: 9100;
+	
 	&.trayNotification {
 		&:after {
 			content: "";
 			position: absolute;
-			right: 75px;
-			bottom: -8px;
+			right: 70px;
+			bottom: -7px;
 //			height: 7px;
 //			width: 7px;
 			
 			border-style: solid;
-			border-width: 8px 4px 0 4px;
-			border-color: @greenLighter transparent transparent transparent;
+			border-width: 8px 6px 0 6px;
+			border-color: @greenLight transparent transparent transparent;
+			.translate(0,-7px,0);
+			.transformTransition(.1s, linear);
 		}
 	}
 	
@@ -671,8 +682,10 @@ p {
 		}
 	}
 
-	item:last-child .item {
-		border-bottom: none;
+	item, article {
+		&:last-child .item {
+			border-bottom: none;
+		}
 	}
 
 	// Columns

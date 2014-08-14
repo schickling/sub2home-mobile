@@ -130,7 +130,47 @@
 @media only screen and (min-width : 450px) {
 
   // Currently the same as for mobile
+}
 
+// Notifications 
+
+@media only screen and (min-width : 450px) {
+	#notification {
+		font-size: 16px;
+		height: @tabletNotificationHeight;
+		padding: 10px 15px 0;
+		text-align: right;
+	}
+	
+	#header {
+		height: @headerHeight+@tabletNotificationHeight;
+		top: -@tabletNotificationHeight;
+	}
+
+
+//.notificationShown State of other elements
+	
+	.notificationShown {
+
+		#notification{
+			&:after { .translate(0,0,0); }
+		}
+
+		#header {
+			.translate(0,@tabletNotificationHeight,0);
+		}
+		.content {
+			.translate(0,@tabletNotificationHeight,0) !important;
+		}
+
+		#categoriesNavigation {
+			.translate(0,@tabletNotificationHeight,0) !important;
+		}
+		#infoNavigation {
+			.translate(0,@tabletNotificationHeight,0) !important;
+		}
+	}
+	
 }
 
 
@@ -323,6 +363,33 @@
   }
 }
 
+// store.selection -------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+@media only screen and (min-width : 450px) {
+	
+	.ingredient {
+		
+		.imageContainer {
+			height: 130px;
+    	width: 130px;
+			
+			img {
+				width: 130px;
+				height: 130px;
+			}
+			
+			&:after {
+				font-size: 16px;
+				top: 10px;
+				right: 6px;
+			}
+		}
+	}
+}
+
+
+
 // store.tray ------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
@@ -374,6 +441,10 @@
     .itemDescription, .itemPreviewTitle {
       margin-right: 250px;
     }
+		
+		.item.menuBundle .menuContents {
+			margin-right: 170px;
+		}
 
     // Adjust Remove Transition
 
@@ -394,6 +465,12 @@
           .transition(margin .2s ease);
           margin-right: 300px;
         }
+				
+				&.menuBundle .menuContents {
+					.transition(margin .2s ease);
+					margin-right: 220px;
+				}
+				
       }
 
       &.removeBwd {
@@ -404,6 +481,11 @@
         .itemDescription, .itemPreviewTitle {
           margin-right: 250px;
         }
+				
+				&.menuBundle .menuContents {
+					.transition(margin .2s .2s ease);
+					margin-right: 170px;
+				}
       }
     }
   }
@@ -528,20 +610,22 @@
 // Checkout --------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-#checkoutCopy {
-  padding-top: 100px;
-}
+@media only screen and (min-width : 450px) {
+	#checkoutCopy {
+		padding-top: 100px;
+	}
 
-#checkoutLogo:before {
-  font-size: 100px;
-  margin: -50px 0 0 -50px;
-}
+	#checkoutLogo:before {
+		font-size: 100px;
+		margin: -50px 0 0 -50px;
+	}
 
-#checkoutHours, #checkoutMinutes {
-  font-size: 100px;
-  &:after {
-    font-size: 24px;
-  }
+	#checkoutHours, #checkoutMinutes {
+		font-size: 100px;
+		&:after {
+			font-size: 24px;
+		}
+	}
 }
 
 

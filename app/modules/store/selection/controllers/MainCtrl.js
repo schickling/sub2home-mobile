@@ -135,6 +135,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
         $scope.entity.passed = true;
         // shows or hides the next button
+
         if (!$scope.entity.isMandatory) {
           if ($scope.entity.savedArticle) {
             $scope.hideNextButton = false;

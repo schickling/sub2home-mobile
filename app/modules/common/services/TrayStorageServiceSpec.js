@@ -1,61 +1,6 @@
 'use strict';
 
-describe('TrayService', function() {
-
-  beforeEach(module('app'));
-
-  var TrayService;
-  beforeEach(inject(function(_TrayService_) {
-    TrayService = _TrayService_;
-  }));
-
-  it('should save, update, and delete single Items', function() {
-
-    TrayService.removeSingleItem(item);
-
-    expect(TrayService.getAllSingeItems()).toEqual([]);
-
-    TrayService.saveSingeItem(item);
-
-    expect(TrayService.getAllSingeItems()).toEqual([item]);
-
-    TrayService.removeSingleItem(item);
-
-    expect(TrayService.getAllSingeItems()).toEqual([]);
-  });
-
-  it('should save, update, and delete Sub Items', function() {
-
-    TrayService.removeSubItem(item);
-
-    expect(TrayService.getAllSubItems()).toEqual([]);
-
-    TrayService.saveSubItem(item);
-
-    expect(TrayService.getAllSubItems()).toEqual([item]);
-
-    TrayService.removeSubItem(item);
-
-    expect(TrayService.getAllSubItems()).toEqual([]);
-  });
-
-  it('should save, update, and delete Menu Items', function() {
-
-    TrayService.removeMenuItem(item);
-
-    expect(TrayService.getAllMenuItems()).toEqual([]);
-
-    TrayService.saveMenuItem(item);
-
-    expect(TrayService.getAllMenuItems()).toEqual([item]);
-
-    TrayService.removeMenuItem(item);
-
-    expect(TrayService.getAllMenuItems()).toEqual([]);
-  });
-
-
-
+describe('TrayStorageService', function() {
   var item = {
     'id': 109,
     'title': 'Coca Cola',
@@ -67,4 +12,58 @@ describe('TrayService', function() {
     'allowsIngredients': 0,
     'icon': 'beverage'
   };
+
+  beforeEach(module('app'));
+
+  var TrayStorageService;
+  beforeEach(inject(function(_TrayStorageService_) {
+    TrayStorageService = _TrayStorageService_;
+  }));
+
+  it('should save, update, and delete single Items', function() {
+
+    TrayStorageService.removeSingleItem(item);
+
+    expect(TrayStorageService.getAllSingeItems()).toEqual([]);
+
+    TrayStorageService.saveSingeItem(item);
+
+    expect(TrayStorageService.getAllSingeItems()).toEqual([item]);
+    TrayStorageService.removeSingleItem(item);
+
+    expect(TrayStorageService.getAllSingeItems()).toEqual([]);
+  });
+
+  it('should save, update, and delete Sub Items', function() {
+
+    TrayStorageService.removeSubItem(item);
+
+    expect(TrayStorageService.getAllSubItems()).toEqual([]);
+
+    TrayStorageService.saveSubItem(item);
+
+    expect(TrayStorageService.getAllSubItems()).toEqual([item]);
+
+    TrayStorageService.removeSubItem(item);
+
+    expect(TrayStorageService.getAllSubItems()).toEqual([]);
+  });
+
+  it('should save, update, and delete Menu Items', function() {
+
+    TrayStorageService.removeMenuItem(item);
+
+    expect(TrayStorageService.getAllMenuItems()).toEqual([]);
+
+    TrayStorageService.saveMenuItem(item);
+
+    expect(TrayStorageService.getAllMenuItems()).toEqual([item]);
+
+    TrayStorageService.removeMenuItem(item);
+
+    expect(TrayStorageService.getAllMenuItems()).toEqual([]);
+  });
+
+
+
 });

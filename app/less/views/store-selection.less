@@ -8,8 +8,10 @@
 #storeSelection {
   display: table;
   height: 100%;
+	padding-bottom: @timelineHeight;
 	.item {
 		cursor: pointer;
+		overflow: hidden;
 	}	
 }
 
@@ -132,7 +134,7 @@
 
 #toNextStep {
   border-top: 1px solid @darkerWhite;
-  margin-bottom: @timelineHeight;
+//  margin-bottom: @timelineHeight;
 
   &:before {
     margin-top: -35px;

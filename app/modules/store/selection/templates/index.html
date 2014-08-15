@@ -9,7 +9,7 @@
             </div>
             <div id="pageTitle" class="twoLine">
                 <p ng-if="menuModel !== articleModel.title">{{menuModel}}</p>
-                <h3>{{ articleModel.title }}<small> {{ articleModel.info }}</small></h3>
+                <h3>{{ articleModel.title }} <span class="itemInfo">({{ articleModel.info }})</span></h3>
             </div>
             <div ng-click="navigate(':storeAlias/tablett')" id="toTheTray">
                 <div class="icn iTray">

@@ -611,8 +611,9 @@ p {
 	background: @darkWhite;
 	width: 100%;
 	position: relative;
-
 	cursor: pointer;
+	.translate(0,0,0);
+	.transformTransition(.3s, ease);
 
 	p {
 		font-size: 13px;
@@ -633,8 +634,6 @@ p {
 		font-size: 24px;
 	}
 
-
-
 	&:before {
 		.icn;
 		position: absolute;
@@ -643,6 +642,10 @@ p {
 		margin-top: -25px;
 		font-size: 50px;
 		color: @grayLighter;
+	}
+	
+	&.hidden {
+		.translate(0,100%,0);
 	}
 }
 

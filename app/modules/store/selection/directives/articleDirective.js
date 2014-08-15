@@ -1,23 +1,19 @@
 'use strict';
 
-module.exports = [
+module.exports = ['$timeout', '$rootScope',
 
-  function() {
+  function($timeout, $rootScope) {
     return {
-      transclude: true,
       restrict: 'E',
       templateUrl: 'modules/store/selection/directives/articleDirective.html',
-      scope: {
-        itemModel: '=itemModel',
-      },
       link: function($scope, $elem, $attrs) {
-
         $scope.hidden = true;
 
         $scope.handleClick = function(itemModel) {
-          itemModel.isSelected = !itemModel.isSelected;
+          //itemModel.isSelected = !itemModel.isSelected;
 
-          $scope.$emit('nextEntity', true);
+          $scope.$emit('selectItem', itemModel);
+
         };
 
       }

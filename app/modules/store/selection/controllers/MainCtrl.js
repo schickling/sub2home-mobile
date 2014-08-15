@@ -1,8 +1,35 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService', '$document',
+module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService', '$document', '_',
 
-  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout, TrayStorageService, RoutingService, $document) {
+  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout, TrayStorageService, RoutingService, $document, _) {
+    var getAllArticles = function(entity) {
+      var all = [];
+      if (entity.menuComponentOptionsCollection) {
+        _.forEach(entity.menuComponentOptionsCollection, function(optionCollection) {
+          all = _.union(all, optionCollection.menuComponentOptionArticlesCollection);
+        });
+      } else {
+        if (entity.menuComponentOptionArticlesCollection) {
+          all = entity.menuComponentOptionArticlesCollection;
+        }
+      }
+
+      return all;
+    };
+
+    var isOneSelected = function(all) {
+      var result = false;
+      _.forEach(all, function(item) {
+        if (item.isSelected) {
+          result = true;
+        }
+      });
+
+      return result;
+    };
+
+
 
     EntityIteratorService.init(orderedItemModel);
 
@@ -31,11 +58,11 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       ingredientModel.isSelected = newIsSelected;
 
       if ($scope.entity.isMandatory) {
-        $scope.hideNextButton = false;
+        $scope.showNextButton = true;
       }
     };
 
-    $scope.hideNextButton = true;
+    $scope.showNextButton = true;
 
     $scope.next = function() {
 
@@ -97,9 +124,24 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       $scope.next();
     };
 
-    $scope.$on('nextEntity', function(event, data) {
-      $scope.next();
+    $scope.$on('selectItem', function(event, itemModel) {
+      var all = getAllArticles($scope.entity);
+
+      if (!itemModel.isSelected) {
+        _.forEach(all, function(model) {
+          model.isSelected = false;
+        });
+
+        itemModel.isSelected = !itemModel.isSelected;
+      }
+
+      $timeout(function() {
+        $scope.next();
+      }, 1000);
+
     });
+
+
 
     var updateTimeline = function() {
       $scope.timelineArticleCollection = EntityIteratorService.getEntityCollection();
@@ -136,9 +178,16 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
         $scope.entity.passed = true;
         // shows or hides the next button
 
-        if (!$scope.entity.isMandatory) {
-          if ($scope.entity.savedArticle) {
-            $scope.hideNextButton = false;
+        var all = getAllArticles($scope.entity);
+        if (all.length > 0) {
+          if (!isOneSelected(all)) {
+            $scope.showNextButton = false;
+          }
+        } else {
+          if ($scope.entity.isMandatory && !isOneSelected($scope.entity.ingredientsCollection)) {
+            $scope.showNextButton = false;
+          } else {
+            $scope.showNextButton = true;
           }
         }
 

@@ -142,7 +142,10 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
           });
         } else {
           if (this._currentArticleIndex + 1 < this._menuComponentCollection.length) {
-            defer.resolve(this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentOptionsCollection[0]);
+            var result = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentOptionsCollection[0];
+            result.icon = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentBlockMediaModel.icon;
+
+            defer.resolve(result);
           } else {
             defer.resolve(null);
           }

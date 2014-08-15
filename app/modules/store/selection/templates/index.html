@@ -49,7 +49,7 @@
         <section id="articles" ng-if="type === 'Article'">
             <div id="articlesContent">
                 <div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection" app-col="col" watch="true">
-                    <article ng-repeat="itemModel in col" item-model="itemModel"></article>
+                    <article ng-repeat="itemModel in col"></article>
                 </div>
             </div>
         </section>
@@ -85,7 +85,7 @@
             </div>
         </section>
 
-        <div id="toNextStep" class="{{nextStep.icon}}" ng-hide="toTray || hideNextButton" ng-click="next()">
+        <div id="toNextStep" class="{{nextStep.icon}}" ng-show="!toTray && showNextButton" ng-click="next()">
             <p>Nächster Schritt</p>
             <h3>{{nextStep.title}}</h3>
         </div>

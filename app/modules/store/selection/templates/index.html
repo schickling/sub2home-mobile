@@ -7,7 +7,7 @@
                     <!-- Article-Category from which the User got to selection -->
                 </p>
             </div>
-            <div id="pageTitle" class="twoLine">
+            <div id="pageTitle" class="twoLine separate">
                 <p ng-if="menuModel !== articleModel.title">{{menuModel}}</p>
                 <h3>{{ articleModel.title }} <span class="itemInfo">({{ articleModel.info }})</span></h3>
             </div>
@@ -73,14 +73,15 @@
                 <h2>Sparmenü</h2>
                 <p class="itemDescription" bo-text="menu.description"></p>
                 <div ng-click="upgrade(menu)" class="buyingOption">
-                    <div class="buy note">
+                    <div class="buy note buyed">
                         <div class="pricetag">
                             <h3>
-
-                <div bo-text="menu.price | number:2" class="price"></div>
-              </h3>
+															<div bo-text="menu.price | number:2" class="price"></div>
+              							</h3>
                         </div>
+                        <div class="icn iClose"></div>
                     </div>
+                    
                 </div>
             </div>
         </section>

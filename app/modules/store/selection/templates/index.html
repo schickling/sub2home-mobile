@@ -85,12 +85,12 @@
             </div>
         </section>
 
-        <div id="toNextStep" class="{{nextStep.icon}}" ng-click="next()">
+        <div id="toNextStep" class="{{nextStep.icon}}" ng-hide="toTray || hideNextButton" ng-click="next()">
             <p>Nächster Schritt</p>
             <h3>{{nextStep.title}}</h3>
         </div>
 
-        <div id="toNextStep" class="iTray" ng-show="toTray && noUpgrade" ng-click="goToTrayNoUpdate()">
+        <div id="toNextStep" class="iTray" ng-show="toTray && noUpgrade" ng-click="goToTray()">
             <p>Oder nur ein {{ articleModel.title }}
                 <br/>und gleich weiter</p>
             <h3>zum Tablett</h3>

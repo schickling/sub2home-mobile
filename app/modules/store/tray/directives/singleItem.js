@@ -8,6 +8,11 @@ module.exports = [
       templateUrl: 'modules/store/tray/directives/singleItem.html',
       link: function($scope, $elem, $attrs) {
 
+        $scope.edit = false;
+        $scope.editBwd = false;
+
+        $scope.remove = false;
+        $scope.removeBwd = false;
       }
     };
 

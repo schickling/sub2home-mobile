@@ -133,7 +133,9 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
             } else {
               var d = $q.defer();
               if (self._currentArticleIndex + 1 < self._menuComponentCollection.length) {
-                d.resolve(self._menuComponentCollection[self._currentArticleIndex + 1].menuComponentOptionsCollection[0]);
+                var result = self._menuComponentCollection[self._currentArticleIndex + 1].menuComponentOptionsCollection[0];
+                result.icon = self._menuComponentCollection[self._currentArticleIndex + 1].menuComponentBlockMediaModel.icon;
+                d.resolve(result);
               } else {
                 d.resolve(null);
               }

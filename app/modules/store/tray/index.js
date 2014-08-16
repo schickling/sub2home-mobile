@@ -2,12 +2,20 @@
 
 var MainCtrl = require('./controllers/MainCtrl');
 var TrayService = require('./services/TrayService');
+var ArticleHelper = require('./services/ArticleHelper');
 var singleItem = require('./directives/singleItem');
+var menuItem = require('./directives/menuItem');
+var subItem = require('./directives/subItem');
+var editOptions = require('./directives/editOptions');
 
 module.exports = angular.module('store.tray', [])
   .controller('StoreTrayCtrl', MainCtrl)
   .service('TrayService', TrayService)
+  .service('ArticleHelper', ArticleHelper)
   .directive('singleItem', singleItem)
+  .directive('menuItem', menuItem)
+  .directive('subItem', subItem)
+  .directive('editOptions', editOptions)
   .config(['$routeProvider',
     function($routeProvider) {
 

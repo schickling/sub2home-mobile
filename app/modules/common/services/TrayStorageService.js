@@ -11,11 +11,11 @@ module.exports = ['ItemStorageService',
       _subItemKey: 'traySubItem',
 
       // single items
-      saveSingeItem: function(singleItem) {
+      saveSingleItem: function(singleItem) {
         ItemStorageService.saveItem(this._singleItemKey, singleItem);
       },
 
-      getAllSingeItems: function() {
+      getAllSingleItems: function() {
         return ItemStorageService.getAllItems(this._singleItemKey);
       },
 

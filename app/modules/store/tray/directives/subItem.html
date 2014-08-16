@@ -1,27 +1,15 @@
-<div class="item article sub">
-    <div class="itemContent">
+<div class="item article sub" ng-class="{edit: edit, editBwd: editBwd, remove: remove, removeBwd: removeBwd}">
+    <div bindonce class="itemContent">
         <div class="itemDescription">
-            <h4>Roasted Chicken Breast<span class="itemInfo"> (6inch)</span></h4>
-            <p>
-                6inch-Sub mit Vollkorn-Brot, Cheddar, Tomaten, Salat ...
-            </p>
+            <h4 bo-text="subItem.title"><span class="itemInfo" bo-text="subItem.info"></span></h4>
+            <p>{{toString}}</p>
         </div>
         <div class="staticColumn">
             <div class="itemPreviewPrice">
-                <img class="itemPreview" src="/images/articles/smallimages/bbqrib.png" alt="" />
-                <div class="price itemPrice">
-                    3,99
-                </div>
+                <img class="itemPreview" bo-src="subItem.smallImage" alt="" />
+                <div class="price itemPrice" bo-text="subItem.price"></div>
             </div>
         </div>
     </div>
-    <div class="itemOptions">
-        <div class="editItem"></div>
-        <div class="removeItem"></div>
-        <div class="removeItemContainer">
-            <div class="submitRemoveItem"></div>
-            <div class="discardRemoveItem"></div>
-        </div>
-    </div>
-    <div class="toggleOptions"></div>
+    <edit-options></edit-options>
 </div>

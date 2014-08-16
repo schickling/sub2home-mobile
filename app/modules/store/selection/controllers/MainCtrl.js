@@ -110,9 +110,6 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       RoutingService.navigate(':storeAlias');
     };
 
-    $scope.goToTrayNoUpdate = function() {
-      // TODO remove MenuUpgrade
-    };
 
     $scope.upgrade = function(menu) {
       angular.forEach($scope.articleModel.menuUpgradesCollection, function(upgrade) {

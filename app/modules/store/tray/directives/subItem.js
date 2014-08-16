@@ -1,12 +1,21 @@
 'use strict';
 
-module.exports = [
+module.exports = ['ArticleHelper',
 
-  function() {
+  function(ArticleHelper) {
     return {
       restrict: 'E',
-      templateUrl: 'modules/store/tray/directives/singleArticle.html',
-      link: function($scope, $elem, $attrs) {}
+      templateUrl: 'modules/store/tray/directives/subItem.html',
+      link: function($scope, $elem, $attrs) {
+
+        $scope.edit = false;
+        $scope.editBwd = false;
+
+        $scope.remove = false;
+        $scope.removeBwd = false;
+
+        $scope.toString = ArticleHelper.articleToString($scope.subItem);
+      }
     };
 
   }

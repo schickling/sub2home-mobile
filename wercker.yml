@@ -5,6 +5,9 @@ build:
         name: install local dependencies
         code: npm install
     - script:
+        name: test
+        code: npm test
+    - script:
         name: build
         code: npm run-script build
 deploy:

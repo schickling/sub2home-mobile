@@ -762,6 +762,7 @@ p {
 			border-radius: 2px;
 			border: 3px dashed @onNoteColor50;
 			padding: 2px 7px;
+			.transition(margin .2s ease);
 
 			h3 {
 
@@ -789,6 +790,36 @@ p {
 				// SIZE ADJUST
 
 				font-size: 13px;
+			}
+		}
+		
+		.iClose {
+			color: @grayLight;
+			position: absolute;
+			top: 50%;
+			margin-top: -15px;
+			right: 10px;
+			.opacity(0);
+			.transition(opacity .1s linear);
+		}
+		
+		&.buyed {
+			position: relative;
+			background: @darkWhite;
+			.box-shadow(none);
+			border: none;
+			.pricetag {
+				display: inline-block;
+				vertical-align: middle;
+				border-color: rgba(0,0,0,0);
+				margin-right: 40px;
+				
+				&:before, h3 {
+					color: @grayDark !important;
+				}
+			}
+			.iClose {
+				.opacity(100);
 			}
 		}
 	}

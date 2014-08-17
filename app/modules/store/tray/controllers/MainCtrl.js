@@ -3,7 +3,7 @@
 module.exports = ['$scope', 'TrayStorageService',
 
   function($scope, TrayStorageService) {
-    $scope.allSingleArticles = TrayStorageService.getAllSingleItems();
+    $scope.allSingleItems = TrayStorageService.getAllSingleItems();
 
     $scope.allSubItems = TrayStorageService.getAllSubItems();
 

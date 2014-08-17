@@ -6,6 +6,7 @@ module.exports = ['_',
 
     return {
       getSelectedArticle: function(article) {
+        // muss für MenuUpdates und manuBundles funktionieren
         var result = null;
         _.forEach(article.menuComponentOptionsCollection, function(optionCollection) {
           _.forEach(optionCollection.menuComponentOptionArticlesCollection, function(item) {

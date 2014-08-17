@@ -1,13 +1,13 @@
-<div bindonce class="item article" ng-class="{edit: edit, editBwd: editBwd, remove: remove, removeBwd: removeBwd}" bo-class="singleArticle.icon ? 'beverage': 'snacks'">
+<div bindonce class="item article" ng-class="{edit: edit, editBwd: editBwd, remove: remove, removeBwd: removeBwd}" bo-class="singleItem.icon ? 'beverage': 'snacks'">
     <div class="itemContent">
 
         <div class="itemPreviewTitle">
-            <img class="itemPreview" bo-src="singleArticle.largeImage" bo-alt="" />
-            <h4 class="itemTitle" bo-text="singleArticle.title"></h4>
+            <img class="itemPreview" bo-src="singleItem.largeImage" bo-alt="" />
+            <h4 class="itemTitle" bo-text="singleItem.title"></h4>
         </div>
         <div class="staticColumn">
-            <div class="price" bo-text="singleArticle.price | number:2"></div>
-            <div class="deposit" bo-if="singleArticle.deposit > 0">+<span bo-text="singleArticle.deposit | number:2"></span>ct Pfand</div>
+            <div class="price" bo-text="singleItem.price | number:2"></div>
+            <div class="deposit" bo-if="singleItem.deposit > 0">+<span bo-text="singleItem.deposit | number:2"></span>ct Pfand</div>
         </div>
     </div>
     <edit-options></edit-options>

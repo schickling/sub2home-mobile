@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['ArticleHelper',
+module.exports = ['ArticleHelper', 'TrayStorageService', '$route',
 
-  function(ArticleHelper) {
+  function(ArticleHelper, TrayStorageService, $route) {
     return {
       restrict: 'E',
       templateUrl: 'modules/store/tray/directives/subItem.html',
@@ -15,6 +15,11 @@ module.exports = ['ArticleHelper',
         $scope.removeBwd = false;
 
         $scope.toString = ArticleHelper.articleToString($scope.subItem);
+
+        $scope.removeItem = function() {
+          TrayStorageService.removeSubItem($scope.subItem);
+          $route.reload();
+        };
       }
     };
 

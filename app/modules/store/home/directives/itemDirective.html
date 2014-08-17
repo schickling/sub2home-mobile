@@ -1,25 +1,25 @@
 <div class="item sub" bindonce>
-  <img bo-src="itemModel.largeImage" bo-alt="itemModel.title" />
-  <h2><span bo-text="itemModel.title | wordSplit:true"></span> <span style="white-space: nowrap;"><span bo-text="itemModel.title | wordSplit:false"></span><span class="infoButton" ng-click="hidden = !hidden"></span></span></h2>
-  <p class="itemDescription" ng-hide="hidden" bo-text="itemModel.description"></p>
-  <div class="buyingOption">
-    <div class="note" ng-class="getBuyClass(itemModel.icon)" ng-click="handleBuyClick(itemModel)">
-      <div class="pricetag">
-        <h3>
+    <img bo-src="itemModel.largeImage" bo-alt="itemModel.title" />
+    <h2><span bo-text="itemModel.title | wordSplit:true"></span> <span style="white-space: nowrap;"><span bo-text="itemModel.title | wordSplit:false"></span><span class="infoButton" ng-click="hidden = !hidden"></span></span></h2>
+    <p class="itemDescription" ng-hide="hidden" bo-text="itemModel.description"></p>
+    <div class="buyingOption">
+        <div class="note" ng-class="getBuyClass(itemModel.icon)" ng-click="handleBuyClick(itemModel)">
+            <div class="pricetag">
+                <h3>
           <div class="sizeTag" bo-text="itemModel.info" bo-if="itemModel.info"></div>
-          <div class="price" bo-text="itemModel.price"></div>
+          <div class="price" bo-text="itemModel.price | number: 2"></div>
         </h3>
-        <div class="deposit" bo-if="itemModel.deposit > 0">+<span bo-text="itemModel.deposit * 100"></span> ct Pfand</div>
-      </div>
-    </div>
-    <div class="note" ng-repeat="chainedArticleModel in itemModel.chainedArticlesCollection" ng-class="getBuyClass(chainedArticleModel.icon)" ng-click="handleBuyClick(chainedArticleModel)">
-      <div class="pricetag">
-        <h3>
+                <div class="deposit" bo-if="itemModel.deposit > 0">+<span bo-text="itemModel.deposit * 100"></span> ct Pfand</div>
+            </div>
+        </div>
+        <div class="note" ng-repeat="chainedArticleModel in itemModel.chainedArticlesCollection" ng-class="getBuyClass(chainedArticleModel.icon)" ng-click="handleBuyClick(chainedArticleModel)">
+            <div class="pricetag">
+                <h3>
           <div class="sizeTag" bo-text="chainedArticleModel.info"></div>
-          <div class="price" bo-text="chainedArticleModel.price"></div>
+          <div class="price" bo-text="chainedArticleModel.price | number:2"></div>
           <div class="deposit" bo-if="chainedArticleModel.deposit > 0">+<span bo-text="chainedArticleModel.deposit * 100"></span> ct Pfand</div>
         </h3>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

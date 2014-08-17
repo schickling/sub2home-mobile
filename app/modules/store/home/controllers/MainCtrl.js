@@ -2,11 +2,11 @@
 
 module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
   'selectedDeliveryAreaModel', 'RoutingService', 'PersistenceService',
-  'PostalOracleService',
+  'PostalOracleService', 'NotificationService', '$timeout',
 
   function($scope, storeModel, categoriesCollection, _,
     selectedDeliveryAreaModel, RoutingService, PersistenceService,
-    PostalOracleService) {
+    PostalOracleService, NotificationService, $timeout) {
 
     $scope.categoriesCollection = categoriesCollection;
     $scope.currentCategoryModel = categoriesCollection.current;
@@ -19,6 +19,26 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.suggestedDeliveryAreasCollection = [];
     $scope.checkingPostal = false;
     $scope.selectedDeliveryAreaModel = null;
+
+    $scope.notification = NotificationService.getStoreHomeNotification();
+
+    $scope.setTrayNotification = function() {
+      $scope.trayNotification = NotificationService.getTrayNotification();
+      if ($scope.trayNotification) {
+        $timeout(function() {
+          NotificationService.removeTrayNotification();
+          $scope.trayNotification = NotificationService.getTrayNotification();
+        }, 3000);
+      }
+    };
+
+    $scope.setTrayNotification();
+
+    //TODO find better solution
+    $scope.$on('trayNotification', function(event, item) {
+      $scope.setTrayNotification();
+    });
+
 
     if (selectedDeliveryAreaModel) {
       $scope.selectedDeliveryAreaModel = _.find(storeModel.deliveryAreasCollection, {
@@ -33,6 +53,10 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     };
 
     $scope.toggleNav = function(value) {
+      if (value === undefined) {
+        NotificationService.removeTrayNotification();
+        $scope.trayNotification = NotificationService.getTrayNotification();
+      }
       $scope.navToggled = value !== undefined ? value : !$scope.navToggled;
     };
 
@@ -58,7 +82,8 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
         $scope.suggestedDeliveryAreasCollection = $scope.groupedDeliveryAreasCollection[postal];
       });
 
-      postalPromise.catch(function() {
+      postalPromise.
+      catch (function() {
         $scope.checkingPostal = false;
       });
 
@@ -67,5 +92,9 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
       $scope.suggestedDeliveryAreasCollection = $scope.groupedDeliveryAreasCollection[postal];
     }
 
+    $scope.removeNotification = function() {
+      NotificationService.removeStoreHomeNotification();
+      $scope.notification = NotificationService.getStoreHomeNotification();
+    };
   }
 ];

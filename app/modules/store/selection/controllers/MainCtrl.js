@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService', '$document', '_',
+module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService', '$document', '_', 'NotificationService',
 
-  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout, TrayStorageService, RoutingService, $document, _) {
+  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout, TrayStorageService, RoutingService, $document, _, NotificationService) {
     var getAllArticles = function(entity) {
       var all = [];
       if (entity.menuComponentOptionsCollection) {
@@ -92,6 +92,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       if (orderedItem.articlesCollection.length > 1) {
         // menu
         TrayStorageService.saveMenuItem(orderedItem);
+        NotificationService.setTrayNotification(orderedItem.menuBundleModel.title);
       } else {
         orderedItem = orderedItem.articlesCollection[0];
 
@@ -101,13 +102,15 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
           tmp.savedArticle = orderedItem;
           orderedItem = {};
           orderedItem.articlesCollection = [tmp].concat(tmp.savedArticle.menuUpgradeArticles);
+          orderedItem.title = 'Menü';
+          NotificationService.setTrayNotification(orderedItem.title);
           TrayStorageService.saveMenuItem(orderedItem);
         } else {
           // sub
           TrayStorageService.saveSubItem(orderedItem);
+          NotificationService.setTrayNotification(orderedItem.title);
         }
       }
-
       RoutingService.navigate(':storeAlias');
     };
 

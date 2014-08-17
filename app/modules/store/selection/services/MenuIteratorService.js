@@ -93,7 +93,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
           var selectedArticle = getSelectedArticle(this._currentEntity.menuComponentOptionArticlesCollection);
 
           if (selectedArticle && selectedArticle.allowsIngredients) {
-            if (!this._menuComponentCollection[self._currentArticleIndex].savedArticle) {
+            if (!this._menuComponentCollection[this._currentArticleIndex].savedArticle || selectedArticle.id !== this._menuComponentCollection[this._currentArticleIndex].savedArticle.id) {
               return fetchArticle(selectedArticle, this, this._currentEntity);
             } else {
               var defer = $q.defer();

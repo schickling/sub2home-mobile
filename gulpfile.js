@@ -128,7 +128,10 @@ gulp.task('watch', function() {
   gulp.watch(['app/index.js', 'app/modules/**/*.js'], ['browserify.app']);
 });
 
-gulp.task('test', []);
+gulp.task('test', [
+  'hint',
+  'browserify'
+]);
 
 gulp.task('browserify', [
   'browserify.libs',

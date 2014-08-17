@@ -120,14 +120,13 @@
             <div class="logo"></div>
             <p class="warning">SUBWAY<span class="superscript">&reg;</span> Memmingen
                 <br>hat gerade geschlossen.
-                <!-- Wenn der Store tatsächlich komplett geschlossen ist, fällt der Hinweis zur nächsten Lieferzeit weg, sowie der Bereich mit den Öffnungszeiten (#openedStore). Statt "gerade geschlossen", heißt es "zur Zeit leider geschlossen".-->
                 <p class="highlighted" bo-if="storeModel.isOpen">
                     Ab Dienstag um 14:30 wird wieder geliefert.
                 </p>
                 <p class="highlighted" bo-class="storeModel.messageType" bo-text="storeModel.messageText"></p>
         </header>
 
-        <div id="openedStore">
+        <div id="openedStore" bo-if="storeModel.isOpen">
             <p class="smallHint">
                 Die SUBWAY<span class="superscript">&reg;</span> Memmingen-Onlinetheke hat folgende Öffnungszeiten:
             </p>

@@ -13,7 +13,7 @@ require('angular-touch/angular-touch');
 require('angular-resource/angular-resource');
 require('angular-local-storage/angular-local-storage');
 require('angular-bindonce');
-require('./modules/vendor/duScroll');
+require('./modules/vendor');
 var fastclick = require('fastclick');
 var _ = require('lodash');
 

@@ -1,6 +1,6 @@
-<div bindonce ng-class="{navToggled: navToggled, overlayed: chooseDeliveryArea}" class="notificationShown">
+<div bindonce ng-class="{navToggled: navToggled, overlayed: chooseDeliveryArea,notificationShown: trayNotification}">
     <aside id="header">
-        <div id="notification" class="trayNotification">Ein BBQ-Rib (6inch) liegt nun auf deinem Tablett.</div>
+        <div id="notification" class="trayNotification">{{trayNotification}} liegt nun auf deinem Tablett.</div>
         <div id="headerContent">
             <div id="toggleNav" class="icn iNav" ng-click="toggleNav()"></div>
             <div id="pageTitle" ng-click="toggleNav()">
@@ -30,7 +30,7 @@
                 <i class="editButton inSmallText before" ng-click="chooseDeliveryArea = true"></i>
                 <p>in {{ selectedDeliveryAreaModel.minimumDuration }}min nach {{ selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city }}</p>
             </div>
-            <div id="storeMessage">
+            <div ng-click="removeNotification()" ng-if="notification" id="storeMessage">
                 <p class="warning">In Memmingen kann es während des Volksfestes Soundso zu verlängerten Lieferzeiten kommen. Sorry dafür.</p>
 
 
@@ -38,11 +38,11 @@
             </div>
         </section>
         <section id="articles">
-					<div id="articlesContent">
-						<div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">
-							<item ng-repeat="itemModel in col"></item>
-						</div>
-        	</div>
+            <div id="articlesContent">
+                <div id="tableRow" col-repeat app-items-collection="itemsCollection" app-col="col">
+                    <item ng-repeat="itemModel in col"></item>
+                </div>
+            </div>
         </section>
         <div ng-click="selectCategory(nextCategoryModel)" bo-if="nextCategoryModel">
             <div id="toNextCategory" bo-class="nextCategoryModel.icon">
@@ -140,7 +140,8 @@
                             <h3>14:00-22:00</h3>
                         </div>
                     </div>
-                </div><div class="openingHoursContainer">
+                </div>
+                <div class="openingHoursContainer">
                     <div class="openingHoursContent">
                         <div class="openingDay">Di</div>
                         <div class="openingHours">
@@ -148,7 +149,8 @@
                             <h3>14:00-22:00</h3>
                         </div>
                     </div>
-                </div><div class="openingHoursContainer">
+                </div>
+                <div class="openingHoursContainer">
                     <div class="openingHoursContent">
                         <div class="openingDay">Mi</div>
                         <div class="openingHours">
@@ -156,7 +158,8 @@
                             <h3>14:00-22:00</h3>
                         </div>
                     </div>
-                </div><div class="openingHoursContainer">
+                </div>
+                <div class="openingHoursContainer">
                     <div class="openingHoursContent">
                         <div class="openingDay">Do</div>
                         <div class="openingHours">
@@ -164,7 +167,8 @@
                             <h3>14:00-22:00</h3>
                         </div>
                     </div>
-                </div><div class="openingHoursContainer">
+                </div>
+                <div class="openingHoursContainer">
                     <div class="openingHoursContent">
                         <div class="openingDay">Fr</div>
                         <div class="openingHours">
@@ -172,7 +176,8 @@
                             <h3>14:00-22:00</h3>
                         </div>
                     </div>
-                </div><div class="openingHoursContainer">
+                </div>
+                <div class="openingHoursContainer">
                     <div class="openingHoursContent">
                         <div class="openingDay">Sa</div>
                         <div class="openingHours">
@@ -180,15 +185,21 @@
                             <h3>14:00-22:00</h3>
                         </div>
                     </div>
-                </div><div class="openingHoursContainer">
+                </div>
+                <div class="openingHoursContainer">
                     <div class="openingHoursContent">
                         <div class="openingDay">So</div>
                         <div class="openingHours">
                             <h3>geschlossen</h3>
                         </div>
                     </div>
-                </div><div class="openingHoursContainer"><!-- As Container to keep the layout -->
-                </div><div class="openingHoursContainer mobile-hidden"><!-- As Container to keep the layout (on tablets), hidden on mobile--></div>
+                </div>
+                <div class="openingHoursContainer">
+                    <!-- As Container to keep the layout -->
+                </div>
+                <div class="openingHoursContainer mobile-hidden">
+                    <!-- As Container to keep the layout (on tablets), hidden on mobile-->
+                </div>
             </div>
         </div>
 

@@ -4,9 +4,11 @@ var MainCtrl = require('./controllers/MainCtrl');
 var itemDirective = require('./directives/itemDirective');
 var colRepeatDirective = require('./directives/colRepeatDirective');
 var wordSplitFilter = require('./filters/wordSplitFilter');
+var NotificationService = require('./services/NotificationService');
 
 module.exports = angular.module('store.home', [])
   .controller('StoreHomeCtrl', MainCtrl)
+  .service('NotificationService', NotificationService)
   .directive('item', itemDirective)
   .directive('colRepeat', colRepeatDirective)
   .filter('wordSplit', wordSplitFilter)

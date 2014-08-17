@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService', '$document', '_',
+module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService', '$document', '_', 'NotificationService',
 
-  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout, TrayStorageService, RoutingService, $document, _) {
+  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout, TrayStorageService, RoutingService, $document, _, NotificationService) {
     var getAllArticles = function(entity) {
       var all = [];
       if (entity.menuComponentOptionsCollection) {
@@ -92,27 +92,28 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       if (orderedItem.articlesCollection.length > 1) {
         // menu
         TrayStorageService.saveMenuItem(orderedItem);
+        NotificationService.setTrayNotification(orderedItem.menuBundleModel.title);
       } else {
         orderedItem = orderedItem.articlesCollection[0];
 
         if (orderedItem.menuUpgradeArticles.length > 0) {
           //menuUpgrade
-          var tmp = orderedItem;
+          var tmp = {};
+          tmp.savedArticle = orderedItem;
           orderedItem = {};
-          orderedItem.articlesCollection = [tmp].concat(orderedItem.menuUpgradeArticles);
+          orderedItem.articlesCollection = [tmp].concat(tmp.savedArticle.menuUpgradeArticles);
+          orderedItem.title = 'Menü';
+          NotificationService.setTrayNotification(orderedItem.title);
           TrayStorageService.saveMenuItem(orderedItem);
         } else {
           // sub
           TrayStorageService.saveSubItem(orderedItem);
+          NotificationService.setTrayNotification(orderedItem.title);
         }
       }
-
       RoutingService.navigate(':storeAlias');
     };
 
-    $scope.goToTrayNoUpdate = function() {
-      // TODO remove MenuUpgrade
-    };
 
     $scope.upgrade = function(menu) {
       angular.forEach($scope.articleModel.menuUpgradesCollection, function(upgrade) {
@@ -137,7 +138,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
       $timeout(function() {
         $scope.next();
-      }, 1000);
+      }, 750);
 
     });
 

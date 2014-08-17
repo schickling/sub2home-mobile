@@ -37,8 +37,13 @@
                 </header>
 
                 <!-- articles other than subs -->
-                <single-item ng-repeat="singleArticle in allArticles"></single-item>
+                <single-item ng-repeat="singleItem in allSingleItems"></single-item>
 
+                <!-- Subs -->
+                <sub-item ng-repeat="subItem in allSubItems"></sub-item>
+
+                <!-- menu bundles -->
+                <menu-item ng-repeat="menuItem in allMenuItems"></menu-item>
 
                 <!-- Subs -->
 
@@ -155,29 +160,29 @@
                         <div class="toggleOptions"></div>
                     </div>
                     <div class="menuContents">
-                    	<div class="item article sub">
-												<div class="itemPreviewTitle">
-													<img class="itemPreview" src="/images/articles/smallimages/bbqrib.png" alt="" />
-													<div class="menuItemInfo">
-														<h4 class="itemTitle">BBQ-Rib<span class="itemInfo"> (6-inch)</span></h4>
-														<p>
-															6inch-Sub mit Vollkorn-Brot, Cheddar-Cheese, Tomaten, Salat, ...
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="item article snacks">
-												<div class="itemPreviewTitle">
-													<img class="itemPreview" src="/images/articles/smallimages/raspberrycheesecake.png" alt="" />
-													<h4 class="itemTitle">Raspberry Cheesecake Cookie</h4>
-												</div>
-											</div>
-                    	<div class="item article beverage">
-												<div class="itemPreviewTitle">
-													<img class="itemPreview" src="/images/articles/smallimages/coke.png" alt="" />
-													<h4 class="itemTitle">Coca Cola<span class="itemInfo"> (0,5l)</span></h4>
-												</div>
-											</div>
+                        <div class="item article sub">
+                            <div class="itemPreviewTitle">
+                                <img class="itemPreview" src="/images/articles/smallimages/bbqrib.png" alt="" />
+                                <div class="menuItemInfo">
+                                    <h4 class="itemTitle">BBQ-Rib<span class="itemInfo"> (6-inch)</span></h4>
+                                    <p>
+                                        6inch-Sub mit Vollkorn-Brot, Cheddar-Cheese, Tomaten, Salat, ...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item article snacks">
+                            <div class="itemPreviewTitle">
+                                <img class="itemPreview" src="/images/articles/smallimages/raspberrycheesecake.png" alt="" />
+                                <h4 class="itemTitle">Raspberry Cheesecake Cookie</h4>
+                            </div>
+                        </div>
+                        <div class="item article beverage">
+                            <div class="itemPreviewTitle">
+                                <img class="itemPreview" src="/images/articles/smallimages/coke.png" alt="" />
+                                <h4 class="itemTitle">Coca Cola<span class="itemInfo"> (0,5l)</span></h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

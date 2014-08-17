@@ -24,14 +24,14 @@ describe('TrayStorageService', function() {
 
     TrayStorageService.removeSingleItem(item);
 
-    expect(TrayStorageService.getAllSingeItems()).toEqual([]);
+    expect(TrayStorageService.getAllSingleItems()).toEqual([]);
 
-    TrayStorageService.saveSingeItem(item);
+    TrayStorageService.saveSingleItem(item);
 
-    expect(TrayStorageService.getAllSingeItems()).toEqual([item]);
+    expect(TrayStorageService.getAllSingleItems()).toEqual([item]);
     TrayStorageService.removeSingleItem(item);
 
-    expect(TrayStorageService.getAllSingeItems()).toEqual([]);
+    expect(TrayStorageService.getAllSingleItems()).toEqual([]);
   });
 
   it('should save, update, and delete Sub Items', function() {

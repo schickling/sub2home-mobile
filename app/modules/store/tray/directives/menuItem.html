@@ -1,29 +1,37 @@
-<div class="item menuBundle sub">
+<div class="item menuBundle" ng-class="{edit: edit, editBwd: editBwd, remove: remove, removeBwd: removeBwd}" bindonce>
     <div class="menuHead">
         <div class="itemContent">
-            <div class="itemDescription">
-                <h4>Familienmenü</h4>
+            <div class="itemPreviewTitle">
+                <img class="itemPreview" bo-src="menuItem.menuBundleModel.smallImage" alt="" />
+                <h4 class="itemTitle" bo-text="menuItem.menuBundleModel.title"></h4>
             </div>
             <div class="staticColumn">
                 <div class="itemPreviewPrice">
-                    <div class="price itemPrice">
-                        15,99
-                    </div>
+                    <div class="price itemPrice" bo-text="menuItem.menuBundleModel.price"></div>
                 </div>
             </div>
         </div>
-        <div class="itemOptions">
-            <div class="editItem"></div>
-            <div class="removeItem"></div>
-            <div class="removeItemContainer">
-                <div class="submitRemoveItem"></div>
-                <div class="discardRemoveItem"></div>
-            </div>
-        </div>
-        <div class="toggleOptions"></div>
+
+        <edit-options></edit-options>
+
     </div>
     <div class="menuContents">
-
+        <div ng-repeat="item in menuItem.articlesCollection" class="item article sub" ng-if="item.savedArticle.allowsIngredients">
+            <div class="itemPreviewTitle">
+                <img class="itemPreview" bo-src="item.savedArticle.smallImage" alt="" />
+                <div class="menuItemInfo">
+                    <h4 class="itemTitle" bo-text="item.savedArticle.title"></h4>
+                    <p>
+                        {{toString(item.savedArticle)}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div ng-repeat="item in menuItem.articlesCollection" ng-if="!item.savedArticle.allowsIngredients" bo-class="item.savedArticle.icon ? 'beverage': 'snacks'" class="item article">
+            <div class="itemPreviewTitle">
+                <img class="itemPreview" bo-src="item.savedArticle.smallImage" alt="" />
+                <h4 class="itemTitle" bo-text="item.savedArticle.title"></h4>
+            </div>
+        </div>
     </div>
 </div>
-

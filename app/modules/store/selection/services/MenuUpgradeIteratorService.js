@@ -56,6 +56,7 @@ module.exports = ['_', '$q',
           if (selectedUpgradeMenu && this._menuUpgradeArticleIndex + 1 < selectedUpgradeMenu.menuComponentBlocksCollection.length) {
             var next = selectedUpgradeMenu.menuComponentBlocksCollection[this._menuUpgradeArticleIndex + 1];
             next.title = next.menuComponentOptionsCollection[0].title;
+            next.icon = next.menuComponentBlockMediaModel.icon;
             defer.resolve(next);
           } else {
             defer.resolve(null);

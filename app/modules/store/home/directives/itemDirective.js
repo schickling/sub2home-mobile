@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['RoutingService', 'TrayService',
+module.exports = ['RoutingService', 'TrayStorageService', 'NotificationService',
 
-  function(RoutingService, TrayService) {
+  function(RoutingService, TrayStorageService, NotificationService) {
     return {
       restrict: 'E',
       templateUrl: 'modules/store/home/directives/itemDirective.html',
@@ -20,8 +20,9 @@ module.exports = ['RoutingService', 'TrayService',
             if (itemModel.allowsIngredients) {
               RoutingService.navigate(':storeAlias/theke/artikel/' + itemModel.id);
             } else {
-              TrayService.saveArticle(itemModel);
-              // TODO notification for the user
+              TrayStorageService.saveSingleItem(itemModel);
+              NotificationService.setTrayNotification(itemModel.title);
+              $scope.$emit('trayNotification', true);
             }
           } else {
             RoutingService.navigate(':storeAlias/theke/menu/' + itemModel.id);

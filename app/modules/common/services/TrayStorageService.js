@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['ItemStorageService',
+module.exports = ['ItemStorageService', '_', 'ArticleHelper',
 
-  function(ItemStorageService) {
+  function(ItemStorageService, _, ArticleHelper) {
 
     return {
 
@@ -11,11 +11,11 @@ module.exports = ['ItemStorageService',
       _subItemKey: 'traySubItem',
 
       // single items
-      saveSingeItem: function(singleItem) {
+      saveSingleItem: function(singleItem) {
         ItemStorageService.saveItem(this._singleItemKey, singleItem);
       },
 
-      getAllSingeItems: function() {
+      getAllSingleItems: function() {
         return ItemStorageService.getAllItems(this._singleItemKey);
       },
 
@@ -38,6 +38,11 @@ module.exports = ['ItemStorageService',
 
       // menu items
       saveMenuItem: function(menuItem) {
+        _.forEach(menuItem.articlesCollection, function(article) {
+          if (!article.savedArticle || (article.savedArticle && !article.savedArticle.allowsIngredients)) {
+            article.savedArticle = ArticleHelper.getSelectedArticle(article);
+          }
+        });
         ItemStorageService.saveItem(this._menuItemKey, menuItem);
       },
 

@@ -1,8 +1,12 @@
 'use strict';
 
-module.exports = ['$scope', 'TrayService',
+module.exports = ['$scope', 'TrayStorageService',
 
-  function($scope, TrayService) {
-    $scope.allArticles = TrayService.getAllSingeItems();
+  function($scope, TrayStorageService) {
+    $scope.allSingleItems = TrayStorageService.getAllSingleItems();
+
+    $scope.allSubItems = TrayStorageService.getAllSubItems();
+
+    $scope.allMenuItems = TrayStorageService.getAllMenuItems();
   }
 ];

@@ -1,9 +1,9 @@
-<div class="item menuBundle">
+<div class="item menuBundle" ng-class="{edit: edit, editBwd: editBwd, remove: remove, removeBwd: removeBwd}" bindonce>
     <div class="menuHead">
         <div class="itemContent">
             <div class="itemPreviewTitle">
-                <img class="itemPreview" src="/images/articles/smallimages/familienmenue.png" alt="" />
-                <h4 class="itemTitle">Familienmenü</h4>
+                <img class="itemPreview" bo-src="menuItem.menuBundleModel.smallImage" alt="" />
+                <h4 class="itemTitle" bo-text="menuItem.menuBundleModel.title"></h4>
             </div>
             <div class="staticColumn">
                 <div class="itemPreviewPrice">
@@ -13,15 +13,9 @@
                 </div>
             </div>
         </div>
-        <div class="itemOptions">
-            <div class="editItem"></div>
-            <div class="removeItem"></div>
-            <div class="removeItemContainer">
-                <div class="submitRemoveItem"></div>
-                <div class="discardRemoveItem"></div>
-            </div>
-        </div>
-        <div class="toggleOptions"></div>
+
+        <edit-options></edit-options>
+
     </div>
     <div class="menuContents">
         <div class="item article sub">
@@ -49,4 +43,3 @@
         </div>
     </div>
 </div>
-

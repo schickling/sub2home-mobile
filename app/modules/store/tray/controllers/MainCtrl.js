@@ -6,5 +6,7 @@ module.exports = ['$scope', 'TrayStorageService',
     $scope.allSingleArticles = TrayStorageService.getAllSingleItems();
 
     $scope.allSubItems = TrayStorageService.getAllSubItems();
+
+    $scope.allMenuItems = TrayStorageService.getAllMenuItems();
   }
 ];

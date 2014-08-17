@@ -37,7 +37,8 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
         articleModel.allowsMenuUpgrades = 0;
 
         var iterator = ArticleIteratorService.init(articleModel);
-        artlicleList.savedArticle = articleModel;
+        //artlicleList.savedArticle = articleModel;
+        self._menuComponentCollection[self._currentArticleIndex].savedArticle = articleModel;
         defer.resolve(iterator);
         return iterator.getEntity();
       });
@@ -92,13 +93,13 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
           var selectedArticle = getSelectedArticle(this._currentEntity.menuComponentOptionArticlesCollection);
 
           if (selectedArticle && selectedArticle.allowsIngredients) {
-            if (!this._currentEntity.savedArticle) {
+            if (!this._menuComponentCollection[self._currentArticleIndex].savedArticle) {
               return fetchArticle(selectedArticle, this, this._currentEntity);
             } else {
               var defer = $q.defer();
               this._articleIterator = defer.promise;
 
-              var iterator = ArticleIteratorService.init(this._currentEntity.savedArticle);
+              var iterator = ArticleIteratorService.init(this._menuComponentCollection[self._currentArticleIndex].savedArticle);
               defer.resolve(iterator);
               this._hasIngrediants = true;
 
@@ -199,9 +200,9 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
       getEntityCollection: function() {
         var result = [];
         _.each(this._menuComponentCollection, function(article) {
-          if (article.menuComponentOptionsCollection[0].savedArticle) {
+          if (article.savedArticle) {
             var selected = {};
-            selected = article.menuComponentOptionsCollection[0].savedArticle;
+            selected = article.savedArticle;
             selected.menuComponentOptionsCollection = article.menuComponentOptionsCollection;
             selected.menuComponentBlockMediaModel = article.menuComponentBlockMediaModel;
             result.push(selected);

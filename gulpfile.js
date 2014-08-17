@@ -141,7 +141,7 @@ gulp.task('browserify', [
 
 gulp.task('server', [
   'less',
-  //'hint',
+  'hint',
   'browserify',
   'watch',
   'webserver',

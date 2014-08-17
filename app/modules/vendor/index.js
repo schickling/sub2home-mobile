@@ -1,3 +1,3 @@
 'use strict';
 
-//require('./segment');
+require('./segment');

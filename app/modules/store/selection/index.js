@@ -47,21 +47,18 @@ module.exports = angular.module('store.selection', [])
         templateUrl: 'modules/store/selection/templates/index.html',
         controller: 'StoreSelectionCtrl',
         resolve: {
-          orderedItemModel: ['MenuBundleModelFactory', '$route', 'OrderedItemModelBuilderService', '$q',
-            function(MenuBundleModelFactory, $route, OrderedItemModelBuilderService, $q) {
-
-              var defer = $q.defer();
+          orderedItemModel: ['MenuBundleModelFactory', '$route', 'OrderedItemModelBuilderService',
+            function(MenuBundleModelFactory, $route, OrderedItemModelBuilderService) {
 
               var menuBundleModel = MenuBundleModelFactory.get({
                 storeAlias: $route.current.params.storeAlias,
                 menuId: $route.current.params.menuId
               });
 
-              menuBundleModel.$promise.then(function() {
-                defer.resolve(OrderedItemModelBuilderService.buildWithMenuBundle(menuBundleModel));
+              return menuBundleModel.$promise.then(function() {
+                return OrderedItemModelBuilderService.buildWithMenuBundle(menuBundleModel);
               });
 
-              return defer.promise;
             }
           ],
         }

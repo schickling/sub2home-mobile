@@ -97,9 +97,10 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
         if (orderedItem.menuUpgradeArticles.length > 0) {
           //menuUpgrade
-          var tmp = orderedItem;
+          var tmp = {};
+          tmp.savedArticle = orderedItem;
           orderedItem = {};
-          orderedItem.articlesCollection = [tmp].concat(orderedItem.menuUpgradeArticles);
+          orderedItem.articlesCollection = [tmp].concat(tmp.savedArticle.menuUpgradeArticles);
           TrayStorageService.saveMenuItem(orderedItem);
         } else {
           // sub
@@ -134,7 +135,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
       $timeout(function() {
         $scope.next();
-      }, 1000);
+      }, 750);
 
     });
 

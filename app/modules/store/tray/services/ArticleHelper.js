@@ -5,6 +5,19 @@ module.exports = ['_',
   function(_) {
 
     return {
+      getSelectedArticle: function(article) {
+        var result = null;
+        _.forEach(article.menuComponentOptionsCollection, function(optionCollection) {
+          _.forEach(optionCollection.menuComponentOptionArticlesCollection, function(item) {
+            if (item.isSelected) {
+              result = item;
+            }
+          });
+        });
+
+        return result;
+      },
+
       getAllSelectedIngrediants: function(article) {
         var result = [];
 

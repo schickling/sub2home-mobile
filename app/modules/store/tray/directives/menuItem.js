@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = [
+module.exports = ['ArticleHelper',
 
-  function() {
+  function(ArticleHelper) {
     return {
       restrict: 'E',
       templateUrl: 'modules/store/tray/directives/menuItem.html',
@@ -15,7 +15,9 @@ module.exports = [
         $scope.removeBwd = false;
 
 
-
+        $scope.toString = function(item) {
+          return ArticleHelper.articleToString(item);
+        };
       }
     };
 

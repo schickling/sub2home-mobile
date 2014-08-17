@@ -7,9 +7,7 @@
             </div>
             <div class="staticColumn">
                 <div class="itemPreviewPrice">
-                    <div class="price itemPrice">
-                        15,99
-                    </div>
+                    <div class="price itemPrice" bo-text="menuItem.menuBundleModel.price"></div>
                 </div>
             </div>
         </div>
@@ -18,27 +16,21 @@
 
     </div>
     <div class="menuContents">
-        <div class="item article sub">
+        <div ng-repeat="item in menuItem.articlesCollection" class="item article sub" ng-if="item.savedArticle.allowsIngredients">
             <div class="itemPreviewTitle">
-                <img class="itemPreview" src="/images/articles/smallimages/bbqrib.png" alt="" />
+                <img class="itemPreview" bo-src="item.savedArticle.smallImage" alt="" />
                 <div class="menuItemInfo">
-                    <h4 class="itemTitle">BBQ-Rib<span class="itemInfo"> (6-inch)</span></h4>
+                    <h4 class="itemTitle" bo-text="item.savedArticle.title"></h4>
                     <p>
-                        6inch-Sub mit Vollkorn-Brot, Cheddar-Cheese, Tomaten, Salat, ...
+                        {{toString(item.savedArticle)}}
                     </p>
                 </div>
             </div>
         </div>
-        <div class="item article snacks">
+        <div ng-repeat="item in menuItem.articlesCollection" ng-if="!item.savedArticle.allowsIngredients" bo-class="item.savedArticle.icon ? 'beverage': 'snacks'" class="item article">
             <div class="itemPreviewTitle">
-                <img class="itemPreview" src="/images/articles/smallimages/raspberrycheesecake.png" alt="" />
-                <h4 class="itemTitle">Raspberry Cheesecake Cookie</h4>
-            </div>
-        </div>
-        <div class="item article beverage">
-            <div class="itemPreviewTitle">
-                <img class="itemPreview" src="/images/articles/smallimages/coke.png" alt="" />
-                <h4 class="itemTitle">Coca Cola<span class="itemInfo"> (0,5l)</span></h4>
+                <img class="itemPreview" bo-src="item.savedArticle.smallImage" alt="" />
+                <h4 class="itemTitle" bo-text="item.savedArticle.title"></h4>
             </div>
         </div>
     </div>

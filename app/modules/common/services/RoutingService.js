@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = ['$location', '$routeParams',
-  function($location, $routeParams) {
+module.exports = ['$location', '$routeParams', '$window',
+  function($location, $routeParams, $window) {
 
     return {
 
@@ -9,6 +9,11 @@ module.exports = ['$location', '$routeParams',
 
         if ($routeParams.hasOwnProperty('storeAlias')) {
           path = path.replace(':storeAlias', $routeParams.storeAlias);
+        }
+
+        if (path === '@back') {
+          $window.history.back();
+          return;
         }
 
         $location.path(path);

@@ -1,11 +1,11 @@
 <aside id="header">
     <div id="notification"></div>
     <div id="headerContent">
-      <div id="toggleNav" class="icn iNav"></div>
-      <div id="pageTitle">
-          Infotheke Memmingen
-      </div>
-      <div ng-click="navigate('info')" id="toTheInfo" class="icn iClose atTheInfo"></div>
+        <div id="toggleNav" class="icn iNav"></div>
+        <div id="pageTitle">
+            Infotheke Memmingen
+        </div>
+        <div ng-click="navigate(':storeAlias')" id="toTheInfo" class="icn iClose atTheInfo"></div>
     </div>
 </aside>
 
@@ -15,7 +15,7 @@
         <li>Öffnungszeiten</li>
         <li>Liefergebiete</li>
         <li>Zahlungsarten</li>
-<!--         <li>So funktionierts</li> -->
+        <!--         <li>So funktionierts</li> -->
         <li class="active">Partner werden</li>
         <li>Office</li>
         <li>Impressum</li>
@@ -23,261 +23,283 @@
 </nav>
 
 <div id="storeInfo" class="content dark">
-  <section id="storeContact">
-    <header>
-      <h2>SUBWAY<span class="superscript">&reg;</span> Memmingen</h2>
-    </header>
-    <div class="column">
-      <p>
-        Maximilianstraße 7<br>
-        87700 Memmingen
-      </p>
-    </div><div class="column waysToContact">
-      <p><i class="icn iPhone"></i>08331 / 833 84 33</p>
-      <p><i class="icn iFax"></i>08331 / 833 84 34</p>
-      <a href="mailto:kontakt@sub2home.com"><i class="icn iMail"></i>kontakt@sub2home.com</a>
-      <a href="http://facebook.com/sub2home"><i class="icn iFacebook"></i>/sub2home</a>
-    </div>
-  </section>
-  <section id="infoOpeningHours">
-    <header>
-      <h2>Öffnungszeiten</h2>
-    </header>
-    <div id="infoOpeningHoursContent">
-      <div class="openingHoursContainer">
-          <div class="openingHoursContent">
-              <div class="openingDay">Mo</div>
-              <div class="openingHours">
-                  <h3>10:00-12:00</h3>
-                  <h3>14:00-22:00</h3>
-              </div>
-          </div>
-      </div><div class="openingHoursContainer">
-          <div class="openingHoursContent">
-              <div class="openingDay">Di</div>
-              <div class="openingHours">
-                  <h3>10:00-12:00</h3>
-                  <h3>14:00-22:00</h3>
-              </div>
-          </div>
-      </div><div class="openingHoursContainer">
-          <div class="openingHoursContent">
-              <div class="openingDay">Mi</div>
-              <div class="openingHours">
-                  <h3>10:00-12:00</h3>
-                  <h3>14:00-22:00</h3>
-              </div>
-          </div>
-      </div><div class="openingHoursContainer">
-          <div class="openingHoursContent">
-              <div class="openingDay">Do</div>
-              <div class="openingHours">
-                  <h3>10:00-12:00</h3>
-                  <h3>14:00-22:00</h3>
-              </div>
-          </div>
-      </div><div class="openingHoursContainer">
-          <div class="openingHoursContent">
-              <div class="openingDay">Fr</div>
-              <div class="openingHours">
-                  <h3>10:00-12:00</h3>
-                  <h3>14:00-22:00</h3>
-              </div>
-          </div>
-      </div><div class="openingHoursContainer">
-          <div class="openingHoursContent">
-              <div class="openingDay">Sa</div>
-              <div class="openingHours">
-                  <h3>10:00-12:00</h3>
-                  <h3>14:00-22:00</h3>
-              </div>
-          </div>
-      </div><div class="openingHoursContainer">
-          <div class="openingHoursContent">
-              <div class="openingDay">So</div>
-              <div class="openingHours">
-                  <h3>geschlossen</h3>
-              </div>
-          </div>
-      </div><div class="openingHoursContainer">
-      </div><div class="openingHoursContainer">
-      </div>
-    </div>
-  </section>
-  <section id="infoDeliveryAreas">
-    <header>
-      <h2>Liefergebiete</h2>
-    </header>
-    <div id="infoDeliveryAreasContent">
-        <div class="storeMultipleDeliveryAreas">
-            <div class="storeDeliveryArea">
-                <div class="postal" bo-text="postal">87700</div>
-                <div class="storeDeliveryAreaDescription">
-                    <h3>Innenstadt</h3>
-                    <p>(in 20min für min. 15.00€)</p>
+    <section id="storeContact">
+        <header>
+            <h2>SUBWAY<span class="superscript">&reg;</span> Memmingen</h2>
+        </header>
+        <div class="column">
+            <p>
+                Maximilianstraße 7
+                <br>87700 Memmingen
+            </p>
+        </div>
+        <div class="column waysToContact">
+            <p><i class="icn iPhone"></i>08331 / 833 84 33</p>
+            <p><i class="icn iFax"></i>08331 / 833 84 34</p>
+            <a href="mailto:kontakt@sub2home.com"><i class="icn iMail"></i>kontakt@sub2home.com</a>
+            <a href="http://facebook.com/sub2home"><i class="icn iFacebook"></i>/sub2home</a>
+        </div>
+    </section>
+    <section id="infoOpeningHours">
+        <header>
+            <h2>Öffnungszeiten</h2>
+        </header>
+        <div id="infoOpeningHoursContent">
+            <div class="openingHoursContainer">
+                <div class="openingHoursContent">
+                    <div class="openingDay">Mo</div>
+                    <div class="openingHours">
+                        <h3>10:00-12:00</h3>
+                        <h3>14:00-22:00</h3>
+                    </div>
                 </div>
             </div>
-            <div class="storeDeliveryArea">
-                <div class="postal" bo-text="postal"></div>
-                <div class="storeDeliveryAreaDescription">
-                    <h3>Amendingen</h3>
-                    <p>(in 10min für min. 10.00€)</p>
+            <div class="openingHoursContainer">
+                <div class="openingHoursContent">
+                    <div class="openingDay">Di</div>
+                    <div class="openingHours">
+                        <h3>10:00-12:00</h3>
+                        <h3>14:00-22:00</h3>
+                    </div>
                 </div>
             </div>
-            <div class="storeDeliveryArea">
-                <div class="postal" bo-text="postal"></div>
-                <div class="storeDeliveryAreaDescription">
-                    <h3>Graulingen</h3>
-                    <p>(in 25min für min. 30.00€)</p>
+            <div class="openingHoursContainer">
+                <div class="openingHoursContent">
+                    <div class="openingDay">Mi</div>
+                    <div class="openingHours">
+                        <h3>10:00-12:00</h3>
+                        <h3>14:00-22:00</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="openingHoursContainer">
+                <div class="openingHoursContent">
+                    <div class="openingDay">Do</div>
+                    <div class="openingHours">
+                        <h3>10:00-12:00</h3>
+                        <h3>14:00-22:00</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="openingHoursContainer">
+                <div class="openingHoursContent">
+                    <div class="openingDay">Fr</div>
+                    <div class="openingHours">
+                        <h3>10:00-12:00</h3>
+                        <h3>14:00-22:00</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="openingHoursContainer">
+                <div class="openingHoursContent">
+                    <div class="openingDay">Sa</div>
+                    <div class="openingHours">
+                        <h3>10:00-12:00</h3>
+                        <h3>14:00-22:00</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="openingHoursContainer">
+                <div class="openingHoursContent">
+                    <div class="openingDay">So</div>
+                    <div class="openingHours">
+                        <h3>geschlossen</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="openingHoursContainer">
+            </div>
+            <div class="openingHoursContainer">
+            </div>
+        </div>
+    </section>
+    <section id="infoDeliveryAreas">
+        <header>
+            <h2>Liefergebiete</h2>
+        </header>
+        <div id="infoDeliveryAreasContent">
+            <div class="storeMultipleDeliveryAreas">
+                <div class="storeDeliveryArea">
+                    <div class="postal" bo-text="postal">87700</div>
+                    <div class="storeDeliveryAreaDescription">
+                        <h3>Innenstadt</h3>
+                        <p>(in 20min für min. 15.00€)</p>
+                    </div>
+                </div>
+                <div class="storeDeliveryArea">
+                    <div class="postal" bo-text="postal"></div>
+                    <div class="storeDeliveryAreaDescription">
+                        <h3>Amendingen</h3>
+                        <p>(in 10min für min. 10.00€)</p>
+                    </div>
+                </div>
+                <div class="storeDeliveryArea">
+                    <div class="postal" bo-text="postal"></div>
+                    <div class="storeDeliveryAreaDescription">
+                        <h3>Graulingen</h3>
+                        <p>(in 25min für min. 30.00€)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="storeMultipleDeliveryAreas">
+                <div class="storeDeliveryArea selected">
+                    <div class="postal" bo-text="postal">87760</div>
+                    <div class="storeDeliveryAreaDescription">
+                        <h3>Lachen</h3>
+                        <p>(in 10min für min. 10.00€)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="storeMultipleDeliveryAreas">
+                <div class="storeDeliveryArea">
+                    <div class="postal" bo-text="postal">87779</div>
+                    <div class="storeDeliveryAreaDescription">
+                        <h3>Trunkelsberg</h3>
+                        <p>(in 25min für min. 35.00€)</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="storeMultipleDeliveryAreas">
-            <div class="storeDeliveryArea selected">
-                <div class="postal" bo-text="postal">87760</div>
-                <div class="storeDeliveryAreaDescription">
-                    <h3>Lachen</h3>
-                    <p>(in 10min für min. 10.00€)</p>
-                </div>
-            </div>
+    </section>
+    <section id="infoPaymentMethods">
+        <header>
+            <h2>Zahlungsarten</h2>
+        </header>
+        <div class="infoPaymentMethod">
+            <h3>Barzahlung</h3>
+            <p>
+                Einfach den entsprechenden Betrag bereithalten und bequem bei Ankunft an der Tür bezahlen. Bitte beachte, dass wir keine 100, 200 und 500€-Scheine im Lieferdienst annehmen.
+            </p>
         </div>
-        <div class="storeMultipleDeliveryAreas">
-            <div class="storeDeliveryArea">
-                <div class="postal" bo-text="postal">87779</div>
-                <div class="storeDeliveryAreaDescription">
-                    <h3>Trunkelsberg</h3>
-                    <p>(in 25min für min. 35.00€)</p>
-                </div>
-            </div>
+        <div class="infoPaymentMethod">
+            <h3>EC-Kartenzahlung</h3>
+            <p>
+                Bequem bargeldlos an der Haustür bezahlen. Einfach deine EC-Karte und deinen Pin bereithalten. Zur Zahlung benötigen wir die Verbindung zum Mobilfunknetz.
+            </p>
         </div>
-    </div>
-  </section>
-  <section id="infoPaymentMethods">
-    <header>
-      <h2>Zahlungsarten</h2>
-    </header>
-    <div class="infoPaymentMethod">
-      <h3>Barzahlung</h3>
-      <p>
-        Einfach den entsprechenden Betrag bereithalten und bequem bei Ankunft an der Tür bezahlen. Bitte beachte, dass wir keine 100, 200 und 500€-Scheine im Lieferdienst annehmen.
-      </p>
-    </div>
-    <div class="infoPaymentMethod">
-      <h3>EC-Kartenzahlung</h3>
-      <p>
-        Bequem bargeldlos an der Haustür bezahlen. Einfach deine EC-Karte und deinen Pin bereithalten. Zur Zahlung benötigen wir die Verbindung zum Mobilfunknetz.
-      </p>
-    </div>
-    <div class="infoPaymentMethod notProvided">
-      <h3>Kreditkartenzahlung</h3>
-      <p>
-        Ob EC- oder Kreditkarte: Wir haben ein Kartenlesegerät dabei. Halte einfach deine Kreditkarte und deinen Pin bereit. Zur Zahlung benötigen wir die Verbindung zum Mobilfunknetz.
-      </p>
-    </div>
-  </section>
+        <div class="infoPaymentMethod notProvided">
+            <h3>Kreditkartenzahlung</h3>
+            <p>
+                Ob EC- oder Kreditkarte: Wir haben ein Kartenlesegerät dabei. Halte einfach deine Kreditkarte und deinen Pin bereit. Zur Zahlung benötigen wir die Verbindung zum Mobilfunknetz.
+            </p>
+        </div>
+    </section>
 
-<!--   <section id="howItWorks">
+    <!--   <section id="howItWorks">
     <header>
       <h2>So funktioniert's</h2>
     </header>
     <div></div>
   </section> -->
-  <section id="nutritionInfo">
-    <header>
-      <h2>Nährwertangaben</h2>
-    </header>
-    <div>
-      <p>
-        Alle Infos über Nährwerte, Zusatzstoffe und Allergiehinweise sind hier als PDF verfügbar.
-      </p>
-      <div id="nutritionIcons">
-        <a href="" class="nutritionIcon icn iFire"></a>
-        <a href="" class="nutritionIcon icn iIngredients"></a>
-        <a href="" class="nutritionIcon icn iAllergy"></a>
-      </div>
-    </div>
-  </section>
-  <section id="becomePartner">
-    <header>
-      <h2>Partner werden</h2>
-    </header>
-    <div class="column">
-      <p>
-        Ein professioneller Lieferservice braucht eine professionelle Onlinetheke.
-      </p>
-      <p>
-        Weil unser Bestellablauf bis ins Detail dem an der SUBWAY<span class="superscript">&reg;</span>-Theke gleicht, finden sich sowohl Mitarbeiter als auch Gäste sofort zurecht. Denn nicht nur vor der Theke, sondern auch dahinter bestehen die gewohnten SUBWAY<span class="superscript">&reg;</span>-Abläufe.
-      </p>
-      <p>
-        Das ist der Grund, warum wir sub2home auch getrost "SUBWAY<span class="superscript">&reg;</span>-Onlinetheke" nennen können.
-      </p>
-    </div><div class="column">
-      <p>
-        Sie sind SUBWAY<span class="superscript">&reg;</span>-Franchisepartner und haben Interesse an der SUBWAY<span class="superscript">&reg;</span>-Onlinetheke? Gerne lassen wir Ihnen unverbindlich Informationen zukommen. Die Anmeldung ist kostenlos und in wenigen Schritten getan. Und wenn das Thema Lieferservice neu für Sie ist, greifen wir Ihnen selbstverständlich auch bei der Einrichtung im Store unter die Arme.
-      </p>
-      <p>
-        Unsere Kontaktdaten finden Sie im nächsten Abschnitt.
-      </p>
-    </div>
-  </section>
-  <section id="sub2homeContact">
-    <header>
-      <h1>sub2home
+    <section id="nutritionInfo">
+        <header>
+            <h2>Nährwertangaben</h2>
+        </header>
+        <div>
+            <p>
+                Alle Infos über Nährwerte, Zusatzstoffe und Allergiehinweise sind hier als PDF verfügbar.
+            </p>
+            <div id="nutritionIcons">
+                <a href="" class="nutritionIcon icn iFire"></a>
+                <a href="" class="nutritionIcon icn iIngredients"></a>
+                <a href="" class="nutritionIcon icn iAllergy"></a>
+            </div>
+        </div>
+    </section>
+    <section id="becomePartner">
+        <header>
+            <h2>Partner werden</h2>
+        </header>
+        <div class="column">
+            <p>
+                Ein professioneller Lieferservice braucht eine professionelle Onlinetheke.
+            </p>
+            <p>
+                Weil unser Bestellablauf bis ins Detail dem an der SUBWAY<span class="superscript">&reg;</span>-Theke gleicht, finden sich sowohl Mitarbeiter als auch Gäste sofort zurecht. Denn nicht nur vor der Theke, sondern auch dahinter bestehen die
+                gewohnten SUBWAY<span class="superscript">&reg;</span>-Abläufe.
+            </p>
+            <p>
+                Das ist der Grund, warum wir sub2home auch getrost "SUBWAY<span class="superscript">&reg;</span>-Onlinetheke" nennen können.
+            </p>
+        </div>
+        <div class="column">
+            <p>
+                Sie sind SUBWAY<span class="superscript">&reg;</span>-Franchisepartner und haben Interesse an der SUBWAY<span class="superscript">&reg;</span>-Onlinetheke? Gerne lassen wir Ihnen unverbindlich Informationen zukommen. Die Anmeldung ist
+                kostenlos und in wenigen Schritten getan. Und wenn das Thema Lieferservice neu für Sie ist, greifen wir Ihnen selbstverständlich auch bei der Einrichtung im Store unter die Arme.
+            </p>
+            <p>
+                Unsere Kontaktdaten finden Sie im nächsten Abschnitt.
+            </p>
+        </div>
+    </section>
+    <section id="sub2homeContact">
+        <header>
+            <h1>sub2home
         <span class="subheadline">SUBWAY<span class="superscript">&reg;</span>-Onlinetheke</span>
       </h1>
-    </header>
-    <div class="column">
-      <p>
-        c/o SUBWAY<span class="superscript">&reg;</span> Memmingen<br>
-        Maximilianstraße 7<br>
-        87700 Memmingen
-      </p>
-    </div><div class="column waysToContact">
-      <p><i class="icn iPhone"></i>08331 / 833 84 33</p>
-      <p><i class="icn iFax"></i>08331 / 833 84 34</p>
-      <a href="mailto:kontakt@sub2home.com"><i class="icn iMail"></i>kontakt@sub2home.com</a>
-      <a href="http://facebook.com/sub2home"><i class="icn iFacebook"></i>/sub2home</a>
-    </div>
-  </section>
-  <section id="impressum">
-    <header>
-      <h1>Impressum
+        </header>
+        <div class="column">
+            <p>
+                c/o SUBWAY<span class="superscript">&reg;</span> Memmingen
+                <br>Maximilianstraße 7
+                <br>87700 Memmingen
+            </p>
+        </div>
+        <div class="column waysToContact">
+            <p><i class="icn iPhone"></i>08331 / 833 84 33</p>
+            <p><i class="icn iFax"></i>08331 / 833 84 34</p>
+            <a href="mailto:kontakt@sub2home.com"><i class="icn iMail"></i>kontakt@sub2home.com</a>
+            <a href="http://facebook.com/sub2home"><i class="icn iFacebook"></i>/sub2home</a>
+        </div>
+    </section>
+    <section id="impressum">
+        <header>
+            <h1>Impressum
       </h1>
-    </header>
-    <div id="impressumContent">
-      <p>
-        Verantwortlich für diese Seiten:<br>
-        Sebastian Weigold <br>
-        Ust-Nr. DE814879148<br>
-      </p>
-      <p>
-        Wir bemühen uns die Inhalte unserer Seite aktuell zu halten. Trotz sorgfältiger Bearbeitung bleibt eine Haftung ausgeschlossen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
-      </p>
-      <h4>Urheberrecht</h4>
-      <p>
-        SUBWAY® Pictures Copyright © 2014 Doctor's Associates Inc., SUBWAY® is a registered trademark of Doctor's Associates Inc. Die aufgeführten Logos und Bilder unterliegen dem Urheberrecht der Doctor´s Associates Inc. Der Shopbetreiber ist SUBWAY® Franchisenehmer. Die hinterlegten Stores mit Lieferservice nutzen diesen Shop zur Präsentation ihrer SUBWAY® Restaurants eigenverantwortlich.
-      </p>
-      <p>
-        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
-      </p>
-      <h4>Haftung für Links</h4>
-      <p>
-        Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Für die Inhalte und die Richtigkeit der Informationen verlinkter Websites fremder Informationsanbieter wird keine Gewähr übernommen. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße OHNE BEANSTANDUNG überprüft. Bei bekannt werden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
-      </p>
-      <h4>Haftung für Inhalte</h4>
-      <p>
-        Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Bei bekannt werden von Rechtsverletzungen, werden wir diese Inhalte umgehend entfernen. Eine diesbezügliche Haftung übernehmen wir erst ab dem Zeitpunkt der Kenntnis einer möglichen Rechtsverletzung.
-      </p>
-      <h4>Datenschutz</h4>
-      <p>
-        Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich. Eine Vertraulichkeit im Hinblick auf die Datenschutzbestimmungen wird nur unter der vorstehenden Einschränkung gewährleistet. Insbesondere sollen alle Mitteilungen von personenbezogenen Daten über das Internet nur erfolgen, soweit nicht Rechte Dritter berührt werden. Es sei denn der Dritte hat in Kenntnis der vorstehenden Sicherheitslücken ebenfalls seine Zustimmung erklärt. Eine Haftung des Seitenbetreibers wird für die durch solche Sicherheitslücken entstehenden Schäden oder Unterlassungsansprüche ausgeschlossen.
-      </p>
-      <p>
-        Der Nutzung von allen veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung wird widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
-      </p>
-      <p>
-        Quelle: S&K Rechtsanwälte www.streifler.de
-      </p>
-    </div>
-  </section>
+        </header>
+        <div id="impressumContent">
+            <p>
+                Verantwortlich für diese Seiten:
+                <br>Sebastian Weigold
+                <br>Ust-Nr. DE814879148
+                <br>
+            </p>
+            <p>
+                Wir bemühen uns die Inhalte unserer Seite aktuell zu halten. Trotz sorgfältiger Bearbeitung bleibt eine Haftung ausgeschlossen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+            </p>
+            <h4>Urheberrecht</h4>
+            <p>
+                SUBWAY® Pictures Copyright © 2014 Doctor's Associates Inc., SUBWAY® is a registered trademark of Doctor's Associates Inc. Die aufgeführten Logos und Bilder unterliegen dem Urheberrecht der Doctor´s Associates Inc. Der Shopbetreiber ist SUBWAY® Franchisenehmer.
+                Die hinterlegten Stores mit Lieferservice nutzen diesen Shop zur Präsentation ihrer SUBWAY® Restaurants eigenverantwortlich.
+            </p>
+            <p>
+                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen
+                Zustimmung des jeweiligen Autors bzw. Erstellers.
+            </p>
+            <h4>Haftung für Links</h4>
+            <p>
+                Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Für die Inhalte und die Richtigkeit
+                der Informationen verlinkter Websites fremder Informationsanbieter wird keine Gewähr übernommen. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße OHNE BEANSTANDUNG überprüft. Bei bekannt werden von
+                Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+            </p>
+            <h4>Haftung für Inhalte</h4>
+            <p>
+                Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Bei bekannt werden von Rechtsverletzungen, werden wir diese Inhalte umgehend entfernen. Eine diesbezügliche
+                Haftung übernehmen wir erst ab dem Zeitpunkt der Kenntnis einer möglichen Rechtsverletzung.
+            </p>
+            <h4>Datenschutz</h4>
+            <p>
+                Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich. Eine Vertraulichkeit im Hinblick auf
+                die Datenschutzbestimmungen wird nur unter der vorstehenden Einschränkung gewährleistet. Insbesondere sollen alle Mitteilungen von personenbezogenen Daten über das Internet nur erfolgen, soweit nicht Rechte Dritter berührt werden. Es sei
+                denn der Dritte hat in Kenntnis der vorstehenden Sicherheitslücken ebenfalls seine Zustimmung erklärt. Eine Haftung des Seitenbetreibers wird für die durch solche Sicherheitslücken entstehenden Schäden oder Unterlassungsansprüche ausgeschlossen.
+            </p>
+            <p>
+                Der Nutzung von allen veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung wird widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung
+                von Werbeinformationen, etwa durch Spam-Mails, vor.
+            </p>
+            <p>
+                Quelle: S&K Rechtsanwälte www.streifler.de
+            </p>
+        </div>
+    </section>
 </div>

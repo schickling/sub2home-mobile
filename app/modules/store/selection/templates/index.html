@@ -2,10 +2,10 @@
     <aside id="header">
         <div id="notification"></div>
         <div id="headerContent">
-            <div id="getBack">
-                <p>Subs
-                    <!-- Article-Category from which the User got to selection -->
-                </p>
+            <div id="getBack" ng-click="navigate('@back')">
+                <!--<p>Subs-->
+                <!-- Article-Category from which the User got to selection -->
+                <!--</p>-->
             </div>
             <div id="pageTitle" class="twoLine separate">
                 <p ng-if="menuModel !== articleModel.title">{{menuModel}}</p>
@@ -16,7 +16,7 @@
                     <span id="traySize">5</span>
                 </div>
             </div>
-            <div id="toTheInfo" class="icn iInfo"></div>
+            <div ng-click="navigate('info')" id="toTheInfo" class="icn iInfo"></div>
         </div>
 
     </aside>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="icn iClose"></div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>

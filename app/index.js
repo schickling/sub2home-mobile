@@ -33,7 +33,6 @@ angular.module('app', [
   // libs
   'LocalStorageModule',
   'pasvaz.bindonce',
-  'duScroll',
   // own code
   'common',
   'resources',

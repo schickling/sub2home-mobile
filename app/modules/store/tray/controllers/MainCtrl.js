@@ -13,5 +13,7 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceSer
 
     $scope.deliveryAreaModel = PersistenceService.load('selectedDeliveryAreaModel');
 
+    $scope.numberOfItems = TrayStorageService.getAllItems().length;
+
   }
 ];

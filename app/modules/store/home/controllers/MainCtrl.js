@@ -2,11 +2,11 @@
 
 module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
   'selectedDeliveryAreaModel', 'RoutingService', 'PersistenceService',
-  'PostalOracleService', 'NotificationService', '$timeout',
+  'PostalOracleService', 'NotificationService', '$timeout', 'TrayStorageService',
 
   function($scope, storeModel, categoriesCollection, _,
     selectedDeliveryAreaModel, RoutingService, PersistenceService,
-    PostalOracleService, NotificationService, $timeout) {
+    PostalOracleService, NotificationService, $timeout, TrayStorageService) {
 
     $scope.categoriesCollection = categoriesCollection;
     $scope.currentCategoryModel = categoriesCollection.current;
@@ -36,8 +36,11 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
 
     //TODO find better solution
     $scope.$on('trayNotification', function(event, item) {
+      $scope.numberOfItemsInTray = TrayStorageService.getAllItems().length;
       $scope.setTrayNotification();
     });
+
+    $scope.numberOfItemsInTray = TrayStorageService.getAllItems().length;
 
 
     if (selectedDeliveryAreaModel) {
@@ -83,7 +86,7 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
       });
 
       postalPromise.
-      catch (function() {
+      catch(function() {
         $scope.checkingPostal = false;
       });
 

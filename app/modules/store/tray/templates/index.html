@@ -7,14 +7,14 @@
                 <!-- Article-Category from which the User either got to selection or tray -->
                 <!--</p>-->
             </div>
-            <div id="toTheTray" class="atTray">
+            <div id="toTheTray" class="atTray" bindonce>
                 <div id="trayTitle">Tablett</div>
                 <div class="icn iTray">
-                    <span id="traySize">5</span>
+                    <span id="traySize" bo-text="numberOfItems"></span>
                 </div>
-                <div id="trayValue" class="sufficing">
-                    <div id="currentValue">16,50 €</div>
-                    <div id="minValue">(min. 15,00€)</div>
+                <div id="trayValue" ng-class="{sufficing: deliveryAreaModel.minimumValue <= totalAmount}">
+                    <div id="currentValue">{{totalAmount | number:2}}€</div>
+                    <div id="minValue">(min. {{deliveryAreaModel.minimumValue | number:2}}€)</div>
                 </div>
             </div>
             <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
@@ -48,7 +48,7 @@
 
                 <div id="totalValueContainer">
                     Gesamtbestellwert
-                    <div id="totalValue" class="price" bindonce="totalAmount" bo-text="totalAmount"></div>
+                    <div id="totalValue" class="price" bindonce="totalAmount" bo-text="totalAmount | number: 2"></div>
                 </div>
             </section>
 
@@ -58,7 +58,8 @@
                 </header>
                 <div class="container">
                     <p>
-                        Wir sind frühestens zur angezeigten Uhrzeit bei dir. Oder willst du erst später beliefert werden?
+                        Wir sind frühestens zur angezeigten Uhrzeit bei dir. Oder willst du erst später
+                        beliefert werden?
                     </p>
                     <div id="deliveryTimeClock" class="notEarlier">
                         <div id="hours">
@@ -109,15 +110,18 @@
                     </div>
                     <p id="trayDeliveryArea">in 87700 Memmingen<span class="infoButton inCopyText"></span>
                     </p>
-                    <p class="ng-hide" id="trayAdditionalInfo">Postleitzahl und Stadt hast du bereits zu Beginn des Bestellvorganges ausgewählt.
+                    <p class="ng-hide" id="trayAdditionalInfo">Postleitzahl und Stadt hast du bereits zu Beginn des Bestellvorganges
+                        ausgewählt.
                         <br>
-                        <br>Sie sind an dieser Stelle nicht mehr veränderbar, um eine reibungslose Lieferung sicherzustellen.
+                        <br>Sie sind an dieser Stelle nicht mehr veränderbar, um eine
+                        reibungslose Lieferung sicherzustellen.
                     </p>
                     <div class="trayQuestion">
                         <p class="questionText">Hast du noch einen Wunsch oder einen Hinweis?</p>
                         <div class="triggerQuestion"></div>
                         <div class="trayQuestionContent textareaContent ng-hide">
-                            <textarea class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung" name="additionalMessage" rows="4" cols="40"></textarea>
+                            <textarea class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung"
+                            name="additionalMessage" rows="4" cols="40"></textarea>
                         </div>
                     </div>
                 </div>
@@ -191,7 +195,8 @@
         <div id="sendOrder" class="note">
             <div class="container">
                 <p>
-                    Mit Klick auf "Bestellung abschicken" bestätigst du unsere <a href="#">AGB</a>
+                    Mit Klick auf "Bestellung abschicken" bestätigst du unsere
+                    <a href="#">AGB</a>
                 </p>
                 <div id="sendOrderButton" class="noSelect">
                     Bestellung abschicken

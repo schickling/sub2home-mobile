@@ -37,6 +37,8 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       $window.history.back();
     };
 
+    $scope.numberOfItems = TrayStorageService.getAllItems().length;
+
     $scope.selectIngredient = function(ingredientModel) {
 
       var newIsSelected = !ingredientModel.isSelected;

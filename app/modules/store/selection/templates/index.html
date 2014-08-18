@@ -7,12 +7,12 @@
                 <!-- Article-Category from which the User got to selection -->
                 <!--</p>-->
             </div>
-            <div ng-if="menuModel === articleModel.title" id="pageTitle" class="separate">
-                <span>{{ articleModel.title }}<small> {{ articleModel.info }}</small></span>
+            <div ng-if="!setTwoLineHeader" id="pageTitle" class="separate">
+                <span>{{ articleModel.title }}<span ng-if="articleModel.info" class="itemInfo"> {{ articleModel.info }}</span></span>
             </div>
-            <div ng-if="menuModel !== articleModel.title" id="pageTitle" class="twoLine separate">
+            <div ng-if="setTwoLineHeader" id="pageTitle" class="twoLine separate">
                 <p>{{menuModel}}</p>
-                <h3>{{ articleModel.title }}<span class="itemInfo"> {{ articleModel.info }}</span></h3>
+                <h3>{{ articleModel.title }}<span ng-if="articleModel.info" class="itemInfo"> {{ articleModel.info }}</span></h3>
             </div>
             <div ng-click="navigate(':storeAlias/tablett')" id="toTheTray">
                 <div class="icn iTray" bindonce>

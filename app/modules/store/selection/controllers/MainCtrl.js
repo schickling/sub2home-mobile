@@ -155,12 +155,19 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     var updateScope = function() {
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
+      $scope.menuModel = EntityIteratorService.getMenu();
 
       EntityIteratorService.getArticle().then(function(article) {
         $scope.articleModel = article;
+        if ($scope.menuModel === $scope.articleModel.title || $scope.menuModel === '') {
+          $scope.setTwoLineHeader = false;
+        } else {
+          $scope.setTwoLineHeader = true;
+        }
       });
 
-      $scope.menuModel = EntityIteratorService.getMenu();
+
+
 
       EntityIteratorService.getNextEntity().then(function(nextEntity) {
         // checks whether the next step is the tray or not

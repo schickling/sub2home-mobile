@@ -71,6 +71,9 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       EntityIteratorService.next().then(function(next) {
         if (next) {
           updateScope();
+        } else {
+          updateNextEntity();
+          updateTimeline();
         }
       });
     };
@@ -122,7 +125,11 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     $scope.upgrade = function(menu) {
       angular.forEach($scope.articleModel.menuUpgradesCollection, function(upgrade) {
         if (menu === upgrade) {
-          upgrade.isSelected = true;
+          if (upgrade.isSelected) {
+            upgrade.isSelected = false;
+          } else {
+            upgrade.isSelected = true;
+          }
         }
       });
 
@@ -152,6 +159,18 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
       $scope.timelineArticleCollection = EntityIteratorService.getEntityCollection();
     };
 
+    var updateNextEntity = function() {
+      EntityIteratorService.getNextEntity().then(function(nextEntity) {
+        // checks whether the next step is the tray or not
+        if (!nextEntity) {
+          $scope.toTray = true;
+        } else {
+          $scope.toTray = false;
+          $scope.nextStep = nextEntity;
+        }
+      });
+    };
+
     var updateScope = function() {
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
@@ -168,21 +187,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
 
 
-
-      EntityIteratorService.getNextEntity().then(function(nextEntity) {
-        // checks whether the next step is the tray or not
-        if (!nextEntity) {
-          $scope.toTray = true;
-          //var someElement = angular.element(document.getElementById('toNextStep'));
-          //window.scrollTo(0, someElement[0].offsetTop);
-          //$document.scrollToElement(someElement);
-        } else {
-          $scope.toTray = false;
-          $scope.nextStep = nextEntity;
-        }
-
-
-      });
+      updateNextEntity();
 
       EntityIteratorService.getEntity().then(function(entity) {
         $scope.entity = entity;

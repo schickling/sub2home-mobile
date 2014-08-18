@@ -33,7 +33,7 @@
                     || selectedDeliveryAreaModel.city }}</p>
             </div>
             <div ng-click="removeNotification()" ng-if="notification" id="storeMessage">
-                <p ng-class="storeModel.messageType" bindonce ng-text="storeModel.messageText"></p>
+                <p bindonce bo-class="storeModel.messageType" bo-text="storeModel.messageText"></p>
 
                 <p class="smallHint tapToClose">, um die Mitteilung auszublenden.</p>
             </div>

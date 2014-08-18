@@ -9,7 +9,7 @@ bindonce>
             <div class="staticColumn">
                 <div class="itemPreviewPrice">
                     <div class="price itemPrice" bo-text="menuItem.finalPrice"></div>
-                    <div class=" deposit">+<span bo-text="menuItem.deposit | number:2"></span>€ Pfand</div>
+                    <div bo-if="menuItem.deposit > 0" class=" deposit">+<span bo-text="menuItem.deposit | number:2"></span>€ Pfand</div>
                 </div>
             </div>
         </div>

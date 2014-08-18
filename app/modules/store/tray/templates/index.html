@@ -21,11 +21,11 @@
         </div>
     </aside>
 
-    <div class="content note" id="storeTray">
-        <div id="minimumOrderValue" class="note">
+    <div class="content note" id="storeTray" bindonce>
+        <div id="minimumOrderValue" class="note" bo-if="deliveryAreaModel.minimumValue > totalAmount">
             <div id="minimumOrderValueContent">
-                <p>Leider hast du den Mindestbestellwert von 16.00€ noch nicht erreicht.</p>
-                <p class="button">Vielleicht noch ein Sub?</p>
+                <p bo-text="'Leider hast du den Mindestbestellwert von ' + deliveryAreaModel.minimumValue + '€ noch nicht erreicht.'"></p>
+                <p ng-click="navigate(':storeAlias')" class="button">Vielleicht noch ein Sub?</p>
             </div>
         </div>
         <div id="storeTrayMainContent">

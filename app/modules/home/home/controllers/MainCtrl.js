@@ -97,8 +97,7 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
     $scope.getStepClass = function() {
       if ($scope.inputFocused) {
         return 'step1';
-      } else if ($scope.storesCollection.length > 0 || $scope.deliveryAreasCollection.length > 0) {
-        return 'step2';
+      } else if (($scope.storesCollection.length === 0 || $scope.deliveryAreasCollection.length === 0) || $scope.storesCollection.length > 0 || $scope.deliveryAreasCollection.length > 0) {
         return 'step2';
       }
     };

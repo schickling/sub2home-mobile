@@ -1,9 +1,10 @@
-<div bindonce class="item article" ng-class="{edit: edit, editBwd: editBwd, remove: remove, removeBwd: removeBwd}" bo-class="singleItem.icon ? 'beverage': 'snacks'">
+<div bindonce class="item article" ng-class="{edit: edit, editBwd: editBwd, remove: remove, removeBwd: removeBwd}"
+bo-class="singleItem.icon ? 'beverage': 'snacks'">
     <div class="itemContent">
 
         <div class="itemPreviewTitle">
             <img class="itemPreview" bo-src="singleItem.largeImage" bo-alt="" />
-            <h4><span class="itemTitle" bo-text="singleItem.title"></span><span class="itemInfo" bo-if="singleItem.info" bo-text="' (' + singleItem.info + ')'"></span></h4>
+            <h4 class="itemTitle"><span bo-text="singleItem.title"></span><span class="itemInfo" bo-if="singleItem.info" bo-text="' (' + singleItem.info + ')'"></span></h4>
         </div>
         <div class="staticColumn">
             <div class="price" bo-text="singleItem.finalPrice | number:2"></div>

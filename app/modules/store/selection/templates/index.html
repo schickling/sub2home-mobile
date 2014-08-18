@@ -30,11 +30,11 @@
         </section> -->
 
 
-        <div id="skipThisStep" class="iFast" ng-if="false" ng-click="selectIngredient(entity.defaultIngredientModel)">
-            <p>Oder einfach nur schnell bestellen?
-                <br>Verlass dich auf unsere Empfehlung.</p>
-            <h3>Schritt überspringen</h3>
-        </div>
+        <!--<div id="skipThisStep" class="iFast" ng-click="selectIngredient(entity.defaultIngredientModel)">-->
+        <!--<p>Oder einfach nur schnell bestellen?-->
+        <!--<br>Verlass dich auf unsere Empfehlung.</p>-->
+        <!--<h3>Schritt überspringen</h3>-->
+        <!--</div>-->
 
         <section id="ingredients">
             <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection"
@@ -80,7 +80,7 @@
                 <h2>Sparmenü</h2>
                 <p class="itemDescription" bo-text="menu.description"></p>
                 <div ng-click="upgrade(menu)" class="buyingOption">
-                    <div class="buy note buyed">
+                    <div class="buy note" ng-class="{buyed: menu.isSelected}">
                         <div class="pricetag">
                             <h3>
 															<div bo-text="menu.price | number:2" class="price"></div>

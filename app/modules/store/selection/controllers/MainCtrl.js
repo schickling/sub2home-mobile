@@ -105,7 +105,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
           orderedItem = {};
           orderedItem.menuBundleModel = {};
           orderedItem.articlesCollection = [tmp].concat(tmp.savedArticle.menuUpgradeArticles);
-          orderedItem.menuBundleModel.title = 'Menü';
+          orderedItem.menuBundleModel.title = 'Sparmenü';
           NotificationService.setTrayNotification(orderedItem.menuBundleModel.title);
           orderedItem.menuUpgradePrice = true;
           TrayStorageService.saveMenuItem(orderedItem);

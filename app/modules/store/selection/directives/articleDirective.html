@@ -1,12 +1,14 @@
 <div class="item sub" ng-class="{'active': itemModel.isSelected}" bindonce>
-	<img ng-click="handleClick(itemModel)" bo-src="itemModel.largeImage" bo-alt="itemModel.title" />
-<!--	<div class="selectionItemInfo">footlong</div>-->
-	<h2>
+    <img ng-click="handleClick(itemModel)" bo-src="itemModel.largeImage" bo-alt="itemModel.title"
+    />
+    <!--	<div class="selectionItemInfo">footlong</div>-->
+    <h2>
     <span bo-text="itemModel.title | wordSplit:true"></span>
     <span style="white-space: nowrap;">
       <span bo-text="itemModel.title | wordSplit:false"></span>
       <span class="infoButton" ng-click="hidden = !hidden"></span>
     </span>
   </h2>
-  <p class="itemDescription" ng-hide="hidden" bo-text="itemModel.description"></p>
+    <p class="itemDescription" ng-hide="hidden" bo-text="itemModel.description"></p>
+    <div class="deposit" bo-if="itemModel.deposit > 0">+<span bo-text="itemModel.deposit * 100"></span> ct Pfand</div>
 </div>

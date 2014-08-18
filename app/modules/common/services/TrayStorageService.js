@@ -54,15 +54,22 @@ module.exports = ['ItemStorageService', '_', 'ArticleHelper',
 
         if (menuItem.menuUpgradePrice) {
           // MenuUpgrade
+
+          menuItem.deposit = menuItem.articlesCollection.reduce(function(sum, model) {
+            return sum + model.savedArticle.deposit;
+          }, 0);
+
           var subItem = menuItem.articlesCollection[0].savedArticle;
           menuItem.finalPrice = ArticleHelper.getExtraCostOfArticle(subItem);
           menuItem.finalPrice += menuItem.articlesCollection[menuItem.articlesCollection.length - 1].menuPrice;
           menuItem.finalPrice += subItem.price;
         } else {
           //MenuBundle
+          menuItem.deposit = 0;
           menuItem.finalPrice = menuItem.menuBundleModel.price;
           _.forEach(menuItem.articlesCollection, function(article) {
             menuItem.finalPrice += ArticleHelper.getExtraCostOfArticle(article.savedArticle);
+            menuItem.deposit += article.savedArticle.deposit;
           });
         }
         ItemStorageService.saveItem(this._menuItemKey, menuItem);

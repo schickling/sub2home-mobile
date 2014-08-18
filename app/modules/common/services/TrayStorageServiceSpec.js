@@ -10,7 +10,10 @@ describe('TrayStorageService', function() {
     'price': 2,
     'deposit': 0.25,
     'allowsIngredients': 0,
-    'icon': 'beverage'
+    'icon': 'beverage',
+    'menuBundleModel': {
+      'price': 12.00
+    }
   };
 
   beforeEach(module('app'));

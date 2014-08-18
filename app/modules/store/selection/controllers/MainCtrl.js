@@ -101,9 +101,11 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
           var tmp = {};
           tmp.savedArticle = orderedItem;
           orderedItem = {};
+          orderedItem.menuBundleModel = {};
           orderedItem.articlesCollection = [tmp].concat(tmp.savedArticle.menuUpgradeArticles);
-          orderedItem.title = 'Menü';
-          NotificationService.setTrayNotification(orderedItem.title);
+          orderedItem.menuBundleModel.title = 'Menü';
+          NotificationService.setTrayNotification(orderedItem.menuBundleModel.title);
+          orderedItem.menuUpgradePrice = true;
           TrayStorageService.saveMenuItem(orderedItem);
         } else {
           // sub

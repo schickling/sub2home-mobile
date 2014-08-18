@@ -125,6 +125,8 @@ module.exports = ['_', '$q',
 
         if (selectedMenu) {
           _.forEach(selectedMenu.menuComponentBlocksCollection, function(article) {
+            //add the price of the menu to the articles
+            article.menuPrice = selectedMenu.price;
             result.push(article);
           });
         }

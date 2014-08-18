@@ -50,6 +50,14 @@ module.exports = ['_',
         }
 
         return result;
+      },
+
+      getExtraCostOfArticle: function(article) {
+        var selectedIngrediants = this.getAllSelectedIngrediants(article);
+        return selectedIngrediants.reduce(function(sum, model) {
+          return sum + model.price;
+        }, 0);
+
       }
 
     };

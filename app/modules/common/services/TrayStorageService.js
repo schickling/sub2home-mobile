@@ -12,6 +12,10 @@ module.exports = ['ItemStorageService', '_', 'ArticleHelper',
 
       // single items
       saveSingleItem: function(singleItem) {
+        // calculate the cost of the item
+        singleItem.finalPrice = singleItem.price;
+
+        //save the item to localstorage
         ItemStorageService.saveItem(this._singleItemKey, singleItem);
       },
 
@@ -25,6 +29,9 @@ module.exports = ['ItemStorageService', '_', 'ArticleHelper',
 
       // sub items
       saveSubItem: function(subItem) {
+        subItem.finalPrice = ArticleHelper.getExtraCostOfArticle(subItem);
+        subItem.finalPrice += subItem.price;
+
         ItemStorageService.saveItem(this._subItemKey, subItem);
       },
 
@@ -38,11 +45,27 @@ module.exports = ['ItemStorageService', '_', 'ArticleHelper',
 
       // menu items
       saveMenuItem: function(menuItem) {
+        // get selected article form articles without ingrediants
         _.forEach(menuItem.articlesCollection, function(article) {
           if (!article.savedArticle || (article.savedArticle && !article.savedArticle.allowsIngredients)) {
             article.savedArticle = ArticleHelper.getSelectedArticle(article);
           }
         });
+
+        if (menuItem.menuUpgradePrice) {
+          // MenuUpgrade
+          var subItem = menuItem.articlesCollection[0].savedArticle;
+          menuItem.finalPrice = ArticleHelper.getExtraCostOfArticle(subItem);
+          menuItem.finalPrice += menuItem.articlesCollection[menuItem.articlesCollection.length - 1].menuPrice;
+          menuItem.finalPrice += subItem.price;
+        } else {
+          //MenuBundle
+          menuItem.finalPrice = menuItem.menuBundleModel.price;
+
+          _.forEach(menuItem.articlesCollection, function(article) {
+            menuItem.finalPrice += ArticleHelper.getExtraCostOfArticle(article.savedArticle);
+          });
+        }
         ItemStorageService.saveItem(this._menuItemKey, menuItem);
       },
 

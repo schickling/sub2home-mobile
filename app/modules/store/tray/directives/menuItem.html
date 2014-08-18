@@ -7,7 +7,7 @@
             </div>
             <div class="staticColumn">
                 <div class="itemPreviewPrice">
-                    <div class="price itemPrice" bo-text="menuItem.menuBundleModel.price"></div>
+                    <div class="price itemPrice" bo-text="menuItem.finalPrice"></div>
                 </div>
             </div>
         </div>
@@ -15,22 +15,22 @@
         <edit-options></edit-options>
 
     </div>
-    <div class="menuContents">
-        <div ng-repeat="item in menuItem.articlesCollection" class="item article sub" ng-if="item.savedArticle.allowsIngredients">
-            <div class="itemPreviewTitle">
-                <img class="itemPreview" bo-src="item.savedArticle.smallImage" alt="" />
-                <div class="menuItemInfo">
-                    <h4 class="itemTitle" bo-text="item.savedArticle.title"></h4>
+    <div class=" menuContents ">
+        <div ng-repeat="item in menuItem.articlesCollection " class="item article sub " ng-if="item.savedArticle.allowsIngredients ">
+            <div class="itemPreviewTitle ">
+                <img class="itemPreview " bo-src="item.savedArticle.smallImage " alt=" " />
+                <div class="menuItemInfo ">
+                    <h4><span class="itemTitle " bo-text="item.savedArticle.title "></span><span class="itemInfo " bo-if="item.savedArticle.info " bo-text=" ' (' + item.savedArticle.info + ')' "></span></h4>
                     <p>
                         {{toString(item.savedArticle)}}
                     </p>
                 </div>
             </div>
         </div>
-        <div ng-repeat="item in menuItem.articlesCollection" ng-if="!item.savedArticle.allowsIngredients" bo-class="item.savedArticle.icon ? 'beverage': 'snacks'" class="item article">
-            <div class="itemPreviewTitle">
-                <img class="itemPreview" bo-src="item.savedArticle.smallImage" alt="" />
-                <h4 class="itemTitle" bo-text="item.savedArticle.title"></h4>
+        <div ng-repeat="item in menuItem.articlesCollection " ng-if="!item.savedArticle.allowsIngredients " bo-class="item.savedArticle.icon ? 'beverage': 'snacks' " class="item article ">
+            <div class="itemPreviewTitle ">
+                <img class="itemPreview " bo-src="item.savedArticle.smallImage " alt=" " />
+                <h4><span class="itemTitle " bo-text="item.savedArticle.title "></span><span class="itemInfo " bo-if="item.savedArticle.info " bo-text=" ' (' + item.savedArticle.info + ')' "></span></h4>
             </div>
         </div>
     </div>

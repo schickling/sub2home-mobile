@@ -1,4 +1,5 @@
-<div class="item menuBundle" ng-class="{edit: edit, editBwd: editBwd, remove: remove, removeBwd: removeBwd}" bindonce>
+<div class="item menuBundle" ng-class="{edit: edit, editBwd: editBwd, remove: remove, removeBwd: removeBwd}"
+bindonce>
     <div class="menuHead">
         <div class="itemContent">
             <div class="itemPreviewTitle">
@@ -16,9 +17,10 @@
 
     </div>
     <div class=" menuContents ">
-        <div ng-repeat="item in menuItem.articlesCollection " class="item article sub " ng-if="item.savedArticle.allowsIngredients ">
+        <div ng-repeat="item in menuItem.articlesCollection " class="item article sub "
+        ng-if="item.savedArticle.allowsIngredients ">
             <div class="itemPreviewTitle ">
-                <img class="itemPreview " bo-src="item.savedArticle.smallImage " alt=" " />
+                <img class="itemPreview " bo-src="item.savedArticle.largeImage" alt=" " />
                 <div class="menuItemInfo ">
                     <h4><span class="itemTitle " bo-text="item.savedArticle.title "></span><span class="itemInfo " bo-if="item.savedArticle.info " bo-text=" ' (' + item.savedArticle.info + ')' "></span></h4>
                     <p>
@@ -27,9 +29,10 @@
                 </div>
             </div>
         </div>
-        <div ng-repeat="item in menuItem.articlesCollection " ng-if="!item.savedArticle.allowsIngredients " bo-class="item.savedArticle.icon ? 'beverage': 'snacks' " class="item article ">
+        <div ng-repeat="item in menuItem.articlesCollection " ng-if="!item.savedArticle.allowsIngredients "
+        bo-class="item.savedArticle.icon ? 'beverage': 'snacks' " class="item article ">
             <div class="itemPreviewTitle ">
-                <img class="itemPreview " bo-src="item.savedArticle.smallImage " alt=" " />
+                <img class="itemPreview " bo-src="item.savedArticle.largeImage" alt=" " />
                 <h4><span class="itemTitle " bo-text="item.savedArticle.title "></span><span class="itemInfo " bo-if="item.savedArticle.info " bo-text=" ' (' + item.savedArticle.info + ')' "></span></h4>
             </div>
         </div>

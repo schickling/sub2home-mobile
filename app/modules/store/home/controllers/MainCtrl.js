@@ -20,6 +20,9 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.checkingPostal = false;
     $scope.selectedDeliveryAreaModel = null;
 
+    if ($scope.storeModel.messageText.trim().length === 0) {
+      NotificationService.removeStoreHomeNotification();
+    }
     $scope.notification = NotificationService.getStoreHomeNotification();
 
     $scope.setTrayNotification = function() {

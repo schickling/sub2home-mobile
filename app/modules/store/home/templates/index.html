@@ -33,9 +33,7 @@
                     || selectedDeliveryAreaModel.city }}</p>
             </div>
             <div ng-click="removeNotification()" ng-if="notification" id="storeMessage">
-                <p class="warning">In Memmingen kann es während des Volksfestes Soundso zu verlängerten
-                    Lieferzeiten kommen. Sorry dafür.</p>
-
+                <p ng-class="storeModel.messageType" bindonce ng-text="storeModel.messageText"></p>
 
                 <p class="smallHint tapToClose">, um die Mitteilung auszublenden.</p>
             </div>
@@ -112,7 +110,8 @@
 
         <div class="backHome">
             <p class="smallHint">Dein Liefergebiet ist nicht dabei? Dann versuch es bei einem anderen
-                SUBWAY<span class="superscript">&reg;</span>-Restaurant:</p>
+                SUBWAY
+                <span class="superscript">&reg;</span>-Restaurant:</p>
             <div ng-click="navigate('/')" class="button">Zur Startseite</div>
         </div>
 

@@ -27,7 +27,6 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
 
       next: function() {
         var entity = null;
-        // TODO hier stimmt was nicht
         if (this._ingredientIterator.hasNextEntity()) {
           entity = this._ingredientIterator.next();
         }

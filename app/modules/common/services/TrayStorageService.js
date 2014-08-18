@@ -61,7 +61,6 @@ module.exports = ['ItemStorageService', '_', 'ArticleHelper',
         } else {
           //MenuBundle
           menuItem.finalPrice = menuItem.menuBundleModel.price;
-
           _.forEach(menuItem.articlesCollection, function(article) {
             menuItem.finalPrice += ArticleHelper.getExtraCostOfArticle(article.savedArticle);
           });
@@ -75,6 +74,13 @@ module.exports = ['ItemStorageService', '_', 'ArticleHelper',
 
       removeMenuItem: function(menuItem) {
         ItemStorageService.removeItem(this._menuItemKey, menuItem);
+      },
+
+      getAllItems: function() {
+        var singleItems = this.getAllSingleItems();
+        var subItems = this.getAllSubItems();
+        var menuIems = this.getAllMenuItems();
+        return _.union(singleItems, subItems, menuIems);
       },
     };
 

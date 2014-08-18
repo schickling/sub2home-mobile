@@ -1,10 +1,18 @@
 'use strict';
 
-module.exports = ['ItemStorageService',
+module.exports = ['TrayStorageService',
 
-  function(ItemStorageService) {
+  function(TrayStorageService) {
 
-    return {};
+    return {
+      getTotalAmount: function() {
+        var allItems = TrayStorageService.getAllItems();
+        return allItems.reduce(function(sum, model) {
+          return sum + model.finalPrice;
+        }, 0);
+      }
+
+    };
 
   }
 

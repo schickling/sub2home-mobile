@@ -81,7 +81,12 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
           hours = parseInt(nextDeliveryTime.startMinutes / 60, 10),
           minutes = nextDeliveryTime.startMinutes % 60,
           paddedMinutes = StringUtilService.padNumber(minutes, 2);
-        return `liefert wieder um ${hours}:${paddedMinutes} Uhr`;
+        return ` liefert wieder um $ {
+          hours
+        }: $ {
+          paddedMinutes
+        }
+        Uhr`;
       }
     };
 
@@ -91,15 +96,10 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
 
     $scope.getStepClass = function() {
       if ($scope.inputFocused) {
-        return 'step2';
-      } else if ($scope.storesCollection.length > 0 || $scope.deliveryAreasCollection.length > 0) {
-        if ($scope.showStores) {
-          return 'step4';
-        } else {
-          return 'step3';
-        }
-      } else {
         return 'step1';
+      } else if ($scope.storesCollection.length > 0 || $scope.deliveryAreasCollection.length > 0) {
+        return 'step2';
+        return 'step2';
       }
     };
 

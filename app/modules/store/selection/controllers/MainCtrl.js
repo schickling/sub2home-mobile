@@ -57,14 +57,11 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
         });
       }
 
+      $scope.hideNextButton = false;
       ingredientModel.isSelected = newIsSelected;
 
-      if ($scope.entity.isMandatory) {
-        $scope.showNextButton = true;
-      }
     };
 
-    $scope.showNextButton = true;
 
     $scope.next = function() {
 
@@ -84,7 +81,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     //};
 
     $scope.jumpToEntity = function(entity) {
-      if (entity.passed) {
+      if (entity.passed && !$scope.hideNextButton) {
         EntityIteratorService.jumpToEntity(entity).then(function() {
           updateScope();
         });
@@ -193,21 +190,28 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
         $scope.entity = entity;
 
         $scope.entity.passed = true;
-        // shows or hides the next button
 
-        var all = getAllArticles($scope.entity);
-        if (all.length > 0) {
-          if (!isOneSelected(all)) {
-            $scope.showNextButton = false;
+        // shows or hides the next button
+        $scope.hideNextButton = false;
+
+        if (entity.ingredientsCollection) {
+          if (entity.isMandatory) {
+            $scope.hideNextButton = true;
+            _.forEach(entity.ingredientsCollection, function(ingredient) {
+              if (ingredient.isSelected) {
+                $scope.hideNextButton = false;
+              }
+            });
           }
         } else {
-          if ($scope.entity.isMandatory && !isOneSelected($scope.entity.ingredientsCollection)) {
-            $scope.showNextButton = false;
-          } else {
-            $scope.showNextButton = true;
+          var all = getAllArticles($scope.entity);
+          if (all.length > 0) {
+            if (!isOneSelected(all)) {
+              $scope.hideNextButton = true;
+            }
           }
-        }
 
+        }
         // if the entity is the menu
         if (entity instanceof Array) {
           $scope.noUpgrade = true;

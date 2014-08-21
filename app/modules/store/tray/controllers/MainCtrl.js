@@ -1,8 +1,10 @@
 'use strict';
 
-module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceService',
+module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceService', 'storeModel',
 
-  function($scope, TrayStorageService, TrayService, PersistenceService) {
+  function($scope, TrayStorageService, TrayService, PersistenceService, storeModel) {
+    $scope.storeModel = storeModel;
+
     $scope.allSingleItems = TrayStorageService.getAllSingleItems();
 
     $scope.allSubItems = TrayStorageService.getAllSubItems();

@@ -1,18 +1,22 @@
-<div class="container">
-    <p>
-        Wir sind frühestens zur angezeigten Uhrzeit bei dir. Oder willst du erst später
+<div bindonce class="container">
+    <p ng-if="!storeIsDelivering" ng-if="storeIsDelivering">
+        Der Store ist leider gerade geschlossen!
+    </p>
+
+    <p ng-if="storeIsDelivering">
+            Wir sind frühestens in <span bo-text="deliveryAreaModel.minimumDuration"></span> Minuten bei dir. Oder willst du erst später
         beliefert werden?
     </p>
-    <div id="deliveryTimeClock" class="notEarlier">
+    <div ng-if="storeIsDelivering" id="deliveryTimeClock" class="notEarlier">
         <div id="hours">
-            {{hours}}
-            <div ng-click="hourUp()" class="clockControls up"></div>
-            <div ng-click="hourDown()" class="clockControls down"></div>
+            {{orderMinutes / 60 | numberFixedLength:2}}
+            <div ng-click="hoursUp()" class="clockControls up"></div>
+            <div ng-click="hoursDown()" class="clockControls down"></div>
         </div>
         <div id="dividingDots">:</div>
         <div id="minutes">
-            00
-            <div class="clockControls up"></div>
+             {{orderMinutes % 60 | numberFixedLength:2}}
+            <div ng-click="minutesUp()" class="clockControls up"></div>
             <div ng-click="minutesDown()" class="clockControls down"></div>
         </div>
     </div>

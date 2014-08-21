@@ -22,6 +22,16 @@ module.exports = angular.module('store.tray', [])
     function($routeProvider) {
 
       $routeProvider.when('/:storeAlias/tablett', {
+        resolve: {
+          storeModel: ['StoreModelFactory', '$route',
+            function(StoreModelFactory, $route) {
+              // TODO check if store is in localStorage
+              return StoreModelFactory.get({
+                storeAlias: $route.current.params.storeAlias
+              }).$promise;
+            }
+          ]
+        },
         templateUrl: 'modules/store/tray/templates/index.html',
         controller: 'StoreTrayCtrl',
       });

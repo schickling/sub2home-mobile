@@ -8,6 +8,7 @@ var RoutingService = require('./services/RoutingService');
 var RandomService = require('./services/RandomService');
 var ItemStorageService = require('./services/ItemStorageService');
 var TrayStorageService = require('./services/TrayStorageService');
+var NumberFixedLength = require('./filters/numberFixedLength');
 
 module.exports = angular.module('common', [])
   .directive('compass', compassDirective)
@@ -17,4 +18,5 @@ module.exports = angular.module('common', [])
   .service('RoutingService', RoutingService)
   .service('TrayStorageService', TrayStorageService)
   .service('ItemStorageService', ItemStorageService)
-  .service('RandomService', RandomService);
+  .service('RandomService', RandomService)
+  .filter('numberFixedLength', NumberFixedLength);

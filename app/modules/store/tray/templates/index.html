@@ -56,27 +56,7 @@
                 <header>
                     <h3>2) Deine Wunsch-Lieferzeit</h3>
                 </header>
-                <clock minimumDuration="deliveryAreaModel.minimumDuration"></clock>
-                <div class="container">
-                    <p>
-                        Wir sind frühestens zur angezeigten Uhrzeit bei dir. Oder willst du erst später
-                        beliefert werden?
-                    </p>
-                    <div id="deliveryTimeClock" class="notEarlier">
-                        <div id="hours">
-                            00
-                            <div class="clockControls up"></div>
-                            <div class="clockControls down"></div>
-                        </div>
-                        <div id="dividingDots">:</div>
-                        <div id="minutes">
-                            00
-                            <div class="clockControls up"></div>
-                            <div class="clockControls down"></div>
-                        </div>
-                    </div>
-                </div>
-
+                <clock store-model="storeModel" delivery-area-model="deliveryAreaModel"></clock>
             </section>
 
             <section id="setDeliveryAddress">

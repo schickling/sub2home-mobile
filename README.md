@@ -16,7 +16,7 @@ $ npm install
 #### Development / Server
 Starts webserver on `localhost:8080` with livereload.
 ```sh
-$ npm run-script server
+$ npm start
 ```
 
 #### Run tests

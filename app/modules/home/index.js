@@ -4,6 +4,7 @@ require('./home');
 require('./info');
 
 module.exports = angular.module('home', [
-  'home.home',
+  // TODO uncomment after launch
+  //'home.home',
   'home.info',
 ]);

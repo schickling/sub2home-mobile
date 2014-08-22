@@ -13,22 +13,23 @@ module.exports = angular.module('home.home', [])
   .config(['$routeProvider',
     function($routeProvider) {
 
-      $routeProvider.when('/', {
-        templateUrl: 'modules/home/home/templates/index.html',
-        controller: 'HomeHomeCtrl',
-        resolve: {
-          storesCollection: ['StoreModelFactory',
-            function(StoreModelFactory) {
-              return StoreModelFactory.query().$promise;
-            }
-          ],
-          selectedDeliveryAreaModel: ['PersistenceService',
-            function(PersistenceService) {
-              return PersistenceService.load('selectedDeliveryAreaModel');
-            }
-          ],
-        }
-      });
+      // TODO uncomment after launch
+      //$routeProvider.when('/', {
+      //templateUrl: 'modules/home/home/templates/index.html',
+      //controller: 'HomeHomeCtrl',
+      //resolve: {
+      //storesCollection: ['StoreModelFactory',
+      //function(StoreModelFactory) {
+      //return StoreModelFactory.query().$promise;
+      //}
+      //],
+      //selectedDeliveryAreaModel: ['PersistenceService',
+      //function(PersistenceService) {
+      //return PersistenceService.load('selectedDeliveryAreaModel');
+      //}
+      //],
+      //}
+      //});
 
     }
   ]);

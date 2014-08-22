@@ -8,6 +8,10 @@ var menuItem = require('./directives/menuItem');
 var subItem = require('./directives/subItem');
 var editOptions = require('./directives/editOptions');
 var clock = require('./directives/clock');
+var deliveryAddressForm = require('./directives/deliveryAddressForm');
+var inputErrorName = require('./directives/inputErrorName');
+var inputErrorPhoneNumber = require('./directives/inputErrorPhoneNumber');
+var inputErrorEmail = require('./directives/inputErrorEmail');
 
 module.exports = angular.module('store.tray', [])
   .controller('StoreTrayCtrl', MainCtrl)
@@ -18,6 +22,10 @@ module.exports = angular.module('store.tray', [])
   .directive('subItem', subItem)
   .directive('editOptions', editOptions)
   .directive('clock', clock)
+  .directive('deliveryAddressForm', deliveryAddressForm)
+  .directive('inputErrorName', inputErrorName)
+  .directive('inputErrorEmail', inputErrorEmail)
+  .directive('inputErrorPhoneNumber', inputErrorPhoneNumber)
   .config(['$routeProvider',
     function($routeProvider) {
 

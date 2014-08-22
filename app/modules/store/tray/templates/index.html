@@ -63,50 +63,7 @@
                 <header>
                     <h3>3) Deine Lieferadresse</h3>
                 </header>
-                <div class="container ">
-                    <div class="inputGroup">
-                        <div class="inputContainer valid">
-                            <input type="text" name="firstName" value="" placeholder="Vorname">
-                        </div>
-                        <div class="inputContainer">
-                            <input type="text" name="lastName" value="" placeholder="Nachname">
-                        </div>
-                    </div>
-                    <div class="inputGroup">
-                        <div class="inputContainer invalid">
-                            <input type="text" name="telephone" value="" placeholder="Telefon / Mobil">
-                        </div>
-                        <div class="inputContainer">
-                            <input type="text" name="email" value="" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="inputGroup additionalFields">
-                        <div class="addField"></div>
-                        <div class="inputContainer">
-                            <input type="text" name="address" value="" placeholder="Straße + Nr.">
-                        </div>
-                        <div class="inputContainer">
-                            <input type="text" name="additionalAddress" value="" placeholder="Addresszusatz">
-                            <!-- Nur wenn der .addField Button gedrückt wird -->
-                        </div>
-                    </div>
-                    <p id="trayDeliveryArea">in 87700 Memmingen<span class="infoButton inCopyText"></span>
-                    </p>
-                    <p class="ng-hide" id="trayAdditionalInfo">Postleitzahl und Stadt hast du bereits zu Beginn des Bestellvorganges
-                        ausgewählt.
-                        <br>
-                        <br>Sie sind an dieser Stelle nicht mehr veränderbar, um eine
-                        reibungslose Lieferung sicherzustellen.
-                    </p>
-                    <div class="trayQuestion">
-                        <p class="questionText">Hast du noch einen Wunsch oder einen Hinweis?</p>
-                        <div class="triggerQuestion"></div>
-                        <div class="trayQuestionContent textareaContent ng-hide">
-                            <textarea class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung"
-                            name="additionalMessage" rows="4" cols="40"></textarea>
-                        </div>
-                    </div>
-                </div>
+                <delivery-address-form> </delivery-address-form>
             </section>
 
             <!--<section id="setBonusOptions">-->
@@ -147,11 +104,13 @@
                 </header>
                 <div class="container">
                     <div id="paymentMethods" class="noSelect">
-                        <div class="paymentMethod">Bar
+                        <div ng-class="{'active': payment === 'bar'}" ng-click="payment = 'bar'" class="paymentMethod">Bar
                         </div>
-                        <div class="paymentMethod active">Ec-Karte
+                        <div ng-class="{'active': payment === 'ecCard'}" ng-click="payment = 'ecCard'"
+                        class="paymentMethod">Ec-Karte
                         </div>
-                        <div class="paymentMethod">Kreditkarte</div>
+                        <div ng-class="{'active': payment === 'creditCard'}" ng-click="payment = 'creditCard'"
+                        class="paymentMethod">Kreditkarte</div>
                     </div>
                     <p>
                         Die EC- und Kreditkartenzahlung erfolgt an der Haustür mit einem Kartenleser

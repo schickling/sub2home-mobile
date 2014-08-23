@@ -84,6 +84,7 @@ gulp.task('webserver', function() {
     .pipe(webserver({
       port: 8080,
       host: '0.0.0.0',
+      https: true,
       livereload: true,
       fallback: 'index.html'
     }));

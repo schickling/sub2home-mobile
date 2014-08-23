@@ -104,12 +104,12 @@
                 </header>
                 <div class="container">
                     <div id="paymentMethods" class="noSelect">
-                        <div ng-class="{'active': payment === 'bar'}" ng-click="payment = 'bar'" class="paymentMethod">Bar
+                        <div ng-class="{'active': formData.payment === 'cash'}" ng-click="formData.payment = 'cash'" class="paymentMethod">Bar
                         </div>
-                        <div ng-class="{'active': payment === 'ecCard'}" ng-click="payment = 'ecCard'"
+                        <div ng-class="{'active': formData.payment === 'ecCard'}" ng-click="formData.payment = 'ecCard'"
                         class="paymentMethod">Ec-Karte
                         </div>
-                        <div ng-class="{'active': payment === 'creditCard'}" ng-click="payment = 'creditCard'"
+                        <div ng-class="{'active': formData.payment === 'creditCard'}" ng-click="formData.payment = 'creditCard'"
                         class="paymentMethod">Kreditkarte</div>
                     </div>
                     <p>
@@ -139,7 +139,7 @@
                     Mit Klick auf "Bestellung abschicken" bestätigst du unsere
                     <a href="#">AGB</a>
                 </p>
-                <div id="sendOrderButton" class="noSelect">
+                <div ng-click="order()" id="sendOrderButton" class="noSelect">
                     Bestellung abschicken
                 </div>
             </div>

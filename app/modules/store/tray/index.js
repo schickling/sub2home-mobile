@@ -3,6 +3,7 @@
 var MainCtrl = require('./controllers/MainCtrl');
 var TrayService = require('./services/TrayService');
 var ArticleHelper = require('./services/ArticleHelper');
+var OrderService = require('./services/OrderService');
 var singleItem = require('./directives/singleItem');
 var menuItem = require('./directives/menuItem');
 var subItem = require('./directives/subItem');
@@ -17,6 +18,7 @@ module.exports = angular.module('store.tray', [])
   .controller('StoreTrayCtrl', MainCtrl)
   .service('TrayService', TrayService)
   .service('ArticleHelper', ArticleHelper)
+  .service('OrderService', OrderService)
   .directive('singleItem', singleItem)
   .directive('menuItem', menuItem)
   .directive('subItem', subItem)

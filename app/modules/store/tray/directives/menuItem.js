@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['ArticleHelper', 'TrayStorageService', '$route',
+module.exports = ['ArticleHelper', 'TrayStorageService', '$route', 'RoutingService',
 
-  function(ArticleHelper, TrayStorageService, $route) {
+  function(ArticleHelper, TrayStorageService, $route, RoutingService) {
     return {
       restrict: 'E',
       templateUrl: 'modules/store/tray/directives/menuItem.html',
@@ -17,6 +17,12 @@ module.exports = ['ArticleHelper', 'TrayStorageService', '$route',
         $scope.removeItem = function() {
           TrayStorageService.removeMenuItem($scope.menuItem);
           $route.reload();
+        };
+
+        $scope.editItem = function() {
+          // TODO menuUpgrade
+          RoutingService.navigate(':storeAlias/theke/menu/' + $scope.menuItem.menuBundleModel.id);
+
         };
 
         $scope.toString = function(item) {

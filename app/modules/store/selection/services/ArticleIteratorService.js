@@ -112,6 +112,7 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
       getEntityCollection: function() {
         var article = this._orderedArticleModel;
         article.menuUpgradeArticles = this.getMenuUpgradeArticle();
+        article.menuUpgrade = this.getMenuUpgrade();
 
         return [article];
       },
@@ -133,6 +134,14 @@ module.exports = ['EntityCheckerService', 'IngredientIteratorService', 'MenuUpgr
           return this._menuUpgradeIterator.getMenuUpgradeArticle();
         } else {
           return [];
+        }
+      },
+
+      getMenuUpgrade: function() {
+        if (this._menuUpgradeIterator) {
+          return this._menuUpgradeIterator.getMenuUpgrade();
+        } else {
+          return null;
         }
       },
 

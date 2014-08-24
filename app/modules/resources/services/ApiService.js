@@ -14,7 +14,7 @@ module.exports = ['$window',
         if (hostname.indexOf('sub2home.com') !== -1) {
           return 'https://api.sub2home.com/' + fragment;
         } else {
-          return 'http://' + hostname + ':1071/' + fragment;
+          return 'https://' + hostname + ':1070/' + fragment;
         }
 
       },

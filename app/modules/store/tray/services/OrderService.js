@@ -6,13 +6,13 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
 
     return {
 
-      order: function(total, formData, singleItemsCollection, subItemsCollection, menuItemsCollection) {
+      order: function(deliveryAreaModel, total, formData, singleItemsCollection, subItemsCollection, menuItemsCollection) {
         var postData = {
-          comment: formData.comment,
-          couponCode: null,
-          createdAt: null,
-          createdDate: null,
-          creditModel: null,
+          comment: formData.comment || '',
+          couponCode: "",
+          createdAt: "",
+          createdDate: "",
+          creditModel: "",
           isDelivered: false,
           paymentMethod: formData.payment,
           subcardCode: '',
@@ -20,9 +20,9 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
           total: total
         };
 
-        // TODO dueAT and dueDate ask Johannes about the difference
+        postData.addressModel = this._getAddressModel(formData, deliveryAreaModel);
+        // TODO dueAT
         postData.dueAt = new Date();
-        postData.dueDate = new Date();
 
         postData.orderedItemsCollection = this._getOrderedItemsCollection(singleItemsCollection, subItemsCollection, menuItemsCollection);
 
@@ -30,23 +30,22 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
           storeAlias: $route.current.params.storeAlias,
         }, postData);
 
-        console.log('Sent order');
-
       },
 
-      _getAddressModel: function(formData) {
+      _getAddressModel: function(formData, deliveryAreaModel) {
         var addressModel = {};
-        addressModel.city = '';
+        addressModel.city = deliveryAreaModel.city || '';
+        addressModel.postal = deliveryAreaModel.postal || '';
         addressModel.company = '';
-        addressModel.district = '';
-        addressModel.email = formData.email;
-        addressModel.firstName = formData.firstName;
-        addressModel.lastName = formData.lastName;
-        addressModel.phone = formData.phone;
-        addressModel.street = formData.street;
-        addressModel.streetAdditional = formData.streetAdditional;
+        addressModel.district = deliveryAreaModel.district || '';
+        addressModel.email = formData.email || '';
+        addressModel.firstName = formData.firstName || '';
+        addressModel.lastName = formData.lastName || '';
+        addressModel.phone = formData.phone || '';
+        addressModel.street = formData.street || '';
+        addressModel.streetAdditional = formData.streetAdditional || '';
         //TODO filter streetNumber out of the street value
-        addressModel.streetNumber = '';
+        addressModel.streetNumber = '1';
 
         return addressModel;
       },
@@ -57,6 +56,14 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
 
         _.forEach(singleItemsCollection, function(singleItem) {
           orderedItemsCollection.push(self._getSingleItemsArticle(singleItem));
+        });
+
+        _.forEach(subItemsCollection, function(subItem) {
+          orderedItemsCollection.push(self._getSubItemsArticle(subItem));
+        });
+
+        _.forEach(menuItemsCollection, function(menuItem) {
+          orderedItemsCollection.push(self._getMenuItemsArticle(menuItem));
         });
 
         return orderedItemsCollection;
@@ -79,17 +86,78 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
 
         var orderedArticle = {
           menuBundleModel: null,
-          menuCompomponentBlockModel: null,
+          menuComponentBlockModel: null,
           menuUpgradeModel: null
         };
 
         orderedArticle.articleModel = singleItem;
+        orderedArticle.articleModel.ingredientCategoriesCollection = null;
 
         orderedItem.orderedArticlesCollection = [orderedArticle];
 
         return orderedItem;
       },
 
+      _getSubItemsArticle: function(subItem) {
+        var orderedItem = this._getOrderedItemObject();
+
+        orderedItem.total = subItem.finalPrice;
+        orderedItem.menuBundleModel = null;
+
+        var orderedArticle = {
+          menuBundleModel: null,
+          menuCompomponentBlockModel: null,
+          menuUpgradeModel: null
+        };
+
+        orderedArticle.articleModel = subItem;
+
+        orderedItem.orderedArticlesCollection = [orderedArticle];
+
+        return orderedItem;
+      },
+
+
+    _getMenuItemsArticle: function(menuItem) {
+        var orderedItem = this._getOrderedItemObject();
+
+        orderedItem.total = menuItem.finalPrice;
+        if (menuItem.menuBundleModel.id) {
+          orderedItem.menuBundleModel = menuItem.menuBundleModel;
+        } else {
+          orderedItem.menuBundleModel = null;
+        }
+
+        orderedItem.orderedArticlesCollection = [];
+
+
+        _.forEach(menuItem.articlesCollection, function(article) {
+          var orderedArticle = {};
+          orderedArticle.articleModel = article.savedArticle;
+          if (!orderedArticle.articleModel.ingredientCategoriesCollection) {
+            orderedArticle.articleModel.ingredientCategoriesCollection = null;
+          }
+
+
+          orderedArticle.menuCompomponentBlockModel = {
+            id: RandomService.getUuId(),
+            menuComponentBlockMediaModel: article.menuComponentBlockMediaModel,
+            menuComponentOptionsCollection: article.menuComponentOptionsCollection,
+
+          };
+
+          if (article.savedArticle.menuUpgrade) {
+            orderedArticle.menuUpgradeModel = article.savedArticle.menuUpgrade;
+          } else {
+            orderedArticle.menuUpgradeModel = null;
+            orderedArticle.menuBundleModel = menuItem.menuBundleModel;
+          }
+          orderedItem.orderedArticlesCollection.push(orderedArticle);
+        });
+
+
+        return orderedItem;
+      },
     };
 
   }

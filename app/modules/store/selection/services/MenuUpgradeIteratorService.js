@@ -132,6 +132,10 @@ module.exports = ['_', '$q',
         }
 
         return result;
+      },
+
+      getMenuUpgrade: function() {
+        return this._getSelected();
       }
     };
 

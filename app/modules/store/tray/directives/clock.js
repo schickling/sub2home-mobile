@@ -45,6 +45,14 @@ module.exports = ['_',
             }
           });
 
+          if (result === null) {
+            _.forEach(deliveryTimesCollection, function(deliveryTime) {
+              if (deliveryTime.dayOfWeek === dayOfWeek && deliveryTime.endMinutes >= currentTime) {
+                result = deliveryTime;
+              }
+            });
+          }
+
           return result;
         };
 
@@ -53,7 +61,13 @@ module.exports = ['_',
         var minimumDeliveryTime = null;
 
         if ($scope.storeIsDelivering) {
-          minimumDeliveryTime = getCurrentTime() + $scope.deliveryAreaModel.minimumDuration;
+          // TODO check if the store is open at the moment
+          var tmp = getDeliveryTime($scope.storeModel.deliveryTimesCollection);
+          if (tmp.startMinutes > getCurrentTime()) {
+            minimumDeliveryTime = tmp.startMinutes + $scope.deliveryAreaModel.minimumDuration;
+          } else {
+            minimumDeliveryTime = getCurrentTime() + $scope.deliveryAreaModel.minimumDuration;
+          }
           $scope.orderMinutes = minimumDeliveryTime;
           $scope.currentDeliveryTime = getDeliveryTime($scope.storeModel.deliveryTimesCollection);
         } else {

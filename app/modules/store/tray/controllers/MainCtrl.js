@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceService', 'storeModel', 'OrderService', 'OrderService',
+module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceService', 'storeModel', 'OrderService', 'RoutingService',
 
-  function($scope, TrayStorageService, TrayService, PersistenceService, storeModel, OrderService) {
+  function($scope, TrayStorageService, TrayService, PersistenceService, storeModel, OrderService, RoutingService) {
 
     $scope.storeModel = storeModel;
 
@@ -43,9 +43,13 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceSer
         OrderService.order($scope.orderMinutes, $scope.deliveryAreaModel, $scope.totalAmount, $scope.formData, $scope.allSingleItems, $scope.allSubItems, $scope.allMenuItems);
 
         $scope.deliveryFormError = false;
-        // delete Tray
         TrayStorageService.removeAll();
-        // TODO redirect to checkout
+
+        PersistenceService.save('formData', $scope.formData);
+        PersistenceService.save('timeToDelivery', $scope.orderMinutes);
+        PersistenceService.save('storeModel', $scope.storeModel);
+        RoutingService.navigate(':storeAlias/danke');
+
       } else {
 
         $scope.deliveryFormError = true;

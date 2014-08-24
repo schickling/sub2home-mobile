@@ -15,27 +15,27 @@
     <div id="ownLogo" class="icn iSub"></div>
     <div id="pageTitle" class="twoLine">
       <p>sub2home-Onlinetheke</p>
-      <h3>SUBWAY<span class="superscript">&reg;</span> Memmingen</h3>
+      <h3>SUBWAY<span class="superscript">&reg;</span><span bindonce bo-text="storeModel.title"></span></h3>
     </div>
-    <div id="toTheInfo" class="icn iInfo"></div>
+    <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
   </div>
 </aside>
 
 <div id="storeCheckout" class="content note fillPage">
 
-  <section id="checkoutCopyContainer">
+  <section id="checkoutCopyContainer" bindonce>
     <div id="checkoutCopy">
       <div id="checkoutCopyFirstPart">
-        <p>Vielen Dank für deine Bestellung, Thiemo!</p>
+              <p>Vielen Dank für deine Bestellung, <span bo-text="userInfo.firstName"></span>!</p>
         <p>Wir sind in ca.</p>
       </div>
       <div id="checkoutCounter">
-        <h1 id="checkoutHours">01</h1>
-        <h1 id="checkoutMinutes">35</h1>
+              <h1 id="checkoutHours">{{restTime / 60 | numberFixedLength:2}}</h1>
+              <h1 id="checkoutMinutes">{{restTime % 60 | numberFixedLength:2}}</h1>
       </div>
 
-      <p>bei dir in der Leipziger-Str. 17.</p>
-      <p class="smallHint">Bitte hab Verständnis, dass es von Zeit zu Zeit zu Abweichungen der Lieferzeit kommen kan.</p>
+      <p>bei dir in der <span bo-text="userInfo.street"></span>.</p>
+      <p class="smallHint">Bitte hab Verständnis, dass es von Zeit zu Zeit zu Abweichungen der Lieferzeit kommen kann.</p>
     </div>
   </section>
   <div id="checkoutLogoContainer">

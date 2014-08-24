@@ -31,8 +31,25 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceSer
 // add city
     $scope.formData.payment = 'cash';
 
+
+    $scope.orderMinutes = 0;
+    $scope.deliveryFormError = false;
+
     $scope.order = function() {
-      OrderService.order($scope.deliveryAreaModel, $scope.totalAmount, $scope.formData, $scope.allSingleItems, $scope.allSubItems, $scope.allMenuItems);
+
+      $scope.$broadcast('show-errors-check-validity');
+
+      if (!$scope.deliveryForm.$invalid) {
+        OrderService.order($scope.orderMinutes, $scope.deliveryAreaModel, $scope.totalAmount, $scope.formData, $scope.allSingleItems, $scope.allSubItems, $scope.allMenuItems);
+
+        $scope.deliveryFormError = false;
+        // delete Tray
+        TrayStorageService.removeAll();
+        // TODO redirect to checkout
+      } else {
+
+        $scope.deliveryFormError = true;
+      }
     };
 
 

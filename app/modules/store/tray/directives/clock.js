@@ -8,6 +8,7 @@ module.exports = ['_',
       scope: {
         deliveryAreaModel: '=deliveryAreaModel',
         storeModel: '=storeModel',
+        orderMinutes: '=orderMinutes',
       },
 
       templateUrl: 'modules/store/tray/directives/clock.html',

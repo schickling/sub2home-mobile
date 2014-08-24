@@ -36,6 +36,10 @@ module.exports = ['PersistenceService', '_', 'RandomService',
             uuid: item.uuid
           })));
         }
+      },
+
+      removeAllItems: function(itemKey) {
+        PersistenceService.remove(itemKey);
       }
 
     };

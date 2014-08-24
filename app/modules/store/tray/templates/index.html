@@ -56,7 +56,7 @@
                 <header>
                     <h3>2) Deine Wunsch-Lieferzeit</h3>
                 </header>
-                <clock store-model="storeModel" delivery-area-model="deliveryAreaModel"></clock>
+                <clock order-minutes="orderMinutes" store-model="storeModel" delivery-area-model="deliveryAreaModel"></clock>
             </section>
 
             <section id="setDeliveryAddress">
@@ -133,16 +133,19 @@
             <!--</aside>-->
 
         </div>
-        <div id="sendOrder" class="note">
+        <div bo-if="deliveryAreaModel.minimumValue <= totalAmount" id="sendOrder" class="note">
             <div class="container">
                 <p>
                     Mit Klick auf "Bestellung abschicken" bestätigst du unsere
-                    <a href="#">AGB</a>
+                    <a href="http://s3-eu-west-1.amazonaws.com/sub2home-static/documents/static/agb-gaeste.pdf">AGB</a>
                 </p>
-                <div ng-click="order()" id="sendOrderButton" class="noSelect">
+                <p ng-if="deliveryFormError">
+                   Bitte fülle alle notwendigen Felder bei deiner Lieferadresse aus
+                </p>
+               <div ng-click="order()" id="sendOrderButton" class="noSelect">
                     Bestellung abschicken
                 </div>
-            </div>
+              </div>
         </div>
     </div>
 </div>

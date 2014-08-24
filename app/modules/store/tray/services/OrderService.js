@@ -6,13 +6,13 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
 
     return {
 
-      order: function(deliveryAreaModel, total, formData, singleItemsCollection, subItemsCollection, menuItemsCollection) {
+      order: function(dueTime, deliveryAreaModel, total, formData, singleItemsCollection, subItemsCollection, menuItemsCollection) {
         var postData = {
           comment: formData.comment || '',
-          couponCode: "",
-          createdAt: "",
-          createdDate: "",
-          creditModel: "",
+          couponCode: '',
+          createdAt: '',
+          createdDate: '',
+          creditModel: '',
           isDelivered: false,
           paymentMethod: formData.payment,
           subcardCode: '',
@@ -21,8 +21,12 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
         };
 
         postData.addressModel = this._getAddressModel(formData, deliveryAreaModel);
-        // TODO dueAT
         postData.dueAt = new Date();
+        postData.dueAt.setMinutes(dueTime % 60);
+        // TODO fix before release
+        postData.dueAt.setHours(Math.floor(dueTime / 60) + 2);
+
+
 
         postData.orderedItemsCollection = this._getOrderedItemsCollection(singleItemsCollection, subItemsCollection, menuItemsCollection);
 
@@ -45,7 +49,7 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
         addressModel.street = formData.street || '';
         addressModel.streetAdditional = formData.streetAdditional || '';
         //TODO filter streetNumber out of the street value
-        addressModel.streetNumber = '1';
+        addressModel.streetNumber = '';
 
         return addressModel;
       },

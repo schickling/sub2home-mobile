@@ -10,6 +10,12 @@ module.exports = ['ItemStorageService', '_', 'ArticleHelper',
       _menuItemKey: 'trayMenuItem',
       _subItemKey: 'traySubItem',
 
+      removeAll: function() {
+        ItemStorageService.removeAllItems(this._singleItemKey);
+        ItemStorageService.removeAllItems(this._menuItemKey);
+        ItemStorageService.removeAllItems(this._subItemKey);
+      },
+
       // single items
       saveSingleItem: function(singleItem) {
         // calculate the cost of the item

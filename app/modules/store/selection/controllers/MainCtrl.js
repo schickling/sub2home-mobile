@@ -103,6 +103,8 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
           var tmp = {};
           tmp.savedArticle = orderedItem;
           orderedItem = {};
+
+          // TODO just use menuUpgradeModel here (check in tray where the menuBundelModel is mandatory)
           orderedItem.menuBundleModel = {};
           orderedItem.articlesCollection = [tmp].concat(tmp.savedArticle.menuUpgradeArticles);
           orderedItem.menuBundleModel.title = 'Sparmenü';

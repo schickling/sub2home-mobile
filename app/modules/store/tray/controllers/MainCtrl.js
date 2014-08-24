@@ -12,9 +12,6 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceSer
 
     $scope.allMenuItems = TrayStorageService.getAllMenuItems();
 
-    console.log($scope.allSubItems);
-    console.log($scope.allSingleItems);
-    console.log($scope.allMenuItems);
     $scope.totalAmount = TrayService.getTotalAmount();
 
     $scope.deliveryAreaModel = PersistenceService.load('selectedDeliveryAreaModel');
@@ -31,11 +28,11 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceSer
     };
 
     $scope.formData = {};
-
+// add city
     $scope.formData.payment = 'cash';
 
     $scope.order = function() {
-      OrderService.order($scope.totalAmount, $scope.formData, $scope.allSingleItems, $scope.allSubItems, $scope.allMenuItems);
+      OrderService.order($scope.deliveryAreaModel, $scope.totalAmount, $scope.formData, $scope.allSingleItems, $scope.allSubItems, $scope.allMenuItems);
     };
 
 

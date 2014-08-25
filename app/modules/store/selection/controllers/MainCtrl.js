@@ -1,8 +1,12 @@
 'use strict';
 
-module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService', '$document', '_', 'NotificationService',
+module.exports = ['$scope', 'orderedItemModel', '$window',
+  'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService',
+  '$document', '_', 'NotificationService',
 
-  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout, TrayStorageService, RoutingService, $document, _, NotificationService) {
+  function($scope, orderedItemModel, $window, EntityIteratorService, $timeout,
+    TrayStorageService, RoutingService, $document, _, NotificationService) {
+
     var getAllArticles = function(entity) {
       var all = [];
       if (entity.menuComponentOptionsCollection) {
@@ -28,8 +32,6 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
       return result;
     };
-
-
 
     EntityIteratorService.init(orderedItemModel);
 
@@ -136,6 +138,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     };
 
     $scope.$on('selectItem', function(event, itemModel) {
+
       var all = getAllArticles($scope.entity);
 
       if (!itemModel.isSelected) {
@@ -146,12 +149,17 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
         itemModel.isSelected = !itemModel.isSelected;
       }
 
+
       $timeout(function() {
-        $scope.next();
+        if ($scope.toTray) {
+          // TODO make clean
+          $window.scrollTo(0, 999999);
+        } else {
+          $scope.next();
+        }
       }, 750);
 
     });
-
 
 
     var updateTimeline = function() {
@@ -160,6 +168,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
 
     var updateNextEntity = function() {
       EntityIteratorService.getNextEntity().then(function(nextEntity) {
+
         // checks whether the next step is the tray or not
         if (!nextEntity) {
           $scope.toTray = true;
@@ -171,6 +180,8 @@ module.exports = ['$scope', 'orderedItemModel', '$window', 'EntityIteratorServic
     };
 
     var updateScope = function() {
+
+      $window.scrollTo(0, 0);
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
       $scope.menuModel = EntityIteratorService.getMenu();

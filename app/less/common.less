@@ -29,7 +29,7 @@ body {
 	// &.tableFix {
 
 		> .ng-scope {
-		overflow-x: hidden;
+		/*overflow-x: hidden;*/
 		height: 100%;
 
 			> .ng-scope {
@@ -94,9 +94,9 @@ body {
 	overflow: visible;
 	z-index: 9000;
 	.translate(0,0,0);
-	
+
 	.transformTransition(.3s, ease);
-	
+
 
 	// Wooden Border
 
@@ -172,12 +172,12 @@ body {
 				padding-left: 10px;
 				border-left: 1px solid @onHeaderColor50;
 			}
-			
+
 			.itemInfo {
 				color: @onHeaderColor50;
 				font-size: 80%;
 			}
-			
+
 			h3, p {
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -371,7 +371,7 @@ body {
 //	color: darken(@greenLight, 20%);
 	color: @white;
 	z-index: 9100;
-	
+
 	&.trayNotification {
 		&:after {
 			content: "";
@@ -380,7 +380,7 @@ body {
 			bottom: -7px;
 //			height: 7px;
 //			width: 7px;
-			
+
 			border-style: solid;
 			border-width: 8px 6px 0 6px;
 			border-color: @greenLight transparent transparent transparent;
@@ -388,7 +388,7 @@ body {
 			.transformTransition(.1s, linear);
 		}
 	}
-	
+
 }
 
 // Content ---------------------------------------------------------------------
@@ -653,7 +653,7 @@ p {
 		font-size: 50px;
 		color: @grayLighter;
 	}
-	
+
 	&.hidden {
 		.translate(0,100%,0);
 	}
@@ -665,11 +665,11 @@ p {
 }
 
 #articlesContent {
-	
+
 	display: table;
 	table-layout: fixed;
 	width: 100%;
-	
+
 	.item {
 		padding: 30px @bodyPadding;
 		border-bottom: 1px solid @darkerWhite;
@@ -792,7 +792,7 @@ p {
 				font-size: 13px;
 			}
 		}
-		
+
 		.iClose {
 			color: @grayLight;
 			position: absolute;
@@ -802,7 +802,7 @@ p {
 			.opacity(0);
 			.transition(opacity .1s linear);
 		}
-		
+
 		&.buyed {
 			position: relative;
 			background: @darkWhite;
@@ -813,7 +813,7 @@ p {
 				vertical-align: middle;
 				border-color: rgba(0,0,0,0);
 				margin-right: 40px;
-				
+
 				&:before, h3 {
 					color: @grayDark !important;
 				}

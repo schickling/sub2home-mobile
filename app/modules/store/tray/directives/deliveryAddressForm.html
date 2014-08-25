@@ -2,48 +2,42 @@
     <form name="deliveryForm" novalidate>
         <div class="inputGroup">
             <div class="inputContainer" input-error-name>
-                <input type="text" name="firstName" ng-model="formData.firstName" value="" required
-                placeholder="Vorname">
+                <input type="text" name="firstName" ng-model="formData.firstName" value="" required placeholder="Vorname *">
             </div>
             <div class="inputContainer" input-error-name>
-                <input type="text" name="lastName" value="" ng-model="formData.lastName" placeholder="Nachname" required>
+                <input type="text" name="lastName" value="" ng-model="formData.lastName" placeholder="Nachname *" required>
             </div>
         </div>
         <div class="inputGroup">
             <div class="inputContainer" input-error-phone-number>
-                <input type="text" name="telephone" value="" required ng-model="formData.phone" placeholder="Telefon / Mobil">
+                <input type="text" name="telephone" value="" required ng-model="formData.phone" placeholder="Telefon / Mobil *">
             </div>
             <div class="inputContainer" input-error-email>
-                <input type="text" name="email" value=""  ng-model="formData.email" placeholder="Email">
+                <input type="text" name="email" value="" ng-model="formData.email" placeholder="Email">
             </div>
         </div>
         <div class="inputGroup additionalFields">
-                <!--                <div class="addField"></div> -->
+            <!--                <div class="addField"></div> -->
             <div class="inputContainer" input-error-name>
-                <input type="text" name="address" value="" ng-model="formData.street" required placeholder="Straße + Nr.">
+                <input type="text" name="address" value="" ng-model="formData.street" required placeholder="Straße + Nr. *">
             </div>
             <div class="inputContainer">
                 <input type="text" name="additionalAddress" ng-model="formData.streetAdditional" value="" placeholder="Addresszusatz">
                 <!-- Nur wenn der .addField Button gedrückt wird -->
             </div>
         </div>
-        <p bindonce id="trayDeliveryArea">in <span bo-text="storeModel.addressModel.postal"></span> <span bo-text="storeModel.addressModel.city"></span><span ng-click="toggleInfoDeliveryArea()"
-            class="infoButton inCopyText"></span>
+        <p bindonce id="trayDeliveryArea">in <span bo-text="storeModel.addressModel.postal"></span>  <span bo-text="storeModel.addressModel.city"></span><span ng-click="toggleInfoDeliveryArea()" class="infoButton inCopyText"></span>
         </p>
-        <p ng-class="{'ng-hide':infoDeliveryArea}" id="trayAdditionalInfo">Postleitzahl und Stadt hast du bereits zu Beginn des Bestellvorganges
-            ausgewählt.
+        <p ng-class="{'ng-hide':infoDeliveryArea}" id="trayAdditionalInfo">Postleitzahl und Stadt hast du bereits zu Beginn des Bestellvorganges ausgewählt.
             <br>
-            <br>Sie sind an dieser Stelle nicht mehr veränderbar, um
-            eine reibungslose Lieferung sicherzustellen.
+            <br>Sie sind an dieser Stelle nicht mehr veränderbar, um eine reibungslose Lieferung sicherzustellen.
         </p>
         <div class="trayQuestion">
             <p ng-class="{'ng-hide': !trayQuestion}" class="questionText">Hast du noch einen Wunsch oder einen Hinweis?</p>
             <div ng-class="{'ng-hide': !trayQuestion}" ng-click="toggleTrayQuestion()" class="triggerQuestion"></div>
             <div ng-class="{'ng-hide': trayQuestion}" class="trayQuestionContent textareaContent ng-hide">
-                <textarea ng-model="formData.comment" class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung"
-                name="additionalMessage" rows="4" cols="40"></textarea>
+                <textarea ng-model="formData.comment" class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung" name="additionalMessage" rows="4" cols="40"></textarea>
             </div>
         </div>
     </form>
 </div>
-

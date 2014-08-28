@@ -24,13 +24,11 @@
         </ul>
     </nav>
 
-    <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)"
-    ng-swipe-right="toggleNav(true)">
+    <div id="storeHome" class="content" ng-click="toggleNav(false)" ng-swipe-left="toggleNav(false)" ng-swipe-right="toggleNav(true)">
         <section class="note above">
             <div id="editLocation">
                 <i class="editButton inSmallText before" ng-click="chooseDeliveryArea = true"></i>
-                <p>in {{ selectedDeliveryAreaModel.minimumDuration }}min nach {{ selectedDeliveryAreaModel.district
-                    || selectedDeliveryAreaModel.city }}</p>
+                <p>in {{ selectedDeliveryAreaModel.minimumDuration }}min nach {{ selectedDeliveryAreaModel.district || selectedDeliveryAreaModel.city }}</p>
             </div>
             <div ng-click="removeNotification()" ng-if="notification" id="storeMessage">
                 <p bindonce bo-class="storeModel.messageType" bo-text="storeModel.messageText"></p>
@@ -69,9 +67,7 @@
         <div id="storeDeliveryAreaSuggestion" ng-class="{ loading: checkingPostal }">
             <compass id="suggestionLoader" rotate="checkingPostal"></compass>
             <div class="storeMultipleDeliveryAreas" ng-if="suggestedDeliveryAreasCollection.length > 0">
-                <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea"
-                ng-repeat="deliveryAreaModel in suggestedDeliveryAreasCollection"
-                ng-click="selectDeliveryArea(deliveryAreaModel)">
+                <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea" ng-repeat="deliveryAreaModel in suggestedDeliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
                     <div class="postal">{{ deliveryAreaModel.postal }}</div>
                     <div class="storeDeliveryAreaDescription">
                         <h3>{{ deliveryAreaModel.district || deliveryAreaModel.city }}</h3>
@@ -94,13 +90,11 @@
         </div>
         <div id="storeDeliveryAreas">
             <div class="storeMultipleDeliveryAreas" ng-repeat="(postal, deliveryAreasCollection) in groupedDeliveryAreasCollection">
-                <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea"
-                ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
+                <div ng-class="{ selected: deliveryAreaModel === selectedDeliveryAreaModel }" class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection" ng-click="selectDeliveryArea(deliveryAreaModel)">
                     <div class="postal" bo-text="postal"></div>
                     <div class="storeDeliveryAreaDescription">
                         <h3 bo-text="deliveryAreaModel.district || deliveryAreaModel.city"></h3>
-                        <p>(in <span bo-text="deliveryAreaModel.minimumDuration"></span> min
-                            für min. <span bo-text="deliveryAreaModel.minimumValue"></span>€)</p>
+                        <p>(in <span bo-text="deliveryAreaModel.minimumDuration"></span> min für min. <span bo-text="deliveryAreaModel.minimumValue"></span>€)</p>
                     </div>
                 </div>
             </div>
@@ -109,8 +103,7 @@
         <!-- If Geo-Detection fails, or is blocked by user, or detected postal is within the store's delivery areas -->
 
         <div class="backHome">
-            <p class="smallHint">Dein Liefergebiet ist nicht dabei? Dann versuch es bei einem anderen
-                SUBWAY
+            <p class="smallHint">Dein Liefergebiet ist nicht dabei? Dann versuch es bei einem anderen SUBWAY
                 <span class="superscript">&reg;</span>-Restaurant:</p>
             <div ng-click="navigate('/')" class="button">Zur Startseite</div>
         </div>
@@ -122,6 +115,7 @@
 
     <!-- store is closed -->
 
+    <!--
     <div class="overlay note" id="closedStore">
         <header>
             <div class="logo"></div>
@@ -203,21 +197,22 @@
                 </div>
                 <div class="openingHoursContainer">
                     <!-- As Container to keep the layout -->
-                </div>
-                <div class="openingHoursContainer mobile-hidden">
-                    <!-- As Container to keep the layout (on tablets), hidden on mobile-->
-                </div>
-            </div>
-        </div>
+</div>
+<div class="openingHoursContainer mobile-hidden">
+    <!-- As Container to keep the layout (on tablets), hidden on mobile-->
+</div>
+</div>
+</div>
 
-        <div class="backHome">
-            <p class="smallHint">Vielleicht hat ein anderes SUBWAY<span class="superscript">&reg;</span>-Restaurant
-                in deiner Nähe geöffnet:</p>
-            <div class="button">Zur Startseite</div>
-        </div>
-    </div>
+<div class="backHome">
+    <p class="smallHint">Vielleicht hat ein anderes SUBWAY<span class="superscript">&reg;</span>-Restaurant in deiner Nähe geöffnet:</p>
+    <div class="button">Zur Startseite</div>
+</div>
+</div>
 
-    <!-- / store is closed -->
+-->
+
+<!-- / store is closed -->
 
 </div>
 </div>

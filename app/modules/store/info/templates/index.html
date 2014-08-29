@@ -3,7 +3,7 @@
     <div id="headerContent">
         <div id="toggleNav" class="icn iNav"></div>
         <div id="pageTitle">
-            Infotheke Memmingen
+            Infotheke <span bindonce bo-text="storeModel.title"></span>
         </div>
         <div ng-click="navigate(':storeAlias')" id="toTheInfo" class="icn iClose atTheInfo"></div>
     </div>
@@ -22,22 +22,23 @@
     </ul>
 </nav>
 
-<div id="storeInfo" class="content dark">
+<div id="storeInfo" class="content dark" bindonce>
     <section id="storeContact">
         <header>
-            <h2>SUBWAY<span class="superscript">&reg;</span> Memmingen</h2>
+            <h2>SUBWAY<span class="superscript">&reg;</span> <span bo-text="storeModel.title"></span></h2>
         </header>
         <div class="column">
             <p>
-                Maximilianstraße 7
-                <br>87700 Memmingen
+                <span bo-text="storeModel.addressModel.street"></span>  <span bo-text="storeModel.addressModel.streetNumber"></span>
+                <br>
+                <span bo-text="storeModel.addressModel.postal"></span>  <span bo-text="storeModel.addressModel.city"></span>
             </p>
         </div>
         <div class="column waysToContact">
-            <p><i class="icn iPhone"></i>08331 / 833 84 33</p>
-            <p><i class="icn iFax"></i>08331 / 833 84 34</p>
-            <a href="mailto:kontakt@sub2home.com"><i class="icn iMail"></i>kontakt@sub2home.com</a>
-            <a href="http://facebook.com/sub2home"><i class="icn iFacebook"></i>/sub2home</a>
+            <p><i class="icn iPhone"></i><span bo-text="'0' + storeModel.addressModel.phone"></span>
+            </p>
+            <a bo-href="'mailto:' + storeModel.addressModel.email"><i class="icn iMail"></i><span bo-text="storeModel.addressModel.email"></span></a>
+            <a bo-href="storeModel.facebookUrl"><i class="icn iFacebook"></i>/<span bo-text="storeModel.facebookUrl.replace('https://www.facebook.com/', '')"></span></a>
         </div>
     </section>
     <section id="infoOpeningHours">
@@ -45,65 +46,11 @@
             <h2>Öffnungszeiten</h2>
         </header>
         <div id="infoOpeningHoursContent">
-            <div class="openingHoursContainer">
+            <div class="openingHoursContainer" ng-repeat="deliveryTimes in groupedDeliveryTimes">
                 <div class="openingHoursContent">
-                    <div class="openingDay">Mo</div>
+                    <div class="openingDay" bo-text="dayOfWeekStrings[$index]"></div>
                     <div class="openingHours">
-                        <h3>10:00-12:00</h3>
-                        <h3>14:00-22:00</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="openingHoursContainer">
-                <div class="openingHoursContent">
-                    <div class="openingDay">Di</div>
-                    <div class="openingHours">
-                        <h3>10:00-12:00</h3>
-                        <h3>14:00-22:00</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="openingHoursContainer">
-                <div class="openingHoursContent">
-                    <div class="openingDay">Mi</div>
-                    <div class="openingHours">
-                        <h3>10:00-12:00</h3>
-                        <h3>14:00-22:00</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="openingHoursContainer">
-                <div class="openingHoursContent">
-                    <div class="openingDay">Do</div>
-                    <div class="openingHours">
-                        <h3>10:00-12:00</h3>
-                        <h3>14:00-22:00</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="openingHoursContainer">
-                <div class="openingHoursContent">
-                    <div class="openingDay">Fr</div>
-                    <div class="openingHours">
-                        <h3>10:00-12:00</h3>
-                        <h3>14:00-22:00</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="openingHoursContainer">
-                <div class="openingHoursContent">
-                    <div class="openingDay">Sa</div>
-                    <div class="openingHours">
-                        <h3>10:00-12:00</h3>
-                        <h3>14:00-22:00</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="openingHoursContainer">
-                <div class="openingHoursContent">
-                    <div class="openingDay">So</div>
-                    <div class="openingHours">
-                        <h3>geschlossen</h3>
+                        <h3 ng-repeat="deliveryTime in deliveryTimes"><span bo-text="deliveryTime.startString"></span>-<span bo-text="deliveryTime.endString"></span></h3>
                     </div>
                 </div>
             </div>
@@ -118,44 +65,12 @@
             <h2>Liefergebiete</h2>
         </header>
         <div id="infoDeliveryAreasContent">
-            <div class="storeMultipleDeliveryAreas">
-                <div class="storeDeliveryArea">
-                    <div class="postal" bo-text="postal">87700</div>
+            <div class="storeMultipleDeliveryAreas" ng-repeat="deliveryAreaModel in storeModel.deliveryAreasCollection">
+                <div class="storeDeliveryArea" bo-class="{selected: deliveryAreaModel === selectedDeliveryAreaModel}">
+                    <div class="postal" bo-text="deliveryAreaModel.postal"></div>
                     <div class="storeDeliveryAreaDescription">
-                        <h3>Innenstadt</h3>
-                        <p>(in 20min für min. 15.00€)</p>
-                    </div>
-                </div>
-                <div class="storeDeliveryArea">
-                    <div class="postal" bo-text="postal"></div>
-                    <div class="storeDeliveryAreaDescription">
-                        <h3>Amendingen</h3>
-                        <p>(in 10min für min. 10.00€)</p>
-                    </div>
-                </div>
-                <div class="storeDeliveryArea">
-                    <div class="postal" bo-text="postal"></div>
-                    <div class="storeDeliveryAreaDescription">
-                        <h3>Graulingen</h3>
-                        <p>(in 25min für min. 30.00€)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="storeMultipleDeliveryAreas">
-                <div class="storeDeliveryArea selected">
-                    <div class="postal" bo-text="postal">87760</div>
-                    <div class="storeDeliveryAreaDescription">
-                        <h3>Lachen</h3>
-                        <p>(in 10min für min. 10.00€)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="storeMultipleDeliveryAreas">
-                <div class="storeDeliveryArea">
-                    <div class="postal" bo-text="postal">87779</div>
-                    <div class="storeDeliveryAreaDescription">
-                        <h3>Trunkelsberg</h3>
-                        <p>(in 25min für min. 35.00€)</p>
+                        <h3 bo-text="deliveryAreaModel.district || deliveryAreaModel.city"></h3>
+                        <p>(in <span bo-text="deliveryAreaModel.minimumDuration"></span>min für min. <span bo-text="deliveryAreaModel.minimumValue | number : 2"></span>€)</p>
                     </div>
                 </div>
             </div>

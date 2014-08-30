@@ -13,8 +13,9 @@ module.exports = ['$scope', 'storeModel', '_', 'selectedDeliveryAreaModel',
       });
     }
 
-    $scope.dayOfWeekStrings = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
-
+    /*
+     * delivery times
+     */
     var getHours = m => parseInt(m / 60, 10);
     var getMinutes = function(minutes) {
       minutes = minutes % 60;
@@ -23,8 +24,6 @@ module.exports = ['$scope', 'storeModel', '_', 'selectedDeliveryAreaModel',
       }
       return minutes;
     };
-
-
     var groupedDeliveryTimes = _(storeModel.deliveryTimesCollection)
       .map(d => _.assign(d, {
         startString: getHours(d.startMinutes) + ':' + getMinutes(d.startMinutes),
@@ -34,9 +33,11 @@ module.exports = ['$scope', 'storeModel', '_', 'selectedDeliveryAreaModel',
       .values()
       .value();
 
+    // arrange to start with monday (sunday is default)
     groupedDeliveryTimes.push(groupedDeliveryTimes.shift());
 
     $scope.groupedDeliveryTimes = groupedDeliveryTimes;
+    $scope.dayOfWeekStrings = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 
   }
 ];

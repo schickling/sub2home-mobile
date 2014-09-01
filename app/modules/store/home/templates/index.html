@@ -62,7 +62,7 @@
             <p>SUBWAY<span class="superscript">&reg;</span>  <span bo-text="storeModel.title"></span>
                 <br>kommt zu dir nach Hause.</p>
             <p class="callToAction">Wohin dürfen wir liefern?</p>
-            <div ng-click="hideDeliveryArea()" class="close"></div>
+            <div ng-if="selectedDeliveryAreaModel" ng-click="hideDeliveryArea()" class="close"></div>
         </header>
         <div id="storeDeliveryAreaSuggestion" ng-class="{ loading: checkingPostal }">
             <compass id="suggestionLoader" rotate="checkingPostal"></compass>
@@ -71,7 +71,7 @@
                     <div class="postal">{{ deliveryAreaModel.postal }}</div>
                     <div class="storeDeliveryAreaDescription">
                         <h3>{{ deliveryAreaModel.district || deliveryAreaModel.city }}</h3>
-                        <p>(in <span>30</span> min für min. <span>15</span>€)</p>
+                        <p>(in <span>{{ deliveryAreaModel.minimumDuration }}</span> min für min. <span>{{ deliveryAreaModel.minimumValue }}</span>€)</p>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ module.exports = ['$scope', 'storeModel', '_', 'selectedDeliveryAreaModel',
 
     $scope.storeModel = storeModel;
 
+    $scope.groupedDeliveryAreas = _.groupBy(storeModel.deliveryAreasCollection, 'postal');
     $scope.selectedDeliveryAreaModel = null;
     if (selectedDeliveryAreaModel) {
       $scope.selectedDeliveryAreaModel = _.find(storeModel.deliveryAreasCollection, {

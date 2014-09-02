@@ -65,8 +65,8 @@
             <h2>Liefergebiete</h2>
         </header>
         <div id="infoDeliveryAreasContent">
-            <div class="storeMultipleDeliveryAreas" ng-repeat="deliveryAreaModel in storeModel.deliveryAreasCollection">
-                <div class="storeDeliveryArea" bo-class="{selected: deliveryAreaModel === selectedDeliveryAreaModel}">
+            <div class="storeMultipleDeliveryAreas" ng-repeat="(postal, deliveryAreaModels) in groupedDeliveryAreas">
+                <div class="storeDeliveryArea" ng-repeat="deliveryAreaModel in deliveryAreaModels" bo-class="{selected: deliveryAreaModel === selectedDeliveryAreaModel}">
                     <div class="postal" bo-text="deliveryAreaModel.postal"></div>
                     <div class="storeDeliveryAreaDescription">
                         <h3 bo-text="deliveryAreaModel.district || deliveryAreaModel.city"></h3>

@@ -191,8 +191,6 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
     var updateScope = function() {
 
-      $document.scrollTop(0, 500);
-
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
       $scope.menuModel = EntityIteratorService.getMenu();
 
@@ -241,6 +239,9 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
         } else {
           $scope.noUpgrade = false;
         }
+
+        $document.scrollTop(0, 500);
+
       });
 
       EntityIteratorService.getType().then(function(type) {

@@ -160,9 +160,20 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
     });
 
+    var timelineScrollContainer = angular.element(document.getElementById('timeline'));
+    var removeMe = 0;
 
     var updateTimeline = function() {
       $scope.timelineArticleCollection = EntityIteratorService.getEntityCollection();
+
+      // set timeline position
+      var itemWidth = 70;
+      var selectedItemIndex = 0;
+
+      // TODO make dynamic
+      selectedItemIndex = removeMe++;
+
+      timelineScrollContainer.scrollLeft((selectedItemIndex - 2) * itemWidth, 300);
     };
 
     var updateNextEntity = function() {

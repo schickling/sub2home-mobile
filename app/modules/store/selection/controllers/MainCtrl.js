@@ -65,6 +65,11 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
         });
       }
 
+      // Make the next entity clickable in the timeline
+      if ($scope.hideNextButton) {
+          updateNextEntity(true);
+          updateTimeline();
+      }
       $scope.hideNextButton = false;
       ingredientModel.isSelected = newIsSelected;
 
@@ -89,7 +94,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
     //};
 
     $scope.jumpToEntity = function(entity) {
-      if (entity.passed && !$scope.hideNextButton) {
+      if (entity.passed) {
         EntityIteratorService.jumpToEntity(entity).then(function() {
           updateScope();
         });
@@ -182,7 +187,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
       timelineScrollContainer.scrollLeft((selectedItemIndex - 2) * itemWidth, 300);
     };
 
-    var updateNextEntity = function() {
+    var updateNextEntity = function(lastStepIsValid) {
       EntityIteratorService.getNextEntity().then(function(nextEntity) {
 
         // checks whether the next step is the tray or not
@@ -191,6 +196,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
         } else {
           $scope.toTray = false;
           $scope.nextStep = nextEntity;
+          $scope.nextStep.passed = lastStepIsValid;
         }
       });
     };
@@ -211,7 +217,6 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
 
 
-      updateNextEntity();
 
       EntityIteratorService.getEntity().then(function(entity) {
         $scope.entity = entity;
@@ -239,6 +244,9 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
           }
 
         }
+
+        updateNextEntity(!$scope.hideNextButton);
+
         // if the entity is the menu
         if (entity instanceof Array) {
           $scope.noUpgrade = true;

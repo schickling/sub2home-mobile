@@ -40,7 +40,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
       var confirmed = $window.confirm('Willst du wirklich zurück?');
 
       if (confirmed) {
-        $window.history.back();
+        $scope.navigate('@back');
       }
 
     };

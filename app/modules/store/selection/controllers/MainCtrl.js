@@ -151,6 +151,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
     $scope.$on('selectItem', function(event, itemModel) {
 
       var all = getAllArticles($scope.entity);
+      var itemModel = itemModel;
 
       if (!itemModel.isSelected) {
         _.forEach(all, function(model) {
@@ -161,7 +162,8 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
       }
 
       $timeout(function() {
-        if ($scope.toTray) {
+        if ($scope.toTray && !itemModel.allowsIngredients) {
+          $scope.hideNextButton = false;
           var scrollHeight = document.getElementById('storeSelection').clientHeight;
           $document.scrollTop(scrollHeight, 500);
         } else {

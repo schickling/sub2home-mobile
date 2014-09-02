@@ -114,7 +114,7 @@
         <div id="timelineStage">
             <div ng-repeat="article in timelineArticleCollection" class="timelineGroup">
                 <!-- Icon for the article -->
-                <div ng-if="timelineArticleCollection.length > 1" ng-click="jumpToEntity(article.menuComponentOptionsCollection.0)"
+                <div ng-if="timelineArticleCollection.length > 1" ng-click="jumpToEntity(article.menuComponentOptionsCollection[0])"
                 ng-class="{active: article.menuComponentOptionsCollection[0] === entity, passed : article.menuComponentOptionsCollection[0].passed}"
                 class="timelineStep article">
                     <div class="icn {{article.menuComponentBlockMediaModel.icon}}"></div>

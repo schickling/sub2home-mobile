@@ -43,6 +43,7 @@ gulp.task('browserify.app', function() {
     .external('angular-resource/angular-resource')
     .external('angular-local-storage/angular-local-storage')
     .external('angular-bindonce')
+    .external('angular-scroll')
     .external('./modules/template-cache')
     .bundle({
       debug: true,
@@ -64,6 +65,7 @@ gulp.task('browserify.libs', function() {
     .require('angular-resource/angular-resource')
     .require('angular-local-storage/angular-local-storage')
     .require('angular-bindonce')
+    .require('angular-scroll')
     .bundle()
     .pipe(source('libs.js'))
     .pipe(gulp.dest('app/.tmp/js'));

@@ -149,11 +149,10 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
         itemModel.isSelected = !itemModel.isSelected;
       }
 
-
       $timeout(function() {
         if ($scope.toTray) {
-          // TODO make clean
-          $window.scrollTo(0, 999999);
+          var scrollHeight = document.getElementById('storeSelection').clientHeight;
+          $document.scrollTop(scrollHeight, 500);
         } else {
           $scope.next();
         }
@@ -181,7 +180,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
     var updateScope = function() {
 
-      $window.scrollTo(0, 0);
+      $document.scrollTop(0, 500);
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
       $scope.menuModel = EntityIteratorService.getMenu();

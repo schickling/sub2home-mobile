@@ -5,6 +5,7 @@
   "scripts": {
     "install": "napa",
     "test": "gulp test && karma start --single-run --browsers PhantomJS",
+    "watch": "karma start",
     "start": "gulp server",
     "build": "gulp build"
   },

@@ -3,9 +3,6 @@
 sub2home-mobile
 ===============
 
-## Dependencies
-* node.js (with NPM)
-
 ## Usage
 
 #### Install & Update
@@ -28,7 +25,7 @@ $ npm test
 
 ##### Watch for changes
 ```sh
-$ karma start
+$ npm run-script watch
 ```
 
 

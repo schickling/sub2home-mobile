@@ -36,7 +36,13 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
     EntityIteratorService.init(orderedItemModel);
 
     $scope.back = function() {
-      $window.history.back();
+
+      var confirmed = $window.confirm('Willst du wirklich zurück?');
+
+      if (confirmed) {
+        $window.history.back();
+      }
+
     };
 
     $scope.numberOfItems = TrayStorageService.getAllItems().length;

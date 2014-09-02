@@ -2,7 +2,7 @@
     <aside id="header">
         <div id="notification"></div>
         <div id="headerContent">
-            <div id="getBack" ng-click="navigate('@back')">
+            <div id="getBack" ng-click="back()">
                 <!--<p>Subs-->
                 <!-- Article-Category from which the User got to selection -->
                 <!--</p>-->
@@ -37,12 +37,10 @@
         <!--</div>-->
 
         <section id="ingredients">
-            <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection"
-            ng-click="selectIngredient(ingredientModel)">
+            <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
                 <div class="imageContainer">
                     <div bindonce class="ingredientPriceContainer">
-                        <div ng-if="ingredientModel.price > 0" bo-text="ingredientModel.price | number:2"
-                        class="ingredientPrice price"></div>
+                        <div ng-if="ingredientModel.price > 0" bo-text="ingredientModel.price | number:2" class="ingredientPrice price"></div>
                     </div>
                     <img ng-src="{{ ingredientModel.largeImage }}" alt="" />
                 </div>
@@ -53,8 +51,7 @@
 
         <section id="articles" ng-if="type === 'Article'">
             <div id="articlesContent">
-                <div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection"
-                app-col="col" watch="true">
+                <div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection" app-col="col" watch="true">
                     <article ng-repeat="itemModel in col"></article>
                 </div>
             </div>
@@ -62,8 +59,7 @@
 
         <section id="upgradeArticles" ng-if="type === 'menuUpgradeArticle'">
             <div id="articlesContent" ng-repeat="option in entity.menuComponentOptionsCollection">
-                <div id="tableRow" col-repeat app-items-collection="option.menuComponentOptionArticlesCollection"
-                app-col="col" watch="true">
+                <div id="tableRow" col-repeat app-items-collection="option.menuComponentOptionArticlesCollection" app-col="col" watch="true">
                     <article ng-repeat="itemModel in col" item-model="itemModel"></article>
                 </div>
             </div>
@@ -92,8 +88,7 @@
             </div>
         </section>
 
-        <div id="toNextStep" class="{{nextStep.icon}}" ng-hide="toTray || hideNextButton"
-        ng-click="next()">
+        <div id="toNextStep" class="{{nextStep.icon}}" ng-hide="toTray || hideNextButton" ng-click="next()">
             <p>Nächster Schritt</p>
             <h3>{{nextStep.title}}</h3>
         </div>
@@ -114,29 +109,22 @@
         <div id="timelineStage">
             <div ng-repeat="article in timelineArticleCollection" class="timelineGroup">
                 <!-- Icon for the article -->
-                <div ng-if="timelineArticleCollection.length > 1" ng-click="jumpToEntity(article.menuComponentOptionsCollection[0])"
-                ng-class="{active: article.menuComponentOptionsCollection[0] === entity, passed : article.menuComponentOptionsCollection[0].passed}"
-                class="timelineStep article">
+                <div ng-if="timelineArticleCollection.length > 1" ng-click="jumpToEntity(article.menuComponentOptionsCollection[0])" ng-class="{active: article.menuComponentOptionsCollection[0] === entity, passed : article.menuComponentOptionsCollection[0].passed}" class="timelineStep article">
                     <div class="icn {{article.menuComponentBlockMediaModel.icon}}"></div>
                 </div>
 
                 <!-- Icons for the ingrediants -->
-                <div ng-class="{active: ingredient === entity, passed : ingredient.passed}" ng-click="jumpToEntity(ingredient)"
-                ng-repeat="ingredient in article.ingredientCategoriesCollection"
-                class="timelineStep">
+                <div ng-class="{active: ingredient === entity, passed : ingredient.passed}" ng-click="jumpToEntity(ingredient)" ng-repeat="ingredient in article.ingredientCategoriesCollection" class="timelineStep">
                     <div class="icn {{ ingredient.icon }}"></div>
                 </div>
 
                 <!-- Icon for menuUpgrades-->
-                <div ng-if="article.allowsMenuUpgrades" class="timelineStep menuUpgrade" ng-click="jumpToEntity(article.menuUpgradesCollection)"
-                ng-class="{active: article.menuUpgradesCollection === entity, passed : article.menuUpgradesCollection.passed}">
+                <div ng-if="article.allowsMenuUpgrades" class="timelineStep menuUpgrade" ng-click="jumpToEntity(article.menuUpgradesCollection)" ng-class="{active: article.menuUpgradesCollection === entity, passed : article.menuUpgradesCollection.passed}">
                     <div class="icn iMenuUpgrade"></div>
                 </div>
 
                 <!-- Icons for the upgradeArticles -->
-                <div ng-repeat="upgradeArticle in article.menuUpgradeArticles" ng-click="jumpToEntity(upgradeArticle)"
-                ng-class="{active: upgradeArticle === entity, passed : upgradeArticle.passed}"
-                class="timelineStep article">
+                <div ng-repeat="upgradeArticle in article.menuUpgradeArticles" ng-click="jumpToEntity(upgradeArticle)" ng-class="{active: upgradeArticle === entity, passed : upgradeArticle.passed}" class="timelineStep article">
                     <div class="icn {{ upgradeArticle.menuComponentBlockMediaModel.icon }}">
                     </div>
                 </div>

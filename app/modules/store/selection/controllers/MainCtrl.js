@@ -67,8 +67,8 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
       // Make the next entity clickable in the timeline
       if ($scope.hideNextButton) {
-          updateNextEntity(true);
-          updateTimeline();
+        updateNextEntity(true);
+        updateTimeline();
       }
       $scope.hideNextButton = false;
       ingredientModel.isSelected = newIsSelected;
@@ -215,9 +215,6 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
         }
       });
 
-
-
-
       EntityIteratorService.getEntity().then(function(entity) {
         $scope.entity = entity;
 
@@ -254,15 +251,17 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
           $scope.noUpgrade = false;
         }
 
-        $document.scrollTop(0, 500);
+        $timeout(function() {
+          $document.scrollTop(0, 300);
+        }, 100);
+
+        updateTimeline();
 
       });
 
       EntityIteratorService.getType().then(function(type) {
         $scope.type = type;
       });
-
-      updateTimeline();
 
     };
 

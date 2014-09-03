@@ -67,8 +67,8 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
       // Make the next entity clickable in the timeline
       if ($scope.hideNextButton) {
-          updateNextEntity(true);
-          updateTimeline();
+        updateNextEntity(true);
+        updateTimeline();
       }
       $scope.hideNextButton = false;
       ingredientModel.isSelected = newIsSelected;
@@ -174,19 +174,45 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
     });
 
     var timelineScrollContainer = angular.element(document.getElementById('timeline'));
-    var removeMe = 0;
 
     var updateTimeline = function() {
-      $scope.timelineArticleCollection = EntityIteratorService.getEntityCollection();
+
+      var entityCollection = EntityIteratorService.getEntityCollection();
+
+      $scope.timelineArticleCollection = entityCollection;
 
       // set timeline position
       var itemWidth = 70;
-      var selectedItemIndex = 0;
+      var flatEntityCollection = [];
 
-      // TODO make dynamic
-      selectedItemIndex = removeMe++;
+      for (var i = 0; i < entityCollection.length; ++i) {
 
-      timelineScrollContainer.scrollLeft((selectedItemIndex - 2) * itemWidth, 300);
+        var currentEntity = entityCollection[i];
+
+        if (currentEntity.menuComponentOptionsCollection) {
+
+          for (var j = 0; j < currentEntity.menuComponentOptionsCollection.length; ++j) {
+            flatEntityCollection = flatEntityCollection.concat(currentEntity.menuComponentOptionsCollection[j]);
+          }
+
+        }
+
+        if (currentEntity.ingredientCategoriesCollection) {
+          flatEntityCollection = flatEntityCollection.concat(currentEntity.ingredientCategoriesCollection);
+        }
+
+        if (currentEntity.menuUpgradesCollection) {
+          flatEntityCollection.push(currentEntity.menuUpgradesCollection);
+        }
+
+      }
+
+      var selectedItemIndex = flatEntityCollection.indexOf($scope.entity);
+
+      $timeout(function() {
+        timelineScrollContainer.scrollLeft((selectedItemIndex - 2) * itemWidth, 300);
+      }, 100);
+
     };
 
     var updateNextEntity = function(lastStepIsValid) {
@@ -216,9 +242,6 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
           $scope.setTwoLineHeader = true;
         }
       });
-
-
-
 
       EntityIteratorService.getEntity().then(function(entity) {
         $scope.entity = entity;
@@ -256,15 +279,17 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
           $scope.noUpgrade = false;
         }
 
-        $document.scrollTop(0, 500);
+        $timeout(function() {
+          $document.scrollTop(0, 300);
+        }, 100);
+
+        updateTimeline();
 
       });
 
       EntityIteratorService.getType().then(function(type) {
         $scope.type = type;
       });
-
-      updateTimeline();
 
     };
 

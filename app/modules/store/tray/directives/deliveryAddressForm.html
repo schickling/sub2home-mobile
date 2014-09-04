@@ -36,7 +36,7 @@
             <p ng-class="{'ng-hide': !trayQuestion}" ng-click="toggleTrayQuestion()" class="questionText">Hast du noch einen Wunsch oder einen Hinweis?</p>
             <div ng-class="{'ng-hide': !trayQuestion}" ng-click="toggleTrayQuestion()" class="triggerQuestion"></div>
             <div ng-class="{'ng-hide': trayQuestion}" class="trayQuestionContent textareaContent ng-hide">
-                <textarea ng-model="formData.comment" class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung" name="additionalMessage" rows="4" cols="40"></textarea>
+                <textarea id="trayComment" ng-model="formData.comment" class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung" name="additionalMessage" rows="4" cols="40"></textarea>
             </div>
         </div>
     </form>

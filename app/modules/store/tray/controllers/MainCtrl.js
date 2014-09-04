@@ -25,10 +25,15 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceSer
     $scope.trayQuestion = true;
     $scope.toggleTrayQuestion = function() {
       $scope.trayQuestion = !$scope.trayQuestion;
+
+      if ($scope.trayQuestion) {
+        document.getElementById('trayComment').focus();
+      }
+
     };
 
     $scope.formData = {};
-// add city
+    // add city
     $scope.formData.payment = 'cash';
 
 

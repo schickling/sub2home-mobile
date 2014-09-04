@@ -29,7 +29,7 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService',
     $scope.toggleTrayQuestion = function() {
       $scope.trayQuestion = !$scope.trayQuestion;
 
-      if ($scope.trayQuestion) {
+      if (!$scope.trayQuestion) {
         $timeout(function() {
           document.getElementById('trayComment').focus();
         }, 200);

@@ -1,8 +1,11 @@
 'use strict';
 
-module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceService', 'storeModel', 'OrderService', 'RoutingService',
+module.exports = ['$scope', 'TrayStorageService', 'TrayService',
+  'PersistenceService', 'storeModel', 'OrderService', 'RoutingService',
+  '$timeout',
 
-  function($scope, TrayStorageService, TrayService, PersistenceService, storeModel, OrderService, RoutingService) {
+  function($scope, TrayStorageService, TrayService, PersistenceService,
+    storeModel, OrderService, RoutingService, $timeout) {
 
     $scope.storeModel = storeModel;
 
@@ -27,7 +30,9 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService', 'PersistenceSer
       $scope.trayQuestion = !$scope.trayQuestion;
 
       if ($scope.trayQuestion) {
-        document.getElementById('trayComment').focus();
+        $timeout(function() {
+          document.getElementById('trayComment').focus();
+        }, 200);
       }
 
     };

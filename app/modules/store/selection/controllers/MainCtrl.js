@@ -35,12 +35,22 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
     EntityIteratorService.init(orderedItemModel);
 
+    var backInProgress = false;
+
     $scope.back = function() {
 
-      var confirmed = $window.confirm('Willst du wirklich zurück?');
+      if (!backInProgress) {
 
-      if (confirmed) {
-        $scope.navigate('@back');
+        backInProgress = true;
+
+        var confirmed = $window.confirm('Willst du wirklich zurück?');
+
+        if (confirmed) {
+          $scope.navigate('@back');
+        }
+
+        backInProgress = false;
+
       }
 
     };

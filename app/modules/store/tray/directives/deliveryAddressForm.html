@@ -33,7 +33,7 @@
             <br>Sie sind an dieser Stelle nicht mehr veränderbar, um eine reibungslose Lieferung sicherzustellen.
         </p>
         <div class="trayQuestion">
-            <p ng-class="{'ng-hide': !trayQuestion}" class="questionText">Hast du noch einen Wunsch oder einen Hinweis?</p>
+            <p ng-class="{'ng-hide': !trayQuestion}" ng-click="toggleTrayQuestion()" class="questionText">Hast du noch einen Wunsch oder einen Hinweis?</p>
             <div ng-class="{'ng-hide': !trayQuestion}" ng-click="toggleTrayQuestion()" class="triggerQuestion"></div>
             <div ng-class="{'ng-hide': trayQuestion}" class="trayQuestionContent textareaContent ng-hide">
                 <textarea ng-model="formData.comment" class="bigTextarea" placeholder="Schreibe eine Nachricht zu deiner Bestellung" name="additionalMessage" rows="4" cols="40"></textarea>

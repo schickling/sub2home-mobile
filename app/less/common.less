@@ -616,12 +616,13 @@ p {
 
 // Next Items
 
-#toNextCategory, #toNextStep, #skipThisStep {
+#toNextCategory, #toNextStep, .toNextStep, #skipThisStep {
 
 	background: @darkWhite;
 	width: 100%;
 	position: relative;
 	cursor: pointer;
+	display: block;
 	.translate(0,0,0);
 	.transformTransition(.3s, ease);
 
@@ -655,6 +656,7 @@ p {
 	}
 
 	&.hidden {
+		display: none;
 		.translate(0,100%,0);
 	}
 }

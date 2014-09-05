@@ -88,18 +88,18 @@
             </div>
         </section>
 
-        <div id="toNextStep" class="{{nextStep.icon}}" ng-hide="toTray || hideNextButton" ng-click="next()">
+        <div id="toNextStep" class="{{nextStep.icon}}" ng-class="{hidden: toTray || hideNextButton}" ng-click="next()">
             <p>Nächster Schritt</p>
             <h3>{{nextStep.title}}</h3>
         </div>
 
-        <div id="toNextStep" class="iTray" ng-show="toTray && noUpgrade" ng-click="goToTray()">
+        <div id="toNextStep" class="iTray" ng-class="{hidden: !toTray || !noUpgrade}" ng-click="goToTray()">
             <p>Oder nur ein {{ articleModel.title }}
                 <br/>und gleich weiter</p>
-            <h3>zum Tablett</h3>
+            <h3>auf's Tablett</h3>
         </div>
 
-        <div id="toNextStep" class="iTray" ng-show="toTray && !noUpgrade && !hideNextButton" ng-click="goToTray()">
+        <div id="toNextStep" class="iTray" ng-class="{hidden: !toTray || noUpgrade || hideNextButton}" ng-click="goToTray()">
             <p>Fertig! Letzter Schritt:</p>
             <h3>Auf's Tablett</h3>
         </div>

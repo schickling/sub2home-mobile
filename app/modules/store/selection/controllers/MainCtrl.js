@@ -291,7 +291,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
         $timeout(function() {
           $document.scrollTop(0, 300);
-        }, 100);
+        }, 200);
 
         updateTimeline();
 

@@ -88,7 +88,7 @@
             </div>
         </section>
 
-        <div class="toNextStep {{nextStep.icon}}" ng-class="{hidden: toTray || hideNextButton}" ng-click="next()">
+        <div class="toNextStep {{nextStep.icon}}" ng-class="{hidden: toTray || hideNextButton, preload: hideNextButton}" ng-click="next()">
             <p>Nächster Schritt</p>
             <h3>{{nextStep.title}}</h3>
         </div>

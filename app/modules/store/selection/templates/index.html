@@ -87,22 +87,28 @@
                 </div>
             </div>
         </section>
-
-        <div class="toNextStep {{nextStep.icon}}" ng-class="{hidden: toTray || hideNextButton, preload: hideNextButton}" ng-click="next()">
+				<div class="toNextStepContainer" ng-class="{hidden: toTray || hideNextButton, preload: hideNextButton}" ng-click="next()">
+					<div class="toNextStep {{nextStep.icon}}">
             <p>Nächster Schritt</p>
             <h3>{{nextStep.title}}</h3>
-        </div>
-
-        <div class="toNextStep iTray" ng-class="{hidden: !toTray || !noUpgrade}" ng-click="goToTray()">
+        	</div>
+				</div>
+        
+				<div class="toNextStepContainer" ng-class="{hidden: !toTray || !noUpgrade}" ng-click="goToTray()">
+					<div class="toNextStep iTray">
             <p>Oder nur ein {{ articleModel.title }}
                 <br/>und gleich weiter</p>
             <h3>auf's Tablett</h3>
-        </div>
-
-        <div class="toNextStep iTray" ng-class="{hidden: !toTray || noUpgrade || hideNextButton}" ng-click="goToTray()">
+        	</div>
+				</div>
+        
+				<div class="toNextStepContainer" ng-class="{hidden: !toTray || noUpgrade || hideNextButton}" ng-click="goToTray()">
+					<div class="toNextStep iTray highlighted">
             <p>Fertig! Letzter Schritt:</p>
             <h3>Auf's Tablett</h3>
-        </div>
+        	</div>
+				</div>
+        
     </div>
 
     <aside id="timeline" class="note below">

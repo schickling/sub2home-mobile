@@ -623,8 +623,6 @@ p {
 	position: relative;
 	cursor: pointer;
 	display: block;
-	.translate(0,0,0);
-	.transformTransition(.3s, ease);
 
 	p {
 		font-size: 13px;
@@ -654,12 +652,26 @@ p {
 		font-size: 50px;
 		color: @grayLighter;
 	}
+}
 
+// Wrap .toNextStep for display: table-row
+
+.toNextStepContainer {
+	display: table-row;
+	.translate(0,0,0);	
+	.transformTransition(.3s, ease);
+	
 	&.hidden {
 		display: none;
 		.translate(0,100%,0);
 	}
+	
+	&.preload {
+		display: table-row !important;
+	}
 }
+
+
 
 #articles {
 	display: table-row;

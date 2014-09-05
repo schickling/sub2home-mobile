@@ -115,7 +115,7 @@
 
 
 
-#skipThisStep, #toNextStep {
+#skipThisStep, #toNextStep, .toNextStep {
   height: 100px;
 
   // p, h3 {
@@ -148,6 +148,14 @@
 	&.iTray {
 		p {
 			padding-top: 23px;
+		}
+	}
+	&.highlighted {
+		background: @greenLighter30;
+		border-color: @greenLighter50;
+		color: @greenLighter;
+		p, &:before {
+			color: @greenLighter;
 		}
 	}
 }

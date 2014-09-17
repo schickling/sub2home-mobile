@@ -7,3 +7,24 @@
 #homeInfo, #storeInfo {
 	margin-left: 0 !important;
 }
+
+
+// Adjust Tray Summary due to missing edit-button
+
+#traySummary .item {
+	&.edit, &.removeBwd {
+		.itemContent {
+			.translate(-90px,0,0);	
+		}
+	}
+	&.remove {
+		.itemContent {
+			.translate(-210px,0,0);
+		}
+	}
+	&.editBwd {
+		.itemContent {
+			.translate(0,0,0);
+		}
+	}
+}

@@ -2,16 +2,14 @@
 bindonce>
     <div class="menuHead">
         <div class="itemContent">
-            <div class="itemPreviewTitle">
-                <img class="itemPreview" bo-src="menuItem.menuBundleModel.smallImage" alt="" />
-                <h4 class="itemTitle" bo-text="menuItem.menuBundleModel.title"></h4>
-            </div>
-            <div class="staticColumn">
-                <div class="itemPreviewPrice">
-                    <div class="price itemPrice" bo-text="menuItem.finalPrice"></div>
-                    <div bo-if="menuItem.deposit > 0" class=" deposit">+<span bo-text="menuItem.deposit | number:2"></span>€ Pfand</div>
-                </div>
-            </div>
+					<div class="itemPreview">
+						<img bo-src="menuItem.menuBundleModel.smallImage" alt="" />
+					</div>
+					<h4 class="itemTitle" bo-text="menuItem.menuBundleModel.title"></h4>
+					<div class="priceColumn">
+						<div class="price itemPrice" bo-text="menuItem.finalPrice"></div>
+						<div bo-if="menuItem.deposit > 0" class=" deposit">+<span bo-text="menuItem.deposit | number:2"></span>€ Pfand</div>
+					</div>
         </div>
 
         <edit-options></edit-options>
@@ -20,22 +18,22 @@ bindonce>
     <div class=" menuContents ">
         <div ng-repeat="item in menuItem.articlesCollection " class="item article sub "
         ng-if="item.savedArticle.allowsIngredients ">
-            <div class="itemPreviewTitle ">
-                <img class="itemPreview " bo-src="item.savedArticle.largeImage" alt=" " />
-                <div class="menuItemInfo ">
-                    <h4><span class="itemTitle " bo-text="item.savedArticle.title "></span><span class="itemInfo " bo-if="item.savedArticle.info " bo-text=" ' (' + item.savedArticle.info + ')' "></span></h4>
-                    <p>
-                        {{toString(item.savedArticle)}}
-                    </p>
-                </div>
-            </div>
+					<div class="itemPreview">
+						<img bo-src="item.savedArticle.largeImage" alt=" " />
+					</div>
+					<div class="itemTitle">
+							<h4><span bo-text="item.savedArticle.title "></span><span class="itemInfo " bo-if="item.savedArticle.info " bo-text=" ' (' + item.savedArticle.info + ')' "></span>
+							</h4>
+							<p> {{toString(item.savedArticle)}} </p>
+					</div>
         </div>
         <div ng-repeat="item in menuItem.articlesCollection " ng-if="!item.savedArticle.allowsIngredients "
         bo-class="item.savedArticle.icon ? 'beverage': 'snacks' " class="item article ">
-            <div class="itemPreviewTitle ">
-                <img class="itemPreview " bo-src="item.savedArticle.largeImage" alt=" " />
-                <h4><span class="itemTitle " bo-text="item.savedArticle.title "></span><span class="itemInfo " bo-if="item.savedArticle.info " bo-text=" ' (' + item.savedArticle.info + ')' "></span></h4>
+            <div class="itemPreview">
+                <img bo-src="item.savedArticle.largeImage" alt=" " />
             </div>
+            <h4 class="itemTitle"><span bo-text="item.savedArticle.title "></span><span class="itemInfo " bo-if="item.savedArticle.info " bo-text=" ' (' + item.savedArticle.info + ')' "></span>
+            </h4>
         </div>
     </div>
 </div>

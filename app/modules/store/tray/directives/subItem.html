@@ -1,15 +1,17 @@
 <div class="item article sub" ng-class="{edit: edit, editBwd: editBwd, remove: remove, removeBwd: removeBwd}">
     <div bindonce class="itemContent">
-        <div class="itemDescription">
-            <h4><span class="itemTitle" bo-text="subItem.title"></span><span class="itemInfo" bo-if="subItem.info" bo-text="' (' + subItem.info + ')'"></span></h4>
-            <p>{{toString}}</p>
-        </div>
-        <div class="staticColumn">
-            <div class="itemPreviewPrice">
-                <img class="itemPreview" bo-src="subItem.largeImage" alt="" />
-                <div class="price itemPrice" bo-text="subItem.finalPrice"></div>
-            </div>
-        </div>
+    	<div class="itemTitle">
+    		<h4>
+    			<span bo-text="subItem.title"></span><span class="itemInfo" bo-if="subItem.info" bo-text="' (' + subItem.info + ')'"></span>
+				</h4>
+				<p>{{toString}}</p>
+    	</div>
+			<div class="priceColumn">
+				<div class="itemPreview">
+					<img bo-src="subItem.largeImage" alt="" />
+				</div>
+				<div class="price itemPrice" bo-text="subItem.finalPrice"></div>
+			</div>
     </div>
     <edit-options></edit-options>
 </div>

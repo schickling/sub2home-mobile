@@ -435,35 +435,44 @@
   // Tray summary
 
   #traySummary {
-    h4 {
+		
+		.itemContent {
+			padding-right: 100px;
+		}
+		
+    .itemTitle, .itemTitle h4 {
       font-size: 24px;
     }
+		
+		.itemTitle p {
+			font-size: 16px;
+		}
+		
     .toggleOptions {
       display: none;
     }
-    .staticColumn {
-      padding-right: 20px;
-      width: 106-25px; // due to border-box (original padding-right 45px)
-      margin-right: 150px;
-    }
+
     .itemOptions {
       right: 20px;
       .opacity(100);
     }
 
-    .itemDescription, .itemPreviewTitle {
-      margin-right: 250px;
-    }
-		
 		.item.menuBundle {
 			
 			.menuHead .itemPreview {
-				display: inline-block;
+				display: table-cell;
 			}
 			
 			.menuContents {
-				padding-left: 58px;
-				margin-right: 170px;
+				margin-right: 100px;
+			
+				.item {
+					padding: 15px 0 15px 10px;
+				}
+			
+				.itemTitle, .itemTitle h4 {
+					font-size: 20px;
+				}
 			}
 		}
 
@@ -512,8 +521,8 @@
   }
 
 
-  #totalValue {
-    right: 170px;
+  #totalValueContainer {
+    padding-right: 100px;
   }
 
   // Delivery Time Clock

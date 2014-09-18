@@ -13,9 +13,7 @@ module.exports = angular.module('404', [])
       });
 
       $routeProvider.otherwise({
-        // TODO remove after launch
-        //redirectTo: '/404',
-        redirectTo: '/info',
+        redirectTo: '/404',
       });
 
     }

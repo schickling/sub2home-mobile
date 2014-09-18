@@ -13,8 +13,8 @@
                     <span id="traySize" bo-text="numberOfItems"></span>
                 </div>
                 <div id="trayValue" ng-class="{sufficing: deliveryAreaModel.minimumValue <= totalAmount}">
-                    <div id="currentValue">{{totalAmount | number:2}}€</div>
-                    <div id="minValue">(min. {{deliveryAreaModel.minimumValue | number:2}}€)</div>
+                    <div id="currentValue">{{totalAmount | number:2}} €</div>
+                    <div id="minValue">(min. {{deliveryAreaModel.minimumValue | number:2}} €)</div>
                 </div>
             </div>
             <div ng-click="navigate(':storeAlias/info')" id="toTheInfo" class="icn iInfo"></div>
@@ -24,7 +24,7 @@
     <div class="content note" id="storeTray" bindonce>
         <div id="minimumOrderValue" class="note" bo-if="deliveryAreaModel.minimumValue > totalAmount">
             <div id="minimumOrderValueContent">
-                <p bo-text="'Leider hast du den Mindestbestellwert von ' + deliveryAreaModel.minimumValue + '€ noch nicht erreicht.'"></p>
+                <p bo-text="'Leider hast du den Mindestbestellwert von ' + deliveryAreaModel.minimumValue + ' € noch nicht erreicht.'"></p>
                 <p ng-click="navigate(':storeAlias')" class="button">Vielleicht noch ein Sub?</p>
             </div>
         </div>

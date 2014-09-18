@@ -1,8 +1,10 @@
 'use strict';
 
 module.exports = ['$scope', 'storeModel', '_', 'selectedDeliveryAreaModel',
+  'PersistenceService',
 
-  function($scope, storeModel, _, selectedDeliveryAreaModel) {
+  function($scope, storeModel, _, selectedDeliveryAreaModel,
+    PersistenceService) {
 
     $scope.storeModel = storeModel;
 
@@ -39,6 +41,11 @@ module.exports = ['$scope', 'storeModel', '_', 'selectedDeliveryAreaModel',
 
     $scope.groupedDeliveryTimes = groupedDeliveryTimes;
     $scope.dayOfWeekStrings = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+
+    $scope.selectDeliveryArea = function(deliveryAreaModel) {
+      PersistenceService.save('selectedDeliveryAreaModel', deliveryAreaModel);
+      $scope.selectedDeliveryAreaModel = deliveryAreaModel;
+    };
 
   }
 ];

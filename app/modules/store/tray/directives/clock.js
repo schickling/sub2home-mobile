@@ -48,7 +48,7 @@ module.exports = ['_',
 
           if (result === null) {
             _.forEach(deliveryTimesCollection, function(deliveryTime) {
-              if (deliveryTime.dayOfWeek === dayOfWeek && deliveryTime.endMinutes >= currentTime) {
+              if (result === null && deliveryTime.dayOfWeek === dayOfWeek && deliveryTime.endMinutes >= currentTime) {
                 result = deliveryTime;
               }
             });

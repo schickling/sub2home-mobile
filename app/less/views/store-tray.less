@@ -286,7 +286,7 @@
 //    position: relative;
 //    .transformTransition(.2s,ease);
 //  }
-	
+
 	// Item Options
 
   .itemOptions {
@@ -347,16 +347,16 @@
     width: 0;
     .transition(e('width .3s ease, opacity .1s .3s linear'));
   }
-	
+
 	// / Item Options End
-	
-	
+
+
 	.item {
     position: relative;
     padding: 20px 0 20px 20px;
     border-bottom: 1px solid @onNoteColor50;
 	}
-	
+
 	.itemContent {
 		position: relative;
 		.border-box;
@@ -366,26 +366,26 @@
 		table-layout: fixed;
 		.transformTransition(.2s, ease);
 	}
-	
+
 	.itemPreview, .itemTitle, .priceColumn {
 		display: table-cell;
 		.border-box;
 		vertical-align: middle;
 	}
-	
+
 	// Item Preview
-	
+
 	.itemPreview {
 		width: 58px;
-		
+
 		img {
 			width: 100%;
 			height: auto;
 		}
 	}
-	
+
 	// Item Title
-	
+
 	.itemTitle {
 		padding-left: 10px;
 		font-size: 18px;
@@ -395,20 +395,20 @@
 		h4 {
 			font-size: 18px;
 		}
-		
+
 		.itemInfo {
 			color: @onNoteColor50;
 		}
-		
+
 		p {
 			padding: 6px 0 0 !important;
 			margin: 0;
 			font-size: 13px;
 		}
 	}
-	
+
 	// Price Container
-	
+
 	.priceColumn {
 		width: 70px;
 		text-align: right;
@@ -426,7 +426,7 @@
     font-size: 12px;
   }
 
-	
+
 	.item {
 		&.beverage {
 			.itemPreview { width: 22px; }
@@ -434,7 +434,7 @@
 				padding-top: 0;
 			}
 		}
-	
+
 		&.menuBundle {
 			.menuHead {
 				position: relative;
@@ -446,15 +446,15 @@
 			.menuContents {
 				margin: 0 45px 0 0;
 				border-top: 1px solid @onNoteColor50;
-				
+
 				.item {
-					padding: 10px 0 10px 10px;	
+					padding: 10px 0 10px 10px;
 					&:last-child {
 						border-bottom: none;
 						padding-bottom: 0;
 					}
 				}
-				
+
 				.item {
 					position: relative;
 					.border-box;
@@ -462,18 +462,18 @@
 					width: 100%;
 					table-layout: fixed;
 				}
-				
+
 				.itemPreview {
 					vertical-align: top;
 				}
 				.itemTitle, .itemTitle h4 {
 					font-size: 16px;
 				}
-			
+
 			}
 		}
 	}
-	
+
 //  .itemDescription {
 //    margin-right: 120px;
 //  }
@@ -484,7 +484,7 @@
 //		table-layout: fixed;
 //		position: relative;
 //		box-sizing: border-box;
-//		
+//
 //    .itemPreview, .itemTitle {
 ////      white-space: normal;
 //      vertical-align: middle;
@@ -492,7 +492,7 @@
 //			display: table-cell;
 //			position: relative;
 //    }
-//		
+//
 //		.itemPreview {
 //			img {
 //				width: 100%;
@@ -553,7 +553,7 @@
 //    }
 //
 //    &.menuBundle {
-//			
+//
 //			.menuHead {
 //				position: relative;
 //				margin-bottom: 10px;
@@ -566,16 +566,16 @@
 //					margin-right: 5px;
 //				}
 //			}
-//			
+//
 //			.menuContents {
-//				
+//
 //				margin: 0 45px 0 0;
 //				border-top: 1px solid @onNoteColor50;
-//				
+//
 //				.itemPreviewTitle {
 //					margin-right: 15px;
 //				}
-//				
+//
 //				.itemPreview {
 //					height: 25px;
 //					width: auto;
@@ -584,7 +584,7 @@
 //					font-size: 16px;
 ////					margin-right: 0 !important;
 //				}
-//				
+//
 //				.sub {
 //					.itemPreview {
 //						height: auto;
@@ -601,23 +601,23 @@
 //						padding-top: 0 !important;
 //					}
 //				}
-//				
+//
 //				.item {
 //					padding: 10px 0 10px 10px;
-//					
+//
 //					&.snacks {
 //						.itemTitle { margin-right: @smallSnacksImageWidth + 5px; }
 //					}
 //					&.beverage {
 //						.itemTitle { margin-right: @smallBeverageImageWidth + 5px; }
 //					}
-//					
+//
 //					&:last-child {
 //						border-bottom: none;
 //						padding-bottom: 0;
 //					}
 //				}
-//				
+//
 //			}
 //
 //      .staticColumn {
@@ -632,7 +632,7 @@
 //          vertical-align: middle;
 //        }
 //      }
-//			
+//
 //			&.edit {
 //				.menuHead {
 //					margin-bottom: 20px;
@@ -664,9 +664,9 @@
 //      }
 //    }
 
-	
+
 		// Animations
-		
+
     // Edit State
  .item {
     &.edit {
@@ -736,7 +736,7 @@
 	display: table;
 	width: 100%;
 	.border-box;
-	
+
 }
 
 #totalValue, #totalValueLabel {
@@ -942,7 +942,6 @@
 // Order Hint -----------------------------------
 
 #storeTrayMainContent #sendOrderHint {
-  display: none;
   text-align: center;
   border-top: 1px solid @onNoteColor50;
   padding-bottom: 30px;

@@ -118,9 +118,14 @@
                 </div>
             </section>
 
-            <section id="sendOrderHint">
+            <section ng-if="deliveryAreaModel.minimumValue > totalAmount" id="sendOrderHint">
                 <i class="icn iFlag"></i>
-                <h4>Wenn du alle Schritte durchlaufen hast, kannst du an dieser Stelle die Bestellung abschicken</h4>
+                <h4>Wenn du den Mindestbestellwert erreicht hast, kannst du an dieser Stelle die Bestellung abschicken</h4>
+            </section>
+
+            <section ng-if="deliveryFormError" id="sendOrderHint">
+                <i class="icn iFlag"></i>
+                <h4>Bitte fülle alle notwendigen Felder bei deiner Lieferadresse aus</h4>
             </section>
 
             <!--<aside id="storyline" class="">-->
@@ -140,10 +145,7 @@
                     Mit Klick auf "Bestellung abschicken" bestätigst du unsere
                     <a href="http://s3-eu-west-1.amazonaws.com/sub2home-static/documents/static/agb-gaeste.pdf">AGB</a>
                 </p>
-                <p ng-if="deliveryFormError">
-                   Bitte fülle alle notwendigen Felder bei deiner Lieferadresse aus
-                </p>
-               <div ng-click="order()" id="sendOrderButton" class="noSelect">
+                <div ng-click="order()" id="sendOrderButton" class="noSelect">
                     Bestellung abschicken
                 </div>
               </div>

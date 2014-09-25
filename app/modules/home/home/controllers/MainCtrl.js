@@ -81,12 +81,7 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
           hours = parseInt(nextDeliveryTime.startMinutes / 60, 10),
           minutes = nextDeliveryTime.startMinutes % 60,
           paddedMinutes = StringUtilService.padNumber(minutes, 2);
-        return ` liefert wieder um $ {
-          hours
-        }: $ {
-          paddedMinutes
-        }
-        Uhr`;
+        return 'liefert wieder um ' + hours + ':' + paddedMinutes + ' Uhr';
       }
     };
 

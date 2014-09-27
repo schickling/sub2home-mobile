@@ -22,6 +22,7 @@
 #storeHome {
 	display: table;
 	min-height: 100%;
+	table-layout: fixed;
 }
 
 
@@ -29,9 +30,13 @@
   padding: 13px @bodyPadding 13px;
   font-size: 18px;
   z-index: 101;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: left;
 
   p {
-    display: inline-block;
+    display: inline;
     margin: 0;
     padding: 0;
   }

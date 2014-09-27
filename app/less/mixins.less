@@ -221,6 +221,23 @@ input, textarea {
           transition: @transition;
 }
 
+// Animation
+
+.animation(@animation) {
+	-webkit-animation: @animation;
+  -moz-animation:    @animation;
+  -o-animation:      @animation;
+  animation:         @animation;
+}
+
+
+// Keyframes
+
+.keyframes (@name, @fromRules, @toRules) {
+    @-webkit-keyframes ~'@{name}' { 0% { @fromRules(); } 100% { @toRules(); } }
+            @keyframes ~'@{name}' { 0% { @fromRules(); } 100% { @toRules(); } }
+}
+
 // Transformations
 .rotate(@degrees) {
   -webkit-transform: rotate(@degrees);

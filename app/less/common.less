@@ -568,6 +568,20 @@ p {
 }
 
 
+.iCompass {
+	&.loading {
+		.animation(compassAnimation 1.5s linear infinite);
+	}
+}
+
+.keyframes(compassAnimation, {
+	.rotate(0deg);
+},
+{
+  .rotate(360deg);
+});
+
+
 // Items used on more than one page --------------------------------------------
 
 

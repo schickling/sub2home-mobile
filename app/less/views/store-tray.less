@@ -765,17 +765,10 @@
     vertical-align: top;
     padding: 40px 5px 30px;
   }
-
-  // &.notEarlier {
-  //   #hours:before {
-  //     color: @onNoteColor10;
-  //   }
-  // }
-  // &.notLater {
-  //   #minutes:after {
-  //     color: @onNoteColor10;
-  //   }
-  // }
+	
+	#hours, #minutes {
+		width: 90px;
+	}
 }
 
 .clockControls {
@@ -803,6 +796,10 @@
       content: "\e621"
     }
   }
+	&.unavailable {
+		color: @onNoteColor20;
+		cursor: default;
+	}
 }
 
 // #hours:before {

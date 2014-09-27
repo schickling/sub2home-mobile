@@ -862,30 +862,36 @@
       }
     }
   }
+	
+	.addField {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		height: 42px;
+		width: 42px;
+		background: @onNoteColor50;
+		.border-radius(3px);
+		text-align: center;
+		cursor: pointer;
+		display: none;
+
+		&:before {
+			content: "\e622";
+			font-family: "Homicons";
+			color: @noteColor;
+			font-size: 24px;
+			position: relative;
+			top: 9px;
+		}
+	}
+	
   &.additionalFields {
     .inputContainer:last-child {
       margin-right: 50px;
     }
-    .addField {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      height: 42px;
-      width: 42px;
-      background: @onNoteColor50;
-      .border-radius(3px);
-      text-align: center;
-      cursor: pointer;
-
-      &:before {
-        content: "\e622";
-        font-family: "Homicons";
-        color: @noteColor;
-        font-size: 24px;
-        position: relative;
-        top: 9px;
-      }
-    }
+		.addField {
+			display: block;
+		}
   }
 }
 

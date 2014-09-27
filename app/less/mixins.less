@@ -230,6 +230,19 @@ input, textarea {
   animation:         @animation;
 }
 
+.animation-delay(@delay) {
+	-webkit-animation-delay: @delay;
+	-moz-animation-delay: @delay;
+	-o-animation-delay: @delay;
+  animation-delay: @delay;
+}
+
+.animation-timing-function(@timing-function) {
+	-webkit-animation-timing-function: @timing-function;
+  -moz-timing-function: @timing-function;
+	-o-timing-function: @timing-function;
+	animation-timing-function: @timing-function;
+}
 
 // Keyframes
 

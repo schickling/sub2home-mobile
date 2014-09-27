@@ -595,6 +595,7 @@ p {
 	margin: -@gmb-loader-size/2 0 0 -@gmb-loader-size/2;
   height: @gmb-loader-size;
   width: @gmb-loader-size;
+	z-index: 10;
 	
 	.transition(opacity .1s linear);
 
@@ -849,6 +850,9 @@ p {
 		position: relative;
 		
 		img {
+			position: relative;
+			z-index: 15;
+			
 			.transition(opacity .2s .2s linear);
 		}
 		

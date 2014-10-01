@@ -29,6 +29,7 @@ module.exports = ['_', '$q',
         this._menuUpgradeArticleIndex = -1;
 
         this._menuUpgrades.title = this._menuUpgrades[0].title;
+        this._menuUpgrades.icon = 'iMenuUpgrade';
 
         return this;
       },

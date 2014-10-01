@@ -16,15 +16,21 @@
                 <input type="text" name="email" value="" ng-model="formData.email" placeholder="Email">
             </div>
         </div>
-        <div class="inputGroup">
-            <div class="addField"></div>
+
+
+
+        <div class="inputGroup" ng-class="{additionalFields: !showAdditionalAddress}">
+            <div ng-click="clickOpenAddidionalAddress()" class="addField"></div>
             <div class="inputContainer" input-error-name>
                 <input type="text" name="address" value="" ng-model="formData.street" required placeholder="Straße + Nr. *">
             </div>
-            <div class="inputContainer">
+            <div class="inputContainer" ng-if="showAdditionalAddress">
                 <input type="text" name="additionalAddress" ng-model="formData.streetAdditional" value="" placeholder="Addresszusatz">
             </div>
         </div>
+
+
+
         <p bindonce id="trayDeliveryArea">in <span bo-text="storeModel.addressModel.postal"></span>  <span bo-text="storeModel.addressModel.city"></span><span ng-click="toggleInfoDeliveryArea()" class="infoButton inCopyText"></span>
         </p>
         <p ng-class="{'ng-hide':infoDeliveryArea}" id="trayAdditionalInfo">Postleitzahl und Stadt hast du bereits zu Beginn des Bestellvorganges ausgewählt.

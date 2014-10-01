@@ -8,6 +8,11 @@ module.exports = [
       templateUrl: 'modules/store/tray/directives/deliveryAddressForm.html',
       link: function($scope, $elem, $attrs) {
 
+        $scope.showAdditionalAddress = false;
+
+        $scope.clickOpenAddidionalAddress = function() {
+          $scope.showAdditionalAddress = true;
+        };
       }
     };
 

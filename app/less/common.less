@@ -698,8 +698,6 @@ p {
 	}
 }
 
-
-
 #pageLoaderContainer {
 	position: fixed;
 	top: 0;
@@ -708,9 +706,22 @@ p {
 	bottom: 0;
 	background: rgba(255,255,255,.95);
 	z-index: 9999;
-	.opacity(100);
+	.opacity(0);
+	display: none;
+	.transition(opacity .1s linear);
 	
 	#pageLoader {
+		.opacity(100);
+	}
+}
+
+.preLoading {
+	#pageLoaderContainer {
+		display: block;
+	}
+}
+.loading {
+	#pageLoaderContainer {
 		.opacity(100);
 	}
 }

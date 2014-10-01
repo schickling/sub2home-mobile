@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['_',
+module.exports = ['_', 'ClockService',
 
-  function(_) {
+  function(_, ClockService) {
     return {
       restrict: 'E',
       scope: {
@@ -14,87 +14,33 @@ module.exports = ['_',
       templateUrl: 'modules/store/tray/directives/clock.html',
       link: function($scope, $elem, $attrs) {
 
-        /*
-         * returns the current time in minuts and rounded up to the next number dividable by 5
-         */
-        var getCurrentTime = function() {
-          var date = new Date();
-          var minutes = date.getMinutes();
-          var hours = date.getHours();
+//        var date = new Date();
+        var date = new Date(2014, 8, 8, 13, 25, 0, 0);
+        ClockService.init($scope.storeModel.deliveryTimesCollection, date, $scope.deliveryAreaModel.minimumDuration);
 
-          var result = minutes + hours * 60;
-
-          while (result % 5 != 0) {
-            result++;
-          }
-
-          return result;
-        };
-
-        var isDelivering = function(deliveryTimesCollection) {
-          return getDeliveryTime(deliveryTimesCollection) ? true : false;
-        };
-
-        var getDeliveryTime = function(deliveryTimesCollection) {
-          var result = null;
-          var dayOfWeek = new Date().getDay();
-          var currentTime = getCurrentTime();
-
-          _.forEach(deliveryTimesCollection, function(deliveryTime) {
-            if (deliveryTime.dayOfWeek === dayOfWeek && deliveryTime.startMinutes <= currentTime && deliveryTime.endMinutes >= currentTime) {
-              result = deliveryTime;
-            }
-          });
-
-          if (result === null) {
-            _.forEach(deliveryTimesCollection, function(deliveryTime) {
-              if (deliveryTime.dayOfWeek === dayOfWeek && deliveryTime.endMinutes >= currentTime) {
-                result = deliveryTime;
-              }
-            });
-          }
-
-          return result;
-        };
-
-        $scope.storeIsDelivering = isDelivering($scope.storeModel.deliveryTimesCollection);
-
-        var minimumDeliveryTime = null;
-
-        if ($scope.storeIsDelivering) {
-          // TODO check if the store is open at the moment
-          var tmp = getDeliveryTime($scope.storeModel.deliveryTimesCollection);
-          if (tmp.startMinutes > getCurrentTime()) {
-            minimumDeliveryTime = tmp.startMinutes + $scope.deliveryAreaModel.minimumDuration;
-          } else {
-            minimumDeliveryTime = getCurrentTime() + $scope.deliveryAreaModel.minimumDuration;
-          }
-          $scope.orderMinutes = minimumDeliveryTime;
-          $scope.currentDeliveryTime = getDeliveryTime($scope.storeModel.deliveryTimesCollection);
-        } else {
-          // TODO find out what todo when the store is closed
-        }
+        $scope.orderMinutes = ClockService.getEarliestDeliveryTime();
+        $scope.storeIsDelivering = ClockService.getNextOpeningHour();
 
         $scope.minutesUp = function() {
-          if ($scope.orderMinutes + 5 <= $scope.currentDeliveryTime.endMinutes) {
+          if ($scope.orderMinutes + 5 <= ClockService.getLatestDeliveryTime()) {
             $scope.orderMinutes += 5;
           }
         };
 
         $scope.minutesDown = function() {
-          if ($scope.currentDeliveryTime.startMinutes <= $scope.orderMinutes - 5 && minimumDeliveryTime <= $scope.orderMinutes - 5) {
+          if ($scope.orderMinutes - 5 >= ClockService.getEarliestDeliveryTime()) {
             $scope.orderMinutes -= 5;
           }
         };
 
         $scope.hoursUp = function() {
-          if ($scope.orderMinutes + 60 <= $scope.currentDeliveryTime.endMinutes) {
+          if ($scope.orderMinutes + 60 <= ClockService.getLatestDeliveryTime()) {
             $scope.orderMinutes += 60;
           }
         };
 
         $scope.hoursDown = function() {
-          if ($scope.currentDeliveryTime.startMinutes <= $scope.orderMinutes - 60 && minimumDeliveryTime <= $scope.orderMinutes - 60) {
+          if ($scope.orderMinutes - 60 >= ClockService.getEarliestDeliveryTime()) {
             $scope.orderMinutes -= 60;
           }
         };

@@ -15,33 +15,39 @@ module.exports = ['_', 'ClockService',
       link: function($scope, $elem, $attrs) {
 
 //        var date = new Date();
-        var date = new Date(2014, 8, 8, 13, 0, 0, 0);
+        var date = new Date(2014, 8, 8, 12, 0, 0, 0);
         ClockService.init($scope.storeModel.deliveryTimesCollection, date, $scope.deliveryAreaModel.minimumDuration);
 
         $scope.orderMinutes = ClockService.getEarliestDeliveryTime();
         $scope.storeIsDelivering = ClockService.getNextOpeningHour();
 
+        $scope.latestDeliveryTime = ClockService.getLatestDeliveryTime();
+        $scope.earliestDeliveryTime = ClockService.getEarliestDeliveryTime();
 
         $scope.minutesUp = function() {
-          if ($scope.orderMinutes + 5 <= ClockService.getLatestDeliveryTime()) {
+          $scope.latestDeliveryTime = ClockService.getLatestDeliveryTime();
+          if ($scope.orderMinutes + 5 <= $scope.latestDeliveryTime) {
             $scope.orderMinutes += 5;
           }
         };
 
         $scope.minutesDown = function() {
-          if ($scope.orderMinutes - 5 >= ClockService.getEarliestDeliveryTime()) {
+          $scope.earliestDeliveryTime = ClockService.getEarliestDeliveryTime();
+          if ($scope.orderMinutes - 5 >= $scope.earliestDeliveryTime) {
             $scope.orderMinutes -= 5;
           }
         };
 
         $scope.hoursUp = function() {
-          if ($scope.orderMinutes + 60 <= ClockService.getLatestDeliveryTime()) {
+          $scope.latestDeliveryTime = ClockService.getLatestDeliveryTime();
+          if ($scope.orderMinutes + 60 <= $scope.latestDeliveryTime) {
             $scope.orderMinutes += 60;
           }
         };
 
         $scope.hoursDown = function() {
-          if ($scope.orderMinutes - 60 >= ClockService.getEarliestDeliveryTime()) {
+          $scope.earliestDeliveryTime = ClockService.getEarliestDeliveryTime();
+          if ($scope.orderMinutes - 60 >= $scope.earliestDeliveryTime) {
             $scope.orderMinutes -= 60;
           }
         };

@@ -10,14 +10,14 @@
     <div ng-if="storeIsDelivering" id="deliveryTimeClock" class="notEarlier">
         <div id="hours">
             {{orderMinutes / 60 | numberFixedLength:2}}
-            <div ng-class="{unavailable: orderMinutes + 60 > ClockService.getLatestDeliveryTime()}" ng-click="hoursUp()" class="clockControls up"></div>
-            <div ng-class="{unavailable: orderMinutes - 60 < ClockService.getEarliestDeliveryTime()}" ng-click="hoursDown()" class="clockControls down"></div>
+            <div ng-class="{unavailable: orderMinutes + 60 > latestDeliveryTime}" ng-click="hoursUp()" class="clockControls up"></div>
+            <div ng-class="{unavailable: orderMinutes - 60 < earliestDeliveryTime}" ng-click="hoursDown()" class="clockControls down"></div>
         </div>
         <div id="dividingDots">:</div>
         <div id="minutes">
              {{orderMinutes % 60 | numberFixedLength:2}}
-             <div ng-class="{unavailable: orderMinutes + 5 > ClockService.getLatestDeliveryTime()}" ng-click="minutesUp()" class="clockControls up"></div>
-             <div ng-class="{unavailable: true}" ng-click="minutesDown()" class="clockControls down"></div>
+             <div ng-class="{unavailable: orderMinutes + 5 > latestDeliveryTime}" ng-click="minutesUp()" class="clockControls up"></div>
+             <div ng-class="{unavailable: orderMinutes - 5 < earliestDeliveryTime}" ng-click="minutesDown()" class="clockControls down"></div>
         </div>
     </div>
 </div>

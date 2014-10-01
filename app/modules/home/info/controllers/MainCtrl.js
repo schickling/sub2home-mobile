@@ -1,8 +1,10 @@
 'use strict';
 
-module.exports = [
+module.exports = ['$scope', 'storesCollection',
 
-  function() {
+  function($scope, storesCollection) {
+
+    $scope.storesCollection = storesCollection.filter(s => s.title !== 'Test');
 
   }
 ];

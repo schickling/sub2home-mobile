@@ -69,10 +69,6 @@ angular.module('app').run(['ResourceService', '$location', '$rootScope',
 
     fastclick(document.body);
 
-    $rootScope.$on('$routeChangeStart', function() {
-      PageLockService.lock();
-    });
-
     $rootScope.$on('$routeChangeSuccess', function() {
       $window.scrollTo(0, 0);
       $window.analytics.page();

@@ -15,7 +15,7 @@ module.exports = ['$timeout',
 
         timeoutPromise = $timeout(function() {
           $html.addClass('loading');
-        }, 10);
+        }, 0);
 
       },
 

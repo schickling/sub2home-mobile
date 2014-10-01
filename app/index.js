@@ -57,6 +57,9 @@ angular.module('app').run(['ResourceService', '$location', '$rootScope',
   function(ResourceService, $location, $rootScope, $window, RoutingService,
     PageLockService) {
 
+    // initial page lock
+    PageLockService.lock();
+
     var errorCallback = function() {
       $location.path('/404');
       $location.replace();

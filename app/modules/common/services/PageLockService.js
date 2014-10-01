@@ -11,7 +11,7 @@ module.exports = ['$timeout',
 
       lock: function() {
 
-        $html.addClass('preloading');
+        $html.addClass('preLoading');
 
         timeoutPromise = $timeout(function() {
           $html.addClass('loading');
@@ -23,7 +23,7 @@ module.exports = ['$timeout',
 
         $timeout.cancel(timeoutPromise);
 
-        $html.removeClass('preloading');
+        $html.removeClass('preLoading');
         $html.removeClass('loading');
 
       }

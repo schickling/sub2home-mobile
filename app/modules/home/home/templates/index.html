@@ -1,87 +1,92 @@
-<aside id="header">
-    <div id="notification"></div>
-    <div id="headerContent">
-        <div id="ownLogo" class="icn iSub"></div>
-        <div id="pageTitle">
-            SUBWAY<span class="superscript">&reg;</span>-Onlinetheke
-        </div>
-        <div ng-click="navigate('info')" id="toTheInfo" class="icn iInfo"></div>
-    </div>
-</aside>
+<div class="overlayed"> <!-- Jede Seite braucht einen umschließenden div, der die Klasse .overlayed bekommt, wenn sie overlayed ist -->
+	<aside id="header">
+			<div id="notification"></div>
+			<div id="headerContent">
+					<div id="ownLogo" class="icn iSub"></div>
+					<div id="pageTitle">
+							SUBWAY<span class="superscript">&reg;</span>-Onlinetheke
+					</div>
+					<div ng-click="navigate('info')" id="toTheInfo" class="icn iInfo"></div>
+			</div>
+	</aside>
 
-<div id="homeHome" ng-class="getStepClass()">
-    <div id="container" class="note">
+	<div id="homeHome" ng-class="getStepClass()">
+			<div id="container" class="note">
 
-        <!-- STEP 1 View-->
+					<!-- STEP 1 View-->
 
-        <div id="step1">
+					<div id="step1">
 
-            <section id="introduction">
-                <p id="introducingText">
-                    Bei sub2home bestellst du
-                    <br>genau wie an der Theke in einem SUBWAY<span class="superscript">&reg;</span>-Restaurant.
-                    Nur dass du dazu nicht das Haus verlassen musst. Wir kommen
-                    zu dir, also:
-                </p>
-            </section>
-        </div>
+							<section id="introduction">
+									<p id="introducingText">
+											Bei sub2home bestellst du
+											<br>genau wie an der Theke in einem SUBWAY<span class="superscript">&reg;</span>-Restaurant.
+											Nur dass du dazu nicht das Haus verlassen musst. Wir kommen
+											zu dir, also:
+									</p>
+							</section>
+					</div>
 
-        <!-- STEP 2/3 View -->
+					<!-- STEP 2/3 View -->
 
-        <div id="step2">
-            <div class="container">
+					<div id="step2">
+							<div class="container">
 
-                <section id="centralInput">
-                    <div class="callToActionContainer">
-                        <p class="callToAction">
-                            Wohin dürfen wir liefern?
-                        </p>
-                    </div>
-                    <p>
-                        <postal-input id="postalInputContainer" app-focused="inputFocused" app-postal="postal"
-                        app-district="district"></postal-input>
-                    </p>
-                    <!--           <p ng-show="selectedDeliveryAreaModel && deliveryAreasCollection.length > 1 && showStores">
-            <span id="editDeliveryArea" ng-click="resetDeliveryArea()"><i class="icn iWrench inSmallText before"></i>Liefergebiet bearbeiten</span>
-          </p> -->
-                </section>
+									<section id="centralInput">
+											<div class="callToActionContainer">
+													<p class="callToAction">
+															Wohin dürfen wir liefern?
+													</p>
+											</div>
+											<p>
+													<postal-input id="postalInputContainer" app-focused="inputFocused" app-postal="postal"
+													app-district="district"></postal-input>
+											</p>
+											<!--           <p ng-show="selectedDeliveryAreaModel && deliveryAreasCollection.length > 1 && showStores">
+							<span id="editDeliveryArea" ng-click="resetDeliveryArea()"><i class="icn iWrench inSmallText before"></i>Liefergebiet bearbeiten</span>
+						</p> -->
+									</section>
 
-                <section ng-if="storesCollection.length === 0 && deliveryAreasCollection.length === 0"
-                id="noStore">
-                    <p>Wir liefern leider nicht nach {{postal}}</p>
-                    <div ng-click="navigate('info')" class="button">Mehr Infos</div>
-                </section>
+									<section ng-if="storesCollection.length === 0 && deliveryAreasCollection.length === 0"
+									id="noStore">
+											<p>Wir liefern leider nicht nach {{postal}}</p>
+											<div ng-click="navigate('info')" class="button">Mehr Infos</div>
+									</section>
 
-                <section ng-if="deliveryAreasCollection.length > 1" id="chooseDeliveryArea">
-                    <header class="callToAction">
-                        Wähle eines der {{ deliveryAreasCollection.length }} Liefergebiete:
-                    </header>
-                    <div id="selectableDeliveryAreas">
-                        <div class="deliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection"
-                        ng-click="processDeliveryArea(deliveryAreaModel)">
-                            {{ deliveryAreaModel.district }}<span>(in {{ deliveryAreaModel.minimumDuration }}min für mind. {{ deliveryAreaModel.minimumValue }}€)</span>
-                        </div>
-                    </div>
-                </section>
-
-
-
-                <section ng-if="storesCollection.length > 0 && deliveryAreasCollection.length ===1"
-                id="chooseStore">
-                    <header class="callToAction">
-                        Folgendes SUBWAY<span class="superscript">&reg;</span>-Restaurant
-                        liefert in dieses Gebiet:
-                    </header>
-                    <div id="selectableStores">
-                        <div class="store" ng-click="selectStore(storeModel)" ng-class="{isDelivering: isDelivering(storeModel), isClosed: !storeModel.isOpen}"
-                        ng-repeat="storeModel in storesCollection"><i class="icn iStore"></i>{{ storeModel.title }}<span>{{ getDeliveryTimeString(storeModel) }}</span>
-                            <i class="icn iNext"></i>
-                        </div>
-                    </div>
-                </section>
+									<section ng-if="deliveryAreasCollection.length > 1" id="chooseDeliveryArea">
+											<header class="callToAction">
+													Wähle eines der {{ deliveryAreasCollection.length }} Liefergebiete:
+											</header>
+											<div id="selectableDeliveryAreas">
+													<div class="deliveryArea" ng-repeat="deliveryAreaModel in deliveryAreasCollection"
+													ng-click="processDeliveryArea(deliveryAreaModel)">
+															{{ deliveryAreaModel.district }}<span>(in {{ deliveryAreaModel.minimumDuration }}min für mind. {{ deliveryAreaModel.minimumValue }}€)</span>
+													</div>
+											</div>
+									</section>
 
 
-            </div>
-        </div>
-    </div>
+
+									<section ng-if="storesCollection.length > 0 && deliveryAreasCollection.length ===1"
+									id="chooseStore">
+											<header class="callToAction">
+													Folgendes SUBWAY<span class="superscript">&reg;</span>-Restaurant
+													liefert in dieses Gebiet:
+											</header>
+											<div id="selectableStores">
+													<div class="store" ng-click="selectStore(storeModel)" ng-class="{isDelivering: isDelivering(storeModel), isClosed: !storeModel.isOpen}"
+													ng-repeat="storeModel in storesCollection"><i class="icn iStore"></i>{{ storeModel.title }}<span>{{ getDeliveryTimeString(storeModel) }}</span>
+															<i class="icn iNext"></i>
+													</div>
+											</div>
+									</section>
+
+
+							</div>
+					</div>
+			</div>
+	</div>
+</div> <!-- Hier hört der Content auf, und der PageLoader overlay beginnt -->
+<div id="pageLoaderContainer">
+	<div id="pageLoader"><div></div><div></div><div></div></div>
 </div>

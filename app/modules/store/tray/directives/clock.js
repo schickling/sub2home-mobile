@@ -21,6 +21,7 @@ module.exports = ['_', 'ClockService',
         $scope.orderMinutes = ClockService.getEarliestDeliveryTime();
         $scope.storeIsDelivering = ClockService.getNextOpeningHour();
 
+
         $scope.minutesUp = function() {
           if ($scope.orderMinutes + 5 <= ClockService.getLatestDeliveryTime()) {
             $scope.orderMinutes += 5;

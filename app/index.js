@@ -53,8 +53,12 @@ angular.module('app').config(['$locationProvider',
 ]);
 
 angular.module('app').run(['ResourceService', '$location', '$rootScope',
-  '$window', 'RoutingService',
-  function(ResourceService, $location, $rootScope, $window, RoutingService) {
+  '$window', 'RoutingService', 'PageLockService', '$timeout',
+  function(ResourceService, $location, $rootScope, $window, RoutingService,
+    PageLockService, $timeout) {
+
+    // initial page lock
+    PageLockService.lock();
 
     var errorCallback = function() {
       $location.path('/404');
@@ -68,6 +72,7 @@ angular.module('app').run(['ResourceService', '$location', '$rootScope',
     $rootScope.$on('$routeChangeSuccess', function() {
       $window.scrollTo(0, 0);
       $window.analytics.page();
+      $timeout(PageLockService.unlock, 0);
     });
 
     // convenient way to navigate in templates and controllers

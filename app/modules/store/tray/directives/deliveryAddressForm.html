@@ -16,14 +16,13 @@
                 <input type="text" name="email" value="" ng-model="formData.email" placeholder="Email">
             </div>
         </div>
-        <div class="inputGroup additionalFields">
-            <!--                <div class="addField"></div> -->
+        <div class="inputGroup">
+            <div class="addField"></div>
             <div class="inputContainer" input-error-name>
                 <input type="text" name="address" value="" ng-model="formData.street" required placeholder="Straße + Nr. *">
             </div>
             <div class="inputContainer">
                 <input type="text" name="additionalAddress" ng-model="formData.streetAdditional" value="" placeholder="Addresszusatz">
-                <!-- Nur wenn der .addField Button gedrückt wird -->
             </div>
         </div>
         <p bindonce id="trayDeliveryArea">in <span bo-text="storeModel.addressModel.postal"></span>  <span bo-text="storeModel.addressModel.city"></span><span ng-click="toggleInfoDeliveryArea()" class="infoButton inCopyText"></span>

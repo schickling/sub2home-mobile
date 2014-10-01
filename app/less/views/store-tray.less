@@ -765,17 +765,10 @@
     vertical-align: top;
     padding: 40px 5px 30px;
   }
-
-  // &.notEarlier {
-  //   #hours:before {
-  //     color: @onNoteColor10;
-  //   }
-  // }
-  // &.notLater {
-  //   #minutes:after {
-  //     color: @onNoteColor10;
-  //   }
-  // }
+	
+	#hours, #minutes {
+		width: 90px;
+	}
 }
 
 .clockControls {
@@ -803,6 +796,10 @@
       content: "\e621"
     }
   }
+	&.unavailable {
+		color: @onNoteColor20;
+		cursor: default;
+	}
 }
 
 // #hours:before {
@@ -865,30 +862,36 @@
       }
     }
   }
+	
+	.addField {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		height: 42px;
+		width: 42px;
+		background: @onNoteColor50;
+		.border-radius(3px);
+		text-align: center;
+		cursor: pointer;
+		display: none;
+
+		&:before {
+			content: "\e622";
+			font-family: "Homicons";
+			color: @noteColor;
+			font-size: 24px;
+			position: relative;
+			top: 9px;
+		}
+	}
+	
   &.additionalFields {
     .inputContainer:last-child {
       margin-right: 50px;
     }
-    .addField {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      height: 42px;
-      width: 42px;
-      background: @onNoteColor50;
-      .border-radius(3px);
-      text-align: center;
-      cursor: pointer;
-
-      &:before {
-        content: "\e622";
-        font-family: "Homicons";
-        color: @noteColor;
-        font-size: 24px;
-        position: relative;
-        top: 9px;
-      }
-    }
+		.addField {
+			display: block;
+		}
   }
 }
 

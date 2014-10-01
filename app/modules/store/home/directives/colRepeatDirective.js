@@ -22,10 +22,12 @@ module.exports = ['$window',
           });
         }
 
+        var hasOffset = $scope.hasMenuOffset && $window.innerWidth >= 450;
+        var offset = hasOffset ? 50 : 0;
+        var maxWidth = 320;
+        var numberOfCols = parseInt(($window.innerWidth - offset) / maxWidth, 10);
+
         var updateCols = function() {
-          var offset = $scope.hasMenuOffset ? 50 : 0;
-          var maxWidth = 320;
-          var numberOfCols = parseInt(($window.innerWidth - offset) / maxWidth, 10);
           var cols = [];
 
           for (var i = 0; i < numberOfCols; i++) {

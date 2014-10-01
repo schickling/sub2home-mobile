@@ -40,7 +40,7 @@
 
         <section id="ingredients">
             <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
-                <div class="imageContainer">
+                <div lazy-image class="imageContainer">
                     <div bindonce class="ingredientPriceContainer">
                         <div ng-if="ingredientModel.price > 0" bo-text="ingredientModel.price | number:2" class="ingredientPrice price"></div>
                     </div>
@@ -70,7 +70,7 @@
         <section id="menuUpgrades" ng-if="type === 'menuUpgrade'">
             <div bindonce ng-repeat="menu in articleModel.menuUpgradesCollection" class="menuUpgrade">
                 <div class="menuUpgradePreview">
-                    <img class="menuUpgradeBase" bo-alt="articleModel.title" bo-src="articleModel.smallImage">
+                    <img lazy-image class="menuUpgradeBase" bo-alt="articleModel.title" bo-src="articleModel.smallImage">
                     <div ng-repeat="upgradeArticle in menu.menuComponentBlocksCollection" class="menuUpgradeComponent icn {{upgradeArticle.menuComponentBlockMediaModel.icon}}"></div>
                 </div>
 
@@ -95,7 +95,7 @@
             <h3>{{nextStep.title}}</h3>
         	</div>
 				</div>
-        
+
 				<div class="toNextStepContainer" ng-class="{hidden: !toTray || !noUpgrade}" ng-click="goToTray()">
 					<div class="toNextStep iTray">
             <p>Oder nur ein {{ articleModel.title }}
@@ -103,14 +103,14 @@
             <h3>auf's Tablett</h3>
         	</div>
 				</div>
-        
+
 				<div class="toNextStepContainer" ng-class="{hidden: !toTray || noUpgrade || hideNextButton}" ng-click="goToTray()">
 					<div class="toNextStep iTray highlighted">
             <p>Fertig! Letzter Schritt:</p>
             <h3>Auf's Tablett</h3>
         	</div>
 				</div>
-        
+
     </div>
 
     <aside id="timeline" class="note below">

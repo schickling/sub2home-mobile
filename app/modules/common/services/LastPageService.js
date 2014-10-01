@@ -6,12 +6,18 @@ module.exports = ['PersistenceService',
 
     return {
 
-      set: function(title) {
-        PersistenceService.save('last-page', title);
+      set: function(path, title) {
+        PersistenceService.save('last-page', {
+          path: path,
+          title: title
+        });
       },
 
       get: function() {
-        return PersistenceService.load('last-page') || '';
+        return PersistenceService.load('last-page') || {
+          path: '/',
+          title: 'Startseite'
+        };
       }
 
 

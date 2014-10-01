@@ -11,11 +11,15 @@ describe('LastPageService', function() {
 
   it('should save and return and delete the last page', function() {
 
-    var title = 'Subs'
+    var path = '/memmingen/1';
+    var title = 'Subs';
 
-    LastPageService.set(title);
+    LastPageService.set(path, title);
 
-    expect(LastPageService.get()).toEqual(title);
+    expect(LastPageService.get()).toEqual({
+      path: path,
+      title: title
+    });
 
   });
 

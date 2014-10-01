@@ -2,10 +2,8 @@
     <aside id="header" class="noSelect">
         <div id="notification"></div>
         <div id="headerContent">
-            <div id="getBack" ng-click="navigate('@back')">
-                <!--<p>Aktionen-->
-                <!-- Article-Category from which the User either got to selection or tray -->
-                <!--</p>-->
+            <div id="getBack" ng-click="navigate(lastPage.path)">
+                <p bindonce bo-text="lastPage.title"></p>
             </div>
             <div id="toTheTray" class="atTray" bindonce>
                 <div id="trayTitle">Kasse</div>

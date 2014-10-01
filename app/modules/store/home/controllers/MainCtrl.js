@@ -2,11 +2,13 @@
 
 module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
   'selectedDeliveryAreaModel', 'RoutingService', 'PersistenceService',
-  'PostalOracleService', 'NotificationService', '$timeout', 'TrayStorageService',
+  'PostalOracleService', 'NotificationService', '$timeout',
+  'TrayStorageService', 'LastPageService', '$location',
 
   function($scope, storeModel, categoriesCollection, _,
     selectedDeliveryAreaModel, RoutingService, PersistenceService,
-    PostalOracleService, NotificationService, $timeout, TrayStorageService) {
+    PostalOracleService, NotificationService, $timeout, TrayStorageService,
+    LastPageService, $location) {
 
     $scope.categoriesCollection = categoriesCollection;
     $scope.currentCategoryModel = categoriesCollection.current;
@@ -24,6 +26,8 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
       NotificationService.removeStoreHomeNotification();
     }
     $scope.notification = NotificationService.getStoreHomeNotification();
+
+    LastPageService.set($location.path(), $scope.currentCategoryModel.title);
 
     $scope.setTrayNotification = function() {
       $scope.trayNotification = NotificationService.getTrayNotification();

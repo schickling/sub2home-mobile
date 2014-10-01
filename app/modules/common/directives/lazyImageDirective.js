@@ -7,12 +7,15 @@ module.exports = [
       restrict: 'A',
       link: function($scope, $elem) {
 
-        var img = $elem.children('img:first');
+        var container = $elem[0];
+        var img = container.querySelector('img');
+        var imgLoader = container.querySelector('.imageLoader');
 
         $elem.addClass('loading');
-        img.bind('load', function() {
+        img.addEventListener('load', function() {
           $elem.removeClass('loading');
-          img.unbind('load');
+          imgLoader.remove();
+          img.removeEventListener('load');
         });
 
       }

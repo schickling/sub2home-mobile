@@ -15,7 +15,7 @@ module.exports = ['_', 'ClockService',
       link: function($scope, $elem, $attrs) {
 
 //        var date = new Date();
-        var date = new Date(2014, 8, 8, 13, 25, 0, 0);
+        var date = new Date(2014, 8, 8, 13, 0, 0, 0);
         ClockService.init($scope.storeModel.deliveryTimesCollection, date, $scope.deliveryAreaModel.minimumDuration);
 
         $scope.orderMinutes = ClockService.getEarliestDeliveryTime();

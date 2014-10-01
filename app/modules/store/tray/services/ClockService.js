@@ -56,7 +56,7 @@ module.exports = ['_',
       },
 
       getEarliestDeliveryTime: function() {
-        var openingHour = this.getNextOpeningHour(e);
+        var openingHour = this.getNextOpeningHour();
 
         if (openingHour.endMinutes + 15 >= currentTime + minimumDuration) {
           if (openingHour.startMinutes < currentTime + minimumDuration) {

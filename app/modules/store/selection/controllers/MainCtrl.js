@@ -2,10 +2,13 @@
 
 module.exports = ['$scope', 'orderedItemModel', '$window',
   'EntityIteratorService', '$timeout', 'TrayStorageService', 'RoutingService',
-  '$document', '_', 'NotificationService',
+  '$document', '_', 'NotificationService', 'LastPageService',
 
   function($scope, orderedItemModel, $window, EntityIteratorService, $timeout,
-    TrayStorageService, RoutingService, $document, _, NotificationService) {
+    TrayStorageService, RoutingService, $document, _, NotificationService,
+    LastPageService) {
+
+    $scope.lastPage = LastPageService.get();
 
     var getAllArticles = function(entity) {
       var all = [];
@@ -46,7 +49,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
         var confirmed = $window.confirm('Willst du wirklich zurück?');
 
         if (confirmed) {
-          $scope.navigate('@back');
+          $scope.navigate($scope.lastPage.path);
         }
 
         backInProgress = false;

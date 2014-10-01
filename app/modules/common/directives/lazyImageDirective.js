@@ -14,7 +14,9 @@ module.exports = [
         $elem.addClass('loading');
         img.addEventListener('load', function() {
           $elem.removeClass('loading');
-          imgLoader.remove();
+          if (imgLoader) {
+            imgLoader.remove();
+          }
           img.removeEventListener('load');
         });
 

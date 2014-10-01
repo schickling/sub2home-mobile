@@ -3,9 +3,7 @@
         <div id="notification"></div>
         <div id="headerContent">
             <div id="getBack" ng-click="back()">
-                <!--<p>Subs-->
-                <!-- Article-Category from which the User got to selection -->
-                <!--</p>-->
+                <p bindonce bo-text="lastPage.title">Subs</p>
             </div>
             <div ng-if="!setTwoLineHeader" id="pageTitle" class="separate">
                 <span>{{ articleModel.title }}<span ng-if="articleModel.info" class="itemInfo"> {{ articleModel.info }}</span></span>

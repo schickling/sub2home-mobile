@@ -36,7 +36,7 @@
         <!--<h3>Schritt überspringen</h3>-->
         <!--</div>-->
 
-        <section id="ingredients">
+        <section id="ingredients" ng-if="type === 'ingredient'">
             <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
                 <div lazy-image class="imageContainer">
                     <div bindonce class="ingredientPriceContainer">

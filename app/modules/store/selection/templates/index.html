@@ -38,11 +38,15 @@
 
         <section id="ingredients" ng-if="type === 'ingredient'">
             <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
-                <div lazy-image class="imageContainer">
+                <div class="imageContainer">
                     <div bindonce class="ingredientPriceContainer">
                         <div ng-if="ingredientModel.price > 0" bo-text="ingredientModel.price | number:2" class="ingredientPrice price"></div>
                     </div>
-                    <img ng-src="{{ ingredientModel.largeImage }}" alt="" />
+                    <div lazy-image class="ingredientImage">
+                    	 <div class="imageLoader"><div></div><div></div><div></div></div>
+                    	 <img ng-src="{{ ingredientModel.largeImage }}" alt="" />
+                    </div>
+                   
                 </div>
                 <h3>{{ ingredientModel.title }}</h3>
             </div>

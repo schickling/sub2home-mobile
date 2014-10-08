@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$scope', 'PersistenceService', '$timeout',
+module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService',
 
-  function($scope, PersistenceService, $timeout) {
+  function($scope, PersistenceService, $timeout, ParseService) {
 
     var getTimeToDelivery = function(deliveryTime) {
       var tmpTime = new Date();
@@ -15,10 +15,23 @@ module.exports = ['$scope', 'PersistenceService', '$timeout',
     $scope.userInfo = PersistenceService.load('formData');
     $scope.storeModel = PersistenceService.load('storeModel');
 
+    $scope.showRatingMessageInput = false;
+    $scope.disableRatingMessageInput = false;
+    $scope.ratingMessage = 'Was sollen wir besser machen?';
+
+    $scope.sendRating = function(rating) {
+      ParseService.sendRating(rating).then(function() {
+        $scope.showRatingMessageInput = true;
+      });
+    };
+
+    $scope.sendMessage = function() {
+      ParseService.sendMessage($scope.ratingMessage).then(function() {
+        $scope.disableRatingMessageInput = true;
+      });
+    };
 
     $scope.restTime = getTimeToDelivery(PersistenceService.load('timeToDelivery'));
-
-
 
     var countDown = function() {
       var restTime = getTimeToDelivery(PersistenceService.load('timeToDelivery'));
@@ -32,7 +45,7 @@ module.exports = ['$scope', 'PersistenceService', '$timeout',
           countDown();
         }, 60000);
       } else {
-          $scope.restTime = 0;
+        $scope.restTime = 0;
       }
 
     };

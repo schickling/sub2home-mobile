@@ -9,7 +9,7 @@ module.exports = ['$window',
       scope: {
         itemsCollection: '=appItemsCollection',
         col: '=appCol',
-        watch: '=watch',
+        watch: '=appWatch',
         hasMenuOffset: '=appHasMenuOffset',
       },
       link: function($scope, $elem, $attrs) {

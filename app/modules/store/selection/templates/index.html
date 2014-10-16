@@ -51,7 +51,7 @@
 
         <section id="articles" ng-if="type === 'Article'">
             <div id="articlesContent">
-                <div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection" app-col="col" watch="true">
+                <div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection" app-col="col" app-watch="true">
                     <article ng-repeat="itemModel in col"></article>
                 </div>
             </div>

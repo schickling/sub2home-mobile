@@ -243,7 +243,7 @@ body {
 		&#getBack {
 			position: relative;
 			font-size: 12px;
-			padding: 20px 5px 0;
+			padding: 14px 5px 0;
 			vertical-align: top;
 			width: 55px;
 			text-align: center;
@@ -583,7 +583,9 @@ p {
 
 // Image & Page Loader
 
-@gmb-loader-size: 	60px;
+@gmb-loader-size: 			60px;
+@gmb-loader-small-size: 30px;
+
 @gmb-loader-color: 	@greenLighter30;
 
 .imageLoader, #pageLoader {
@@ -699,6 +701,7 @@ p {
 	}
 }
 
+
 #pageLoaderContainer {
 	position: fixed;
 	top: 0;
@@ -723,6 +726,7 @@ p {
 }
 .loading {
 	#pageLoaderContainer {
+		display: block;
 		.opacity(100);
 	}
 	#page {
@@ -878,28 +882,6 @@ p {
 			border-bottom: none;
 		}
 	}
-	
-	.itemImage {
-		height: 160px;
-		position: relative;
-		
-		img {
-			position: relative;
-			z-index: 15;
-			
-			.transition(opacity .2s .2s linear);
-		}
-		
-		&.loading {
-			img {
-				.opacity(0);
-				
-			}
-			.imageLoader {
-				.opacity(100);
-			}
-		}
-	}
 
 	// Columns
 
@@ -936,6 +918,31 @@ p {
 			// padding: 0 15px;
 		}
 	}
+}
+
+.itemImage, .ingredientImage {
+	position: relative;
+
+	img {
+		position: relative;
+		z-index: 15;
+
+		.transition(opacity .2s .2s linear);
+	}
+
+	&.loading {
+		img {
+			.opacity(0);
+
+		}
+		.imageLoader {
+			.opacity(100);
+		}
+	}
+}
+
+.itemImage {
+	height: 160px;
 }
 
 .buyingOption {

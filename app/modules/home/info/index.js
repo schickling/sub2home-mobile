@@ -10,6 +10,13 @@ module.exports = angular.module('home.info', [])
       $routeProvider.when('/info', {
         templateUrl: 'modules/home/info/templates/index.html',
         controller: 'HomeInfoCtrl',
+        resolve: {
+          storesCollection: ['StoreModelFactory',
+            function(StoreModelFactory) {
+              return StoreModelFactory.query().$promise;
+            }
+          ],
+        }
       });
 
     }

@@ -20,18 +20,18 @@
 </nav>
 
 <div id="homeInfo" class="content dark">
-    <!-- <section id="restaurantsOverview">
+     <section id="restaurantsOverview">
         <header>
             <h2>Restaurants</h2>
         </header>
-        <div class="deliveringRestaurant">
-            <h4>SUBWAY<span class="superscript">&reg;</span> Memmingen</h4>
+        <div class="deliveringRestaurant" bindonce ng-repeat="storeModel in storesCollection" ng-click="navigate(storeModel.alias)">
+          <h4>SUBWAY<span class="superscript">&reg;</span> <span bo-text="storeModel.title"></span></h4>
             <p class="deliveryStatus delivering">
                 <span class="deliveryIndicator"></span>
                 liefert gerade
             </p>
         </div>
-        <div class="deliveringRestaurant">
+        <!--<div class="deliveringRestaurant">
             <h4>SUBWAY<span class="superscript">&reg;</span> Unterschleißheim</h4>
             <p class="deliveryStatus notDelivering">
                 <span class="deliveryIndicator"></span>
@@ -51,8 +51,8 @@
                 <span class="deliveryIndicator"></span>
                 liefert gerade
             </p>
-        </div>
-      </section> -->
+        </div>-->
+      </section>
     <!--   <section id="howItWorks">
     <header>
       <h2>So funktioniert's</h2>

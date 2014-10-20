@@ -21,7 +21,19 @@
   </div>
 </aside>
 
+
 <div id="storeCheckout" class="content note fillPage">
+
+<div ng-hide="showRatingMessageInput">
+<button ng-click="sendRating(true)">:)</button>
+<button ng-click="sendRating(false)">:(</button>
+</div>
+
+<div ng-show="showRatingMessageInput">
+  <textarea rows="10" cols="10" ng-model="ratingMessage"></textarea>
+  <button ng-click="sendMessage()" ng-class="{disabled: disableRatingMessageInput}">Send Message</button>
+</div>
+
 
   <section id="checkoutCopyContainer" bindonce>
     <div id="checkoutCopy">

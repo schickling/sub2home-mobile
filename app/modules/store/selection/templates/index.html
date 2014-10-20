@@ -3,9 +3,7 @@
         <div id="notification"></div>
         <div id="headerContent">
             <div id="getBack" ng-click="back()">
-                <!--<p>Subs-->
-                <!-- Article-Category from which the User got to selection -->
-                <!--</p>-->
+                <p bindonce bo-text="lastPage.title">Subs</p>
             </div>
             <div ng-if="!setTwoLineHeader" id="pageTitle" class="separate">
                 <span>{{ articleModel.title }}<span ng-if="articleModel.info" class="itemInfo"> {{ articleModel.info }}</span></span>
@@ -38,13 +36,17 @@
         <!--<h3>Schritt überspringen</h3>-->
         <!--</div>-->
 
-        <section id="ingredients">
+        <section id="ingredients" ng-if="type === 'ingredient'">
             <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
-                <div lazy-image class="imageContainer">
+                <div class="imageContainer">
                     <div bindonce class="ingredientPriceContainer">
                         <div ng-if="ingredientModel.price > 0" bo-text="ingredientModel.price | number:2" class="ingredientPrice price"></div>
                     </div>
-                    <img ng-src="{{ ingredientModel.largeImage }}" alt="" />
+                    <div lazy-image class="ingredientImage">
+                    	 <div class="imageLoader"><div></div><div></div><div></div></div>
+                    	 <img ng-src="{{ ingredientModel.largeImage }}" alt="" />
+                    </div>
+
                 </div>
                 <h3>{{ ingredientModel.title }}</h3>
             </div>
@@ -53,7 +55,7 @@
 
         <section id="articles" ng-if="type === 'Article'">
             <div id="articlesContent">
-                <div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection" app-col="col" watch="true">
+                <div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection" app-col="col" app-watch="true">
                     <article ng-repeat="itemModel in col"></article>
                 </div>
             </div>

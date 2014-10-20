@@ -1,40 +1,56 @@
 'use strict';
 
-module.exports = [ '$scope', 'PersistenceService', '$timeout',
+module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService',
 
-  function($scope, PersistenceService, $timeout) {
+  function($scope, PersistenceService, $timeout, ParseService) {
 
-        var getTimeToDelivery = function(deliveryTime) {
-          var tmpTime = new Date();
-          var restTime = deliveryTime - (tmpTime.getHours() * 60);
-          restTime = restTime - (tmpTime.getMinutes());
+    var getTimeToDelivery = function(deliveryTime) {
+      var tmpTime = new Date();
+      var restTime = deliveryTime - (tmpTime.getHours() * 60);
+      restTime = restTime - (tmpTime.getMinutes());
 
-          return restTime;
-        };
+      return restTime;
+    };
 
-        $scope.userInfo = PersistenceService.load('formData');
-        $scope.storeModel = PersistenceService.load('storeModel');
+    $scope.userInfo = PersistenceService.load('formData');
+    $scope.storeModel = PersistenceService.load('storeModel');
 
+    $scope.showRatingMessageInput = false;
+    $scope.disableRatingMessageInput = false;
+    $scope.ratingMessage = 'Was sollen wir besser machen?';
 
-        $scope.restTime = getTimeToDelivery(PersistenceService.load('timeToDelivery'));
+    $scope.sendRating = function(rating) {
+      ParseService.sendRating(rating).then(function() {
+        $scope.showRatingMessageInput = true;
+      });
+    };
 
+    $scope.sendMessage = function() {
+      ParseService.sendMessage($scope.ratingMessage).then(function() {
+        $scope.disableRatingMessageInput = true;
+      });
+    };
 
+    $scope.restTime = getTimeToDelivery(PersistenceService.load('timeToDelivery'));
 
-        var countDown = function () {
-          $timeout(function() {
-            var restTime = getTimeToDelivery(PersistenceService.load('timeToDelivery'));
-            if (restTime > 0) {
-                if (restTime % 5 === 0) {
-                  $scope.restTime = restTime;
-                  $scope.$apply();
-                }
-                countDown();
-            }
-          }, 60000);
+    var countDown = function() {
+      var restTime = getTimeToDelivery(PersistenceService.load('timeToDelivery'));
+      if (restTime > 0) {
+        if (restTime % 5 === 0) {
+          $scope.restTime = restTime;
+          $scope.$apply();
+        }
 
-        };
+        $timeout(function() {
+          countDown();
+        }, 60000);
+      } else {
+        $scope.restTime = 0;
+      }
 
-        countDown();
+    };
+
+    countDown();
 
   }
 ];

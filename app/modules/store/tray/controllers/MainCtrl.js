@@ -2,12 +2,13 @@
 
 module.exports = ['$scope', 'TrayStorageService', 'TrayService',
   'PersistenceService', 'storeModel', 'OrderService', 'RoutingService',
-  '$timeout',
+  '$timeout', 'LastPageService',
 
   function($scope, TrayStorageService, TrayService, PersistenceService,
-    storeModel, OrderService, RoutingService, $timeout) {
+    storeModel, OrderService, RoutingService, $timeout, LastPageService) {
 
     $scope.storeModel = storeModel;
+    $scope.lastPage = LastPageService.get();
 
     $scope.allSingleItems = TrayStorageService.getAllSingleItems();
 

@@ -9,7 +9,8 @@ module.exports = ['$window',
       scope: {
         itemsCollection: '=appItemsCollection',
         col: '=appCol',
-        watch: '=watch',
+        watch: '=appWatch',
+        hasMenuOffset: '=appHasMenuOffset',
       },
       link: function($scope, $elem, $attrs) {
 
@@ -21,9 +22,12 @@ module.exports = ['$window',
           });
         }
 
+        var hasOffset = $scope.hasMenuOffset && $window.innerWidth >= 450;
+        var offset = hasOffset ? 50 : 0;
+        var maxWidth = 320;
+        var numberOfCols = parseInt(($window.innerWidth - offset) / maxWidth, 10);
+
         var updateCols = function() {
-          var maxWidth = 320;
-          var numberOfCols = parseInt($window.innerWidth / maxWidth, 10);
           var cols = [];
 
           for (var i = 0; i < numberOfCols; i++) {

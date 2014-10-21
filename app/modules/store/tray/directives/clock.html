@@ -1,12 +1,27 @@
 <div bindonce class="container">
     <p ng-if="!storeIsDelivering" ng-if="storeIsDelivering">
-        Der Store ist leider gerade geschlossen!
+        Die Onlinetheke des SUBWAY<span class="superscript">&reg;</span> Memmingen ist leider gerade geschlossen.
     </p>
+    
+    <!-- "Memmingen" durch den entsprechenden Store-Namen austauschen! --> 
 
     <p ng-if="storeIsDelivering">
-            Wir sind frühestens in <span bo-text="deliveryAreaModel.minimumDuration"></span> Minuten bei dir. Oder willst du erst später
-        beliefert werden?
+        Wir sind frühestens in <span class="emphasized"><span bo-text="deliveryAreaModel.minimumDuration"></span> Minuten</span> bei dir. Oder willst du erst später beliefert werden?
     </p>
+    
+    <p class="ng-hide"> 
+        Wir können deine Bestellung leider erst <span class="emphasized">morgen (Dienstag) ab 10:00</span> ausliefern.  Willst du trotzdem bestellen? Du kannst auch eine spätere Lieferzeit angeben.
+    </p>
+    
+    <!-- Falls erst am nächsten Tag geliefert werden kann, wird der Standard-Text durch diesen ersetzt. -->
+    
+    <p class="ng-hide"> 
+        Wir können deine Bestellung leider erst am <span class="emphasized">Donnerstag ab 10:00</span> ausliefern. Willst du trotzdem bestellen? Du kannst auch eine spätere Lieferzeit angeben.
+    </p>
+    
+    <!-- Falls erst am übernächsten Tag (oder später) geliefert werden kann, wird der Standard-Text durch diesen ersetzt. -->
+    
+    
     <div ng-if="storeIsDelivering" id="deliveryTimeClock" class="notEarlier">
         <div id="hours">
             {{orderMinutes / 60 | numberFixedLength:2}}

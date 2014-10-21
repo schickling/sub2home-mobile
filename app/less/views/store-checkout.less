@@ -12,6 +12,7 @@
   padding-top: 30px;
   p {
     margin-bottom: 5px;
+		.border-box;
   }
 
   #checkoutCopyFirstPart {
@@ -26,8 +27,8 @@
   .smallHint {
     padding-top: 0;
     padding-bottom: 0;
-    margin-bottom: 0;
-
+    margin: 0 auto;
+		width: 300px;
   }
 }
 
@@ -84,5 +85,76 @@
 
   background: @facebookWave;
   .background-size(100% auto);
+}
 
+#sub2homeRating {
+	background: @darkNote;
+	font-size: 13px;
+	padding: 10px 70px; 
+	position: relative;
+	
+	.icn {
+		position: absolute;
+		top: 20px;
+		cursor: pointer;
+		.transition(color .1s linear);
+	}
+	#ratingNeg {
+		right: 20px;
+		&:active {
+			color: @red;
+		}
+	}
+	#ratingPos {
+		left: 20px;
+		&:active {
+			color: @greenLight;
+		}
+	}
+}
+
+#sub2homeRatingFeedback {
+	header .icn {
+		margin: 10px 0 20px;
+	
+		&.iThumbsUp {
+			color: @greenLight;
+		}	
+		&.iThumbsDown {
+			color: @red;
+		}
+	}
+}
+
+#feedbackMessage {
+	position: relative;
+	padding: 0 0 10px;
+	margin: 0 0 20px;
+	background: @darkNote;
+	border-top: 1px solid @onNoteColor30;
+	border-bottom: 1px solid @onNoteColor30;
+	
+	&:before, &:after {
+		content: "";
+		display: block;
+
+		position: absolute;
+		left: 0px;
+		right: 0px;
+		top: 33px;
+
+		height: 26px;
+		margin: 0 20px;
+		border-top: 1px solid @onNoteColor50;
+		border-bottom: 1px solid @onNoteColor50;
+	}
+	&:after {
+		top: 87px;
+	}
+	
+	#feedbackMessageInput {
+		border: none;
+		padding: 10px 25px 10px;
+		.border-box;
+	}
 }

@@ -16,18 +16,23 @@ module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService',
     $scope.storeModel = PersistenceService.load('storeModel');
 
     $scope.showRatingMessageInput = false;
-    $scope.disableRatingMessageInput = false;
-    $scope.ratingMessage = 'Was sollen wir besser machen?';
+    $scope.rating = null;
+    $scope.ratingSent = false;
+    $scope.ratingMessage = '';
 
     $scope.sendRating = function(rating) {
-      ParseService.sendRating(rating).then(function() {
-        $scope.showRatingMessageInput = true;
-      });
+      $scope.rating = rating;
+      if (!$scope.ratingSent) {
+        ParseService.sendRating(rating).then(function() {
+          $scope.showRatingMessageInput = true;
+          $scope.ratingSent = true;
+        });
+      }
     };
 
     $scope.sendMessage = function() {
       ParseService.sendMessage($scope.ratingMessage).then(function() {
-        $scope.disableRatingMessageInput = true;
+        $scope.showRatingMessageInput = false;
       });
     };
 

@@ -2,8 +2,8 @@
 
 module.exports = angular.module('vendor', []);
 
-angular.module('vendor').run(['EnvironmentService', '$rootScope',
-  function(EnvironmentService, $rootScope) {
+angular.module('vendor').run(['EnvironmentService', '$window', '$rootScope',
+  function(EnvironmentService, $window, $rootScope) {
 
     if (EnvironmentService.isProduction) {
 

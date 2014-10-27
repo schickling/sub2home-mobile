@@ -35,6 +35,7 @@ angular.module('app', [
   'LocalStorageModule',
   'pasvaz.bindonce',
   'duScroll',
+  'vendor',
   // own code
   'common',
   'resources',
@@ -71,7 +72,6 @@ angular.module('app').run(['ResourceService', '$location', '$rootScope',
 
     $rootScope.$on('$routeChangeSuccess', function() {
       $window.scrollTo(0, 0);
-      $window.analytics.page();
       $timeout(PageLockService.unlock, 0);
     });
 

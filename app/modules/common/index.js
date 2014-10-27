@@ -11,6 +11,7 @@ var ItemStorageService = require('./services/ItemStorageService');
 var TrayStorageService = require('./services/TrayStorageService');
 var PageLockService = require('./services/PageLockService');
 var LastPageService = require('./services/LastPageService');
+var EnvironmentService = require('./services/EnvironmentService');
 var NumberFixedLength = require('./filters/numberFixedLength');
 
 module.exports = angular.module('common', [])
@@ -25,4 +26,5 @@ module.exports = angular.module('common', [])
   .service('RandomService', RandomService)
   .service('PageLockService', PageLockService)
   .service('LastPageService', LastPageService)
+  .service('EnvironmentService', EnvironmentService)
   .filter('numberFixedLength', NumberFixedLength);

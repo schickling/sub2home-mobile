@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = ['$window',
-  function($window) {
+module.exports = ['$window', 'EnvironmentService',
+  function($window, EnvironmentService) {
 
     return {
 
@@ -9,12 +9,10 @@ module.exports = ['$window',
 
         fragment = fragment || '';
 
-        var hostname = $window.location.hostname;
-
-        if (hostname.indexOf('sub2home.com') !== -1) {
+        if (EnvironmentService.isProduction) {
           return 'https://api.sub2home.com/' + fragment;
         } else {
-          return 'https://' + hostname + ':1070/' + fragment;
+          return 'https://' + $window.location.hostname + ':1070/' + fragment;
         }
 
       },

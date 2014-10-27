@@ -212,7 +212,6 @@ body {
 			cursor: pointer;
 
 			border-left: 1px solid @onHeaderColor50;
-
 		}
 
 		&#toTheTray {
@@ -233,6 +232,17 @@ body {
 
 			&.atTray {
 				width: auto;
+				
+				&:before {
+					content: "Kasse";
+					display: inline-block;
+					margin-right: 5px;
+					position: relative;
+					top: 3px;
+				}
+				.icn {
+					display: inline-block;
+				}
 			}
 
 			> div {
@@ -298,16 +308,18 @@ body {
 	line-height:1.2;
 }
 
-#trayTitle {
-	display: inline-block;
-	margin: 8px 5px 0 0;
-}
+//#trayTitle {
+//	display: inline-block;
+//	margin: 8px 5px 0 0;
+//}
 
 #trayValue {
 	display: inline-block;
 	text-align: left;
-	margin: 3px 0 0 10px;
-
+	margin: 0 0 0 10px;
+	position: relative;
+	top: 3px;
+	
 	> div {
 		font-size: 80%;
 

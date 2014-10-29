@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
+module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route', 'ServerTime',
 
-  function(RandomService, _, OrdersModelFactory, $route) {
+  function(RandomService, _, OrdersModelFactory, $route, ServerTime) {
 
     return {
 
@@ -21,10 +21,9 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
         };
 
         postData.addressModel = this._getAddressModel(formData, deliveryAreaModel);
-        postData.dueAt = new Date();
+        postData.dueAt = ServerTime.getServerTime();
         postData.dueAt.setMinutes(dueTime % 60);
-        // TODO fix before release
-        postData.dueAt.setHours(Math.floor(dueTime / 60) + 2);
+        postData.dueAt.setHours(Math.floor(dueTime / 60) + 1);
 
 
 

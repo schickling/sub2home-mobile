@@ -1,7 +1,16 @@
 'use strict';
 
-module.exports = ['$resource', '_', 'ApiService',
-  function($resource, _, ApiService) {
+module.exports = ['$resource', '_', 'ApiService', 'ServerTime',
+  function($resource, _, ApiService, ServerTime) {
+
+    var hook = function(res) {
+
+      var timestamp = new Date(res.headers()['server-time']).getTime();
+      ServerTime.setServerTime(timestamp);
+
+      return res.data;
+    };
+
 
     return {
 
@@ -24,7 +33,8 @@ module.exports = ['$resource', '_', 'ApiService',
           get: {
             method: 'GET',
             interceptor: {
-              responseError: this._errorCallback
+              responseError: this._errorCallback,
+              response: hook
             },
           },
           save: {

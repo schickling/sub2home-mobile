@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['_',
+module.exports = ['_', 'ServerTime',
 
-  function(_) {
+  function(_, ServerTime) {
     return {
       restrict: 'E',
       scope: {
@@ -18,7 +18,7 @@ module.exports = ['_',
          * returns the current time in minuts and rounded up to the next number dividable by 5
          */
         var getCurrentTime = function() {
-          var date = new Date();
+          var date = ServerTime.getServerTime();
           var minutes = date.getMinutes();
           var hours = date.getHours();
 

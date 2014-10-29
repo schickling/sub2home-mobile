@@ -7,6 +7,7 @@ var PostalOracleService = require('./services/PostalOracleService');
 var PersistenceService = require('./services/PersistenceService');
 var RoutingService = require('./services/RoutingService');
 var RandomService = require('./services/RandomService');
+var ServerTime = require('./services/ServerTime');
 var ItemStorageService = require('./services/ItemStorageService');
 var TrayStorageService = require('./services/TrayStorageService');
 var PageLockService = require('./services/PageLockService');
@@ -25,4 +26,5 @@ module.exports = angular.module('common', [])
   .service('RandomService', RandomService)
   .service('PageLockService', PageLockService)
   .service('LastPageService', LastPageService)
+  .service('ServerTime', ServerTime)
   .filter('numberFixedLength', NumberFixedLength);

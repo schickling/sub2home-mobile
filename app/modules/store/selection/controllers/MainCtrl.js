@@ -248,20 +248,31 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
       });
     };
 
+    $scope.bigNextScrollable = false;
+
     var body = document.body;
+    var hitBottom = false;
     var scrollListener = function() {
       if (body.scrollHeight === body.scrollTop + window.innerHeight) {
-        window.removeEventListener('scroll', scrollListener);
-        $scope.showBigNext = true;
+        if (hitBottom) {
+          window.removeEventListener('scroll', scrollListener);
+          hitBottom = false;
+          $scope.bigNextScrollable = true;
+        } else {
+          $scope.showBigNext = true;
+          hitBottom = true;
+        }
         $scope.$apply();
       }
     };
 
     var updateScope = function() {
 
+      $scope.bigNextScrollable = false;
 
       // remove previous scrollListener
       window.removeEventListener('scroll', scrollListener);
+      hitBottom = false;
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
       $scope.menuModel = EntityIteratorService.getMenu();

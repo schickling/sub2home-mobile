@@ -34,12 +34,21 @@ module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService',
     $scope.sendMessage = function() {
       ParseService.sendMessage($scope.ratingMessage).then(function() {
         $scope.showRatingMessageInput = false;
-        if ($scope.rating) {
-          $scope.feedbackClass = 'positiveFeedback';
-        } else {
-          $scope.feedbackClass = 'negativeFeedback';
-        }
+        displayRating();
       });
+    };
+
+    $scope.close = function() {
+      displayRating();
+      $scope.showRatingMessageInput = false;
+    };
+
+    var displayRating = function() {
+      if ($scope.rating) {
+        $scope.feedbackClass = 'positiveFeedback';
+      } else {
+        $scope.feedbackClass = 'negativeFeedback';
+      }
     };
 
     $scope.restTime = getTimeToDelivery(PersistenceService.load('timeToDelivery'));

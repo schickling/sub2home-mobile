@@ -21,8 +21,8 @@ module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService',
     $scope.ratingMessage = '';
 
     $scope.sendRating = function(rating) {
-      $scope.rating = rating;
       if (!$scope.ratingSent) {
+        $scope.rating = rating;
         ParseService.sendRating(rating).then(function() {
           $scope.showRatingMessageInput = true;
           $scope.ratingSent = true;

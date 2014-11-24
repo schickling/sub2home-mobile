@@ -53,7 +53,7 @@
         </section>
 
 
-        <section id="articles" ng-if="type === 'Article'">
+        <section id="articles" ng-if="type === 'Article'" ng-class="{extendBottom: toTray}">
             <div id="articlesContent">
                 <div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection" app-col="col" app-watch="true">
                     <article ng-repeat="itemModel in col"></article>

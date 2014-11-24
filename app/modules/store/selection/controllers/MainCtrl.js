@@ -252,17 +252,11 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
     $scope.extendBottom = false;
 
     var body = document.body;
-    var hitBottom = false;
     var scrollListener = function() {
-      if (body.scrollHeight === body.scrollTop + window.innerHeight) {
-        if (hitBottom) {
-          window.removeEventListener('scroll', scrollListener);
-          hitBottom = false;
-          $scope.bigNextScrollable = true;
-        } else {
-          $scope.showBigNext = true;
-          hitBottom = true;
-        }
+      if (body.scrollTop === body.scrollHeight - window.innerHeight) {
+        window.removeEventListener('scroll', scrollListener);
+        $scope.bigNextScrollable = true;
+        $scope.showBigNext = true;
         $scope.$apply();
       }
     };
@@ -274,7 +268,6 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
       // remove previous scrollListener
       window.removeEventListener('scroll', scrollListener);
-      hitBottom = false;
 
       $scope.orderedArticlesCollection = orderedItemModel.orderedArticlesCollection;
       $scope.menuModel = EntityIteratorService.getMenu();

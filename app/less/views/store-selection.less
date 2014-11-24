@@ -6,8 +6,8 @@
 
 
 #storeSelection {
-  display: table;
-  height: 100%;
+  display: block;
+//  height: 100%;
 	padding-bottom: @timelineHeight;
 	.item {
 		cursor: pointer;
@@ -19,6 +19,10 @@
   text-align: left;
   display: block;
 //  height: 100%;
+    
+  &.extendBottom {
+    margin-bottom: 101px;
+  }
 }
 
 .ingredient {
@@ -180,9 +184,10 @@
 
 .toNextStepContainer {
 	
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	bottom: 65px;
+    z-index: 80;
 	
 
 	&.small {

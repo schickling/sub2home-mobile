@@ -12,13 +12,16 @@ module.exports = [
         var imgLoader = container.querySelector('.imageLoader');
 
         $elem.addClass('loading');
-        img.addEventListener('load', function() {
-          $elem.removeClass('loading');
-          if (imgLoader) {
-            imgLoader.remove();
-          }
-          img.removeEventListener('load');
-        });
+
+        if (img) {
+          img.addEventListener('load', function() {
+            $elem.removeClass('loading');
+            if (imgLoader) {
+              imgLoader.remove();
+            }
+            img.removeEventListener('load');
+          });
+        }
 
       }
     };

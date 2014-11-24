@@ -326,19 +326,20 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
         $timeout(function() {
           $document.scrollTop(0, 300).then(function() {
-            var ingredientsElement = document.getElementById('ingredients');
-            var ingredientsHeight = ingredientsElement.clientHeight;
-            var headerHeight = 75;
-            var timelineHeight = 66;
+            if ($scope.type === 'ingredient') {
+              var ingredientsElement = document.getElementById('ingredients');
+              var ingredientsHeight = ingredientsElement.clientHeight;
+              var headerHeight = 75;
+              var timelineHeight = 66;
 
-            if (ingredientsHeight + headerHeight + timelineHeight < window.innerHeight) {
-              $scope.showBigNext = true;
-            } else {
-              // reset scroll listener
-              $scope.extendBottom = true;
-              window.addEventListener('scroll', scrollListener);
+              if (ingredientsHeight + headerHeight + timelineHeight < window.innerHeight) {
+                $scope.showBigNext = true;
+              } else {
+                // reset scroll listener
+                $scope.extendBottom = true;
+                window.addEventListener('scroll', scrollListener);
+              }
             }
-
           });
         }, 200);
 

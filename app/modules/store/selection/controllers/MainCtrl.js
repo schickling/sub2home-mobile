@@ -326,7 +326,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
             }
 
           });
-        }, 200);
+        }, 0);
 
         updateTimeline();
 

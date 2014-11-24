@@ -249,6 +249,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
     };
 
     $scope.bigNextScrollable = false;
+    $scope.extendBottom = false;
 
     var body = document.body;
     var hitBottom = false;
@@ -269,6 +270,7 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
     var updateScope = function() {
 
       $scope.bigNextScrollable = false;
+      $scope.extendBottom = false;
 
       // remove previous scrollListener
       window.removeEventListener('scroll', scrollListener);
@@ -333,11 +335,12 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
               $scope.showBigNext = true;
             } else {
               // reset scroll listener
+              $scope.extendBottom = true;
               window.addEventListener('scroll', scrollListener);
             }
 
           });
-        }, 0);
+        }, 200);
 
         updateTimeline();
 

@@ -7,6 +7,7 @@
 
 #storeSelection {
   display: block;
+  position: relative;
 //  height: 100%;
 	padding-bottom: @timelineHeight;
 	.item {
@@ -147,21 +148,21 @@
 #toNextStep, .toNextStep {
   border-top: 1px solid @darkerWhite;
 //  margin-bottom: @timelineHeight;
-	.transition(height .1s linear)!important;
+	.transition(height .1s .2s linear)!important;
 
   &:before {
-		.transition(e('font-size .1s linear, margin .1s linear'));
+		.transition(e('font-size .1s .2s linear, margin .1s .2s linear'));
     margin-top: -35px;
     font-size: 70px;
   }
 
   p {
     padding-top: 30px;
-		.transition(e('opacity .1s linear, padding .1s linear, margin .1s linear'));
+		.transition(e('opacity .1s .2s linear, padding .1s .2s linear, margin .1s .2s linear'));
   }
 	
 	h3 {
-		.transition(padding .1s linear);
+		.transition(padding .1s .2s linear);
 	}
 	
 	&.iTray {
@@ -188,6 +189,12 @@
 	width: 100%;
 	bottom: 65px;
     z-index: 80;
+  
+    &.isScrollable {
+      position: absolute;
+      
+      display: block;
+    }
 	
 
 	&.small {

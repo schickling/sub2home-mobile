@@ -19,6 +19,7 @@ module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService',
     $scope.rating = null;
     $scope.ratingSent = false;
     $scope.ratingMessage = '';
+    $scope.feedbackClass = null;
 
     $scope.sendRating = function(rating) {
       if (!$scope.ratingSent) {
@@ -33,6 +34,11 @@ module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService',
     $scope.sendMessage = function() {
       ParseService.sendMessage($scope.ratingMessage).then(function() {
         $scope.showRatingMessageInput = false;
+        if ($scope.rating) {
+          $scope.feedbackClass = 'positiveFeedback';
+        } else {
+          $scope.feedbackClass = 'negativeFeedback';
+        }
       });
     };
 

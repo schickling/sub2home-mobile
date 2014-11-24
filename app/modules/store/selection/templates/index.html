@@ -61,7 +61,7 @@
             </div>
         </section>
 
-        <section id="upgradeArticles" ng-if="type === 'menuUpgradeArticle'">
+        <section id="upgradeArticles" ng-if="type === 'menuUpgradeArticle'" ng-class="{extendBottom: toTray}">
             <div id="articlesContent" ng-repeat="option in entity.menuComponentOptionsCollection">
                 <div id="tableRow" col-repeat app-items-collection="option.menuComponentOptionArticlesCollection" app-col="col" watch="true">
                     <article ng-repeat="itemModel in col" item-model="itemModel"></article>

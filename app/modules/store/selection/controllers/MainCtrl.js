@@ -248,10 +248,14 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
       });
     };
 
+    $scope.bigNextScrollable = false;
+    $scope.extendBottom = false;
+
     var body = document.body;
     var scrollListener = function() {
-      if (body.scrollHeight === body.scrollTop + window.innerHeight) {
+      if (body.scrollTop === body.scrollHeight - window.innerHeight) {
         window.removeEventListener('scroll', scrollListener);
+        $scope.bigNextScrollable = true;
         $scope.showBigNext = true;
         $scope.$apply();
       }
@@ -259,6 +263,8 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
     var updateScope = function() {
 
+      $scope.bigNextScrollable = false;
+      $scope.extendBottom = false;
 
       // remove previous scrollListener
       window.removeEventListener('scroll', scrollListener);
@@ -313,18 +319,20 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
 
         $timeout(function() {
           $document.scrollTop(0, 300).then(function() {
-            var ingredientsElement = document.getElementById('ingredients');
-            var ingredientsHeight = ingredientsElement.clientHeight;
-            var headerHeight = 75;
-            var timelineHeight = 66;
+            if ($scope.type === 'ingredient') {
+              var ingredientsElement = document.getElementById('ingredients');
+              var ingredientsHeight = ingredientsElement.clientHeight;
+              var headerHeight = 75;
+              var timelineHeight = 66;
 
-            if (ingredientsHeight + headerHeight + timelineHeight < window.innerHeight) {
-              $scope.showBigNext = true;
-            } else {
-              // reset scroll listener
-              window.addEventListener('scroll', scrollListener);
+              if (ingredientsHeight + headerHeight + timelineHeight < window.innerHeight) {
+                $scope.showBigNext = true;
+              } else {
+                // reset scroll listener
+                $scope.extendBottom = true;
+                window.addEventListener('scroll', scrollListener);
+              }
             }
-
           });
         }, 200);
 

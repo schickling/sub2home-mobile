@@ -87,28 +87,97 @@
   .background-size(100% auto);
 }
 
+
+
+
 #sub2homeRating {
 	background: @darkNote;
 	font-size: 13px;
 	padding: 10px 70px; 
 	position: relative;
+	.border-box;
+	height: 68px;
+	display: table;
+	width: 100%;
 	
+	p {
+		display: table-cell;
+		margin: 0;
+		padding: 0;
+		vertical-align: middle;
+	}
+	
+	#positiveFeedbackAnswer, #negativeFeedbackAnswer {
+		display: none;
+	}
+		
 	.icn {
 		position: absolute;
 		top: 20px;
 		cursor: pointer;
 		.transition(color .1s linear);
 	}
-	#ratingNeg {
+	#rateNeg {
 		right: 20px;
 		&:active {
 			color: @red;
 		}
 	}
-	#ratingPos {
+	#ratePos {
 		left: 20px;
 		&:active {
 			color: @greenLight;
+		}
+	}
+	
+	&.positiveFeedback {
+		background: @greenLight70;
+		color: @white;
+		
+		.icn {
+			cursor: pointer;
+		}
+		
+		#rateNeg {
+			color: @greenLight50;
+		}
+		
+		#ratePos {
+			color: @white;
+		}
+		
+		#feedbackCallToAction {
+			display: none;
+		}
+		
+		#positiveFeedbackAnswer {
+			display: table-cell;
+		}
+		
+	}
+	
+	&.negativeFeedback {
+		background: @red70;
+		color: @white;
+		
+		.icn {
+			cursor: pointer;
+		}
+		
+		#rateNeg {
+			color: @white;
+		}
+		
+		#ratePos {
+			color: @red50;
+		}
+		
+		#feedbackCallToAction {
+			display: none;
+		}
+		
+		#negativeFeedbackAnswer {
+			display: table-cell;
 		}
 	}
 }
@@ -118,11 +187,16 @@
 		margin: 10px 0 20px;
 	
 		&.iThumbsUp {
-			color: @greenLight;
+			color: @greenLight70;
 		}	
 		&.iThumbsDown {
-			color: @red;
+			color: @red70;
 		}
+	}
+	
+	.smallHint {
+		display: block;
+		margin-top: 15px;
 	}
 }
 

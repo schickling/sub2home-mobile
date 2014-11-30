@@ -218,9 +218,10 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
         var defer = $q.defer();
 
         if (this._hasIngrediants) {
-          return this._articleIterator.then(function(iterator) {
-            return iterator.getEntity();
-          });
+          //return this._articleIterator.then(function(iterator) {
+            //return iterator.getEntity();
+            defer.resolve('ingredient');
+          //});
         } else {
           defer.resolve('Article');
         }

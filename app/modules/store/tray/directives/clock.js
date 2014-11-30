@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['_', 'ClockService',
+module.exports = ['_', 'ClockService', 'ServerTime',
 
-  function(_, ClockService) {
+  function(_, ClockService, ServerTime) {
     return {
       restrict: 'E',
       scope: {
@@ -14,8 +14,7 @@ module.exports = ['_', 'ClockService',
       templateUrl: 'modules/store/tray/directives/clock.html',
       link: function($scope, $elem, $attrs) {
 
-//        var date = new Date();
-        var date = new Date(2014, 8, 8, 12, 0, 0, 0);
+        var date = ServerTime.getServerTime();
         ClockService.init($scope.storeModel.deliveryTimesCollection, date, $scope.deliveryAreaModel.minimumDuration);
 
         $scope.orderMinutes = ClockService.getEarliestDeliveryTime();

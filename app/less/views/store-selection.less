@@ -6,8 +6,9 @@
 
 
 #storeSelection {
-  display: table;
-  height: 100%;
+  display: block;
+  position: relative;
+//  height: 100%;
 	padding-bottom: @timelineHeight;
 	.item {
 		cursor: pointer;
@@ -17,8 +18,12 @@
 
 #ingredients {
   text-align: left;
-  display: table-row;
-  height: 100%;
+  display: block;
+//  height: 100%;
+    
+  &.extendBottom {
+    margin-bottom: 101px;
+  }
 }
 
 .ingredient {
@@ -143,21 +148,21 @@
 #toNextStep, .toNextStep {
   border-top: 1px solid @darkerWhite;
 //  margin-bottom: @timelineHeight;
-	.transition(height .1s linear)!important;
+	.transition(height .1s .2s linear)!important;
 
   &:before {
-		.transition(e('font-size .1s linear, margin .1s linear'));
+		.transition(e('font-size .1s .2s linear, margin .1s .2s linear'));
     margin-top: -35px;
     font-size: 70px;
   }
 
   p {
     padding-top: 30px;
-		.transition(e('opacity .1s linear, padding .1s linear, margin .1s linear'));
+		.transition(e('opacity .1s .2s linear, padding .1s .2s linear, margin .1s .2s linear'));
   }
 	
 	h3 {
-		.transition(padding .1s linear);
+		.transition(padding .1s .2s linear);
 	}
 	
 	&.iTray {
@@ -166,7 +171,7 @@
 		}
 	}
 	&.highlighted {
-		background: @greenLighter30;
+		background: #e4ecc6; // Green Lighter Solid
 		border-color: @greenLighter50;
 		color: @greenLighter;
 		p, &:before {
@@ -180,9 +185,16 @@
 
 .toNextStepContainer {
 	
-	position: absolute;
+	position: fixed;
 	width: 100%;
-	margin-bottom: 65px;
+	bottom: 65px;
+    z-index: 80;
+  
+    &.isScrollable {
+      position: absolute;
+      
+      display: block;
+    }
 	
 
 	&.small {
@@ -223,7 +235,7 @@
 // MenuUpgrade
 
 #menuUpgrades {
-  display: table-row;
+  display: block;
   height: 100%;
   .menuUpgrade {
     margin-bottom: 30px;

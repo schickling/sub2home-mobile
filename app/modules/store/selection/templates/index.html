@@ -36,7 +36,7 @@
         <!--<h3>Schritt überspringen</h3>-->
         <!--</div>-->
 
-        <section id="ingredients" ng-if="type === 'ingredient'">
+        <section id="ingredients" ng-if="type === 'ingredient'" ng-class="{extendBottom: extendBottom}">
             <div class="ingredient" ng-class="{selected: ingredientModel.isSelected}" ng-repeat="ingredientModel in entity.ingredientsCollection" ng-click="selectIngredient(ingredientModel)">
                 <div class="imageContainer">
                     <div bindonce class="ingredientPriceContainer">
@@ -53,7 +53,7 @@
         </section>
 
 
-        <section id="articles" ng-if="type === 'Article'">
+        <section id="articles" ng-if="type === 'Article'" ng-class="{extendBottom: toTray}">
             <div id="articlesContent">
                 <div id="tableRow" col-repeat app-items-collection="entity.menuComponentOptionArticlesCollection" app-col="col" app-watch="true">
                     <article ng-repeat="itemModel in col"></article>
@@ -61,7 +61,7 @@
             </div>
         </section>
 
-        <section id="upgradeArticles" ng-if="type === 'menuUpgradeArticle'">
+        <section id="upgradeArticles" ng-if="type === 'menuUpgradeArticle'" ng-class="{extendBottom: toTray}">
             <div id="articlesContent" ng-repeat="option in entity.menuComponentOptionsCollection">
                 <div id="tableRow" col-repeat app-items-collection="option.menuComponentOptionArticlesCollection" app-col="col" watch="true">
                     <article ng-repeat="itemModel in col" item-model="itemModel"></article>
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </section>
-				<div class="toNextStepContainer" ng-class="{small: !showBigNext, hidden: toTray || hideNextButton, preload: hideNextButton}" ng-click="next()">
+				<div class="toNextStepContainer" ng-class="{small: !showBigNext, hidden: toTray || hideNextButton, preload: hideNextButton, isScrollable: bigNextScrollable}" ng-click="next()">
 					<div class="toNextStep {{nextStep.icon}}">
             <p>Nächster Schritt</p>
             <h3>{{nextStep.title}}</h3>

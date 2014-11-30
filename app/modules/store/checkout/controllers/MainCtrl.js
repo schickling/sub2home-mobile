@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = [ '$scope', 'PersistenceService', '$timeout',
+module.exports = [ '$scope', 'PersistenceService', '$timeout', 'ServerTime',
 
-  function($scope, PersistenceService, $timeout) {
+  function($scope, PersistenceService, $timeout, ServerTime) {
 
         var getTimeToDelivery = function(deliveryTime) {
-          var tmpTime = new Date();
+          var tmpTime = ServerTime.getServerTime();
           var restTime = deliveryTime - (tmpTime.getHours() * 60);
           restTime = restTime - (tmpTime.getMinutes());
 

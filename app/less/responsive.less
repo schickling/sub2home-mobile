@@ -130,21 +130,15 @@
 @media only screen and (min-width : 450px) {
 
   // Currently the same as for mobile
-	
-	#toTheTray {
-		width: 120px !important;
-		&:before {
-			content: "Kasse";
-			display: inline-block;
-			margin-right: 5px;
-			position: relative;
-			top: 3px;
-		}
-		.icn {
-			display: inline-block;
+	#headerContent {
+		> div#toTheTray {
+			width: 210px;
+			
+			#trayValue {
+				display: inline-block;
+			}
 		}
 	}
-	
 }
 
 // Notifications 
@@ -534,19 +528,23 @@
 
   // TrayHeader
 
-  #headerContent > div#toTheTray > div {
-    vertical-align: middle;
-  }
+  #headerContent > div#toTheTray {
+		> div {
+    	vertical-align: middle;
+		}
+		
+		&.atTray #trayValue {
+			> div {
+				display: inline-block;
+				font-size: 100%;
+				&.minValue {
+					margin-left: 8px;
+				}
+			}
+		}
+	}
 
-  #trayValue {
-    > div {
-      display: inline-block;
-      font-size: 100%;
-      &.minValue {
-        margin-left: 8px;
-      }
-    }
-  }
+  
 
 
   // no more Full-width

@@ -123,6 +123,39 @@ body {
 	}
 }
 
+#trayValue {
+	display: inline-block;
+	text-align: left;
+	margin: 0 0 0 10px;
+	position: relative;
+	top: 3px;
+	
+	> div {
+		font-size: 80%;
+
+		&#minValue {
+			color: @onHeaderColor50;
+		}
+	}
+	&.sufficing {
+		// margin-top: 8px;
+		// > div {
+		// 	font-size: 100%;
+		// 	&#minValue {
+		// 		display: none;
+		// 	}
+		// }
+		#currentValue:after {
+			content: "\e609";
+			font-size: 13px;
+			font-family: "Homicons";
+			display: inline-block;
+			margin-left: 5px;
+			color: @onHeaderColor50;
+		}
+	}
+}
+
 #headerContent {
 
 	display: table;
@@ -225,35 +258,48 @@ body {
 			text-align: center;
 
 			cursor: pointer;
+			
+			// "Kasse"
+			
+			width: 120px;
+			
+			&:before {
+				content: "Kasse";
+				display: inline-block;
+				margin-right: 5px;
+				position: relative;
+				top: 3px;
+			}
 
 			.iTray {
 				font-size: 34px;
+			}
+			
+			#trayValue {
+				display: none;
 			}
 
 			&.atTray {
 				width: auto;
 				
-				&:before {
-					content: "Kasse";
+				#trayValue {
 					display: inline-block;
-					margin-right: 5px;
-					position: relative;
-					top: 3px;
 				}
+
 				.icn {
 					display: inline-block;
 				}
 			}
 
 			> div {
-				vertical-align: top;
+				vertical-align: middle;
 			}
 		}
 
 		&#getBack {
 			position: relative;
 			font-size: 12px;
-			padding: 14px 5px 0;
+			padding: 13px 5px 0;
 			vertical-align: top;
 			width: 55px;
 			text-align: center;
@@ -313,38 +359,7 @@ body {
 //	margin: 8px 5px 0 0;
 //}
 
-#trayValue {
-	display: inline-block;
-	text-align: left;
-	margin: 0 0 0 10px;
-	position: relative;
-	top: 3px;
-	
-	> div {
-		font-size: 80%;
 
-		&#minValue {
-			color: @onHeaderColor50;
-		}
-	}
-	&.sufficing {
-		// margin-top: 8px;
-		// > div {
-		// 	font-size: 100%;
-		// 	&#minValue {
-		// 		display: none;
-		// 	}
-		// }
-		#currentValue:after {
-			content: "\e609";
-			font-size: 13px;
-			font-family: "Homicons";
-			display: inline-block;
-			margin-left: 5px;
-			color: @onHeaderColor50;
-		}
-	}
-}
 
 
 
@@ -844,7 +859,7 @@ p {
 .toNextStepContainer {
 	display: table-row;
 	.translate(0,0,0);	
-	.transformTransition(.3s, ease);
+	.transformTransition(.3s .2s, ease);
 	
 	&.hidden {
 		display: none;

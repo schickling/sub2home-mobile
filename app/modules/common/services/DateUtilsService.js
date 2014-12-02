@@ -19,9 +19,17 @@ module.exports = [
         }
       },
 
-      getDay: function() {
-        // TODO be careful when the time is for example 23:59 dateToMinutes returns 0
-        // so getDay() must return the next day
+      // from 23:56 it returns the next day
+      getDay: function(date) {
+        if (date && date instanceof Date) {
+          if (date.getMinutes() > 55) {
+            return (date.getDay() + 1) % 7;
+          } else {
+            return date.getDay();
+          }
+        } else {
+          throw 'Parameter must be a date';
+        }
       }
     };
 

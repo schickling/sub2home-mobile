@@ -25,13 +25,13 @@ $ npm test
 
 ##### Watch for changes
 ```sh
-$ npm run-script watch
+$ npm run watch
 ```
 
 
 #### Build (just needed for deployment)
 ```sh
-$ npm run-script build
+$ npm run build
 ```
 
 ## Supported browsers

@@ -79,4 +79,26 @@ describe('Test DateUtilsService', function() {
       expect(function() {DateUtilsService.getDay('test data');}).toThrow();
     });
   });
+
+  describe('the function .getDate(date, minutes)', function() {
+    it('Case 1', function() {
+      var date = new Date(2014, 10, 30, 12, 0, 0, 0);
+      var minutes = 804;
+      var result = new Date(2014, 10, 30, 13, 24, 0, 0);
+
+      expect(DateUtilsService.getDate(date, minutes)).toEqual(result);
+    });
+
+    it('Case 2', function() {
+      var date = new Date(2014, 10, 30, 12, 0, 0, 0);
+      var minutes = 1434;
+      var result = new Date(2014, 10, 30, 23, 54, 0, 0);
+
+      expect(DateUtilsService.getDate(date, minutes)).toEqual(result);
+    });
+
+    it('Case 3', function() {
+      expect(DateUtilsService.getDate).toThrow();
+    });
+  });
 });

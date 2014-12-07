@@ -30,6 +30,27 @@ module.exports = [
         } else {
           throw 'Parameter must be a date';
         }
+      },
+
+      // returns a new Date object with the day month and year form the date parameter
+      // and the hours and minutes from the minutes parameter
+      getDate: function(d, minutes) {
+
+        if (d && d instanceof Date) {
+          var date = new Date(d);
+          if (!minutes) {
+            minutes = 0;
+          }
+
+          date.setMinutes(minutes % 60);
+          date.setHours(minutes / 60);
+
+          return date;
+
+        } else {
+          throw 'Parameter must be a date';
+        }
+
       }
     };
 

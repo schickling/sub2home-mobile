@@ -5,6 +5,7 @@ var lazyImageDirective = require('./directives/lazyImageDirective');
 var StringUtilService = require('./services/StringUtilService');
 var PostalOracleService = require('./services/PostalOracleService');
 var PersistenceService = require('./services/PersistenceService');
+var DateUtilsService = require('./services/DateUtilsService');
 var RoutingService = require('./services/RoutingService');
 var RandomService = require('./services/RandomService');
 var ServerTime = require('./services/ServerTime');
@@ -21,6 +22,7 @@ module.exports = angular.module('common', [])
   .service('StringUtilService', StringUtilService)
   .service('PostalOracleService', PostalOracleService)
   .service('PersistenceService', PersistenceService)
+  .service('DateUtilsService', DateUtilsService)
   .service('RoutingService', RoutingService)
   .service('TrayStorageService', TrayStorageService)
   .service('ItemStorageService', ItemStorageService)

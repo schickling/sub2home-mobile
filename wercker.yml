@@ -9,7 +9,7 @@ build:
         code: npm test
     - script:
         name: build
-        code: npm run-script build
+        code: npm run build
 deploy:
   steps:
     - schickling/s3-website:

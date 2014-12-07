@@ -1,5 +1,6 @@
 'use strict';
 
+
 describe('Test DateUtilsService', function() {
 
   beforeEach(module('app'));
@@ -100,5 +101,35 @@ describe('Test DateUtilsService', function() {
     it('Case 3', function() {
       expect(DateUtilsService.getDate).toThrow();
     });
+  });
+
+  describe('the function .addMinutes(date, minutes)', function() {
+    it('Case 1: add minutes', function() {
+      var date = new Date(2014, 10, 30, 12, 50, 0, 0);
+      var result = new Date(2014, 10, 30, 13, 1, 0, 0);
+
+      debugger;
+      var tmp = DateUtilsService.addMinutes(date, 11);
+      expect(tmp).toEqual(result);
+    });
+
+    it('Case 2: add minutes', function() {
+      var date = new Date(2014, 10, 30, 12, 50, 0, 0);
+      var result = new Date(2014, 10, 30, 12, 55, 0, 0);
+
+      expect(DateUtilsService.addMinutes(date, 5)).toEqual(result);
+    });
+
+    it('Case 3: subtract minutes ', function() {
+      var date = new Date(2014, 10, 30, 0, 50, 0, 0);
+      var result = new Date(2014, 10, 29, 23, 50, 0, 0);
+
+      expect(DateUtilsService.addMinutes(date, -60)).toEqual(result);
+    });
+
+    it('Case 4: Throw error', function() {
+      expect(DateUtilsService.addMinutes).toThrow();
+    });
+
   });
 });

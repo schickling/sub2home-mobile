@@ -132,7 +132,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('test', [
-  'hint',
+  //'hint',
   'browserify'
 ]);
 

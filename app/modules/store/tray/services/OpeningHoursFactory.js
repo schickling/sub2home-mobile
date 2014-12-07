@@ -1,126 +1,82 @@
 'use strict';
-module.exports = ['_', function() {
+module.exports = ['_', 'DateUtilsService',
+
+  function(_, DateUtilsService) {
 
   var openingHours = function(deliveryTimeCollection) {
     this.deliveryTimeCollection = deliveryTimeCollection;
   };
 
-  openingHours.prototype.getNext = function(minutes, minimumDuration) {
+  // make day to date but ignore hours and minutes
+  openingHours.prototype.getNext = function(date, minimumDuration) {
 
+    if (date && date instanceof Date) {
+      if (!minimumDuration) {
+        minimumDuration = 0;
+      }
+
+      var result = null;
+      var daysInFutur = 0;
+
+      do {
+        result = this._getNextToday(date, minimumDuration);
+        date.setDate(date.getDate() + 1);
+        date.setMinutes(0);
+        date.setHours(0);
+
+        daysInFutur++;
+      } while (!result && daysInFutur < 8);
+
+      if (daysInFutur < 8) {
+        return result;
+      } else {
+        return null;
+      }
+    } else {
+      throw 'Parameter must be a date';
+    }
   };
 
-  openingHours.prototype.getLastInThisPeriod = function(minutes, minimumDuration) {
 
-  };
+  openingHours.prototype._getNextToday = function(date, minimumDuration) {
+
+      var minutes = DateUtilsService.dateToMinutes(date) + minimumDuration;
+      var day = DateUtilsService.getDay(date);
+
+      // check if the delivery time is after midnight
+      if (minutes >= 1440) {
+        minutes %= 1440;
+        day = (day + 1) % 7;
+        date.setDate(date.getDate() + 1);
+      }
+
+      // check if the store is delivering at the moment
+      var isDelivering = _.filter(this.deliveryTimeCollection, function(obj) {
+          return obj.dayOfWeek === day && obj.startMinutes <= minutes && minutes <= obj.endMinutes;
+        });
+
+      if (isDelivering.length === 0) {
+        // check if it delivers later that day
+        var deliversLaterThatDay = _.chain(this.deliveryTimeCollection)
+            .filter(function(obj) {
+              return obj.dayOfWeek === day && obj.startMinutes > minutes;
+            })
+            .sortBy(function(obj) {
+              return obj.startMinutes;
+            }).value();
+
+        if (deliversLaterThatDay.length > 0) {
+          return DateUtilsService.getDate(date, deliversLaterThatDay[0].startMinutes);
+        } else {
+          return null;
+        }
+      } else {
+        return DateUtilsService.getDate(date, minutes);
+      }
+
+    };
+
+
 
   return openingHours;
 }];
-//module.exports = ['_',
-
-  //function(_) {
-
-    //var today = null;
-    //var currentTime = null;
-    //var minimumDuration = null;
-
-    //var dateToMinutes = function(date) {
-      //if (date) {
-        //var result = date.getMinutes() + date.getHours() * 60;
-        //// round to 5 minutes
-        //result = result + (5 - result % 5) % 5;
-
-        //return result % 1440;
-
-      //} else {
-        //return null;
-      //}
-    //};
-
-    //var deliveryTimeCollectionToToday = function(deliveryTimeCollection, dayOfWeek) {
-      //if (deliveryTimeCollection) {
-        //var openingHours = _.chain(deliveryTimeCollection)
-          //.where({
-            //dayOfWeek: dayOfWeek
-          //})
-          //.map(function(value) {
-            //return {
-              //startMinutes: value.startMinutes,
-              //endMinutes: value.endMinutes
-            //};
-          //})
-          //.sortBy(function(valjjue) {
-            //return value.startMinutes;
-          //})
-          //.value();
-
-        //// TODO add opening hours when store is open after 00:00
-
-        //return {
-          //dayOfWeek: dayOfWeek,
-          //openingHours: openingHours
-        //};
-      //}
-      //return null;
-    //};
-
-    //return {
-      //init: function(deliveryTimeCollection, date, minDuration) {
-        //currentTime = dateToMinutes(date);
-        //today = deliveryTimeCollectionToToday(deliveryTimeCollection, date.getDay());
-        //minimumDuration = minDuration;
-      //},
-
-      //getEarliestDeliveryTime: function() {
-        //var openingHour = this.getNextOpeningHour();
-
-        //if (openingHour.endMinutes + 15 >= currentTime + minimumDuration) {
-          //if (openingHour.startMinutes < currentTime + minimumDuration) {
-            //return (currentTime + minimumDuration);
-          //} else {
-            //return openingHour.startMinutes;
-          //}
-        //} else {
-          //return null;
-        //}
-      //},
-
-      //getLatestDeliveryTime: function() {
-        //var openingHour = this.getNextOpeningHour();
-
-        //if (openingHour) {
-          //if (currentTime + minimumDuration > openingHour.endMinutes + 15) {
-            //return null;
-          //} else {
-            //return openingHour.endMinutes + 15;
-          //}
-        //} else {
-          //return null;
-        //}
-      //},
-
-      //getNextOpeningHour: function() {
-        //var result = _.filter(today.openingHours, function(value) {
-          //return currentTime + minimumDuration >= value.startMinutes && currentTime <= value.endMinutes;
-        //});
-
-        //if (result.length > 0) {
-          //result[0].startMinutes = currentTime;
-          //return result[0];
-        //} else {
-          //var next = _.find(today.openingHours, function(value) {return value.startMinutes > currentTime});
-          //return next ? next : null;
-        //}
-      //},
-
-      //getTodayObject: function() {
-        //return today;
-      //},
-
-      //getCurrentTime: function() {
-        //return currentTime;
-      //}
-    //};
-
-  //}
-
-//];

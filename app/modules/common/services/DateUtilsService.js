@@ -3,13 +3,13 @@
 module.exports = [
 
   /*
-   * This module provides helper funtions to work with Date objects
+   * Provides helper funtions to work with Date objects
    */
   function() {
 
     return {
       /*
-      * Takes a Date objekt as a parameter and returns the amount of minutes of the day
+      * Takes a Date object as a parameter and returns the amount of minutes of the day
       */
       dateToMinutes: function(date) {
         if (date && date instanceof Date) {

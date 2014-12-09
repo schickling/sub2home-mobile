@@ -108,7 +108,6 @@ describe('Test DateUtilsService', function() {
       var date = new Date(2014, 10, 30, 12, 50, 0, 0);
       var result = new Date(2014, 10, 30, 13, 1, 0, 0);
 
-      debugger;
       var tmp = DateUtilsService.addMinutes(date, 11);
       expect(tmp).toEqual(result);
     });

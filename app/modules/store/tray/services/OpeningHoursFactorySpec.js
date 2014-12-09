@@ -24,13 +24,13 @@ describe('Test OpeningHoursFactory', function() {
     TestData = _OpeningHoursFactoryTestData_;
   }));
 
-  describe('Test the getNext function', function() {
+  describe('getNextDate', function() {
     it('Case 1:', function () {
       var now = getDate(monday, 9, 0);
       var result = getDate(monday, 11, 30);
 
       var openingHours = new OpeningHoursFactory(TestData.memmingenDeliveryTimeCollection);
-      expect(openingHours.getNext(now, 60)).toEqual(result);
+      expect(openingHours.getNextDate(now, 7, 60)).toEqual(result);
     });
 
     it('Case 2:', function () {
@@ -38,7 +38,7 @@ describe('Test OpeningHoursFactory', function() {
       var result = getDate(monday, 12, 0);
 
       var openingHours = new OpeningHoursFactory(TestData.memmingenDeliveryTimeCollection);
-      expect(openingHours.getNext(now, 60)).toEqual(result);
+      expect(openingHours.getNextDate(now, 7, 60)).toEqual(result);
     });
 
     it('Case 3:', function () {
@@ -46,7 +46,7 @@ describe('Test OpeningHoursFactory', function() {
       var result = getDate(monday, 13, 30);
 
       var openingHours = new OpeningHoursFactory(TestData.memmingenDeliveryTimeCollection);
-      expect(openingHours.getNext(now, 60)).toEqual(result);
+      expect(openingHours.getNextDate(now, 7, 60)).toEqual(result);
     });
 
     it('Case 4:', function () {
@@ -54,7 +54,7 @@ describe('Test OpeningHoursFactory', function() {
       var result = getDate(monday, 13, 50);
 
       var openingHours = new OpeningHoursFactory(TestData.memmingenDeliveryTimeCollection);
-      expect(openingHours.getNext(now, 60)).toEqual(result);
+      expect(openingHours.getNextDate(now, 7, 60)).toEqual(result);
     });
 
     it('Case 5:', function () {
@@ -62,7 +62,7 @@ describe('Test OpeningHoursFactory', function() {
       var result = getDate(monday, 17, 30);
 
       var openingHours = new OpeningHoursFactory(TestData.memmingenDeliveryTimeCollection);
-      expect(openingHours.getNext(now, 60)).toEqual(result);
+      expect(openingHours.getNextDate(now, 7, 60)).toEqual(result);
     });
 
     it('Case 6:', function () {
@@ -71,7 +71,7 @@ describe('Test OpeningHoursFactory', function() {
 
 
       var openingHours = new OpeningHoursFactory(TestData.memmingenDeliveryTimeCollection);
-      expect(openingHours.getNext(now, 60)).toEqual(result);
+      expect(openingHours.getNextDate(now, 7, 60)).toEqual(result);
     });
 
     it('Case 7:', function () {
@@ -79,7 +79,7 @@ describe('Test OpeningHoursFactory', function() {
       var result = getDate(tuesday, 11, 30);
 
       var openingHours = new OpeningHoursFactory(TestData.memmingenDeliveryTimeCollection);
-      expect(openingHours.getNext(now, 60)).toEqual(result);
+      expect(openingHours.getNextDate(now, 7, 60)).toEqual(result);
     });
 
     it('Case 8:', function () {
@@ -87,9 +87,28 @@ describe('Test OpeningHoursFactory', function() {
       var result = getDate(saturday, 0, 30);
 
       var openingHours = new OpeningHoursFactory(TestData.oberhausenDeliveryTimeCollection);
-      expect(openingHours.getNext(now, 60)).toEqual(result);
+      expect(openingHours.getNextDate(now, 7, 60)).toEqual(result);
+
+    });
+
+    it('Case 9:', function () {
+      var now = getDate(monday, 23, 30);
+
+      var openingHours = new OpeningHoursFactory(TestData.memmingenDeliveryTimeCollection);
+      expect(openingHours.getNextDate(now, 0, 15)).toBeNull();
 
     });
   });
+
+  describe('getNextDate', function() {
+    it('Case 1:', function () {
+      var now = getDate(monday, 9, 0);
+      var result = getDate(monday, 11, 30);
+
+      var openingHours = new OpeningHoursFactory(TestData.memmingenDeliveryTimeCollection);
+      expect(openingHours.getNextDate(now, 7, 60)).toEqual(result);
+    });
+  });
+
 
 });

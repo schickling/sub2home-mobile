@@ -15,22 +15,25 @@ module.exports = ['_', 'DateUtilsService',
      * Returns the next possible date when the store is delivering
      * If the deliveryTimeCollection of the store is empty it reutrns null
      */
-    openingHours.prototype.getNextDate = function(relativeDate, daysInFuture, minimumDuration) {
+    openingHours.prototype.getNextDate = function(relativeDate, daysInFuture) {
 
       if (relativeDate && relativeDate instanceof Date) {
         daysInFuture = daysInFuture || 0;
-        minimumDuration = minimumDuration || 0;
 
         // filterFuntion to find the next delivery time
         var filterFunctionNext = function(obj, day, minutes) {
-          if (day && minutes) {
+          if (day && minutes || minutes >= 0) {
             return obj.dayOfWeek === day && obj.startMinutes > minutes;
           } else {
-            return obj.startMinutes;
+            if (obj instanceof Array) {
+              return obj[0].startMinutes;
+            } else {
+              return obj.startMinutes;
+            }
           }
         };
 
-        var nextDate = this._getThisDay(relativeDate, minimumDuration, filterFunctionNext);
+        var nextDate = this._getThisDay(relativeDate, filterFunctionNext);
 
         if (!nextDate && daysInFuture > 0) {
           relativeDate = new Date(relativeDate);
@@ -38,7 +41,7 @@ module.exports = ['_', 'DateUtilsService',
           relativeDate.setMinutes(0);
           relativeDate.setHours(0);
 
-          return this.getNextDate(relativeDate, --daysInFuture, minimumDuration);
+          return this.getNextDate(relativeDate, --daysInFuture);
         } else {
           return nextDate;
         }
@@ -48,39 +51,71 @@ module.exports = ['_', 'DateUtilsService',
     };
 
 
+    openingHours.prototype.getPreviousDate = function(relativeDate, daysInFuture) {
+      if (relativeDate && relativeDate instanceof Date) {
+        daysInFuture = daysInFuture || 0;
+
+        var filterFunctionPrevious = function(obj, day, minutes) {
+          if (day && minutes || minutes >= 0) {
+            return obj.dayOfWeek === day && obj.endMinutes < minutes;
+          } else {
+            if (obj instanceof Array) {
+              return obj[obj.length - 1].endMinutes;
+            } else {
+              return obj.endMinutes;
+            }
+          }
+        };
+
+        var previousDate = this._getThisDay(relativeDate, filterFunctionPrevious);
+
+        if (!previousDate && daysInFuture > 0) {
+          relativeDate = new Date(relativeDate);
+          relativeDate.setDate(relativeDate.getDate() - 1);
+          relativeDate.setMinutes(59);
+          relativeDate.setHours(23);
+
+          return this.getPreviousDate(relativeDate, --daysInFuture);
+        } else {
+          return previousDate;
+        }
+
+      } else {
+        throw new Error('Parameter must be a date');
+      }
+
+    };
     /*
      * This is a private helper method that checks if the delivery can be delivered that day
      * when not it returns null
      */
-    openingHours.prototype._getThisDay = function(date, minimumDuration, filterFunction) {
+    openingHours.prototype._getThisDay = function(date, filterFunction) {
 
-      date.setMinutes(date.getMinutes() + minimumDuration);
-
-      var minutes = DateUtilsService.dateToMinutes(date);
-      var day = DateUtilsService.getDay(date);
+      var min = date.getMinutes() + date.getHours() * 60;
+      var day = date.getDay();
 
       // check if the store is delivering at the moment
       var isDelivering = _.any(this.deliveryTimeCollection, function(obj) {
-        return obj.dayOfWeek === day && obj.startMinutes <= minutes && minutes <= obj.endMinutes;
+        return obj.dayOfWeek === day && obj.startMinutes <= min && min <= obj.endMinutes;
       });
 
       if (!isDelivering) {
         // check if it delivers later that day
         var nextDeliveryTime = _(this.deliveryTimeCollection)
           .filter(function(obj) {
-            return filterFunction(obj, day, minutes);
+            return filterFunction(obj, day, min);
           })
           .sortBy(function(obj) {
             return filterFunction(obj);
-          }).first();
+          }).value();
 
-        if (nextDeliveryTime) {
-          return DateUtilsService.getDate(date, nextDeliveryTime.startMinutes);
+        if (nextDeliveryTime.length > 0) {
+          return DateUtilsService.getDate(date, filterFunction(nextDeliveryTime));
         } else {
           return null;
         }
       } else {
-        return DateUtilsService.getDate(date, minutes);
+        return DateUtilsService.getDate(date, min);
       }
 
     };

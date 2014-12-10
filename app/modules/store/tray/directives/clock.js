@@ -12,36 +12,44 @@ module.exports = ['_', 'OpeningHoursFactory', 'ServerTime', 'DateUtilsService',
 
       templateUrl: 'modules/store/tray/directives/clock.html',
       link: function($scope) {
-
+        var openingHours = new OpeningHoursFactory($scope.storeModel.deliveryTimesCollection);
 
         var update = function(newOrderDate) {
+
           if (newOrderDate) {
             $scope.orderDate = newOrderDate;
           }
         };
 
         var date = ServerTime.getServerTime();
-        var openingHours = new OpeningHoursFactory($scope.storeModel.deliveryTimesCollection);
+        var minutes = DateUtilsService.roundToNext(date.getMinutes() + $scope.deliveryAreaModel.minimumDuration, 5);
+        date.setMinutes(minutes);
+        date = openingHours.getNextDate(date, 7);
+        update(date);
+
 
         //date.setMinutes(date.getMinutes() + minimumDuration);
         $scope.minimumDurartion = $scope.deliveryAreaModel.minimumDuration;
 
-        update(openingHours.getNextDate(date, $scope.minimumDuration));
 
         $scope.minutesUp = function() {
-          update(openingHours.getNextDate(DateUtilsService.addMinutes($scope.orderDate, 5)));
+          var newOrderDate = openingHours.getNextDate($scope.orderDate, 7);
+          update(DateUtilsService.addMinutes(newOrderDate, 5));
         };
 
         $scope.minutesDown = function() {
-          update(openingHours.getNextDate(DateUtilsService.addMinutes($scope.orderDate, -5)));
+          var newOrderDate = openingHours.getPreviousDate($scope.orderDate, 7);
+          update(DateUtilsService.addMinutes(newOrderDate, -5));
         };
 
         $scope.hoursUp = function() {
-          update(openingHours.getNextDate(DateUtilsService.addMinutes($scope.orderDate, 60)));
+          var newOrderDate = openingHours.getNextDate($scope.orderDate, 7);
+          update(DateUtilsService.addMinutes(newOrderDate, 60));
         };
 
         $scope.hoursDown = function() {
-          update(openingHours.getNextDate(DateUtilsService.addMinutes($scope.orderDate, -60)));
+          var newOrderDate = openingHours.getPreviousDate($scope.orderDate, 7);
+          update(DateUtilsService.addMinutes(newOrderDate, -60));
         };
 
         var checkUnavailable = function() {

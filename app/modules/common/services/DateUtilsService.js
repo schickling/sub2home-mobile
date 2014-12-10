@@ -8,20 +8,12 @@ module.exports = [
   function() {
 
     return {
-      /*
-      * Takes a Date object as a parameter and returns the amount of minutes of the day
-      */
-      dateToMinutes: function(date) {
-        if (date && date instanceof Date) {
-          var result = date.getMinutes() + date.getHours() * 60;
-          // round to 5 minutes
-          result = result + (5 - result % 5) % 5;
+     roundToNext: function (minutes, step) {
 
-          return result % 1440;
+        minutes = minutes || 0;
+        step = step || 0;
 
-        } else {
-          throw 'Parameter must be a date';
-        }
+        return minutes + (step - minutes % step) % step;
       },
 
       /*

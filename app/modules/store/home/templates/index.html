@@ -56,11 +56,11 @@
     </div>
 </div>
 
-<div id="overlayContainer" ng-if="chooseDeliveryArea" bindonce>
+<div id="overlayContainer" ng-if="chooseDeliveryArea || storeClosed" bindonce>
 
     <!-- choose delivery-area -->
 
-    <div class="overlay note" id="storeDeliveryAreaSelection">
+    <div class="overlay note" ng-if="chooseDeliveryArea" id="storeDeliveryAreaSelection">
         <header>
             <div class="logo"></div>
             <p>SUBWAY<span class="superscript">&reg;</span>  <span bo-text="storeModel.title"></span>
@@ -216,14 +216,12 @@
     <!--</div>-->
 
     <!-- / store is closed -->
-    
-    <div class="overlay note" id="storeClosed">
+
+    <div class="overlay note" bo-if="storeClosed" id="storeClosed">
       <div class="logo"></div>
       <p>Sorry, SUBWAY<span class="superscript">&reg;</span> <span bo-text="storeModel.title"></span> liefert heute nicht.
       </p>
-      <p id="storeClosedDescription">
-        Und zwar darum und darum und darum. Und in zwei Wochen gehts wieder los.
-      </p>
+      <p id="storeClosedDescription" bo-if="messageText" bo-text="messageText"></p>
       <div class="backHome">
         <p class="smallHint">Vielleicht hat ein anderes SUBWAY<span class="superscript">&reg;</span>-Restaurant in deiner Nähe geöffnet?</p>
             <div ng-click="navigate('/')" class="button">Zur Startseite</div>

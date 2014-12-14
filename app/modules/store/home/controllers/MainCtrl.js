@@ -21,6 +21,8 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.suggestedDeliveryAreasCollection = [];
     $scope.checkingPostal = false;
     $scope.selectedDeliveryAreaModel = null;
+    $scope.storeClosed = !storeModel.isOpen;
+    $scope.messageText = storeModel.messageText;
 
     if (!$scope.storeModel.isMessageActive) {
       NotificationService.removeStoreHomeNotification();

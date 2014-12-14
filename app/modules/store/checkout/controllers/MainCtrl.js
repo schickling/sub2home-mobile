@@ -71,6 +71,8 @@ module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService',
         $timeout(function() {
           countDown();
         }, 60000);
+      } else {
+        $scope.restMinutes = 0;
       }
     };
 

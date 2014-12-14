@@ -2,10 +2,12 @@
 
 module.exports = ['$scope', 'TrayStorageService', 'TrayService',
   'PersistenceService', 'storeModel', 'OrderService', 'RoutingService',
-  '$timeout', 'LastPageService',
+  '$timeout', 'LastPageService', 'ServerTime', 'DateUtilsService',
+  'OpeningHoursFactory',
 
   function($scope, TrayStorageService, TrayService, PersistenceService,
-    storeModel, OrderService, RoutingService, $timeout, LastPageService) {
+    storeModel, OrderService, RoutingService, $timeout, LastPageService,
+    ServerTime, DateUtilsService, OpeningHoursFactory) {
 
     $scope.storeModel = storeModel;
     $scope.lastPage = LastPageService.get();
@@ -18,7 +20,8 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService',
 
     $scope.totalAmount = TrayService.getTotalAmount();
 
-    $scope.deliveryAreaModel = PersistenceService.load('selectedDeliveryAreaModel');
+    $scope.deliveryAreaModel = PersistenceService
+      .load('selectedDeliveryAreaModel');
 
     $scope.numberOfItems = TrayStorageService.getAllItems().length;
 
@@ -38,6 +41,24 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService',
 
     };
 
+    // check if the store is delivering today
+    $scope.openingHours = new OpeningHoursFactory(
+      $scope.storeModel.deliveryTimesCollection);
+
+
+    var serverTime = ServerTime.getServerTime();
+    var minutes = DateUtilsService.roundToNext(serverTime.getMinutes() +
+      $scope.deliveryAreaModel.minimumDuration, 5);
+    serverTime.setMinutes(minutes);
+    var now = $scope.openingHours.getNextDate(serverTime, 0);
+
+    if (now) {
+      $scope.deliveresToday = true;
+    } else {
+      $scope.deliveresToday = false;
+    }
+
+
     $scope.formData = {};
     // add city
     $scope.formData.payment = 'cash';
@@ -51,7 +72,9 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService',
       $scope.$broadcast('show-errors-check-validity');
 
       if (!$scope.deliveryForm.$invalid) {
-        OrderService.order($scope.orderMinutes, $scope.deliveryAreaModel, $scope.totalAmount, $scope.formData, $scope.allSingleItems, $scope.allSubItems, $scope.allMenuItems);
+        OrderService.order($scope.orderMinutes, $scope.deliveryAreaModel,
+          $scope.totalAmount, $scope.formData, $scope.allSingleItems,
+          $scope.allSubItems, $scope.allMenuItems);
 
         $scope.deliveryFormError = false;
         TrayStorageService.removeAll();

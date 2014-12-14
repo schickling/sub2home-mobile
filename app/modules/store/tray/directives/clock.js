@@ -7,97 +7,122 @@ module.exports = ['_', 'OpeningHoursFactory', 'ServerTime', 'DateUtilsService',
       restrict: 'E',
       scope: {
         deliveryAreaModel: '=deliveryAreaModel',
-        storeModel: '=storeModel',
+        openingHours: '=openingHours',
       },
 
       templateUrl: 'modules/store/tray/directives/clock.html',
       link: function($scope) {
-        var openingHours = new OpeningHoursFactory($scope.storeModel.deliveryTimesCollection);
-
-        var update = function(newOrderDate) {
-
-          if (newOrderDate) {
-            $scope.orderDate = newOrderDate;
+        var daysInFuture = 0;
+        var getPreviousDate = function(date, minutes) {
+          var newOrderDate = DateUtilsService.addMinutes(date, minutes);
+          if (newOrderDate.getTime() >= now.getTime()) {
+            return $scope.openingHours.getPreviousDate(newOrderDate, daysInFuture);
+          } else {
+            return null;
           }
         };
 
-        var date = ServerTime.getServerTime();
-        var minutes = DateUtilsService.roundToNext(date.getMinutes() + $scope.deliveryAreaModel.minimumDuration, 5);
-        date.setMinutes(minutes);
-        date = openingHours.getNextDate(date, 7);
-        update(date);
+        var getNextDate = function(date, minutes) {
+          var newOrderDate = DateUtilsService.addMinutes(date, minutes);
+          newOrderDate = $scope.openingHours.getNextDate(newOrderDate, daysInFuture);
+
+          if (newOrderDate) {
+            //TODO write datesutil function
+            var maxDate = new Date(now);
+            maxDate.setDate(maxDate.getDate() + daysInFuture);
+            maxDate.setMinutes(59);
+            maxDate.setHours(23);
+
+            if (newOrderDate.getTime() < maxDate.getTime()) {
+              newOrderDate = $scope.openingHours.getNextDate(newOrderDate,
+                daysInFuture);
+              return newOrderDate;
+
+            } else {
+              return null;
+            }
+          } else {
+            return null;
+          }
+
+        };
+
+        var checkUnavailable = function(newOrderDate) {
+          //check minutes down
+          if (!getPreviousDate(newOrderDate, -5)) {
+            $scope.minutesDownUnavailable = true;
+          } else {
+            $scope.minutesDownUnavailable = false;
+          }
+
+          // check hours down
+          //var hoursDownDate = new Date(newOrderDate);
+          //hoursDownDate.setMinutes(hoursDownDate.getMinutes() - 59);
+          //if (hoursDownDate.getTime() <= now.getTime()) {
+          if (!getPreviousDate(newOrderDate, -60)) {
+            $scope.hoursDownUnavailable = true;
+          } else {
+            $scope.hoursDownUnavailable = false;
+          }
+
+          // check minutes up
+          if (!getNextDate(newOrderDate, 5)) {
+            $scope.minutesUpUnavailable = true;
+          } else {
+            $scope.minutesUpUnavailable = false;
+          }
+
+          // check hours up
+          if (!getNextDate(newOrderDate, 60)) {
+            $scope.hoursUpUnavailable = true;
+          } else {
+            $scope.hoursUpUnavailable = false;
+          }
+
+        };
 
 
-        //date.setMinutes(date.getMinutes() + minimumDuration);
+        var update = function(newOrderDate) {
+          if (newOrderDate) {
+            $scope.orderDate = newOrderDate;
+            checkUnavailable(newOrderDate);
+          }
+        };
+
+        // Add the minimumDuration to the current time and get the next date
+        // when the store is delivering
+        var serverTime = ServerTime.getServerTime();
+        var minutes = DateUtilsService.roundToNext(serverTime.getMinutes() + $scope.deliveryAreaModel.minimumDuration, 5);
+        serverTime.setMinutes(minutes);
+        $scope.orderDate = new Date(serverTime);
+        var now = $scope.openingHours.getNextDate(serverTime, daysInFuture);
+
+        if (now.getDate() === serverTime.getDate()) {
+          $scope.deliveresToday = true;
+        } else {
+          $scope.deliveresToday = false;
+        }
+        update(now);
+
+
         $scope.minimumDurartion = $scope.deliveryAreaModel.minimumDuration;
 
 
         $scope.minutesUp = function() {
-          var newOrderDate = openingHours.getNextDate($scope.orderDate, 7);
-          update(DateUtilsService.addMinutes(newOrderDate, 5));
-        };
-
-        $scope.minutesDown = function() {
-          var newOrderDate = openingHours.getPreviousDate($scope.orderDate, 7);
-          update(DateUtilsService.addMinutes(newOrderDate, -5));
+          update(getNextDate($scope.orderDate, 5));
         };
 
         $scope.hoursUp = function() {
-          var newOrderDate = openingHours.getNextDate($scope.orderDate, 7);
-          update(DateUtilsService.addMinutes(newOrderDate, 60));
+          update(getNextDate($scope.orderDate, 60));
+        };
+
+        $scope.minutesDown = function() {
+          update(getPreviousDate($scope.orderDate, -5));
         };
 
         $scope.hoursDown = function() {
-          var newOrderDate = openingHours.getPreviousDate($scope.orderDate, 7);
-          update(DateUtilsService.addMinutes(newOrderDate, -60));
+          update(getPreviousDate($scope.orderDate, -60));
         };
-
-        var checkUnavailable = function() {
-
-          $scope.minutesUpUnavailable = false;
-          $scope.minutesDownUnavailable = false;
-          $scope.hoursUpUnavailable = false;
-          $scope.hoursUpUnavailable = false;
-
-        };
-
-        //var date = ServerTime.getServerTime();
-        //ClockService.init($scope.storeModel.deliveryTimesCollection, date, $scope.deliveryAreaModel.minimumDuration);
-
-        //$scope.orderMinutes = ClockService.getEarliestDeliveryTime();
-        //$scope.storeIsDelivering = ClockService.getNextDateOpeningHour();
-
-        //$scope.latestDeliveryTime = ClockService.getLatestDeliveryTime();
-        //$scope.earliestDeliveryTime = ClockService.getEarliestDeliveryTime();
-
-        //$scope.minutesUp = function() {
-          //$scope.latestDeliveryTime = ClockService.getLatestDeliveryTime();
-          //if ($scope.orderMinutes + 5 <= $scope.latestDeliveryTime) {
-            //$scope.orderMinutes += 5;
-          //}
-        //};
-
-        //$scope.minutesDown = function() {
-          //$scope.earliestDeliveryTime = ClockService.getEarliestDeliveryTime();
-          //if ($scope.orderMinutes - 5 >= $scope.earliestDeliveryTime) {
-            //$scope.orderMinutes -= 5;
-          //}
-        //};
-
-        //$scope.hoursUp = function() {
-          //$scope.latestDeliveryTime = ClockService.getLatestDeliveryTime();
-          //if ($scope.orderMinutes + 60 <= $scope.latestDeliveryTime) {
-            //$scope.orderMinutes += 60;
-          //}
-        //};
-
-        //$scope.hoursDown = function() {
-          //$scope.earliestDeliveryTime = ClockService.getEarliestDeliveryTime();
-          //if ($scope.orderMinutes - 60 >= $scope.earliestDeliveryTime) {
-            //$scope.orderMinutes -= 60;
-          //}
-        //};
-
       }
     };
 

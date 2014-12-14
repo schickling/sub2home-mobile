@@ -19,7 +19,7 @@
     </aside>
 
     <div class="content note" id="storeTray" bindonce>
-        <div id="minimumOrderValue" class="note" bo-if="deliveryAreaModel.minimumValue > totalAmount">
+        <div id="minimumOrderValue" class="note" bo-if="deliveryAreaModel.minimumValue > totalAmount && deliveresToday">
             <div id="minimumOrderValueContent">
                 <p bo-text="'Leider hast du den Mindestbestellwert von ' + deliveryAreaModel.minimumValue + ' € noch nicht erreicht.'"></p>
                 <p ng-click="navigate(':storeAlias')" class="button">Vielleicht noch ein Sub?</p>
@@ -27,6 +27,12 @@
         </div>
         <div id="storeTrayMainContent">
 
+
+            <section ng-if="!deliveresToday" id="sendOrderHint">
+                <i class="icn iFlag"></i>
+                <h4>   Die Onlinetheke des SUBWAY<span class="superscript">&reg;</span> <span bindonce bo-text="storeModel.title"></span> ist leider gerade geschlossen.
+</h4>
+            </section>
 
             <section id="traySummary">
                 <header>
@@ -49,18 +55,18 @@
                 </div>
             </section>
 
-            <section id="setDeliveryTime">
+            <section ng-if="deliveresToday" id="setDeliveryTime">
                 <header>
                     <h3>2) Deine Wunsch-Lieferzeit</h3>
                 </header>
-                <clock order-minutes="orderMinutes" store-model="storeModel" delivery-area-model="deliveryAreaModel"></clock>
+                <clock opening-hours="openingHours" delivery-area-model="deliveryAreaModel"></clock>
             </section>
 
             <section id="setDeliveryAddress">
                 <header>
                     <h3>3) Deine Lieferadresse</h3>
                 </header>
-                <delivery-address-form> </delivery-address-form>
+                <delivery-address-form></delivery-address-form>
             </section>
 
             <!--<section id="setBonusOptions">-->
@@ -95,7 +101,7 @@
             <!--</div>-->
             <!--</section>-->
 
-            <section id="setPaymentMethod">
+            <section ng-if="deliveresToday" id="setPaymentMethod">
                 <header>
                     <h3>4) Deine Zahlungsart</h3>
                 </header>
@@ -115,7 +121,9 @@
                 </div>
             </section>
 
-            <section ng-if="deliveryAreaModel.minimumValue > totalAmount" id="sendOrderHint">
+
+
+            <section ng-if="deliveryAreaModel.minimumValue > totalAmount && deliveresToday" id="sendOrderHint">
                 <i class="icn iFlag"></i>
                 <h4>Wenn du den Mindestbestellwert erreicht hast, kannst du an dieser Stelle die Bestellung abschicken</h4>
             </section>
@@ -136,7 +144,9 @@
             <!--</aside>-->
 
         </div>
-        <div bo-if="deliveryAreaModel.minimumValue <= totalAmount" id="sendOrder" class="note">
+
+
+        <div bo-if="deliveryAreaModel.minimumValue <= totalAmount && deliveresToday" id="sendOrder" class="note">
             <div class="container">
                 <p>
                     Mit Klick auf "Bestellung abschicken" bestätigst du unsere

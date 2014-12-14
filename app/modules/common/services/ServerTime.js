@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = [
+
   function() {
 
     var difference = 0;
@@ -15,6 +16,7 @@ module.exports = [
       getServerTime: function() {
         var now = new Date();
         return new Date(now.getTime() + difference);
+        //return new Date(2014, 9, 9, 21, 21, 0);
       }
 
     };

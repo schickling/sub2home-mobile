@@ -6,7 +6,7 @@ module.exports = [
     return {
       restrict: 'E',
       templateUrl: 'modules/store/tray/directives/deliveryAddressForm.html',
-      link: function($scope, $elem, $attrs) {
+      link: function($scope) {
 
         $scope.showAdditionalAddress = false;
 

@@ -1,12 +1,13 @@
 'use strict';
 
-module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route', 'ServerTime',
+module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
 
-  function(RandomService, _, OrdersModelFactory, $route, ServerTime) {
+  function(RandomService, _, OrdersModelFactory, $route) {
 
     return {
 
-      order: function(dueTime, deliveryAreaModel, total, formData, singleItemsCollection, subItemsCollection, menuItemsCollection) {
+      order: function(dueDate, deliveryAreaModel, total, formData,
+        singleItemsCollection, subItemsCollection, menuItemsCollection) {
         var postData = {
           comment: formData.comment || '',
           couponCode: '',
@@ -20,14 +21,21 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route', 'ServerT
           total: total
         };
 
-        postData.addressModel = this._getAddressModel(formData, deliveryAreaModel);
-        postData.dueAt = ServerTime.getServerTime();
-        postData.dueAt.setMinutes(dueTime % 60);
-        postData.dueAt.setHours(Math.floor(dueTime / 60) + 1);
+        postData.addressModel = this._getAddressModel(formData,
+          deliveryAreaModel);
+
+        var timeOffset = dueDate.getTimezoneOffset();
+        timeOffset = -timeOffset;
+        dueDate.setMinutes(dueDate.getMinutes() + timeOffset);
+        postData.dueAt = dueDate;
+        //TODO delete
+        //postData.dueAt.setMinutes(dueTime % 60);
+        //postData.dueAt.setHours(Math.floor(dueTime / 60) + 1);
 
 
 
-        postData.orderedItemsCollection = this._getOrderedItemsCollection(singleItemsCollection, subItemsCollection, menuItemsCollection);
+        postData.orderedItemsCollection = this._getOrderedItemsCollection(
+          singleItemsCollection, subItemsCollection, menuItemsCollection);
 
         OrdersModelFactory.create({
           storeAlias: $route.current.params.storeAlias,
@@ -53,7 +61,8 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route', 'ServerT
         return addressModel;
       },
 
-      _getOrderedItemsCollection: function(singleItemsCollection, subItemsCollection, menuItemsCollection) {
+      _getOrderedItemsCollection: function(singleItemsCollection,
+        subItemsCollection, menuItemsCollection) {
         var orderedItemsCollection = [];
         var self = this;
 
@@ -121,7 +130,7 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route', 'ServerT
       },
 
 
-    _getMenuItemsArticle: function(menuItem) {
+      _getMenuItemsArticle: function(menuItem) {
         var orderedItem = this._getOrderedItemObject();
 
         orderedItem.total = menuItem.finalPrice;
@@ -145,7 +154,8 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route', 'ServerT
           orderedArticle.menuCompomponentBlockModel = {
             id: RandomService.getUuId(),
             menuComponentBlockMediaModel: article.menuComponentBlockMediaModel,
-            menuComponentOptionsCollection: article.menuComponentOptionsCollection,
+            menuComponentOptionsCollection: article.
+            menuComponentOptionsCollection,
 
           };
 

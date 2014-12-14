@@ -1,14 +1,21 @@
 'use strict';
 
-module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService', 'ServerTime',
+module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService',
+  'ServerTime', 'DateUtilsService',
 
-  function($scope, PersistenceService, $timeout, ParseService, ServerTime) {
-    var getTimeToDelivery = function(deliveryTime) {
-      var tmpTime = ServerTime.getServerTime();
-      var restTime = deliveryTime - (tmpTime.getHours() * 60);
-      restTime = restTime - (tmpTime.getMinutes());
-
-      return restTime;
+  function($scope, PersistenceService, $timeout, ParseService, ServerTime,
+    DateUtilsService) {
+    var getTimeToDelivery = function() {
+      var serverTime = ServerTime.getServerTime();
+      var deliveryTime = new Date(PersistenceService.load('deliveryDate'));
+      var diff = deliveryTime.getTime() - serverTime.getTime();
+      if (diff > 0) {
+        //var minutes = Math.round(((diff % 86400000) % 3600000) / 60000);
+        var minutes = Math.floor(diff / 60000);
+        return DateUtilsService.roundToNext(minutes, 5);
+      } else {
+        return 0;
+      }
     };
 
     $scope.userInfo = PersistenceService.load('formData');
@@ -50,23 +57,21 @@ module.exports = ['$scope', 'PersistenceService', '$timeout', 'ParseService', 'S
       }
     };
 
-    $scope.restTime = getTimeToDelivery(PersistenceService.load('timeToDelivery'));
+    $scope.restMinutes = getTimeToDelivery();
 
     var countDown = function() {
-      var restTime = getTimeToDelivery(PersistenceService.load('timeToDelivery'));
-      if (restTime > 0) {
-        if (restTime % 5 === 0) {
-          $scope.restTime = restTime;
-          $scope.$apply();
+      var restMinutes = getTimeToDelivery();
+
+      if (restMinutes > 0) {
+        if (restMinutes % 5 === 0) {
+          $scope.restMinutes = restMinutes;
+          //$scope.$apply();
         }
 
         $timeout(function() {
           countDown();
         }, 60000);
-      } else {
-        $scope.restTime = 0;
       }
-
     };
 
     countDown();

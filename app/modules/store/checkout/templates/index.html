@@ -32,8 +32,8 @@
                 <p>Wir sind in ca.</p>
             </div>
             <div id="checkoutCounter">
-                <h1 id="checkoutHours">{{restTime / 60 | numberFixedLength:2}}</h1>
-                <h1 id="checkoutMinutes">{{restTime % 60 | numberFixedLength:2}}</h1>
+                <h1 id="checkoutHours">{{ restMinutes / 60| numberFixedLength:2}}</h1>
+                <h1 id="checkoutMinutes">{{ restMinutes % 60 | numberFixedLength:2}}</h1>
             </div>
 
             <p>bei dir in der <span bo-text="userInfo.street"></span>.</p>

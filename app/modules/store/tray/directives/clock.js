@@ -1,13 +1,15 @@
 'use strict';
 
 module.exports = ['_', 'OpeningHoursFactory', 'ServerTime', 'DateUtilsService',
+  'PersistenceService',
 
-  function(_, OpeningHoursFactory, ServerTime, DateUtilsService) {
+  function(_, OpeningHoursFactory, ServerTime, DateUtilsService, PersistenceService) {
     return {
       restrict: 'E',
       scope: {
         deliveryAreaModel: '=deliveryAreaModel',
         openingHours: '=openingHours',
+        orderDate: '=orderDate'
       },
 
       templateUrl: 'modules/store/tray/directives/clock.html',
@@ -86,6 +88,7 @@ module.exports = ['_', 'OpeningHoursFactory', 'ServerTime', 'DateUtilsService',
           if (newOrderDate) {
             $scope.orderDate = newOrderDate;
             checkUnavailable(newOrderDate);
+            PersistenceService.save('deliveryDate', $scope.orderDate.toString());
           }
         };
 

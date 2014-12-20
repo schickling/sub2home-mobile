@@ -24,15 +24,7 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
         postData.addressModel = this._getAddressModel(formData,
           deliveryAreaModel);
 
-        var timeOffset = dueDate.getTimezoneOffset();
-        timeOffset = -timeOffset;
-        dueDate.setMinutes(dueDate.getMinutes() + timeOffset);
-        postData.dueAt = dueDate;
-        //TODO delete
-        //postData.dueAt.setMinutes(dueTime % 60);
-        //postData.dueAt.setHours(Math.floor(dueTime / 60) + 1);
-
-
+        postData.dueAt = dueDate.toString();
 
         postData.orderedItemsCollection = this._getOrderedItemsCollection(
           singleItemsCollection, subItemsCollection, menuItemsCollection);

@@ -5,8 +5,8 @@ module.exports = ['$resource', '_', 'ApiService', 'ServerTime',
 
     var hook = function(res) {
 
-      var timestamp = new Date(res.headers()['server-time']).getTime();
-      ServerTime.setServerTime(timestamp);
+      var timestampString = new Date(res.headers()['server-time']).getTime();
+      ServerTime.setServerTime(new Date(timestampString));
 
       return res.data;
     };

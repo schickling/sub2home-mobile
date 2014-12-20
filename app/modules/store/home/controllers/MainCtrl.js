@@ -3,12 +3,12 @@
 module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
   'selectedDeliveryAreaModel', 'RoutingService', 'PersistenceService',
   'PostalOracleService', 'NotificationService', '$timeout',
-  'TrayStorageService', 'LastPageService', '$location',
+  'TrayStorageService', 'LastPageService', '$location', 'TrayService',
 
   function($scope, storeModel, categoriesCollection, _,
     selectedDeliveryAreaModel, RoutingService, PersistenceService,
     PostalOracleService, NotificationService, $timeout, TrayStorageService,
-    LastPageService, $location) {
+    LastPageService, $location, TrayService) {
 
     $scope.categoriesCollection = categoriesCollection;
     $scope.currentCategoryModel = categoriesCollection.current;
@@ -23,6 +23,9 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.selectedDeliveryAreaModel = null;
     $scope.storeClosed = !storeModel.isOpen;
     $scope.messageText = storeModel.messageText;
+
+
+    $scope.totalAmount = TrayService.getTotalAmount();
 
     if (!$scope.storeModel.isMessageActive) {
       NotificationService.removeStoreHomeNotification();
@@ -47,6 +50,7 @@ module.exports = ['$scope', 'storeModel', 'categoriesCollection', '_',
     $scope.$on('trayNotification', function(event, item) {
       $scope.numberOfItemsInTray = TrayStorageService.getAllItems().length;
       $scope.setTrayNotification();
+      $scope.totalAmount = TrayService.getTotalAmount();
     });
 
     $scope.numberOfItemsInTray = TrayStorageService.getAllItems().length;

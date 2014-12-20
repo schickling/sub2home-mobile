@@ -30,7 +30,7 @@ describe('ServerTime', function() {
       var now = new Date();
 
       var serverDate = new Date(now);
-      serverDate.setUTCHours(12);
+      serverDate.setUTCHours(serverDate.getUTCHours() + 12);
 
       ServerTime.setServerTime(serverDate);
 

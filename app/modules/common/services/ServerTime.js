@@ -23,10 +23,13 @@ module.exports = [
         difference = (serverDate.getTime() - now.getTime());
 
         // get the timezone difference between the server and the client
-        var serverGMT = serverDate.getHours() - serverDate.getUTCHours();
-        var clientGMT = now.getHours() - now.getUTCHours();
+        var serverGMT = (((serverDate.getHours() - serverDate.getUTCHours()) %
+          24) + 24) % 24;
+        var clientGMT = (((now.getHours() - now.getUTCHours()) % 24) + 24) %
+          24;
         difference += (serverGMT - clientGMT) * 60 * 60 * 1000;
       },
+
 
       /**
        * Returns the normalized time from the server

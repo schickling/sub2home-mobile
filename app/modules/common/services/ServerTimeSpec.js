@@ -9,14 +9,29 @@ describe('ServerTime', function() {
     ServerTime = _ServerTime_;
   }));
 
-  describe('the client time is different to the server time', function() {
-    it('Client time is two hours later then server time', function() {
+  describe('Server and Client are in the same timezone', function() {
+    it('Server and Client have the same time', function() {
+      var now = new Date();
+
+      var serverDate = new Date(now);
+
+      var offset = -now.getTimezoneOffset() / 60 + 0;
+      ServerTime.setServerTime(serverDate, offset);
+
+      var resultDate = ServerTime.getServerTime();
+      expect(resultDate.getHours()).toBe(serverDate.getHours());
+      expect(resultDate.getMinutes()).toBe(serverDate.getMinutes());
+      expect(resultDate.getDate()).toBe(serverDate.getDate());
+    });
+
+    it('Server and Client have a different time', function() {
       var now = new Date();
 
       var serverDate = new Date(now);
       serverDate.setHours(serverDate.getHours() - 2);
 
-      ServerTime.setServerTime(serverDate);
+      var offset = -now.getTimezoneOffset() / 60 + 0;
+      ServerTime.setServerTime(serverDate, offset);
 
       var resultDate = ServerTime.getServerTime();
       expect(resultDate.getHours()).toBe(serverDate.getHours());
@@ -25,20 +40,41 @@ describe('ServerTime', function() {
     });
   });
 
-  describe('the client has another timezone then the server', function() {
-    it('set server UTC time', function() {
+  describe('Server and Client are in a different timezone', function() {
+    it('Server and Client have the same time', function() {
       var now = new Date();
 
       var serverDate = new Date(now);
-      serverDate.setUTCHours(serverDate.getUTCHours() + 12);
 
-      ServerTime.setServerTime(serverDate);
+      var offset = -now.getTimezoneOffset() / 60 + 1;
+      ServerTime.setServerTime(serverDate, offset);
 
       var resultDate = ServerTime.getServerTime();
+
+      serverDate.setHours(serverDate.getHours() + 1);
 
       expect(resultDate.getHours()).toBe(serverDate.getHours());
       expect(resultDate.getMinutes()).toBe(serverDate.getMinutes());
       expect(resultDate.getDate()).toBe(serverDate.getDate());
     });
+
+    it('Server and Client have a different time', function() {
+      var now = new Date();
+
+      var serverDate = new Date(now);
+      serverDate.setHours(serverDate.getHours() + 1);
+
+      var offset = -now.getTimezoneOffset() / 60 + 1;
+      ServerTime.setServerTime(serverDate, offset);
+
+      var resultDate = ServerTime.getServerTime();
+
+      serverDate.setHours(serverDate.getHours() + 1);
+
+      expect(resultDate.getHours()).toBe(serverDate.getHours());
+      expect(resultDate.getMinutes()).toBe(serverDate.getMinutes());
+      expect(resultDate.getDate()).toBe(serverDate.getDate());
+    });
+
   });
 });

@@ -17,14 +17,12 @@ module.exports = [
        * Sets the difference between the server and client time
        * Takes the server time string form an xhr request as a parameter
        **/
-      setServerTime: function(serverDate) {
+      setServerTime: function(serverDate, serverGMT) {
         // get the time difference between server and client
         var now = new Date();
         difference = (serverDate.getTime() - now.getTime());
 
         // get the timezone difference between the server and the client
-        var serverGMT = (((serverDate.getHours() - serverDate.getUTCHours()) %
-          24) + 24) % 24;
         var clientGMT = (((now.getHours() - now.getUTCHours()) % 24) + 24) %
           24;
         difference += (serverGMT - clientGMT) * 60 * 60 * 1000;

@@ -105,17 +105,17 @@
                 <header>
                     <h3>4) Deine Zahlungsart</h3>
                 </header>
-                <div class="container">
+                <div bindonce class="container">
                     <div id="paymentMethods" class="noSelect">
-                        <div ng-class="{'active': formData.payment === 'cash'}" ng-click="formData.payment = 'cash'" class="paymentMethod">Bar
+                        <div bo-if="storeModel.allowsPaymentCash" ng-class="{'active': formData.payment === 'cash'}" ng-click="formData.payment = 'cash'" class="paymentMethod">Bar
                         </div>
-                        <div ng-class="{'active': formData.payment === 'ec'}" ng-click="formData.payment = 'ec'"
+                        <div bo-if="storeModel.allowsPaymentEc" ng-class="{'active': formData.payment === 'ec'}" ng-click="formData.payment = 'ec'"
                         class="paymentMethod">Ec-Karte
                         </div>
                         <!-- <div ng-class="{'active': formData.payment === 'creditCard'}" ng-click="formData.payment = 'creditCard'"
                                 class="paymentMethod">Kreditkarte</div> -->
                     </div>
-                    <p>
+                    <p bo-if="storeModel.allowsPaymentEc">
                         Die EC-Kartenzahlung erfolgt an der Haustür mit einem Kartenleser
                     </p>
                 </div>

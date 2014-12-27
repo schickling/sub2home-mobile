@@ -73,16 +73,16 @@
             </div>
         </div>
     </section>
-    <section id="infoPaymentMethods">
+    <section bindonce id="infoPaymentMethods">
         <header>
             <h2>Zahlungsarten</h2>
         </header>
-        <div class="infoPaymentMethod column">
+        <div bo-if="storeModel.allowsPaymentCash" class="infoPaymentMethod column">
             <h3>Barzahlung</h3>
             <p>
                 Einfach den entsprechenden Betrag bereithalten und bequem bei Ankunft an der Tür bezahlen. Bitte beachte, dass wir keine 100, 200 und 500€-Scheine im Lieferdienst annehmen.
             </p>
-        </div><div class="infoPaymentMethod column">
+        </div><div bo-if="storeModel.allowsPaymentEc" class="infoPaymentMethod column">
             <h3>EC-Kartenzahlung</h3>
             <p>
                 Bequem bargeldlos an der Haustür bezahlen. Einfach deine EC-Karte und deinen Pin bereithalten. Zur Zahlung benötigen wir die Verbindung zum Mobilfunknetz.

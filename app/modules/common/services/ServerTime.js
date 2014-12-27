@@ -35,7 +35,7 @@ module.exports = [
       getServerTime: function() {
         var now = new Date();
         return new Date(now.getTime() + difference);
-        //return new Date(2014, 9, 9, 20, 0, 0);
+        //return new Date(2014, 9, 9, 13, 0, 0);
       }
 
     };

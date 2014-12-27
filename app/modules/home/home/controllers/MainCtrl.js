@@ -4,8 +4,9 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
   'PostalFilterService', 'StoreService', 'StringUtilService',
   'PersistenceService', 'RoutingService',
 
-  function($scope, storesCollection, selectedDeliveryAreaModel, PostalFilterService,
-    StoreService, StringUtilService, PersistenceService, RoutingService) {
+  function($scope, storesCollection, selectedDeliveryAreaModel,
+    PostalFilterService, StoreService, StringUtilService,
+    PersistenceService, RoutingService) {
 
     $scope.inputFocused = false;
     $scope.postal = '';
@@ -32,7 +33,8 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
 
       $scope.storesCollection = storesCollection;
       $scope.deliveryAreasCollection = deliveryAreasCollection;
-      $scope.showStores = storesCollection.length === 1 && deliveryAreasCollection.length === 1;
+      $scope.showStores = storesCollection.length === 1 &&
+        deliveryAreasCollection.length === 1;
       $scope.noStoresFound = storesCollection.length === 0;
 
       if (deliveryAreasCollection.length === 1) {
@@ -45,8 +47,10 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
 
     $scope.$watch('selectedDeliveryAreaModel', function() {
       if ($scope.selectedDeliveryAreaModel) {
-        $scope.district = $scope.selectedDeliveryAreaModel.district || $scope.selectedDeliveryAreaModel.city;
-        PersistenceService.save('selectedDeliveryAreaModel', $scope.selectedDeliveryAreaModel);
+        $scope.district = $scope.selectedDeliveryAreaModel.district ||
+          $scope.selectedDeliveryAreaModel.city;
+        PersistenceService.save('selectedDeliveryAreaModel',
+          $scope.selectedDeliveryAreaModel);
       } else {
         $scope.district = '';
       }
@@ -56,7 +60,8 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
       $scope.showStores = true;
       $scope.selectedDeliveryAreaModel = deliveryArea;
 
-      var filteredStoresCollection = $scope.storesCollection.filter(store => StoreService.deliversTo(store, deliveryArea));
+      var filteredStoresCollection = $scope.storesCollection.filter(store =>
+        StoreService.deliversTo(store, deliveryArea));
 
       if (filteredStoresCollection.length === 1) {
         $scope.selectStore(filteredStoresCollection[0]);
@@ -71,35 +76,39 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
       $scope.showStores = false;
     };
 
-    $scope.getDeliveryTimeString = function(store) {
-      if (!store.isOpen) {
-        return 'geschlossen';
-      } else if ($scope.isDelivering(store)) {
-        return 'liefert gerade';
-      } else {
-        var nextDeliveryTime = StoreService.nextDeliveryTime(store, new Date()),
-          hours = parseInt(nextDeliveryTime.startMinutes / 60, 10),
-          minutes = nextDeliveryTime.startMinutes % 60,
-          paddedMinutes = StringUtilService.padNumber(minutes, 2);
-        return 'liefert wieder um ' + hours + ':' + paddedMinutes + ' Uhr';
-      }
-    };
+    //$scope.getDeliveryTimeString = function(store) {
+    //if (!store.isOpen) {
+    //return 'geschlossen';
+    //} else if ($scope.isDelivering(store)) {
+    //return 'liefert gerade';
+    //} else {
+    //var nextDeliveryTime = StoreService.nextDeliveryTime(store,
+    //new Date()),
+    //hours = parseInt(nextDeliveryTime.startMinutes / 60, 10),
+    //minutes = nextDeliveryTime.startMinutes % 60,
+    //paddedMinutes = StringUtilService.padNumber(minutes, 2);
+    //return 'liefert wieder um ' + hours + ':' + paddedMinutes + ' Uhr';
+    //}
+    //};
 
-    $scope.isDelivering = function(store) {
-      return StoreService.isDelivering(store, new Date());
-    };
+    //$scope.isDelivering = function(store) {
+    //return StoreService.isDelivering(store, new Date());
+    //};
 
     $scope.getStepClass = function() {
       if ($scope.inputFocused) {
         return 'step1';
-      } else if (($scope.storesCollection.length === 0 || $scope.deliveryAreasCollection.length === 0) || $scope.storesCollection.length > 0 || $scope.deliveryAreasCollection.length > 0) {
+      } else if (($scope.storesCollection.length === 0 ||
+          $scope.deliveryAreasCollection.length === 0) ||
+        $scope.storesCollection.length > 0 ||
+        $scope.deliveryAreasCollection.length > 0) {
         return 'step2';
       }
     };
 
-    $scope.selectStore = function(store) {
-      RoutingService.navigate(store.alias);
-    };
+    //$scope.selectStore = function(store) {
+    //RoutingService.navigate(store.alias);
+    //};
 
   }
 ];

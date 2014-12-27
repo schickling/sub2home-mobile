@@ -128,9 +128,9 @@
                 <h4>Wenn du den Mindestbestellwert erreicht hast, kannst du an dieser Stelle die Bestellung abschicken</h4>
             </section>
 
-            <section ng-if="deliveryFormError" id="sendOrderHint">
+            <section ng-if="deliveryAreaModel.minimumValue <= totalAmount && deliveryForm.$invalid && deliveresToday" id="sendOrderHint">
                 <i class="icn iFlag"></i>
-                <h4>Bitte fülle alle notwendigen Felder bei deiner Lieferadresse aus</h4>
+                <h4>Wenn du alle notwendigen Felder bei deiner Lieferadresse ausgefüllt hast, kannst du an dieser Stelle die Bestellung abschicken</h4>
             </section>
 
             <!--<aside id="storyline" class="">-->
@@ -146,7 +146,7 @@
         </div>
 
 
-        <div bo-if="deliveryAreaModel.minimumValue <= totalAmount && deliveresToday" id="sendOrder" class="note">
+        <div ng-if="deliveryAreaModel.minimumValue <= totalAmount && deliveresToday && deliveryForm.$valid" id="sendOrder" class="note">
             <div class="container">
                 <p>
                     Mit Klick auf "Bestellung abschicken" bestätigst du unsere

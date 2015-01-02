@@ -79,6 +79,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
             } else {
               self._hasIngrediants = false;
               self._currentArticleIndex++;
+              self._articleIterator = null;
               if (self._currentArticleIndex < self._menuComponentCollection.length) {
                 self._currentEntity = self._menuComponentCollection[self._currentArticleIndex].menuComponentOptionsCollection[0];
               } else {
@@ -136,6 +137,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
               if (self._currentArticleIndex + 1 < self._menuComponentCollection.length) {
                 var result = self._menuComponentCollection[self._currentArticleIndex + 1].menuComponentOptionsCollection[0];
                 result.icon = self._menuComponentCollection[self._currentArticleIndex + 1].menuComponentBlockMediaModel.icon;
+
                 d.resolve(result);
               } else {
                 d.resolve(null);
@@ -145,8 +147,17 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
           });
         } else {
           if (this._currentArticleIndex + 1 < this._menuComponentCollection.length) {
-            var result = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentOptionsCollection[0];
-            result.icon = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentBlockMediaModel.icon;
+
+            // check if the user already selected an article from the menu component
+            // when an article is already selected check if the article has ingredients
+            var result;
+            var savedArticle = this._menuComponentCollection[this._currentArticleIndex].savedArticle;
+            if (savedArticle && savedArticle.ingredientCategoriesCollection && savedArticle.ingredientCategoriesCollection.length > 0) {
+              result = savedArticle.ingredientCategoriesCollection[0];
+            } else {
+              result = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentOptionsCollection[0];
+              result.icon = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentBlockMediaModel.icon;
+            }
 
             defer.resolve(result);
           } else {
@@ -219,8 +230,8 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
 
         if (this._hasIngrediants) {
           //return this._articleIterator.then(function(iterator) {
-            //return iterator.getEntity();
-            defer.resolve('ingredient');
+          //return iterator.getEntity();
+          defer.resolve('ingredient');
           //});
         } else {
           defer.resolve('Article');

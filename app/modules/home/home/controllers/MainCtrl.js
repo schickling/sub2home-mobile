@@ -106,9 +106,9 @@ module.exports = ['$scope', 'storesCollection', 'selectedDeliveryAreaModel',
       }
     };
 
-    //$scope.selectStore = function(store) {
-    //RoutingService.navigate(store.alias);
-    //};
+    $scope.selectStore = function(store) {
+      RoutingService.navigate(store.alias);
+    };
 
   }
 ];

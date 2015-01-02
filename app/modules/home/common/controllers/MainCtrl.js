@@ -24,9 +24,9 @@ module.exports = ['$scope', 'StoreService', 'StringUtilService',
       return StoreService.isDelivering(store, ServerTime.getServerTime());
     };
 
-    $scope.selectStore = function(store) {
-      RoutingService.navigate(store.alias);
-    };
+    //$scope.selectStore = function(store) {
+    //RoutingService.navigate(store.alias);
+    //};
 
   }
 ];

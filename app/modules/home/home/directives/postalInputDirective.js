@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$timeout', 'PostalOracleService',
+module.exports = ['$timeout', 'PostalOracleService', 'PersistenceService',
 
-  function($timeout, PostalOracleService) {
+  function($timeout, PostalOracleService, PersistenceService) {
     return {
       restrict: 'E',
       templateUrl: 'modules/home/home/directives/postalInputDirective.html',
@@ -86,6 +86,11 @@ module.exports = ['$timeout', 'PostalOracleService',
               input[0].blur();
             }, 0, false);
 
+          } else {
+
+            PersistenceService.remove('selectedDeliveryAreaModel');
+            $scope.district = '';
+            $scope.postal = '';
           }
 
           checkShrinking();

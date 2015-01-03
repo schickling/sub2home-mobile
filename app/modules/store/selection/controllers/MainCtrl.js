@@ -203,8 +203,9 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
       // set timeline position
       var isMenuBundle = !!EntityIteratorService.getOrderedItemModel().menuBundleModel;
       var flatEntityCollection = _(entityCollection)
-        .map(e => [e.menuComponentOptionsCollection, e.ingredientCategoriesCollection, e.menuUpgradesCollection])
-        .flatten()
+        .map(e => [e.menuComponentOptionsCollection, e.ingredientCategoriesCollection, [e.menuUpgradesCollection]])
+        .flatten(true)
+        .flatten(true)
         .compact()
         .filter(e => !(isMenuBundle && e.menuComponentBlocksCollection))
         .value();

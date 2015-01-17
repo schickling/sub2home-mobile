@@ -146,17 +146,22 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
             }
           });
         } else {
-          if (this._currentArticleIndex + 1 < this._menuComponentCollection.length) {
+          if (this._currentArticleIndex + 1 <= this._menuComponentCollection.length) {
 
             // check if the user already selected an article from the menu component
             // when an article is already selected check if the article has ingredients
             var result;
             var savedArticle = this._menuComponentCollection[this._currentArticleIndex].savedArticle;
+
             if (savedArticle && savedArticle.ingredientCategoriesCollection && savedArticle.ingredientCategoriesCollection.length > 0) {
               result = savedArticle.ingredientCategoriesCollection[0];
             } else {
-              result = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentOptionsCollection[0];
-              result.icon = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentBlockMediaModel.icon;
+              if (this._currentArticleIndex + 1 < this._menuComponentCollection.length) {
+                result = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentOptionsCollection[0];
+                result.icon = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentBlockMediaModel.icon;
+              } else {
+                result = null;
+              }
             }
 
             defer.resolve(result);

@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route', '$q',
+module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory',
+  '$route', '$q',
 
 
   function(_, ArticleIteratorService, ArticleModelFactory, $route, $q) {
@@ -19,7 +20,35 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
       return result;
     };
 
-    var fetchArticle = function(article, self, artlicleList) {
+    // Add the previous selected ingredients to the new article
+    var copyAlreadySelectedIngredients = function(oldArticle, newArticle) {
+
+
+      var zippedIngredientCategorieCollection =
+        _.zip(oldArticle.ingredientCategoriesCollection,
+          newArticle.ingredientCategoriesCollection);
+
+      _.map(zippedIngredientCategorieCollection, function(categoriesPair) {
+        if (categoriesPair[0].id === categoriesPair[1].id) {
+          // Set passed when the ingreadientCategoriesCollection is already
+          // valid
+          categoriesPair[1].passed = categoriesPair[0].passed;
+
+          var zippedIngredientsCollection = _.zip(
+            categoriesPair[0].ingredientsCollection,
+            categoriesPair[1].ingredientsCollection);
+
+          _.map(zippedIngredientsCollection, function(ingredientsPair) {
+            if (ingredientsPair[0].id === ingredientsPair[1].id) {
+              ingredientsPair[1].isSelected = ingredientsPair[0].isSelected;
+            }
+          });
+
+        }
+      });
+    };
+
+    var fetchArticle = function(article, self, oldArticle) {
       var articleModel = ArticleModelFactory.get({
         storeAlias: $route.current.params.storeAlias,
         articleId: article.id
@@ -36,9 +65,15 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
         self._isFetching = false;
         articleModel.allowsMenuUpgrades = 0;
 
+        if (oldArticle) {
+          copyAlreadySelectedIngredients(oldArticle, articleModel);
+        }
+
+
         var iterator = ArticleIteratorService.init(articleModel);
         //artlicleList.savedArticle = articleModel;
-        self._menuComponentCollection[self._currentArticleIndex].savedArticle = articleModel;
+        self._menuComponentCollection[self._currentArticleIndex].savedArticle =
+          articleModel;
         defer.resolve(iterator);
         return iterator.getEntity();
       });
@@ -94,18 +129,21 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
           var selectedArticle = getSelectedArticle(this._currentEntity.menuComponentOptionArticlesCollection);
 
           if (selectedArticle && selectedArticle.allowsIngredients) {
-            if (!this._menuComponentCollection[this._currentArticleIndex].savedArticle || selectedArticle.id !== this._menuComponentCollection[this._currentArticleIndex].savedArticle.id) {
-              return fetchArticle(selectedArticle, this, this._currentEntity);
+            var savedArticle = this._menuComponentCollection[this._currentArticleIndex].savedArticle;
+
+            if (!savedArticle || selectedArticle.id !== savedArticle.id) {
+              return fetchArticle(selectedArticle, this, savedArticle);
             } else {
-              var defer = $q.defer();
+              defer = $q.defer();
               this._articleIterator = defer.promise;
 
-              var iterator = ArticleIteratorService.init(this._menuComponentCollection[self._currentArticleIndex].savedArticle);
+              var iterator = ArticleIteratorService.init(savedArticle);
               defer.resolve(iterator);
               this._hasIngrediants = true;
 
               return iterator.getEntity();
             }
+
           } else {
             this._hasIngrediants = false;
             this._currentArticleIndex++;

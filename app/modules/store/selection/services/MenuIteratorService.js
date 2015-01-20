@@ -1,24 +1,11 @@
 'use strict';
 
 module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory',
-  '$route', '$q',
+  '$route', '$q', 'IteratorUtilsService',
 
 
-  function(_, ArticleIteratorService, ArticleModelFactory, $route, $q) {
-
-    var getSelectedArticle = function(entity) {
-      var result = null;
-
-      if (entity instanceof Array) {
-        _.each(entity, function(option) {
-          if (option.isSelected) {
-            result = option;
-          }
-        });
-      }
-
-      return result;
-    };
+  function(_, ArticleIteratorService, ArticleModelFactory, $route, $q,
+    IteratorUtilsService) {
 
     // Add the previous selected ingredients to the new article
     var copyAlreadySelectedIngredients = function(oldArticle, newArticle) {
@@ -126,7 +113,8 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory',
             }
           });
         } else {
-          var selectedArticle = getSelectedArticle(this._currentEntity.menuComponentOptionArticlesCollection);
+          var selectedArticle = IteratorUtilsService.getSelectedArticle(
+            this._currentEntity.menuComponentOptionArticlesCollection);
 
           if (selectedArticle && selectedArticle.allowsIngredients) {
             var savedArticle = this._menuComponentCollection[this._currentArticleIndex].savedArticle;

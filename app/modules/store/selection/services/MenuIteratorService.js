@@ -1,25 +1,41 @@
 'use strict';
 
-module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route', '$q',
+module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory',
+  '$route', '$q', 'IteratorUtilsService',
 
 
-  function(_, ArticleIteratorService, ArticleModelFactory, $route, $q) {
+  function(_, ArticleIteratorService, ArticleModelFactory, $route, $q,
+    IteratorUtilsService) {
 
-    var getSelectedArticle = function(entity) {
-      var result = null;
+    // Add the previous selected ingredients to the new article
+    var copyAlreadySelectedIngredients = function(oldArticle, newArticle) {
 
-      if (entity instanceof Array) {
-        _.each(entity, function(option) {
-          if (option.isSelected) {
-            result = option;
-          }
-        });
-      }
 
-      return result;
+      var zippedIngredientCategorieCollection =
+        _.zip(oldArticle.ingredientCategoriesCollection,
+          newArticle.ingredientCategoriesCollection);
+
+      _.map(zippedIngredientCategorieCollection, function(categoriesPair) {
+        if (categoriesPair[0].id === categoriesPair[1].id) {
+          // Set passed when the ingreadientCategoriesCollection is already
+          // valid
+          categoriesPair[1].passed = categoriesPair[0].passed;
+
+          var zippedIngredientsCollection = _.zip(
+            categoriesPair[0].ingredientsCollection,
+            categoriesPair[1].ingredientsCollection);
+
+          _.map(zippedIngredientsCollection, function(ingredientsPair) {
+            if (ingredientsPair[0].id === ingredientsPair[1].id) {
+              ingredientsPair[1].isSelected = ingredientsPair[0].isSelected;
+            }
+          });
+
+        }
+      });
     };
 
-    var fetchArticle = function(article, self, artlicleList) {
+    var fetchArticle = function(article, self, oldArticle) {
       var articleModel = ArticleModelFactory.get({
         storeAlias: $route.current.params.storeAlias,
         articleId: article.id
@@ -36,9 +52,15 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
         self._isFetching = false;
         articleModel.allowsMenuUpgrades = 0;
 
+        if (oldArticle) {
+          copyAlreadySelectedIngredients(oldArticle, articleModel);
+        }
+
+
         var iterator = ArticleIteratorService.init(articleModel);
         //artlicleList.savedArticle = articleModel;
-        self._menuComponentCollection[self._currentArticleIndex].savedArticle = articleModel;
+        self._menuComponentCollection[self._currentArticleIndex].savedArticle =
+          articleModel;
         defer.resolve(iterator);
         return iterator.getEntity();
       });
@@ -79,6 +101,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
             } else {
               self._hasIngrediants = false;
               self._currentArticleIndex++;
+              self._articleIterator = null;
               if (self._currentArticleIndex < self._menuComponentCollection.length) {
                 self._currentEntity = self._menuComponentCollection[self._currentArticleIndex].menuComponentOptionsCollection[0];
               } else {
@@ -90,21 +113,25 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
             }
           });
         } else {
-          var selectedArticle = getSelectedArticle(this._currentEntity.menuComponentOptionArticlesCollection);
+          var selectedArticle = IteratorUtilsService.getSelectedArticle(
+            this._currentEntity.menuComponentOptionArticlesCollection);
 
           if (selectedArticle && selectedArticle.allowsIngredients) {
-            if (!this._menuComponentCollection[this._currentArticleIndex].savedArticle || selectedArticle.id !== this._menuComponentCollection[this._currentArticleIndex].savedArticle.id) {
-              return fetchArticle(selectedArticle, this, this._currentEntity);
+            var savedArticle = this._menuComponentCollection[this._currentArticleIndex].savedArticle;
+
+            if (!savedArticle || selectedArticle.id !== savedArticle.id) {
+              return fetchArticle(selectedArticle, this, savedArticle);
             } else {
-              var defer = $q.defer();
+              defer = $q.defer();
               this._articleIterator = defer.promise;
 
-              var iterator = ArticleIteratorService.init(this._menuComponentCollection[self._currentArticleIndex].savedArticle);
+              var iterator = ArticleIteratorService.init(savedArticle);
               defer.resolve(iterator);
               this._hasIngrediants = true;
 
               return iterator.getEntity();
             }
+
           } else {
             this._hasIngrediants = false;
             this._currentArticleIndex++;
@@ -136,6 +163,7 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
               if (self._currentArticleIndex + 1 < self._menuComponentCollection.length) {
                 var result = self._menuComponentCollection[self._currentArticleIndex + 1].menuComponentOptionsCollection[0];
                 result.icon = self._menuComponentCollection[self._currentArticleIndex + 1].menuComponentBlockMediaModel.icon;
+
                 d.resolve(result);
               } else {
                 d.resolve(null);
@@ -144,9 +172,23 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
             }
           });
         } else {
-          if (this._currentArticleIndex + 1 < this._menuComponentCollection.length) {
-            var result = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentOptionsCollection[0];
-            result.icon = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentBlockMediaModel.icon;
+          if (this._currentArticleIndex + 1 <= this._menuComponentCollection.length) {
+
+            // check if the user already selected an article from the menu component
+            // when an article is already selected check if the article has ingredients
+            var result;
+            var savedArticle = this._menuComponentCollection[this._currentArticleIndex].savedArticle;
+
+            if (savedArticle && savedArticle.ingredientCategoriesCollection && savedArticle.ingredientCategoriesCollection.length > 0) {
+              result = savedArticle.ingredientCategoriesCollection[0];
+            } else {
+              if (this._currentArticleIndex + 1 < this._menuComponentCollection.length) {
+                result = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentOptionsCollection[0];
+                result.icon = this._menuComponentCollection[this._currentArticleIndex + 1].menuComponentBlockMediaModel.icon;
+              } else {
+                result = null;
+              }
+            }
 
             defer.resolve(result);
           } else {
@@ -219,8 +261,8 @@ module.exports = ['_', 'ArticleIteratorService', 'ArticleModelFactory', '$route'
 
         if (this._hasIngrediants) {
           //return this._articleIterator.then(function(iterator) {
-            //return iterator.getEntity();
-            defer.resolve('ingredient');
+          //return iterator.getEntity();
+          defer.resolve('ingredient');
           //});
         } else {
           defer.resolve('Article');

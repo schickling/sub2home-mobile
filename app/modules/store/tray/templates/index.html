@@ -105,17 +105,17 @@
                 <header>
                     <h3>4) Deine Zahlungsart</h3>
                 </header>
-                <div class="container">
+                <div bindonce class="container">
                     <div id="paymentMethods" class="noSelect">
-                        <div ng-class="{'active': formData.payment === 'cash'}" ng-click="formData.payment = 'cash'" class="paymentMethod">Bar
+                        <div bo-if="storeModel.allowsPaymentCash" ng-class="{'active': formData.payment === 'cash'}" ng-click="formData.payment = 'cash'" class="paymentMethod">Bar
                         </div>
-                        <div ng-class="{'active': formData.payment === 'ec'}" ng-click="formData.payment = 'ec'"
+                        <div bo-if="storeModel.allowsPaymentEc" ng-class="{'active': formData.payment === 'ec'}" ng-click="formData.payment = 'ec'"
                         class="paymentMethod">Ec-Karte
                         </div>
                         <!-- <div ng-class="{'active': formData.payment === 'creditCard'}" ng-click="formData.payment = 'creditCard'"
                                 class="paymentMethod">Kreditkarte</div> -->
                     </div>
-                    <p>
+                    <p bo-if="storeModel.allowsPaymentEc">
                         Die EC-Kartenzahlung erfolgt an der Haustür mit einem Kartenleser
                     </p>
                 </div>
@@ -128,9 +128,9 @@
                 <h4>Wenn du den Mindestbestellwert erreicht hast, kannst du an dieser Stelle die Bestellung abschicken</h4>
             </section>
 
-            <section ng-if="deliveryFormError" id="sendOrderHint">
+            <section ng-if="deliveryAreaModel.minimumValue <= totalAmount && deliveryForm.$invalid && deliveresToday" id="sendOrderHint">
                 <i class="icn iFlag"></i>
-                <h4>Bitte fülle alle notwendigen Felder bei deiner Lieferadresse aus</h4>
+                <h4>Wenn du alle notwendigen Felder bei deiner Lieferadresse ausgefüllt hast, kannst du an dieser Stelle die Bestellung abschicken</h4>
             </section>
 
             <!--<aside id="storyline" class="">-->
@@ -146,7 +146,7 @@
         </div>
 
 
-        <div bo-if="deliveryAreaModel.minimumValue <= totalAmount && deliveresToday" id="sendOrder" class="note">
+        <div ng-if="deliveryAreaModel.minimumValue <= totalAmount && deliveresToday && deliveryForm.$valid" id="sendOrder" class="note">
             <div class="container">
                 <p>
                     Mit Klick auf "Bestellung abschicken" bestätigst du unsere

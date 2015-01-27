@@ -20,38 +20,18 @@
 </nav>
 
 <div id="homeInfo" class="content dark">
-     <section id="restaurantsOverview">
+     <section ng-controller="HomeCommonCtrl" id="restaurantsOverview">
         <header>
             <h2>Restaurants</h2>
         </header>
         <div class="deliveringRestaurant" bindonce ng-repeat="storeModel in storesCollection" ng-click="navigate(storeModel.alias)">
           <h4>SUBWAY<span class="superscript">&reg;</span> <span bo-text="storeModel.title"></span></h4>
-            <p class="deliveryStatus delivering">
+            <p class="deliveryStatus" ng-class="{delivering: isDelivering(storeModel), closed: !storeModel.isOpen, notDelivering: !isDelivering(storeModel)}">
                 <span class="deliveryIndicator"></span>
-                liefert gerade
+                <span bo-text="getDeliveryTimeString(storeModel)"></span>
             </p>
         </div>
-        <!--<div class="deliveringRestaurant">
-            <h4>SUBWAY<span class="superscript">&reg;</span> Unterschleißheim</h4>
-            <p class="deliveryStatus notDelivering">
-                <span class="deliveryIndicator"></span>
-                liefert wieder ab 15:00
-            </p>
-        </div>
-        <div class="deliveringRestaurant">
-            <h4>SUBWAY<span class="superscript">&reg;</span> Garmisch-Partenkirchen</h4>
-            <p class="deliveryStatus closed">
-                <span class="deliveryIndicator"></span>
-                geschlossen
-            </p>
-        </div>
-        <div class="deliveringRestaurant">
-            <h4>SUBWAY<span class="superscript">&reg;</span> Oberhausen</h4>
-            <p class="deliveryStatus delivering">
-                <span class="deliveryIndicator"></span>
-                liefert gerade
-            </p>
-        </div>-->
+
       </section>
     <!--   <section id="howItWorks">
     <header>

@@ -1,9 +1,10 @@
 'use strict';
 
 module.exports = ['$scope', 'StoreService', 'StringUtilService',
-  'RoutingServiceb',
+  'RoutingService', 'ServerTime',
 
-  function($scope, StoreService, StringUtilService, RoutingService) {
+  function($scope, StoreService, StringUtilService, RoutingService,
+    ServerTime) {
     $scope.getDeliveryTimeString = function(store) {
       if (!store.isOpen) {
         return 'geschlossen';
@@ -11,7 +12,7 @@ module.exports = ['$scope', 'StoreService', 'StringUtilService',
         return 'liefert gerade';
       } else {
         var nextDeliveryTime = StoreService.nextDeliveryTime(store,
-            new Date()),
+            ServerTime.getServerTime()),
           hours = parseInt(nextDeliveryTime.startMinutes / 60, 10),
           minutes = nextDeliveryTime.startMinutes % 60,
           paddedMinutes = StringUtilService.padNumber(minutes, 2);
@@ -20,12 +21,12 @@ module.exports = ['$scope', 'StoreService', 'StringUtilService',
     };
 
     $scope.isDelivering = function(store) {
-      return StoreService.isDelivering(store, new Date());
+      return StoreService.isDelivering(store, ServerTime.getServerTime());
     };
 
-    $scope.selectStore = function(store) {
-      RoutingService.navigate(store.alias);
-    };
+    //$scope.selectStore = function(store) {
+    //RoutingService.navigate(store.alias);
+    //};
 
   }
 ];

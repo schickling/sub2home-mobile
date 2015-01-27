@@ -7,6 +7,7 @@ var ArticleIteratorService = require('./services/ArticleIteratorService');
 var IngredientIteratorService = require('./services/IngredientIteratorService');
 var MenuUpgradeIteratorService = require('./services/MenuUpgradeIteratorService');
 var MenuIteratorService = require('./services/MenuIteratorService');
+var IteratorUtilsService = require('./services/IteratorUtilsService');
 var EntityCheckerService = require('./services/EntityCheckerService');
 var articleDirective = require('./directives/articleDirective');
 
@@ -16,6 +17,7 @@ module.exports = angular.module('store.selection', [])
   .service('EntityIteratorService', EntityIteratorService)
   .service('ArticleIteratorService', ArticleIteratorService)
   .service('IngredientIteratorService', IngredientIteratorService)
+  .service('IteratorUtilsService', IteratorUtilsService)
   .service('MenuUpgradeIteratorService', MenuUpgradeIteratorService)
   .service('MenuIteratorService', MenuIteratorService)
   .service('EntityCheckerService', EntityCheckerService)

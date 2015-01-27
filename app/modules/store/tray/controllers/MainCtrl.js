@@ -64,31 +64,22 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService',
     $scope.formData.payment = 'cash';
 
 
-    $scope.deliveryFormError = false;
-    //$scope.orderDate = null;
 
     $scope.order = function() {
 
       $scope.$broadcast('show-errors-check-validity');
 
-      if (!$scope.deliveryForm.$invalid) {
-        var orderDate = new Date(PersistenceService.load('deliveryDate'));
-        OrderService.order(orderDate, $scope.deliveryAreaModel,
-          $scope.totalAmount, $scope.formData, $scope.allSingleItems,
-          $scope.allSubItems, $scope.allMenuItems);
+      var orderDate = new Date(PersistenceService.load('deliveryDate'));
+      OrderService.order(orderDate, $scope.deliveryAreaModel,
+        $scope.totalAmount, $scope.formData, $scope.allSingleItems,
+        $scope.allSubItems, $scope.allMenuItems);
 
-        $scope.deliveryFormError = false;
-        TrayStorageService.removeAll();
+      TrayStorageService.removeAll();
 
-        PersistenceService.save('formData', $scope.formData);
-        //PersistenceService.save('deliveryDate', $scope.orderDate);
-        PersistenceService.save('storeModel', $scope.storeModel);
-        RoutingService.navigate(':storeAlias/danke');
+      PersistenceService.save('formData', $scope.formData);
+      PersistenceService.save('storeModel', $scope.storeModel);
+      RoutingService.navigate(':storeAlias/danke');
 
-      } else {
-
-        $scope.deliveryFormError = true;
-      }
     };
 
 

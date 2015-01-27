@@ -201,36 +201,20 @@ module.exports = ['$scope', 'orderedItemModel', '$window',
       $scope.timelineArticleCollection = entityCollection;
 
       // set timeline position
-      var itemWidth = 70;
-      var flatEntityCollection = [];
-
-      for (var i = 0; i < entityCollection.length; ++i) {
-
-        var currentEntity = entityCollection[i];
-
-        if (currentEntity.menuComponentOptionsCollection) {
-
-          for (var j = 0; j < currentEntity.menuComponentOptionsCollection.length; ++j) {
-            flatEntityCollection = flatEntityCollection.concat(currentEntity.menuComponentOptionsCollection[j]);
-          }
-
-        }
-
-        if (currentEntity.ingredientCategoriesCollection) {
-          flatEntityCollection = flatEntityCollection.concat(currentEntity.ingredientCategoriesCollection);
-        }
-
-        if (currentEntity.menuUpgradesCollection) {
-          flatEntityCollection.push(currentEntity.menuUpgradesCollection);
-        }
-
-      }
+      var isMenuBundle = !!EntityIteratorService.getOrderedItemModel().menuBundleModel;
+      var flatEntityCollection = _(entityCollection)
+        .map(e => [e.menuComponentOptionsCollection, e.ingredientCategoriesCollection, [e.menuUpgradesCollection]])
+        .flatten(true)
+        .flatten(true)
+        .compact()
+        .filter(e => !(isMenuBundle && e.menuComponentBlocksCollection))
+        .value();
 
       var selectedItemIndex = flatEntityCollection.indexOf($scope.entity);
+      var itemWidth = 70;
+      var scrollLeft = (selectedItemIndex - 1) * itemWidth + 8;
 
-      $timeout(function() {
-        timelineScrollContainer.scrollLeft((selectedItemIndex - 2) * itemWidth, 300);
-      }, 100);
+      timelineScrollContainer.scrollLeft(scrollLeft, 300);
 
     };
 

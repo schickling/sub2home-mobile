@@ -1000,4 +1000,14 @@
     background: @greenLight;
     color: @noteColor;
   }
+
+  &.processing {
+    > span {
+      display: none;
+    }
+    
+    .buttonLoader {
+      .opacity(100);
+    }
+  }
 }

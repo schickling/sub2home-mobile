@@ -68,34 +68,32 @@ module.exports = ['$scope', 'TrayStorageService', 'TrayService',
 
 
     $scope.order = function() {
+      if (!$scope.isSending) {
 
-      $scope.$broadcast('show-errors-check-validity');
+        $scope.$broadcast('show-errors-check-validity');
 
-      var orderDate = new Date(PersistenceService.load('deliveryDate'));
+        var orderDate = new Date(PersistenceService.load('deliveryDate'));
 
-      var success = function() {
+        var success = function() {
+          $scope.isSending = false;
+          TrayStorageService.removeAll();
 
-        console.log('Success');
-        $scope.isSending = false;
-        TrayStorageService.removeAll();
+          PersistenceService.save('formData', $scope.formData);
+          PersistenceService.save('storeModel', $scope.storeModel);
+          RoutingService.navigate(':storeAlias/danke');
+        };
 
-        PersistenceService.save('formData', $scope.formData);
-        PersistenceService.save('storeModel', $scope.storeModel);
-        RoutingService.navigate(':storeAlias/danke');
-      };
+        var error = function(err) {
+          $scope.isSending = false;
+          // TODO show error message
+        };
 
-      var error = function(err) {
-        $scope.isSending = false;
-        console.log('Error');
-        console.log(err);
-      };
+        $scope.isSending = true;
+        OrderService.order(orderDate, $scope.deliveryAreaModel,
+          $scope.totalAmount, $scope.formData, $scope.allSingleItems,
+          $scope.allSubItems, $scope.allMenuItems, success, error);
 
-      $scope.isSending = true;
-      debugger;
-      OrderService.order(orderDate, $scope.deliveryAreaModel,
-        $scope.totalAmount, $scope.formData, $scope.allSingleItems,
-        $scope.allSubItems, $scope.allMenuItems, success, error);
-
+      }
     };
 
 

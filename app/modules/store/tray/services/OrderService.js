@@ -7,7 +7,8 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
     return {
 
       order: function(dueDate, deliveryAreaModel, total, formData,
-        singleItemsCollection, subItemsCollection, menuItemsCollection) {
+        singleItemsCollection, subItemsCollection, menuItemsCollection,
+        success, error) {
         var postData = {
           comment: formData.comment || '',
           couponCode: '',
@@ -28,8 +29,7 @@ module.exports = ['RandomService', '_', 'OrdersModelFactory', '$route',
 
         postData.orderedItemsCollection = this._getOrderedItemsCollection(
           singleItemsCollection, subItemsCollection, menuItemsCollection);
-
-        OrdersModelFactory.create({
+        new OrdersModelFactory(success, error).create({
           storeAlias: $route.current.params.storeAlias,
         }, postData);
 

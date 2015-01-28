@@ -152,7 +152,7 @@
                     Mit Klick auf "Bestellung abschicken" bestätigst du unsere
                     <a href="http://s3-eu-west-1.amazonaws.com/sub2home-static/documents/static/agb-gaeste.pdf">AGB</a>
                 </p>
-                <div ng-click="order()" id="sendOrderButton" class="noSelect">
+                <div ng-click="order()" id="sendOrderButton" ng-class="{processing: isSending}" class="noSelect">
                     <span>Bestellung abschicken</span>
                     <div class="buttonLoader"><div></div><div></div><div></div></div>
                 </div>
